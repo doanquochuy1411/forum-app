@@ -20,40 +20,40 @@ class Login extends Controller
     function HandelLogin()
     {
         if (isset($_POST["btnLogin"])) {
-            $email = $_POST["email"];
+            $user_name = $_POST["user_name"];
             $password = $_POST["password"];
-            $errors = validateForm(["email", "password"]);
+            $errors = validateForm(["user_name", "password"]);
             if (!empty($errors)) {
-                echo "<script>alert('Error: " . implode(", ", $errors) . "');</script>";
-                $this->response($this->layout, "login", $this->title, [$email, $password]);
+                echo "<script>alert('Đăng nhập thất bại !');</script>";
+                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
 
-            $userAccount = $this->UserModel->GetUserByEmail($email);
+            $userAccount = $this->UserModel->GetUserByAccountName($user_name);
             if ($userAccount && $userAccount['locked'] == 1) {
                 echo "<script> alert('Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
-                $this->response($this->layout, "login", $this->title, [$email, $password]);
+                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
 
             if ($userAccount && password_verify($password, $userAccount['password'])) {
-                $this->UserModel->ResetLoginAttempts($email);
+                $this->UserModel->ResetLoginAttempts($user_name);
                 $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
                 $_SESSION['UserID'] = $userAccount["id"];
                 header("Location: " . BASE_URL);
                 exit();
             } else {
                 if ($userAccount) {
-                    $this->UserModel->UpdateLoginAttempts($email);
+                    $this->UserModel->UpdateLoginAttempts($user_name);
                     echo "<script>alert('Sai mật khẩu lần " . $userAccount['login_attempts'] + 1 . " (Tối đa 5 lần)');</script>";
                     if ($userAccount['login_attempts'] >= 5) {
-                        $this->UserModel->UpdateLocked($email);
+                        $this->UserModel->UpdateLocked($user_name);
                         echo "<script> alert('Bạn đã đăng nhập sai quá 5 lần, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
                     }
                 } else {
                     echo "<script>alert('Tài khoản không chính xác!');</script>";
                 }
-                $this->response($this->layout, "login", $this->title, [$email, $password]);
+                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
         }

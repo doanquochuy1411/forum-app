@@ -1,3 +1,3 @@
 <?php
-    define('BASE_URL', 'http://localhost/seed-web');
+define('BASE_URL', 'http://localhost/forum-app');
 ?>

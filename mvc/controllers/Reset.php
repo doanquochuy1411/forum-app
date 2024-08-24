@@ -106,8 +106,8 @@ class Reset extends Controller
 
             $result = $this->UserModel->UpdatePassword($email, $hashedPassword);
             if ($result) {
-                $this->UserModel->ResetLoginAttempts($email);
-                $this->UserModel->ResetLocked($email);
+                $this->UserModel->ResetLoginAttemptsWithEmail($email);
+                $this->UserModel->ResetLockedWithEmail($email);
                 echo "<script>alert('Khôi phục mật khẩu thành công');</script>";
                 $this->response($this->layout, "login", $this->title, [$email, $password]);
             } else {

@@ -35,12 +35,14 @@ function validateForm($fieldsToValidate)
     $errors = [];
 
     $fields = [
-        'full_name' => 'validateFullName',
+        'full_name' => 'validateNoSpecialChars',
         'phone_number' => 'validatePhoneNumber',
         'email' => 'validateEmail',
         'password' => 'validatePassword',
         'address' => 'validateAddress',
-        'description' => 'validateNoSpecialChars'
+        'description' => 'validateNoSpecialChars',
+        'account_name' => 'validateNoSpecialChars',
+        'user_name' => 'validateNoSpecialChars',
     ];
 
 

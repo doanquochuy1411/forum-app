@@ -1,44 +1,30 @@
-<div class="limiter">
-    <div class="container-login100" style="background: #7fad39">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <img src="<?php echo BASE_URL; ?>/public/img/logo.png" alt="IMG">
-            </div>
-
-            <form action="<?php echo BASE_URL; ?>/Reset/HandelReset" class="login100-form validate-form" method="post">
-                <span class="login100-form-title">
-                    <?php echo $title ?>
-                </span>
-
+<div class="account-page">
+    <div class="account-center">
+        <div class="account-box">
+            <form class="form-signin" action="<?php echo BASE_URL; ?>/Reset/HandelReset" method="post">
+                <div class="account-logo">
+                    <a href="<?php echo BASE_URL; ?>"><img
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-dark.png" alt="Preadmin"></a>
+                </div>
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="password" name="password" placeholder="Mật khẩu mới">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
+                <div class="form-group">
+                    <label>Mật khẩu mới</label>
+                    <input type="password" class="form-control" name="password" id="password"
+                        placeholder="Mật khẩu mới">
+                    <small id="password_err"></small>
                 </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="password" name="retype_password" placeholder="Nhập lại mật khẩu">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
+                <div class="form-group">
+                    <label>Xác nhận mật khẩu của bạn</label>
+                    <input type="password" class="form-control" name="retype_password" id="retype_password"
+                        placeholder="Xác nhận mật khẩu">
+                    <small id="retype_password_err"></small>
                 </div>
-
-                <div class="container-login100-form-btn">
-                    <input style="background: #7fad39" type="submit" class="login100-form-btn" name="btnReset"
-                        value="Đăng ký">
+                <div class="form-group text-center">
+                    <button class="btn btn-primary account-btn" type="submit" name="btnReset">Khôi phục</button>
                 </div>
-
-                <div class="text-center p-t-12">
-                    <a class="txt2" href="http://localhost/seed-web/Login">
-                        Bạn đã có tài khoản? Đăng nhập tại đây
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                    </a>
+                <div class="text-center register-link">
+                    <a href="<?php echo BASE_URL; ?>/login">Quay lại trang đăng nhập</a>
                 </div>
             </form>
         </div>

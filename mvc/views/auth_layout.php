@@ -2,37 +2,56 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/public/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo BASE_URL; ?>/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/public/vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo BASE_URL; ?>/public/vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/public/vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/public/css/util.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/public/css/main_long.css">
-    <title><?php echo $title ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Preadmin - Bootstrap Admin Template</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/favicon.ico">
+
+    <!-- Font Family -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet"
+        href="<?php echo BASE_URL; ?>/public/admin/assets/plugins/fontawesome/css/fontawesome.min.css">
+
+    <!--custom styles-->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css"
+        integrity="sha256-KIZHD6c6Nkk0tgsncHeNNwvNU1TX8YzPrYn01ltQwFg=" crossorigin="anonymous">
+
+
 </head>
 
-<body>
-    <?php
-    require_once "./mvc/views/pages/" . $Page . ".php";
-    ?>
-</body>
-<script src="<?php echo BASE_URL; ?>/public/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="<?php echo BASE_URL; ?>/public/vendor/bootstrap/js/popper.js"></script>
-<script src="<?php echo BASE_URL; ?>/public/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL; ?>/public/vendor/select2/select2.min.js"></script>
-<script src="<?php echo BASE_URL; ?>/public/vendor/tilt/tilt.jquery.min.js"></script>
-<script>
-    $('.js-tilt').tilt({
-        scale: 1.1
-    })
-</script>
 
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper account-wrapper">
+        <?php
+        require_once "./mvc/views/pages/" . $Page . ".php";
+        ?>
+    </div>
+    <!--/ Main Wrapper -->
+
+    <!--scripts-->
+    <!-- jQuery -->
+    <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/app.js"></script>
+    <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"
+        integrity="sha256-rTq0xiLu1Njw5mB3ky3DZhpI5WhYdkNlQbGXUc0Si6E=" crossorigin="anonymous"></script>
 </body>
 
 </html>

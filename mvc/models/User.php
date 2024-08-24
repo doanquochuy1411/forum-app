@@ -12,12 +12,6 @@ class User extends DB
         return $this->executeSelectQuery($sql, [$userID]);
     }
 
-    public function GetCartDetailByUserID($id)
-    {
-        $sql = "SELECT p.name,p.id as product_id,p.image_url, p.sale_price, c.quantity, c.id as cart_id, u.full_name FROM cart c JOIN product p ON c.product_id = p.id JOIN user u on c.user_id =u.id WHERE c.user_id = ? and u.deleted_at is null";
-        return $this->executeSelectQuery($sql, [$id]);
-    }
-
     public function GetUserByEmail($email)
     {
         $sql = "SELECT * FROM user WHERE deleted_at IS NULL AND email = ?";
@@ -30,22 +24,45 @@ class User extends DB
 
         return null;
     }
-    public function UpdateLoginAttempts($email)
+
+    public function GetUserByAccountName($account_name)
     {
-        $sql = "UPDATE user SET login_attempts = login_attempts + 1 WHERE email = ?";
-        return $this->executeQuery($sql, [$email]);
+        $sql = "SELECT * FROM user WHERE deleted_at IS NULL AND account_name = ?";
+        $result = $this->executeSelectQuery($sql, [$account_name]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        if (!empty($data)) {
+            return $data[0];
+        }
+
+        return null;
     }
-    public function ResetLoginAttempts($email)
+    public function UpdateLoginAttempts($account_name)
+    {
+        $sql = "UPDATE user SET login_attempts = login_attempts + 1 WHERE account_name = ?";
+        return $this->executeQuery($sql, [$account_name]);
+    }
+    public function ResetLoginAttempts($account_name)
+    {
+        $sql = "UPDATE user SET login_attempts = 0 WHERE account_name = ?";
+        return $this->executeQuery($sql, [$account_name]);
+    }
+    public function ResetLoginAttemptsWithEmail($email)
     {
         $sql = "UPDATE user SET login_attempts = 0 WHERE email = ?";
         return $this->executeQuery($sql, [$email]);
     }
-    public function UpdateLocked($email)
+    public function UpdateLocked($account_name)
     {
-        $sql = "UPDATE user SET locked = 1 WHERE email = ?";
-        return $this->executeQuery($sql, [$email]);
+        $sql = "UPDATE user SET locked = 1 WHERE account_name = ?";
+        return $this->executeQuery($sql, [$account_name]);
     }
-    public function ResetLocked($email)
+    public function ResetLocked($account_name)
+    {
+        $sql = "UPDATE user SET locked = 0 WHERE account_name = ?";
+        return $this->executeQuery($sql, [$account_name]);
+    }
+    public function ResetLockedWithEmail($email)
     {
         $sql = "UPDATE user SET locked = 0 WHERE email = ?";
         return $this->executeQuery($sql, [$email]);
@@ -56,10 +73,10 @@ class User extends DB
         return $this->executeQuery($sql, [$password, $email]);
     }
 
-    public function CreateUser($name, $phone, $email, $password)
+    public function CreateUser($account_name, $user_name, $email, $password)
     {
-        $sql = "INSERT INTO user(full_name, phone_number, email, password) values (?,?,?,?)";
-        return $this->executeQuery($sql, [$name, $phone, $email, $password]);
+        $sql = "INSERT INTO user(account_name, user_name, email, password) values (?,?,?,?)";
+        return $this->executeQuery($sql, [$account_name, $user_name, $email, $password]);
     }
 
     public function GetAllRole()

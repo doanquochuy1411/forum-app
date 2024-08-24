@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../seed-web"
+		},
+		{
+			"path": "../../../../KLTN/ogani-master"
+		}
+	],
+	"settings": {}
+}

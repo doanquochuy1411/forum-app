@@ -1,50 +1,27 @@
-<div class="limiter">
-    <div class="container-login100" style="background: #7fad39">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <a href="<?php echo BASE_URL; ?>">
-                    <img src="<?php echo BASE_URL; ?>/public/img/logo.png" alt="IMG">
-                </a>
-            </div>
-
-            <form action="<?php echo BASE_URL; ?>/Login/HandelLogin" class="login100-form validate-form" method="post">
-                <span class="login100-form-title">
-                    Đăng nhập
-                </span>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="email"
-                        value="<?php echo isset($data[0]) ? $data[0] : '' ?>" placeholder="Email">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                    </span>
+<div class="account-page">
+    <div class="account-center">
+        <div class="account-box">
+            <form action="<?php echo BASE_URL; ?>/login/HandelLogin" class="form-signin" method="post">
+                <div class="account-logo">
+                    <a href="<?php echo BASE_URL; ?>"><img
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-dark.png" alt="image"></a>
                 </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="password" name="password"
-                        value="<?php echo isset($data[1]) ? $data[1] : '' ?>" placeholder="Mật khẩu">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
+                <div class="form-group">
+                    <label>Tên tài khoản</label>
+                    <input type="text" autofocus name="user_name" class="form-control" placeholder="Tên tài khoản">
                 </div>
-                <div class="container-login100-form-btn">
-                    <input type="submit" style="background: #7fad39" class=" login100-form-btn" name="btnLogin"
-                        value="Đăng nhập">
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
                 </div>
-
-                <div class="text-center p-t-12">
-                    <a class="txt2" href="<?php echo BASE_URL; ?>/Reset">
-                        Quên mật khẩu
-                    </a>
+                <div class="form-group text-right">
+                    <a href="<?php echo BASE_URL; ?>/reset">Quên mật khẩu?</a>
                 </div>
-
-                <div class="text-center p-t-12">
-                    <a class="txt2" href="<?php echo BASE_URL; ?>/Register">
-                        Bạn chưa có tài khoản? Đăng ký tại đây
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                    </a>
+                <div class="form-group text-center">
+                    <button type="submit" name="btnLogin" class="btn btn-primary account-btn">Đăng nhập</button>
+                </div>
+                <div class="text-center register-link">
+                    Bạn chưa có tài khoản? <a href="<?php echo BASE_URL; ?>/register">Đăng ký ngay</a>
                 </div>
             </form>
         </div>
