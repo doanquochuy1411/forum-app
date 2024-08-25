@@ -10,5 +10,7 @@
 			"path": "../../../../KLTN/ogani-master"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "forum-app"
+	}
 }

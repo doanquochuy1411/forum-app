@@ -5,7 +5,7 @@
                 onsubmit="return validateFormHandelRegister()">
                 <div class="account-logo">
                     <a href="<?php echo BASE_URL; ?>"><img
-                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-dark.png" alt="Preadmin"></a>
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" alt="Preadmin"></a>
                 </div>
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">

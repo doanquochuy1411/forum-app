@@ -1,7 +1,9 @@
 <?php
 class Home extends Controller
 {
-    public $UserModel;
+    protected $UserModel;
+    protected $PostModel;
+    protected $CommentModel;
 
 
     public $layout = "client_layout";
@@ -11,12 +13,28 @@ class Home extends Controller
     public function __construct()
     {
         $this->UserModel = $this->model("User");
+        $this->PostModel = $this->model("Post");
+        $this->CommentModel = $this->model("Comment");
     }
     function Index()
     {
+        $post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
+        $comment_db = $this->CommentModel->GetAllComment();
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
+        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+
         $this->view($this->layout, [
             "Page" => $this->page,
             "title" => $this->title,
+            "posts" => $posts,
+            "questions" => $questions,
+            "comments" => $comments,
+            "users" => $users
         ]);
     }
 

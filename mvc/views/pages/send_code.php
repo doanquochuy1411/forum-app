@@ -5,7 +5,7 @@
                 method="post" onsubmit="return validateFormSendCode()">
                 <div class="account-logo">
                     <a href="<?php echo BASE_URL; ?>"><img
-                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-dark.png" alt="Preadmin"></a>
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" alt="Preadmin"></a>
                 </div>
                 <div class="form-group">
                     <label>Nhập email của bạn</label>

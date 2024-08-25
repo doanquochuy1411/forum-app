@@ -6,6 +6,11 @@ class User extends DB
         $sql = "SELECT * FROM user Where deleted_at is null";
         return $this->executeSelectQuery($sql);
     }
+    public function GetAllUserDescWithOrderBy($orderBy)
+    {
+        $sql = "SELECT * FROM user Where deleted_at is null order by ? DESC";
+        return $this->executeSelectQuery($sql, [$orderBy]);
+    }
     public function GetUserByID($userID)
     {
         $sql = "SELECT * FROM user Where deleted_at is null and id = ?";

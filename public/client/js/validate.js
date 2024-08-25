@@ -70,6 +70,24 @@ function validateAccountName() {
         return true;
     }
 }
+function validateUserName() {
+    const userName = document.querySelector('input[name="user_name"]').value.trim();
+    const userNameError = document.getElementById('user_name_err');
+
+    if (userName === "") {
+        userNameError.textContent = "Tên tài khoản không được để trống";
+        userNameError.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(userName)) {
+        userNameError.textContent = "Tên tài khoản không được chứa ký tự đặc biệt";
+        userNameError.style.color = 'red'
+        return false;
+    } else {
+        userNameError.textContent = "";
+        userNameError.style.color = 'red'
+        return true;
+    }
+}
 
 function validatePassword() {
     const password = document.querySelector('input[name="password"]').value.trim();
@@ -125,8 +143,22 @@ function validateFormSendCode() {
     return isEmailValid;
 }
 
-document.querySelector('input[name="email"]').addEventListener('input', validateEmail);
-document.querySelector('input[name="full_name"]').addEventListener('input', validateFullName);
-document.querySelector('input[name="account_name"]').addEventListener('input', validateAccountName);
-document.querySelector('input[name="password"]').addEventListener('input', validatePassword);
-document.querySelector('input[name="retype_password"]').addEventListener('input', validateRetypePassword);
+function validateFormResetPassword() {
+    const isPasswordValid = validatePassword();
+    const isRetypePasswordValid = validateRetypePassword();
+    return isPasswordValid && isRetypePasswordValid;
+}
+
+function validateFormLogin() {
+    const isUserNameValid = validateUserName();
+    const isPasswordValid = validatePassword();
+    return isPasswordValid && isUserNameValid;
+}
+
+// document.querySelector('input[name="email"]').addEventListener('input', validateEmail);
+// document.querySelector('input[name="full_name"]').addEventListener('input', validateFullName);
+// document.querySelector('input[name="user_name"]').addEventListener('input', validateUserName);
+// document.querySelector('input[name="account_name"]').addEventListener('input', validateAccountName);
+// document.querySelector('input[name="password"]').addEventListener('input', validatePassword);
+// document.querySelector('input[name="retype_password"]').addEventListener('input', validateRetypePassword);
+
