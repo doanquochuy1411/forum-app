@@ -21,7 +21,13 @@
     <link href="<?php echo BASE_URL; ?>/public/client/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/client/css/footer.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/client/css/sidebar.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>/public/client/css/avt-header.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+</style>
 
 <body>
     <!-- ==========header mega navbar=======-->
@@ -85,14 +91,22 @@
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <a href="<?php echo BASE_URL; ?>/Login"><i class="fa fa-user" aria-hidden="true"></i> Đăng
-                            nhập</a>
+                    <li class="nav-item dropdown">
+                        <?php
+                        if (isset($_SESSION["UserID"])) {
+                            echo ' <a href="#" class="avt-user">
+                            <img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar">
+                        </a>';
+                        } else {
+                            echo '<a href="' . BASE_URL . '/Login"><i class="fa fa-user" aria-hidden="true"></i> Đăng
+                            nhập</a>';
+                        }
+                        ?>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-            </>
             <!-- /.container-fluid -->
         </nav>
     </div>
@@ -104,7 +118,7 @@
 
     <!--    footer -->
     <div class="footer-search">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -116,7 +130,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <section class="footer-part">
         <div class="container">
@@ -238,37 +252,37 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/npm.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/footer.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var emailInput = document.querySelector('input[name="email"]');
-            if (emailInput) {
-                emailInput.addEventListener('input', validateEmail);
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        var emailInput = document.querySelector('input[name="email"]');
+        if (emailInput) {
+            emailInput.addEventListener('input', validateEmail);
+        }
 
-            var fullNameInput = document.querySelector('input[name="full_name"]');
-            if (fullNameInput) {
-                fullNameInput.addEventListener('input', validateFullName);
-            }
+        var fullNameInput = document.querySelector('input[name="full_name"]');
+        if (fullNameInput) {
+            fullNameInput.addEventListener('input', validateFullName);
+        }
 
-            var userNameInput = document.querySelector('input[name="user_name"]');
-            if (userNameInput) {
-                userNameInput.addEventListener('input', validateUserName);
-            }
+        var userNameInput = document.querySelector('input[name="user_name"]');
+        if (userNameInput) {
+            userNameInput.addEventListener('input', validateUserName);
+        }
 
-            var accountNameInput = document.querySelector('input[name="account_name"]');
-            if (accountNameInput) {
-                accountNameInput.addEventListener('input', validateAccountName);
-            }
+        var accountNameInput = document.querySelector('input[name="account_name"]');
+        if (accountNameInput) {
+            accountNameInput.addEventListener('input', validateAccountName);
+        }
 
-            var passwordInput = document.querySelector('input[name="password"]');
-            if (passwordInput) {
-                passwordInput.addEventListener('input', validatePassword);
-            }
+        var passwordInput = document.querySelector('input[name="password"]');
+        if (passwordInput) {
+            passwordInput.addEventListener('input', validatePassword);
+        }
 
-            var retypePasswordInput = document.querySelector('input[name="retype_password"]');
-            if (retypePasswordInput) {
-                retypePasswordInput.addEventListener('input', validateRetypePassword);
-            }
-        });
+        var retypePasswordInput = document.querySelector('input[name="retype_password"]');
+        if (retypePasswordInput) {
+            retypePasswordInput.addEventListener('input', validateRetypePassword);
+        }
+    });
     </script>
 </body>
 

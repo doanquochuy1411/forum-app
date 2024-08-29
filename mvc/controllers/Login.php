@@ -40,7 +40,12 @@ class Login extends Controller
                 $this->UserModel->ResetLoginAttempts($user_name);
                 $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
                 $_SESSION['UserID'] = $userAccount["id"];
-                header("Location: " . BASE_URL);
+                $_SESSION['RoleID'] = $userAccount["role_id"];
+                if ($userAccount["role_id"] == 1) {
+                    header("Location: " . BASE_URL . "/admin");
+                } else {
+                    header("Location: " . BASE_URL);
+                }
                 exit();
             } else {
                 if ($userAccount) {

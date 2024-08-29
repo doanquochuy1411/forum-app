@@ -32,7 +32,7 @@ class User extends DB
 
     public function GetUserByAccountName($account_name)
     {
-        $sql = "SELECT * FROM user WHERE deleted_at IS NULL AND account_name = ?";
+        $sql = "SELECT * FROM user u Join user_role ur on ur.user_id = u.id WHERE deleted_at IS NULL AND account_name = ?";
         $result = $this->executeSelectQuery($sql, [$account_name]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
 

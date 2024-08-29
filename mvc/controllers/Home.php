@@ -37,6 +37,48 @@ class Home extends Controller
             "users" => $users
         ]);
     }
+    function Posts($id)
+    {
+        $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 4);
+        $post_db = $this->PostModel->GetPostByID($id);
+        $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+
+        $this->view($this->layout, [
+            "Page" => "post_details",
+            "title" => $this->title,
+            "posts" => $posts,
+            "relate_posts" => $relate_post,
+            "comments" => $comments,
+            "users" => $users
+        ]);
+    }
+    function Questions($id)
+    {
+        $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
+        $post_db = $this->PostModel->GetPostByID($id);
+        $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+
+        $this->view($this->layout, [
+            "Page" => "post_details",
+            "title" => $this->title,
+            "posts" => $posts,
+            "relate_posts" => $relate_post,
+            "comments" => $comments,
+            "users" => $users
+        ]);
+    }
 
     function Logout()
     {

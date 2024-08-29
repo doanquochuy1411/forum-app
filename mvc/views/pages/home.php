@@ -50,6 +50,8 @@
                     <input id="tab5" type="radio" name="tabs">
                     <label for="tab5">Bài viết gần đây</label>
 
+                    <a href="<?php echo BASE_URL ?>/home/logout">logout</a>
+
 
 
                     <section id="content1">
@@ -67,7 +69,7 @@
                 <div class="col-md-9">
                     <div class="right-description893">
                         <div id="que-hedder2983">
-                            <h3><a href="post-deatils.html" target="_blank">' . $question['title'] . '</a></h3>
+                            <h3><a href="' . BASE_URL . '/home/questions/' . $question["id"] . '" target="_blank">' . $question['title'] . '</a></h3>
                         </div>
                         <div class="ques-details10018">
                             <p>' . $question["content"] . '</p>
@@ -165,7 +167,7 @@
                                         <div class="col-md-9">
                                             <div class="right-description893">
                                                 <div id="que-hedder2983">
-                                                    <p><a href="#">' . $comment["comment_user_name"] . '</a> đã bình luận cho bài viết</p><h3> <a href="post-deatils.html" target="_blank">' . $comment['post_title'] . '</a></h3>
+                                                    <p><a href="#">' . $comment["comment_user_name"] . '</a> đã bình luận cho bài viết</p><h3> <a href="' . BASE_URL . '/home/posts/' . $comment["post_id"] . '" target="_blank">' . $comment['post_title'] . '</a></h3>
                                                     <p><i>Của <a href="#">' . $comment["owner_name"] . '</a> </i></p>
                                                     </div>
                                                 <div class="ques-details10018">
@@ -235,7 +237,7 @@
                                     <div class="col-md-9">
                                         <div class="right-description893">
                                             <div id="que-hedder2983">
-                                                <h3><a href="post-deatils.html" target="_blank">' . $post['title'] . '</a></h3>
+                                                <h3><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a></h3>
                                             </div>
                                             <div class="ques-details10018">
                                                 <p>' . $post["content"] . '</p>
@@ -310,7 +312,7 @@
                                     <div class="col-md-9">
                                         <div class="right-description893">
                                             <div id="que-hedder2983">
-                                                <h3><a href="post-deatils.html" target="_blank">' . $post['title'] . '</a></h3>
+                                                <h3><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a></h3>
                                             </div>
                                             <div class="ques-details10018">
                                                 <p>' . $post["content"] . '</p>
@@ -374,28 +376,6 @@
             <!--strart col-md-3 (side bar)-->
             <aside class="col-md-3 sidebar97239">
                 <div class="scrollable-sidebar">
-                    <!-- <div class="status-part3821">
-                    <h4>Thống kê</h4> <a href="#"><i class="fa fa-question-circle" aria-hidden="true">
-                            Question(20)</i></a> <i class="fa fa-comment" aria-hidden="true"> Answers(50)</i>
-                </div> -->
-                    <!--              highest part-->
-                    <!--               end of Highest points -->
-                    <!--          start tags part-->
-                    <!-- <div class="tags-part2398">
-                    <h4>Tags</h4>
-                    <ul>
-                        <li><a href="#">analytics</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Developer</a></li>
-                        <li><a href="#">Google</a></li>
-                        <li><a href="#">Interview</a></li>
-                        <li><a href="#">Programmer</a></li>
-                        <li><a href="#">Salary</a></li>
-                        <li><a href="#">University</a></li>
-                        <li><a href="#">Employee</a></li>
-                    </ul>
-                </div> -->
-                    <!--          End tags part-->
                     <!--        start recent post  -->
                     <div class="recent-post3290">
                         <h4>Bài viết gần đây</h4>
@@ -415,29 +395,6 @@
                             $count++;
                         }
                         ?>
-                        <!-- <div class="post-details021"> <a href="#">
-                                <h5>How much do web developers</h5>
-                            </a>
-                            <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                                style="color: #848991">July 16,
-                                2017</small>
-                        </div>
-                        <hr>
-                        <div class="post-details021"> <a href="#">
-                                <h5>How much do web developers</h5>
-                            </a>
-                            <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                                style="color: #848991">July 16,
-                                2017</small>
-                        </div>
-                        <hr>
-                        <div class="post-details021"> <a href="#">
-                                <h5>How much do web developers</h5>
-                            </a>
-                            <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                                style="color: #848991">July 16,
-                                2017</small>
-                        </div> -->
                     </div>
                     <div class="highest-part302">
                         <h4>Đóng góp nhiều nhất</h4>
