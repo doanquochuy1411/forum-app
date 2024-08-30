@@ -129,6 +129,25 @@ function validateRetypePassword() {
     }
 }
 
+function validateTitleOfPost() {
+    const Title = document.querySelector('input[name="title"]').value.trim();
+    const TitleError = document.getElementById('title_err');
+
+    if (Title === "") {
+        TitleError.textContent = "Tiêu đề không được để trống";
+        TitleError.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(Title)) {
+        TitleError.textContent = "Tiêu đề khoản không được chứa ký tự đặc biệt";
+        TitleError.style.color = 'red'
+        return false;
+    } else {
+        TitleError.textContent = "";
+        TitleError.style.color = 'red'
+        return true;
+    }
+}
+
 function validateFormHandelRegister() {
     const isFullNameValid = validateFullName();
     const isAccountNameValid = validateAccountName();
@@ -153,6 +172,11 @@ function validateFormLogin() {
     const isUserNameValid = validateUserName();
     const isPasswordValid = validatePassword();
     return isPasswordValid && isUserNameValid;
+}
+
+function validateFormCreatePost() {
+    const isValidTitle = validateTitleOfPost();
+    return isValidTitle;
 }
 
 // document.querySelector('input[name="email"]').addEventListener('input', validateEmail);

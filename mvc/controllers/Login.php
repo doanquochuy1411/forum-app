@@ -41,6 +41,9 @@ class Login extends Controller
                 $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
                 $_SESSION['UserID'] = $userAccount["id"];
                 $_SESSION['RoleID'] = $userAccount["role_id"];
+                $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại
+                $_SESSION['title_message'] = ""; // Tiêu đề lỗi hoặc thành công
+                $_SESSION['message'] = ""; // Thông báo chi tiết lỗi hoặc thành công
                 if ($userAccount["role_id"] == 1) {
                     header("Location: " . BASE_URL . "/admin");
                 } else {

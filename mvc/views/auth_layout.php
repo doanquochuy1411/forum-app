@@ -25,20 +25,22 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css"
         integrity="sha256-KIZHD6c6Nkk0tgsncHeNNwvNU1TX8YzPrYn01ltQwFg=" crossorigin="anonymous">
-
+    <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
 
 </head>
 
 
 <body>
-
-    <!-- Main Wrapper -->
-    <div class="main-wrapper account-wrapper">
-        <?php
-        require_once "./mvc/views/pages/" . $Page . ".php";
-        ?>
+    <span class="loader"></span>
+    <div class="hidden-content">
+        <!-- Main Wrapper -->
+        <div class="main-wrapper account-wrapper">
+            <?php
+            require_once "./mvc/views/pages/" . $Page . ".php";
+            ?>
+        </div>
+        <!--/ Main Wrapper -->
     </div>
-    <!--/ Main Wrapper -->
 
     <!--scripts-->
     <!-- jQuery -->
@@ -52,6 +54,7 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"
         integrity="sha256-rTq0xiLu1Njw5mB3ky3DZhpI5WhYdkNlQbGXUc0Si6E=" crossorigin="anonymous"></script>
+    <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script>
 </body>
 
 </html>

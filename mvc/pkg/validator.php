@@ -21,8 +21,7 @@ function validatePassword($password)
 
 function validateNoSpecialChars($input)
 {
-    // return preg_match('/^[\w\s]*$/', $input);
-    return preg_match('/^[\p{L}\p{N}\s]+$/u', $input);
+    return preg_match('/^[\p{L}\p{N}\s!@$%&*:\[\]]+$/u', $input);
 }
 
 function validateAddress($address)
@@ -43,6 +42,9 @@ function validateForm($fieldsToValidate)
         'description' => 'validateNoSpecialChars',
         'account_name' => 'validateNoSpecialChars',
         'user_name' => 'validateNoSpecialChars',
+        'contentType' => 'validateNoSpecialChars',
+        'contentCategory' => 'validateNoSpecialChars',
+        'title' => 'validateNoSpecialChars',
     ];
 
 

@@ -65,6 +65,21 @@ class Admin extends Controller
             "all_users" => $all_users,
         ]);
     }
+    function UsersClone()
+    {
+        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
+        $all_user_db = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
+
+        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $all_users = mysqli_fetch_all($all_user_db, MYSQLI_ASSOC);
+
+        $this->view("admin_layout_clone", [
+            "Page" => 'user_clone',
+            "title" => $this->title,
+            "user" => $user,
+            "all_users" => $all_users,
+        ]);
+    }
 
     function Posts()
     {

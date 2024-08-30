@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/calendar.css">
 
     <!-- Datatable-->
-    <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="public/admin/assets/css/dataTables.bootstrap4.min.css">
 
     <!-- Select 2-->
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/select2.min.css">
@@ -46,6 +46,7 @@
         <script src="<?php echo BASE_URL ?>/public/admin/assets/js/html5shiv.min.js"></script>
         <script src="<?php echo BASE_URL ?>/public/admin/assets/js/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
