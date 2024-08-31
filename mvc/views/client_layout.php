@@ -35,11 +35,22 @@
         margin-top: 20px;
     }
 
-    /* tags */
-    .tag {
-        margin-right: 5px;
-        margin-bottom: 5px;
+    .dropdown-menu>li:first-child>a:hover,
+    .dropdown-menu>li:first-child>a:focus {
+        color: #000;
+        background-color: #fff !important;
+
     }
+
+    /* .no-hover:hover {
+        color: #000 !important;
+        background-color: #fff !important;
+    }
+
+    .no-focus:focus {
+        color: #000 !important;
+        background-color: #fff !important;
+    } */
     </style>
 </head>
 <style>
@@ -74,8 +85,10 @@
                                 aria-haspopup="true" aria-expanded="false">Diễn đàn <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
                                 <?php
-                                foreach ($categories as $category) {
-                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                if (count($categories) > 0) {
+                                    foreach ($categories as $category) {
+                                        echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                    }
                                 }
                                 ?>
                             </ul>
@@ -119,6 +132,8 @@
                             if (isset($_SESSION["UserID"])) {
                                 echo '<li class="dropdown"> <a href="#" class="dropdown-toggle avt-user" data-toggle="dropdown"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
+                                <li><a href="' . BASE_URL . '/users/info"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar"> <b>' . $_SESSION["UserName"] . '</b></a></li>
+                                <hr>
                                 <li><a href="' . BASE_URL . '/users/info">Trang cá nhân</a></li>
                                 <li><a href="' . BASE_URL . '/users/password">Đổi mật khẩu</a></li>
                                 <li><a href="' . BASE_URL . '/home/logout">Đăng xuất</a></li>
@@ -272,6 +287,8 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/footer.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
+    <!-- Popup sửa xóa -->
+    <script src="<?php echo BASE_URL; ?>/public/client/js/popup.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         var emailInput = document.querySelector('input[name="email"]');
@@ -311,7 +328,8 @@
     });
     </script>
     <!-- Trình soạn thảo -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.core.js"></script> -->
     <script>
     // Initialize Quill
     var quill = new Quill('#editor', {
@@ -344,8 +362,14 @@
     document.getElementById('postForm').addEventListener('submit', function(event) {
         // Cập nhật nội dung của trường ẩn
         document.getElementById('editorContent').value = quill.root.innerHTML;
-    });
 
+        // var editorContent = document.getElementById('editorContent').value.trim();
+        var editorContent = quill.root.innerHTML.trim();
+        if (editorContent === '' || editorContent === '<p><br></p>') {
+            event.preventDefault(); // Ngăn chặn việc gửi form
+        }
+
+    });
 
     // <!-- tags -->
     document.addEventListener('DOMContentLoaded', function() {
@@ -409,41 +433,45 @@
     <!-- popup thông báo -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-    // function showSuccessNotification() {
-    //     Swal.fire({
-    //         icon: 'success',
-    //         title: 'hihi',
-    //         timer: 3000,
-    //         timerProgressBar: true
-    //     });
-    // }
+    var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+    var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
 
-    // function showFailNotification() {
-    //     Swal.fire({
-    //         icon: 'error',
-    //         title: '<?php echo $_SESSION['title_message'] ?>',
-    //         text: "<?php echo $_SESSION['message'] ?>",
-    //         timer: 3000,
-    //         timerProgressBar: true
-    //     });
-    // }
-    // showFailNotification();
-    // showSuccessNotification();
-    // Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Something went wrong!",
-    //     footer: '<a href="#">Why do I have this issue?</a>'
-    // });
-    document.addEventListener('DOMContentLoaded', function() {
-        // showAlert('success', 'SweetAlert2 is working!', 'This is a test message.');
+    function showSuccessNotification() {
         Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer: '<a href="#">Why do I have this issue?</a>'
+            icon: 'success',
+            title: title_mess,
+            text: text_mes,
+            timer: 2000,
+            timerProgressBar: true
         });
-    });
+    }
+
+    function showFailNotification() {
+        Swal.fire({
+            icon: 'error',
+            title: title_mess,
+            text: text_mes,
+            timer: 3000,
+            timerProgressBar: true
+        });
+    }
+
+    <?php
+        $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
+        switch ($status) {
+            case 'success':
+                echo 'showSuccessNotification();';
+                $_SESSION['action_status'] = 'none';
+                break;
+            case 'error':
+                echo 'showFailNotification();';
+                $_SESSION['action_status'] = 'none';
+                break;
+            default:
+                echo '';
+                break;
+        }
+        ?>
     </script>
 </body>
 

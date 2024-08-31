@@ -1,3 +1,11 @@
+<?php
+// Clear image to become sort content
+function stripImages($content)
+{
+    return preg_replace('/<img[^>]*>/i', '', $content);
+}
+?>
+
 <!--======= welcome section on top background=====-->
 <section class="welcome-part-one">
     <div class="container">
@@ -63,33 +71,33 @@
                     <!-- <div class="scrollable-sidebar">
                             <div class="question-type2033">
                                 <?php
-                                function timeAgo($datetime, $full = false)
-                                {
-                                    $now = new DateTime();
-                                    $ago = new DateTime($datetime);
-                                    $diff = $now->diff($ago);
+                                // function timeAgo($datetime, $full = false)
+                                // {
+                                //     $now = new DateTime();
+                                //     $ago = new DateTime($datetime);
+                                //     $diff = $now->diff($ago);
 
-                                    $diff->w = floor($diff->d / 7);
-                                    $diff->d -= $diff->w * 7;
+                                //     $diff->w = floor($diff->d / 7);
+                                //     $diff->d -= $diff->w * 7;
 
-                                    $string = array(
-                                        'y' => 'năm',
-                                        'm' => 'tháng',
-                                        'w' => 'tuần',
-                                        'd' => 'ngày',
-                                        'h' => 'giờ',
-                                        'i' => 'phút',
-                                        's' => 'giây',
-                                    );
-                                    foreach ($string as $k => &$v) {
-                                        if ($diff->$k) {
-                                            $output[] = $diff->$k . ' ' . $v;
-                                        }
-                                    }
-                                    if (!$full)
-                                        $output = array_slice($output, 0, 1);
-                                    return $output ? implode(', ', $output) . ' trước' : 'vừa mới';
-                                }
+                                //     $string = array(
+                                //         'y' => 'năm',
+                                //         'm' => 'tháng',
+                                //         'w' => 'tuần',
+                                //         'd' => 'ngày',
+                                //         'h' => 'giờ',
+                                //         'i' => 'phút',
+                                //         's' => 'giây',
+                                //     );
+                                //     foreach ($string as $k => &$v) {
+                                //         if ($diff->$k) {
+                                //             $output[] = $diff->$k . ' ' . $v;
+                                //         }
+                                //     }
+                                //     if (!$full)
+                                //         $output = array_slice($output, 0, 1);
+                                //     return $output ? implode(', ', $output) . ' trước' : 'vừa mới';
+                                // }
 
 
                                 foreach ($comments as $comment) {
@@ -162,9 +170,8 @@
                         <div class="question-type2033">
                             <?php
                             foreach ($posts as $post) {
-                                // if ($post['comment_count'] == 0) {
+                                // echo 'hihi';
                                 $content = stripImages($post["content"]);
-
                                 echo '<div class="row">
                                     <div class="col-md-1">
                                         <div class="left-user12923 left-user12923-repeat">
@@ -209,7 +216,6 @@
                                     </div>
                                 </div>';
                             }
-                            // }
                             ?>
                         </div>
                         <nav aria-label="Page navigation">
@@ -238,10 +244,6 @@
                         <!--Recently answered Content Section -->
                         <div class="question-type2033">
                             <?php
-                            function stripImages($content)
-                            {
-                                return preg_replace('/<img[^>]*>/i', '', $content);
-                            }
                             foreach ($my_posts as $post) {
                                 $content = stripImages($post["content"]);
                                 echo '<div class="row">
@@ -462,7 +464,6 @@
                             if ($count >= 8) {
                                 break;
                             }
-                            $content = stripImages($post["content"]);
                             echo '<div class="post-details021"> <a href="#">
                                 <h5>' . $post['title'] . '</h5>
                             </a>
@@ -473,7 +474,6 @@
                             $count++;
                         }
                         ?>
-                        <!-- <p>' . $content . '</p>  -->
                     </div>
                     <div class="highest-part302">
                         <h4>Đóng góp nhiều nhất</h4>

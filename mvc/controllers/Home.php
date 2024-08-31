@@ -50,24 +50,41 @@ class Home extends Controller
     }
     function Posts($id)
     {
-        $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 4);
+        $relate_post_db = $this->PostModel->GetRelatePosts($id, 10);
+        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $post_db = $this->PostModel->GetPostByID($id);
         $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
         $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
         $this->PostModel->IncrementView(1, $id); // Tăng view lên 1
+        $category_db = $this->CategoryModel->GetAllCategory();
+        $tag_db = $this->TagModel->GetPopularTags();
+        $tag_of_post_db = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
+
 
         $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
         $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
         $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+        $relate_posts = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
+        $tags_of_post = mysqli_fetch_all($tag_of_post_db, MYSQLI_ASSOC);
+
 
         $this->view($this->layout, [
             "Page" => "post_details",
             "title" => $this->title,
             "posts" => $posts,
-            "relate_posts" => $relate_post,
+            "relate_posts" => $relate_posts,
+            "recent_posts" => $recent_posts,
             "comments" => $comments,
-            "users" => $users
+            "users" => $users,
+            "categories" => $categories,
+            "tags" => $tags,
+            "questions" => $questions,
+            "tags_of_post" => $tags_of_post,
         ]);
     }
 
@@ -88,11 +105,11 @@ class Home extends Controller
             $user_id = $_SESSION["UserID"];
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {
-                $_SESSION['action_status'] = 'fail';
+                $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng bài thất bại";
                 $_SESSION['message'] = "Tiêu đề không hợp lệ!";
                 // $errorMessage = implode(", ", $errors);
-                // echo "<script>alert('Error: " . implode(", ", $errorMessage) . "'); history.back();</script>";
+                echo "<script>history.back();</script>";
                 return;
             }
 
@@ -120,20 +137,17 @@ class Home extends Controller
                 if ($allTagsInserted) {
                     $_SESSION['action_status'] = 'success';
                     $_SESSION['title_message'] = "Đăng bài thành công";
-                    // echo "<script>alert('Đăng bài thành công'); setTimeout(function() { window.location.href = '" . BASE_URL . "/home'; }, 3000);</script>";
                 } else {
-                    $_SESSION['action_status'] = 'fail';
+                    $_SESSION['action_status'] = 'error';
                     $_SESSION['title_message'] = "Đăng bài thành công";
                     $_SESSION['message'] = "Đăng bài thành công nhưng một số tags không được chèn!";
-                    // echo "<script>alert('Đăng bài thành công nhưng một số tags không được chèn'); setTimeout(function() { window.location.href = '" . BASE_URL . "/home'; }, 3000);</script>";
                 }
             } else {
-                $_SESSION['action_status'] = 'fail';
+                $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng bài thất bại";
                 $_SESSION['message'] = "";
-                // echo "<script>alert('Đăng bài thất bại'); setTimeout(function() { window.location.href = '" . BASE_URL . "/home'; }, 3000);</script>";
             }
-            header("Location: " . BASE_URL);
+            echo "<script>history.back();</script>";
             exit();
         }
     }
@@ -153,7 +167,7 @@ class Home extends Controller
             "Page" => "post_details",
             "title" => $this->title,
             "posts" => $posts,
-            "relate_posts" => $relate_post,
+            "recent_post" => $relate_post,
             "comments" => $comments,
             "users" => $users
         ]);

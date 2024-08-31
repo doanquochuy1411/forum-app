@@ -2,8 +2,8 @@
     <div class="container">
         <h3>Post Details</h3>
         <ol class="breadcrumb breadcrumb839">
-            <li><a href="<?php echo BASE_URL ?>">Home</a></li>
-            <li><a href="<?php echo BASE_URL ?>">Post Details</a></li>
+            <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
+            <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
             <li class="active"><?php echo $posts[0]["title"] ?></li>
         </ol>
     </div>
@@ -22,29 +22,26 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="post-que-rep-rihght320"> <a href="#"><i class="fa fa-question-circle"
-                                            aria-hidden="true"></i> Question</a> <a href="#" class="r-clor10">Report</a>
+                                            aria-hidden="true"></i> Câu hỏi</a> <a href="#" class="r-clor10">Báo cáo</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="post-details-info1982">
                         <p><?php echo $posts[0]["content"] ?></p>
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit
-                            amet suscipit risus ultrices eu. Fusce viverra neque at purus laoreet consequat. Vivamus
-                            vulputate posuere nisl quis consequat. Donec congue commodo mi, sed commodo velit fringilla
-                            ac. Fusce placerat venenatis mi. Pellentesque habitant morbi tristique senectus et netus et
-                            malesuada fames ac turpis egestas. Cras ornare, dolor a aliquet rutrum, dolor turpis
-                            condimentum leo, a semper lacus purus in felis. Quisque blandit posuere turpis, eget auctor
-                            felis pharetra eu .</p> -->
                         <hr>
                         <div class="post-footer29032">
-                            <div class="l-side2023"> <i class="fa fa-check check2" aria-hidden="true"> solved</i> <a
-                                    href="#"><i class="fa fa-star star2" aria-hidden="true"> 5</i></a> <i
-                                    class="fa fa-folder folder2" aria-hidden="true"> wordpress</i> <i
-                                    class="fa fa-clock-o clock2" aria-hidden="true"> 4 min ago</i> <a href="#"><i
-                                        class="fa fa-commenting commenting2" aria-hidden="true"> 5 answer</i></a> <i
-                                    class="fa fa-user user2" aria-hidden="true"> 70 views</i> </div>
-                            <div class="l-rightside39">
+                            <div class="l-side2023">
+                                <!-- <i class="fa fa-check check2" aria-hidden="true"> solved</i> <a href="#"><i
+                                        class="fa fa-star star2" aria-hidden="true"> 5</i></a> <i -->
+                                <!-- class="fa fa-folder folder2" aria-hidden="true"> wordpress</i> -->
+                                <i class="fa fa-clock-o clock2" aria-hidden="true">
+                                    <?php echo timeAgo($posts[0]["created_at"]) ?></i> <a href="#"><i
+                                        class="fa fa-commenting commenting2" aria-hidden="true">
+                                        <?php echo count($comments) ?> trả lời</i></a> <i class="fa fa-user user2"
+                                    aria-hidden="true"> <?php echo $posts[0]["views"] ?> lượt xem</i>
+                            </div>
+                            <!-- <div class="l-rightside39">
                                 <button type="button" class="tolltip-button thumbs-up2" data-toggle="tooltip"
                                     data-placement="bottom" title="Like"><i class="fa fa-thumbs-o-up "
                                         aria-hidden="true"></i></button>
@@ -52,126 +49,168 @@
                                     data-placement="bottom" title="Dislike"><i class="fa fa-thumbs-o-down"
                                         aria-hidden="true"></i></button> <span
                                     class="single-question-vote-result">+22</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="share-tags-page-content12092">
-                    <div class="l-share2093"> <i class="fa fa-share" aria-hidden="true"> Share</i> </div>
-                    <div class="R-tags309"> <i class="fa fa-tags" aria-hidden="true"> Wordpress, Question, Developer</i>
+                    <div class="l-share2093">
+                        <i class="fa fa-share" aria-hidden="true"> Chia sẻ: </i>
+                        <a style="margin: 0 2px"
+                            href="https://www.facebook.com/sharer/sharer.php?u=<?php echo BASE_URL ?>/home/posts/<?php echo $posts[0]["id"] ?>"
+                            target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"> </i>
+                        </a>
+                        <a style="margin: 0 2px"
+                            href="https://t.me/share/url?url=<?php echo BASE_URL ?>/home/posts/<?php echo $posts[0]["id"] ?>"
+                            target="_blank">
+                            <i class="fa fa-instagram" aria-hidden="true"> </i>
+                        </a>
+                        <a style="margin: 0 2px"
+                            href="https://t.me/share/url?url=<?php echo BASE_URL ?>/home/posts/<?php echo $posts[0]["id"] ?>"
+                            target="_blank">
+                            <i class="fa fa-telegram" aria-hidden="true"> </i>
+                        </a>
                     </div>
-                </div>
-                <div class="related3948-question-part">
-                    <h3>Nội dung liên quan</h3>
-                    <hr>
-                    <?php
-                    foreach ($posts as $post) {
-                        if ($post["id"] != $posts[0]["id"]) {
-                            echo '<p><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '"><i class="fa fa-angle-double-right" aria-hidden="true"></i>' . $post['title'] . '</a></p>';
-                        }
-                    }
-                    ?>
-                    <!-- <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This Is My Second Poll
-                            Question</a></p>
-                    <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my third
-                            Question</a></p>
-                    <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my fourth
-                            Question</a></p>
-                    <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my fifth
-                            Question</a></p> -->
+
+
+                    <div class="R-tags309"> <i class="fa fa-tags" aria-hidden="true">
+                            <?php if (count($tags_of_post) > 0) {
+                                $tagNames = [];
+
+                                foreach ($tags_of_post as $tag) {
+                                    // Lặp qua từng tag và thêm tên vào mảng $tagNames
+                                    foreach ($tags_of_post as $tag) {
+                                        $tagNames[] = $tag['name'];
+                                    }
+                                }
+
+                                // Nối các phần tử của mảng $tagNames thành một chuỗi và in ra
+                                echo implode(', ', $tagNames);
+                            }
+                            ?>
+                        </i>
+                    </div>
                 </div>
                 <div class="comment-list12993">
                     <div class="container">
                         <div class="row">
 
                             <div class="comments-container">
+                                <h3><?php echo count($comments) ?> Bình luận</h3>
                                 <ul id="comments-list" class="comments-list">
-                                    <li>
-                                        <div class="comment-main-level">
-                                            <!-- Avatar -->
-                                            <div class="comment-avatar"><img src="image/images.png" alt=""></div>
-                                            <!-- Contenedor del Comentario -->
-                                            <div class="comment-box">
-                                                <div class="comment-head">
-                                                    <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6> <span><i
-                                                            class="fa fa-clock-o" aria-hidden="true"> January 15 , 2014
-                                                            at 10:00 pm</i></span> <i class="fa fa-reply"></i> <i
-                                                        class="fa fa-heart"></i>
-                                                </div>
-                                                <div class="comment-content"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipisicing elit. Velit omnis animi et iure laudantium vitae,
-                                                    praesentium optio, sapiente distinctio illo? </div>
-                                            </div>
-                                        </div>
+                                    <?php
+                                    if (count($comments) > 0) {
+                                        // Tạo mảng để lưu trữ các comment theo cấu trúc cây
+                                        $comments_tree = array();
 
+                                        // Tạo mảng để lưu trữ các comment theo id để dễ dàng tra cứu
+                                        $comments_by_id = array();
 
-                                        <ul class="comments-list reply-list">
-                                            <li>
-                                                <div class="comment-avatar"><img src="image/images.png" alt=""></div>
-                                                <div class="comment-box">
-                                                    <div class="comment-head">
-                                                        <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6>
-                                                        <span><i class="fa fa-clock-o" aria-hidden="true"> January 15 ,
-                                                                2014 at 10:00 pm</i></span> <i class="fa fa-reply"></i>
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
-                                                    <div class="comment-content"> Lorem ipsum dolor sit amet,
-                                                        consectetur adipisicing elit. Velit omnis animi et iure
-                                                        laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="comment-avatar"><img src="image/images.png" alt=""></div>
-                                                <div class="comment-box">
-                                                    <div class="comment-head">
-                                                        <h6 class="comment-name by-author"><a href="#">Agustin Ortiz</a>
-                                                        </h6> <span><i class="fa fa-clock-o" aria-hidden="true"> January
-                                                                15 , 2014 at 10:00 pm</i></span> <i
-                                                            class="fa fa-reply"></i> <i class="fa fa-heart"></i>
-                                                    </div>
-                                                    <div class="comment-content"> Lorem ipsum dolor sit amet,
-                                                        consectetur adipisicing elit. Velit omnis animi et iure
-                                                        laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="comment-avatar"><img src="image/images.png" alt=""></div>
-                                                <div class="comment-box">
-                                                    <div class="comment-head">
-                                                        <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6>
-                                                        <span><i class="fa fa-clock-o" aria-hidden="true"> January 15 ,
-                                                                2014 at 10:00 pm</i></span> <i class="fa fa-reply"></i>
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
-                                                    <div class="comment-content"> Lorem ipsum dolor sit amet,
-                                                        consectetur adipisicing elit. Velit omnis animi et iure
-                                                        laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="comment-main-level">
-                                            <!-- Avatar -->
-                                            <div class="comment-avatar"><img src="image/images.png" alt=""></div>
-                                            <!-- Contenedor del Comentario -->
-                                            <div class="comment-box">
-                                                <div class="comment-head">
-                                                    <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6> <span><i
-                                                            class="fa fa-clock-o" aria-hidden="true"> January 15 , 2014
-                                                            at 10:00 pm</i></span> <i class="fa fa-reply"></i> <i
-                                                        class="fa fa-heart"></i>
-                                                </div>
-                                                <div class="comment-content"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipisicing elit. Velit omnis animi et iure laudantium vitae,
-                                                    praesentium optio, sapiente distinctio illo? </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        // Phân loại các comment vào cấu trúc cây
+                                        foreach ($comments as $comment) {
+                                            // Đặt comment vào mảng theo id để dễ dàng tra cứu
+                                            $comments_by_id[$comment['id']] = $comment;
 
+                                            // Nếu comment không có parent_comment_id, đây là comment cha
+                                            if ($comment['parent_comment_id'] === null) {
+                                                $comments_tree[$comment['id']] = array(
+                                                    'comment' => $comment,
+                                                    'replies' => array() // Mảng để lưu các comment con
+                                                );
+                                            } else {
+                                                // Nếu comment có parent_comment_id, thêm vào mảng replies của comment cha
+                                                if (isset($comments_by_id[$comment['parent_comment_id']])) {
+                                                    $parent_id = $comment['parent_comment_id'];
+                                                    if (!isset($comments_tree[$parent_id])) {
+                                                        $comments_tree[$parent_id] = array(
+                                                            'comment' => $comments_by_id[$parent_id],
+                                                            'replies' => array()
+                                                        );
+                                                    }
+                                                    $comments_tree[$parent_id]['replies'][] = $comment;
+                                                }
+                                            }
+                                        }
+
+                                        // Hàm đệ quy để in comment và các comment con
+                                        function print_comments($comments_tree)
+                                        {
+                                            foreach ($comments_tree as $parent_id => $data) {
+                                                echo '<li>';
+                                                $comment = $data['comment'];
+                                                // Nếu là chủ comment thì có thể sửa hoặc xóa
+                                                if ($comment['user_id'] != $_SESSION["UserID"]) {
+                                                    echo '<div class="comment-main-level">
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-box">   
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
+                                                                <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
+                                                                <i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . $comment['id'] . ')"></i>
+                                                            </div>
+                                                            <div class="comment-content"> ' . $comment['content'] . '
+                                                        </div>
+                                                    </div>';
+                                                } else {
+                                                    // chủ comment
+                                                    echo '<div class="comment-main-level">
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-box">   
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
+                                                                <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
+                                                                <a href="' . BASE_URL . '/posts/replyComment/' . $comment['id'] . '"><i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . $comment['id'] . ')"></i></a>
+                                                                <a href="' . BASE_URL . '/posts/deleteComment/' . $comment['id'] . '"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="deleteComment(' . $comment['id'] . ')"></i></a>
+                                                                <a href="' . BASE_URL . '/posts/editComment/' . $comment['id'] . '"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $comment['id'] . ')"></i></a>
+                                                                </div>
+                                                            <div class="comment-content"> ' . $comment['content'] . '
+                                                        </div>
+                                                    </div>';
+                                                }
+
+                                                // In các comment con nếu có
+                                                if (isset($data['replies']) && count($data['replies']) > 0) {
+                                                    echo '<ul class="comments-list reply-list">';
+                                                    foreach ($data['replies'] as $reply) {
+                                                        if ($reply['user_id'] != $_SESSION["UserID"]) {
+                                                            echo '<li>
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-box">
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
+                                                                <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
+                                                            </div>
+                                                            <div class="comment-content"> ' . $reply['content'] . '
+                                                            </div>
+                                                        </div>
+                                                    </li>';
+                                                        } else {
+                                                            // Chủ comment con
+                                                            echo '<li>
+                                                            <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                            <div class="comment-box">
+                                                                <div class="comment-head">
+                                                                    <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
+                                                                    <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
+                                                                    <a href="' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="deleteComment.call(this, event)"></i></a>
+                                                                    <a href="' . BASE_URL . '/posts/editComment/' . $reply['id'] . '"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $reply['id'] . ')"></i></a>
+                                                                    </div>
+                                                                <div class="comment-content"> ' . $reply['content'] . '
+                                                                </div>
+                                                            </div>
+                                                        </li>';
+                                                        }
+                                                    }
+                                                    echo '</ul>';
+                                                }
+                                                echo '</li>';
+                                            }
+                                        }
+                                        print_comments($comments_tree);
+
+                                    }
+                                    ?>
                                 </ul>
 
                             </div>
@@ -179,231 +218,127 @@
                     </div>
                 </div>
                 <div class="comment289-box">
-                    <h3>Leave A Reply</h3>
                     <hr>
+                    <h3 style="margin-bottom: 15px;">Câu trả lời của bạn</h3>
+                    <!-- <hr> -->
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="replay-input-name42389">
-                                <p>Name*</p>
-                                <input type="text" class="name-box24894 input238-design" placeholder="Name">
+                        <form id="postForm" action="<?php echo BASE_URL ?>/posts/createComment" method="post">
+                            <div class=" col-md-12">
+                                <div id="editorContainer" class="post9320-box">
+                                    <div id="editor" style="border: solid 1px #000"></div>
+                                    <input type="hidden" id="editorContent" name="content" />
+                                    <input type="hidden" value="<?php echo $posts[0]["id"] ?>" name="post_id" />
+                                    <input type="hidden" value="" name="parent_comment_id" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="replay-email-input89298">
-                                <p>E-mail*</p>
-                                <input type="text" class="name-box24894 input238-design" placeholder="E-mail">
+                            <input type="hidden" name="token"
+                                value="<?php echo isset($_SESSION['_token']) ? $_SESSION['_token'] : "" ?>" />
+                            <div class="col-md-12">
+                                <button type="submit" name="btnComment" class="pos393-submit">Bình luận</button>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="replay-input-websit128923">
-                                <p>Website*</p>
-                                <input type="text" class="name-box24894 input238-design" placeholder="Website">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="post9320-box">
-                                <input type="text" class="comment-input219882" placeholder="Enter Your Post">
-                            </div>
-                            <button type="button" class="pos393-submit">Post Your Answer</button>
-                        </div>
-
+                        </form>
                     </div>
+                </div>
+                <div class="related3948-question-part">
+                    <h3>Nội dung liên quan</h3>
+                    <hr>
+                    <?php
+                    if (count($relate_posts) > 0) {
+                        foreach ($relate_posts as $post) {
+                            if ($post["id"] != $posts[0]["id"]) {
+                                echo '<p><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '"><i class="fa fa-angle-double-right" aria-hidden="true"></i> ' . $post['title'] . '</a></p>';
+                            }
+                        }
+                    }
+                    ?>
                 </div>
             </div>
             <!--                end of col-md-9 -->
             <!--           strart col-md-3 (side bar)-->
             <aside class="col-md-3 sidebar97239">
-                <div class="status-part3821">
-                    <h4>stats</h4> <a href="#"><i class="fa fa-question-circle" aria-hidden="true"> Question(20)</i></a>
-                    <i class="fa fa-comment" aria-hidden="true"> Answers(50)</i>
-                </div>
-                <div class="categori-part329">
-                    <h4>Category</h4>
-                    <ul>
-                        <li><a href="#">web developer</a></li>
-                        <li><a href="#">Andriod developer</a></li>
-                        <li><a href="#">grapics developer</a></li>
-                        <li><a href="#">web developer</a></li>
-                    </ul>
-                </div>
-                <!--             social part -->
-                <div class="social-part2189">
-                    <h4>Find us</h4>
-                    <li class="rss-one">
-                        <a href="#" target="_blank"> <strong>
-                                <span>Subscribe</span>
-                                <i class="fa fa-rss" aria-hidden="true"></i>
-
-                                <br>
-                                <small>To RSS Feed</small>
-
-                            </strong> </a>
-                    </li>
-                    <li class="facebook-two">
-                        <a href="#" target="_blank"> <strong>
-                                <span>Subscribe</span>
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-
-                                <br>
-                                <small>To Facebook Feed</small>
-
-                            </strong> </a>
-                    </li>
-                    <li class="twitter-three">
-                        <a href="#" target="_blank"> <strong>
-                                <span>Subscribe</span>
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-
-                                <br>
-                                <small>To twitter Feed</small>
-
-                            </strong> </a>
-                    </li>
-                    <li class="youtube-four">
-                        <a href="#" target="_blank"> <strong>
-                                <span>Subscribe</span>
-                                <i class="fa fa-youtube" aria-hidden="true"></i>
-
-                                <br>
-                                <small>To youtube Feed</small>
-
-                            </strong> </a>
-                    </li>
-                </div>
-                <!--              login part-->
-                <div class="login-part2389">
-                    <h4>Login</h4>
-                    <div class="input-group300"> <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                        <input type="text" class="namein309" placeholder="Username">
+                <div class="scrollable-sidebar">
+                    <div class="categori-part329">
+                        <h4>Danh mục</h4>
+                        <ul>
+                            <?php
+                            if (count($categories) > 0) {
+                                foreach ($categories as $category) {
+                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
                     </div>
-                    <div class="input-group300"> <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        <input type="password" class="passin309" placeholder="Name">
-                    </div>
-                    <a href="#">
-                        <button type="button" class="userlogin320">Log In</button>
-                    </a>
-                    <div class="rememberme">
-                        <label>
-                            <input type="checkbox" checked="checked"> Remember Me</label> <a href="#"
-                            class="resbutton3892">Register</a>
-                    </div>
-                </div>
-                <!--              highest part-->
-                <div class="highest-part302">
-                    <h4>Highest Points</h4>
-                    <div class="pints-wrapper">
-                        <div class="left-user3898">
-                            <a href="#"><img src="image/images.png" alt="Image"></a>
-                            <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                        </div> <span class="points-details938">
-                            <a href="#">
-                                <h5>Ahmed Hasan</h5>
+                    <div class="recent-post3290">
+                        <h4>Bài viết gần đây</h4>
+                        <?php
+                        $count = 0;
+                        foreach ($recent_posts as $post) {
+                            if ($count >= 8) {
+                                break;
+                            }
+                            echo '<div class="post-details021"> <a href="#">
+                                <h5>' . $post['title'] . '</h5>
                             </a>
-                            <a href="#" class="designetion439">Pundit</a>
-                            <p>206 points</p>
-                        </span>
+                            <small
+                                style="color: red">', $post['created_at'], '</small>    
+                        </div>
+                        <hr>';
+                            $count++;
+                        }
+                        ?>
                     </div>
-                    <hr>
-                    <div class="pints-wrapper">
-                        <div class="left-user3898">
-                            <a href="#"><img src="image/images.png" alt="Image"></a>
-                            <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                        </div> <span class="points-details938">
-                            <a href="#">
-                                <h5>Ahmed Hasan</h5>
-                            </a>
-                            <a href="#" class="designetion439">Pundit</a>
-                            <p>206 points</p>
-                        </span>
+                    <div class="highest-part302">
+                        <h4>Đóng góp nhiều nhất</h4>
+                        <?php
+                        $count = 0;
+                        foreach ($users as $user) {
+                            if ($count >= 5) {
+                                break;
+                            }
+                            echo '<div class="pints-wrapper">
+                            <div class="left-user3898">
+                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
+                                <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                            </div> <span class="points-details938">
+                                <a href="#">
+                                    <h5>' . $user["user_name"] . '</h5>
+                                </a>
+                                <a href="#" class="designetion439">Người dùng</a>
+                                <p>' . $user["point"] . ' điểm</p>
+                            </span>
+                        </div>
+                        <hr>';
+                            $count++;
+                        }
+                        ?>
                     </div>
-                    <hr>
-                    <div class="pints-wrapper">
-                        <div class="left-user3898">
-                            <a href="#"><img src="image/images.png" alt="Image"></a>
-                            <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                        </div> <span class="points-details938">
-                            <a href="#">
-                                <h5>Ahmed Hasan</h5>
-                            </a>
-                            <a href="#" class="designetion439">Pundit</a>
-                            <p>206 points</p>
-                        </span>
+                    <!--               end of Highest points -->
+                    <!--          start tags part-->
+                    <div class="tags-part2398">
+                        <h4>Tags</h4>
+                        <ul>
+                            <?php
+                            if (count($tags)) {
+                                $count = 0;
+                                foreach ($tags as $tag) {
+                                    if ($count >= 5) {
+                                        break;
+                                    }
+                                    echo '<li><a href="' . BASE_URL . '/tags/' . $tag['id'] . '">' . $tag['name'] . '</a></li>';
+                                    $count++;
+                                }
+                            }
+                            ?>
+                        </ul>
                     </div>
-                    <hr>
-                    <div class="pints-wrapper">
-                        <div class="left-user3898">
-                            <a href="#"><img src="image/images.png" alt="Image"></a>
-                            <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                        </div> <span class="points-details938">
-                            <a href="#">
-                                <h5>Ahmed Hasan</h5>
-                            </a>
-                            <a href="#" class="designetion439">Pundit</a>
-                            <p>206 points</p>
-                        </span>
-                    </div>
-                    <hr>
-                    <div class="pints-wrapper">
-                        <div class="left-user3898">
-                            <a href="#"><img src="image/images.png" alt="Image"></a>
-                            <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                        </div> <span class="points-details938">
-                            <a href="#">
-                                <h5>Ahmed Hasan</h5>
-                            </a>
-                            <a href="#" class="designetion439">Pundit</a>
-                            <p>206 points</p>
-                        </span>
-                    </div>
+                    <!--          End tags part-->
+
                 </div>
-                <!--               end of Highest points -->
-                <!--          start tags part-->
-                <div class="tags-part2398">
-                    <h4>Tags</h4>
-                    <ul>
-                        <li><a href="#">analytics</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Developer</a></li>
-                        <li><a href="#">Google</a></li>
-                        <li><a href="#">Interview</a></li>
-                        <li><a href="#">Programmer</a></li>
-                        <li><a href="#">Salary</a></li>
-                        <li><a href="#">University</a></li>
-                        <li><a href="#">Employee</a></li>
-                    </ul>
-                </div>
-                <!--          End tags part-->
-                <!--        start recent post  -->
-                <div class="recent-post3290">
-                    <h4>Recent Post</h4>
-                    <div class="post-details021"> <a href="#">
-                            <h5>How much do web developers</h5>
-                        </a>
-                        <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                            style="color: #848991">July 16, 2017</small>
-                    </div>
-                    <hr>
-                    <div class="post-details021"> <a href="#">
-                            <h5>How much do web developers</h5>
-                        </a>
-                        <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                            style="color: #848991">July 16, 2017</small>
-                    </div>
-                    <hr>
-                    <div class="post-details021"> <a href="#">
-                            <h5>How much do web developers</h5>
-                        </a>
-                        <p>I am thinking of pursuing web developing as a career & was ...</p> <small
-                            style="color: #848991">July 16, 2017</small>
-                    </div>
-                </div>
-                <!--       end recent post    -->
             </aside>
+
         </div>
     </div>
 </section>

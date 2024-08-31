@@ -28,20 +28,21 @@ class Login extends Controller
                 $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
-
             $userAccount = $this->UserModel->GetUserByAccountName($user_name);
             if ($userAccount && $userAccount['locked'] == 1) {
                 echo "<script> alert('Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
                 $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
+            echo "<script>alert('name: " . $userAccount . "')</script>";
 
             if ($userAccount && password_verify($password, $userAccount['password'])) {
                 $this->UserModel->ResetLoginAttempts($user_name);
                 $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
                 $_SESSION['UserID'] = $userAccount["id"];
+                $_SESSION['UserName'] = $userAccount["user_name"];
                 $_SESSION['RoleID'] = $userAccount["role_id"];
-                $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại
+                $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại. (none / success / error)
                 $_SESSION['title_message'] = ""; // Tiêu đề lỗi hoặc thành công
                 $_SESSION['message'] = ""; // Thông báo chi tiết lỗi hoặc thành công
                 if ($userAccount["role_id"] == 1) {

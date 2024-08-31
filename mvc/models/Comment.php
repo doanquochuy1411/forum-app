@@ -33,4 +33,23 @@ class Comment extends DB
         ";
         return $this->executeSelectQuery($sql, [$post_id]);
     }
+
+    public function CreateComment($content, $user_id, $post_id, $parent_comment_id)
+    {
+        $sql = "";
+        $result = false;
+        if ($parent_comment_id == "") {
+            $sql = "INSERT INTO comments(content, user_id, post_id) values (?,?,?)";
+            $result = $this->executeQuery($sql, [$content, $user_id, $post_id]);
+        } else {
+            $sql = "INSERT INTO comments(content, user_id, post_id, parent_comment_id) values (?,?,?,?)";
+            $result = $this->executeQuery($sql, [$content, $user_id, $post_id, $parent_comment_id]);
+        }
+
+        if ($result) {
+            return $this->con->insert_id;
+        } else {
+            return 0;
+        }
+    }
 }

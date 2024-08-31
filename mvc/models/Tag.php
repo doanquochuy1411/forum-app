@@ -13,6 +13,16 @@ class Tag extends DB
             return false; // Tag không tồn tại
         }
     }
+    public function GetTagsOfPost($post_id)
+    {
+        $sql = "SELECT * FROM tags t JOIN post_tags pt ON t.id = pt.tag_id Where pt.post_id = ?";
+        return $this->executeSelectQuery($sql, [$post_id]);
+    }
+    public function GetPopularTags()
+    {
+        $sql = "SELECT distinct t.id, t.name FROM tags t JOIN post_tags pt ON t.id = pt.tag_id JOIN posts p ON pt.post_id = p.id ORDER BY p.views DESC;";
+        return $this->executeSelectQuery($sql);
+    }
     public function CreateTag($name)
     {
         $sql = "INSERT INTO tags(name) values (?)";

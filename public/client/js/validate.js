@@ -4,7 +4,7 @@ function valEmail(email) {
 }
 
 function validateNoSpecialChars(string) {
-    var pattern = /^[\p{L}\p{N}\s]+$/u;
+    var pattern = /^[\p{L}\p{N}\s!@$%&?*:\[\]]+$/u;
     return pattern.test(string);
 }
 
@@ -138,7 +138,7 @@ function validateTitleOfPost() {
         TitleError.style.color = 'red'
         return false;
     } else if (!validateNoSpecialChars(Title)) {
-        TitleError.textContent = "Tiêu đề khoản không được chứa ký tự đặc biệt";
+        TitleError.textContent = "Tiêu đề không được chứa ký tự đặc biệt";
         TitleError.style.color = 'red'
         return false;
     } else {

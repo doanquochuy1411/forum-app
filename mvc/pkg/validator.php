@@ -21,12 +21,28 @@ function validatePassword($password)
 
 function validateNoSpecialChars($input)
 {
-    return preg_match('/^[\p{L}\p{N}\s!@$%&*:\[\]]+$/u', $input);
+    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\[\]]+$/u', $input);
 }
 
 function validateAddress($address)
 {
     return preg_match('/^[0-9a-zA-Z\s,\.\/\-]+$/u', $address);
+}
+function validateID($id)
+{
+    return filter_var($id, FILTER_VALIDATE_INT) !== false;
+}
+function validateParentID($id)
+{
+    return filter_var($id, FILTER_VALIDATE_INT) !== false || $id == "";
+}
+function sanitizeInput($input)
+{
+    // Thay thế các ký tự đặc biệt có thể gây ra SQL Injection
+    $sanitized = preg_replace('/[\'"\\\%;\(\)~`\^<>\[\]\{\}\&\|\*]/', '', $input);
+
+    // Trả về chuỗi đã được làm sạch
+    return $sanitized;
 }
 
 function validateForm($fieldsToValidate)
@@ -45,6 +61,8 @@ function validateForm($fieldsToValidate)
         'contentType' => 'validateNoSpecialChars',
         'contentCategory' => 'validateNoSpecialChars',
         'title' => 'validateNoSpecialChars',
+        'parent_comment_id' => 'validateParentID',
+        'post_id' => 'validateID',
     ];
 
 
