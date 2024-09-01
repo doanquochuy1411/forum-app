@@ -1,11 +1,3 @@
-<?php
-// Clear image to become sort content
-function stripImages($content)
-{
-    return preg_replace('/<img[^>]*>/i', '', $content);
-}
-?>
-
 <!--======= welcome section on top background=====-->
 <section class="welcome-part-one">
     <div class="container">
@@ -76,10 +68,10 @@ function stripImages($content)
                                 //     $now = new DateTime();
                                 //     $ago = new DateTime($datetime);
                                 //     $diff = $now->diff($ago);
-
+                                
                                 //     $diff->w = floor($diff->d / 7);
                                 //     $diff->d -= $diff->w * 7;
-
+                                
                                 //     $string = array(
                                 //         'y' => 'năm',
                                 //         'm' => 'tháng',
@@ -98,7 +90,7 @@ function stripImages($content)
                                 //         $output = array_slice($output, 0, 1);
                                 //     return $output ? implode(', ', $output) . ' trước' : 'vừa mới';
                                 // }
-
+                                
 
                                 foreach ($comments as $comment) {
                                     echo '                            <div class="row">
@@ -244,51 +236,58 @@ function stripImages($content)
                         <!--Recently answered Content Section -->
                         <div class="question-type2033">
                             <?php
-                            foreach ($my_posts as $post) {
-                                $content = stripImages($post["content"]);
-                                echo '<div class="row">
-                                    <div class="col-md-1">
-                                        <div class="left-user12923 left-user12923-repeat">
-                                            <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
-                                                    class="fa fa-check" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="right-description893">
-                                            <div id="que-hedder2983">
-                                                <h3><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a></h3>
-                                            </div>
-                                            <div class="ques-details10018">
-                                                <p>' . $content . '</p>
-                                            </div>
-                                            <hr>
-                                            <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-check"
-                                                        aria-hidden="true">
-                                                        solved</i></a> <a href="#"><i class="fa fa-star" aria-hidden="true">
-                                                        5</i> </a> <a href="#"><i class="fa fa-folder" aria-hidden="true">
-                                                        wordpress</i></a> <a href="#"><i class="fa fa-clock-o"
-                                                        aria-hidden="true"> 4 min
-                                                        ago</i></a> <a href="#"><i class="fa fa-comment" aria-hidden="true">
-                                                        5 answer</i></a> <a href="#"><i class="fa fa-user-circle-o"
-                                                        aria-hidden="true"> 70
-                                                        view</i> </a>
+                            if (count($my_posts) > 0) {
+                                foreach ($my_posts as $post) {
+                                    $content = stripImages($post["content"]);
+                                    echo '<div class="row">
+                                        <div class="col-md-1">
+                                            <div class="left-user12923 left-user12923-repeat">
+                                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
+                                                        class="fa fa-check" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="ques-type302">
-                                            <a href="#">
-                                                <button type="button" class="q-type238"><i class="fa fa-comment"
-                                                        aria-hidden="true"> ' . $post["comment_count"] . '</i> Bình luận</button>
-                                            </a>
-                                            <a href="#">
-                                                <button type="button" class="q-type23 button-ques2973"> <i
-                                                        class="fa fa-user-circle-o" aria-hidden="true"> ' . $post["views"] . ' lượt xem</i>
-                                                </button>
-                                            </a>
+                                        <div class="col-md-9">
+                                            <div class="right-description893">
+                                                <div id="que-hedder2983">
+                                                    <h3><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a></h3>
+                                                </div>
+                                                <div class="ques-details10018">
+                                                    <p>' . $content . '</p>
+                                                </div>
+                                                <hr>
+                                                <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-check"
+                                                            aria-hidden="true">
+                                                            solved</i></a> <a href="#"><i class="fa fa-star" aria-hidden="true">
+                                                            5</i> </a> <a href="#"><i class="fa fa-folder" aria-hidden="true">
+                                                            wordpress</i></a> <a href="#"><i class="fa fa-clock-o"
+                                                            aria-hidden="true"> 4 min
+                                                            ago</i></a> <a href="#"><i class="fa fa-comment" aria-hidden="true">
+                                                            5 answer</i></a> <a href="#"><i class="fa fa-user-circle-o"
+                                                            aria-hidden="true"> 70
+                                                            view</i> </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>';
+                                        <div class="col-md-2">
+                                            <div class="ques-type302">
+                                                <a href="#">
+                                                    <button type="button" class="q-type238"><i class="fa fa-comment"
+                                                            aria-hidden="true"> ' . $post["comment_count"] . '</i> Bình luận</button>
+                                                </a>
+                                                <a href="#">
+                                                    <button type="button" class="q-type23 button-ques2973"> <i
+                                                            class="fa fa-user-circle-o" aria-hidden="true"> ' . $post["views"] . ' lượt xem</i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                }
+                            } else {
+                                echo '
+                        <div class="row">
+                            <p style="margin: 10px;"> <b>Chưa có bài viết</b></p>
+                    </div>';
                             }
                             ?>
                         </div>
@@ -337,7 +336,7 @@ function stripImages($content)
                 <div class="col-md-9">
                     <div class="right-description893">
                         <div id="que-hedder2983">
-                            <h3><a href="' . BASE_URL . '/home/questions/' . $question["id"] . '" target="_blank">' . $question['title'] . '</a></h3>
+                            <h3><a href="' . BASE_URL . '/home/posts/' . $question["id"] . '" target="_blank">' . $question['title'] . '</a></h3>
                         </div>
                         <div class="ques-details10018">
                             <p>' . $content . '</p>

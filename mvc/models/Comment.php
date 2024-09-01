@@ -52,4 +52,10 @@ class Comment extends DB
             return 0;
         }
     }
+
+    public function DeleteComment($id)
+    {
+        $sql = "DELETE FROM comments WHERE id = ?";
+        return $this->executeQuery($sql, [$id]);
+    }
 }

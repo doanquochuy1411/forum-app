@@ -72,22 +72,24 @@
                         data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle
                             navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                             class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="#"><img src="<?php echo BASE_URL; ?>/public/client/image/logo.png"
-                            alt="Logo"></a>
+                    <a class="navbar-brand" href="<?php echo BASE_URL ?>"><img
+                            src="<?php echo BASE_URL; ?>/public/client/image/logo.png" alt="Logo"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav"> </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
                         <!-- <li><a href="ask_question.html">Giới thiệu</a></li> -->
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Diễn đàn <span class="caret"></span></a>
+                                aria-haspopup="true" aria-expanded="false">Diễn đàn
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
                                 <?php
                                 if (count($categories) > 0) {
+                                    echo '<li><a href="' . BASE_URL . '/home/allPosts/post">Tất cả</a></li>';
                                     foreach ($categories as $category) {
-                                        echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                        echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
                                     }
                                 }
                                 ?>
@@ -97,8 +99,11 @@
                                 aria-haspopup="true" aria-expanded="false">Hỏi đáp <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
                                 <?php
-                                foreach ($categories as $category) {
-                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                if (count($categories) > 0) {
+                                    echo '<li><a href="' . BASE_URL . '/home/allPosts/question">Tất cả</a></li>';
+                                    foreach ($categories as $category) {
+                                        echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/question">' . $category['name'] . '</a></li>';
+                                    }
                                 }
                                 ?>
                             </ul>
@@ -113,13 +118,14 @@
                         <li>
                             <div class="col-md-12">
                                 <div class="navbar-serch-right-side">
-                                    <form class="navbar-form" role="search">
+                                    <form class="navbar-form" role="search" method="post"
+                                        action="<?php echo BASE_URL ?>/home/handleSearch">
                                         <div class="input-group add-on">
                                             <input class="form-control form-control222" placeholder="Tìm kiếm"
-                                                id="srch-term" type="text">
+                                                id="srch-term" type="text" name="txtSearch">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-default btn-default2913" type="button"><i
-                                                        class="glyphicon glyphicon-search"></i></button>
+                                                <button class="btn btn-default btn-default2913" type="submit"
+                                                    name="btnSearch"><i class="glyphicon glyphicon-search"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -287,8 +293,7 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/footer.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
-    <!-- Popup sửa xóa -->
-    <script src="<?php echo BASE_URL; ?>/public/client/js/popup.js"></script>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         var emailInput = document.querySelector('input[name="email"]');
@@ -472,6 +477,59 @@
                 break;
         }
         ?>
+    </script>
+    <!-- Popup sửa xóa -> chưa hoạt động-->
+    <!-- <script src="<?php echo BASE_URL; ?>/public/client/js/popup.js"></script> -->
+    <script>
+    function confirmDelete(event, targetHref) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+        Swal.fire({
+            title: "Bạn có chắc chắn xóa không",
+            width: '400px', // Tăng chiều rộng của popup
+            confirmButtonText: "Xóa",
+            // denyButtonText: `Don't save`,
+            // showDenyButton: true,
+            showCancelButton: true,
+            // customClass: {
+            //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
+            //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
+            //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
+            //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
+            //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
+            // }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
+                // console.log("href: ", targetHref);
+                window.location.href = targetHref;
+                // window.location.href = event.target.href;
+                // Swal.fire("Xóa thành công!", "", "success");
+            }
+            // else if (result.isDenied) {
+            //     Swal.fire("Changes are not saved", "", "info");
+            // }
+        });
+    }
+
+    // Gán sự kiện click cho tất cả các liên kết có class 'delete-link'
+    // document.querySelectorAll('.delete-link').forEach(link => {
+    //   link.addEventListener('click', function(event) {
+    //       event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+    //       var targetHref = this.href; // Lấy giá trị href của liên kết
+
+    //       // Hiển thị SweetAlert2 popup
+    //       Swal.fire({
+    //           title: "Bạn có chắc chắn xóa không?",
+    //           width: '400px',
+    //           confirmButtonText: "Xóa",
+    //           showCancelButton: true,
+    //       }).then((result) => {
+    //           if (result.isConfirmed) {
+    //               window.location.href = targetHref; // Điều hướng đến href đã lưu
+    //           }
+    //       });
+    //   });
+    // });
     </script>
 </body>
 

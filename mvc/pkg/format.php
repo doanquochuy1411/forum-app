@@ -26,4 +26,9 @@ function timeAgo($datetime, $full = false)
         $output = array_slice($output, 0, 1);
     return $output ? implode(', ', $output) . ' trước' : 'vừa mới';
 }
+// Bỏ các hình trong bài viết tạo thành sort content
+function stripImages($content)
+{
+    return preg_replace('/<img[^>]*>/i', '', $content);
+}
 ?>

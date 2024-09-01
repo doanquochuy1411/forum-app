@@ -136,11 +136,13 @@
                                         // Hàm đệ quy để in comment và các comment con
                                         function print_comments($comments_tree)
                                         {
+                                            $userID = $_SESSION["UserID"] ?? ""; // Toán tử gán null
+                                            // $userID = isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
                                             foreach ($comments_tree as $parent_id => $data) {
                                                 echo '<li>';
                                                 $comment = $data['comment'];
                                                 // Nếu là chủ comment thì có thể sửa hoặc xóa
-                                                if ($comment['user_id'] != $_SESSION["UserID"]) {
+                                                if ($comment['user_id'] != $userID) {
                                                     echo '<div class="comment-main-level">
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
                                                         <div class="comment-box">   
@@ -161,8 +163,8 @@
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
                                                                 <a href="' . BASE_URL . '/posts/replyComment/' . $comment['id'] . '"><i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . $comment['id'] . ')"></i></a>
-                                                                <a href="' . BASE_URL . '/posts/deleteComment/' . $comment['id'] . '"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="deleteComment(' . $comment['id'] . ')"></i></a>
-                                                                <a href="' . BASE_URL . '/posts/editComment/' . $comment['id'] . '"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $comment['id'] . ')"></i></a>
+                                                                <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . $comment['id'] . '\')"></i></a>
+                                                                <a href="#"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $comment['id'] . ')"></i></a>
                                                                 </div>
                                                             <div class="comment-content"> ' . $comment['content'] . '
                                                         </div>
@@ -173,7 +175,7 @@
                                                 if (isset($data['replies']) && count($data['replies']) > 0) {
                                                     echo '<ul class="comments-list reply-list">';
                                                     foreach ($data['replies'] as $reply) {
-                                                        if ($reply['user_id'] != $_SESSION["UserID"]) {
+                                                        if ($reply['user_id'] != $userID) {
                                                             echo '<li>
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
                                                         <div class="comment-box">
@@ -193,8 +195,8 @@
                                                                 <div class="comment-head">
                                                                     <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
                                                                     <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
-                                                                    <a href="' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="deleteComment.call(this, event)"></i></a>
-                                                                    <a href="' . BASE_URL . '/posts/editComment/' . $reply['id'] . '"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $reply['id'] . ')"></i></a>
+                                                                    <a href="#" ><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '\')"></i></a>
+                                                                    <a href="#"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '\')"></i></a>
                                                                     </div>
                                                                 <div class="comment-content"> ' . $reply['content'] . '
                                                                 </div>
@@ -263,7 +265,7 @@
                             <?php
                             if (count($categories) > 0) {
                                 foreach ($categories as $category) {
-                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '">' . $category['name'] . '</a></li>';
+                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
                                 }
                             }
                             ?>
@@ -277,7 +279,7 @@
                             if ($count >= 8) {
                                 break;
                             }
-                            echo '<div class="post-details021"> <a href="#">
+                            echo '<div class="post-details021"> <a href="' . BASE_URL . '/home/posts/' . $post['id'] . '">
                                 <h5>' . $post['title'] . '</h5>
                             </a>
                             <small
@@ -327,7 +329,7 @@
                                     if ($count >= 5) {
                                         break;
                                     }
-                                    echo '<li><a href="' . BASE_URL . '/tags/' . $tag['id'] . '">' . $tag['name'] . '</a></li>';
+                                    echo '<li><a href="' . BASE_URL . '/home/tags/' . $tag['name'] . '">' . $tag['name'] . '</a></li>';
                                     $count++;
                                 }
                             }

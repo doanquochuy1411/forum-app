@@ -48,6 +48,7 @@ class Home extends Controller
             "my_posts" => $my_posts
         ]);
     }
+    // Get post details
     function Posts($id)
     {
         $relate_post_db = $this->PostModel->GetRelatePosts($id, 10);
@@ -87,7 +88,7 @@ class Home extends Controller
             "tags_of_post" => $tags_of_post,
         ]);
     }
-
+    // Create
     function CreatePost()
     {
         // Chưa login sẽ về trang đăng nhập
@@ -151,25 +152,191 @@ class Home extends Controller
             exit();
         }
     }
-    function Questions($id)
+    // Get question details
+    // function Questions($id)
+    // {
+    //     $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
+    //     $post_db = $this->PostModel->GetPostByID($id);
+    //     $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
+    //     $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+
+    //     $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+    //     $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+    //     $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+    //     $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+
+    //     $this->view($this->layout, [
+    //         "Page" => "post_details",
+    //         "title" => $this->title,
+    //         "posts" => $posts,
+    //         "recent_post" => $relate_post,
+    //         "comments" => $comments,
+    //         "users" => $users
+    //     ]);
+    // }
+    // Trang danh mục
+    function Categories($category_id, $type)
     {
-        $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
-        $post_db = $this->PostModel->GetPostByID($id);
-        $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        if ($type != "post" && $type != "question") {
+            $post_db = $this->PostModel->GetAllPostWithCategory($category_id); // body
+        } else {
+            $post_db = $this->PostModel->GetAllPostWithCategoryAndType($category_id, $type); // body
+        }
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $category_db = $this->CategoryModel->GetAllCategory(); // header
+        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tag_db = $this->TagModel->GetPopularTags();
+        $category_details_db = $this->CategoryModel->GetCategoryByID($category_id); // Lấy thông tin chi tiết của danh mục
 
         $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
         $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
+        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+        $category_details = mysqli_fetch_all($category_details_db, MYSQLI_ASSOC);
+
+        $sub_title = ""; // Tiêu đề cho đường dẫn
+        switch ($type) {
+            case "post":
+                $sub_title = "bài viết";
+                break;
+            case "question":
+                $sub_title = "câu hỏi";
+                break;
+            default:
+                $sub_title = "";
+                break;
+        }
+        $this->view($this->layout, [
+            "Page" => "category",
+            "title" => $sub_title,
+            "posts" => $posts,
+            "questions" => $questions,
+            "users" => $users,
+            "categories" => $categories,
+            "tags" => $tags,
+            "recent_posts" => $recent_posts,
+            "category_details" => $category_details, // chi tiết danh mục
+        ]);
+    }
+    // Tất cả bài viết || Câu hỏi
+    function AllPosts($type)
+    {
+        $post_db = $this->PostModel->GetAllPostWithType($type); // body
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $category_db = $this->CategoryModel->GetAllCategory(); // header
+        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tag_db = $this->TagModel->GetPopularTags();
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
+        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+
+        $sub_title = ""; // Tiêu đề cho đường dẫn
+        switch ($type) {
+            case "post":
+                $sub_title = "bài viết";
+                break;
+            case "question":
+                $sub_title = "câu hỏi";
+                break;
+            default:
+                $sub_title = "";
+                break;
+        }
+        $this->view($this->layout, [
+            "Page" => "category",
+            "title" => $sub_title,
+            "posts" => $posts,
+            "questions" => $questions,
+            "users" => $users,
+            "categories" => $categories,
+            "tags" => $tags,
+            "recent_posts" => $recent_posts,
+        ]);
+    }
+    // Trang chứa nội dung sau khi tìm kiếm dựa trên tag, nội dung và tiêu đề
+    function Search($txt)
+    {
+        $post_db = $this->PostModel->GetPostBySearch($txt); // body
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $category_db = $this->CategoryModel->GetAllCategory(); // header
+        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tag_db = $this->TagModel->GetPopularTags();
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
+        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
 
         $this->view($this->layout, [
-            "Page" => "post_details",
-            "title" => $this->title,
+            "Page" => "search",
+            "search" => $txt, // từ khóa cần tìm kiếm
             "posts" => $posts,
-            "recent_post" => $relate_post,
-            "comments" => $comments,
-            "users" => $users
+            "questions" => $questions,
+            "users" => $users,
+            "categories" => $categories,
+            "tags" => $tags,
+            "recent_posts" => $recent_posts,
+        ]);
+    }
+    // Xử lý tìm kiếm
+    function HandleSearch()
+    {
+        if (isset($_REQUEST["btnSearch"])) {
+            $txtSearch = sanitizeInput($_REQUEST["txtSearch"]); // làm sạch chuỗi
+            $post_db = $this->PostModel->GetPostBySearch($txtSearch); // body
+
+            $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+
+
+            if (count($posts) > 0) { // success
+                header("Location: " . BASE_URL . "/home/search/" . $txtSearch);
+                exit();
+            } else {
+                $_SESSION['action_status'] = 'error';
+                $_SESSION['title_message'] = "Không tìm thấy bài viết phù hợp!";
+                echo "<script>history.back();</script>";
+                exit();
+            }
+        }
+    }
+
+    function tags($tag)
+    {
+        $post_db = $this->PostModel->GetPostByTag($tag); // body
+        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $category_db = $this->CategoryModel->GetAllCategory(); // header
+        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tag_db = $this->TagModel->GetPopularTags();
+
+        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
+        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+
+        $this->view($this->layout, [
+            "Page" => "search",
+            "search" => $tag, // từ khóa cần tìm kiếm
+            "posts" => $posts,
+            "questions" => $questions,
+            "users" => $users,
+            "categories" => $categories,
+            "tags" => $tags,
+            "recent_posts" => $recent_posts,
         ]);
     }
 

@@ -14,7 +14,7 @@ class Admin extends Controller
 
     public function __construct()
     {
-        if (!isset($_SESSION["UserID"])) {
+        if (!isset($_SESSION['RoleID']) || $_SESSION['RoleID'] != 1) {
             header("Location: " . BASE_URL);
             exit();
         }

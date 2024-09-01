@@ -2,12 +2,11 @@
 <section class="header-descriptin329">
     <div class="container">
         <h3> Tất cả
-            <?php echo $title ?>
         </h3>
         <ol class="breadcrumb breadcrumb839">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
-            <li><a href="<?php echo BASE_URL ?>">Danh mục</a></li>
-            <li class="active"><?php echo $category_details[0]["name"] ?? "Tất cả danh mục" ?></li>
+            <li><a href="<?php echo BASE_URL ?>">Tìm kiếm</a></li>
+            <li class="active"><?php echo $search ?? "" ?></li>
         </ol>
     </div>
 </section>
@@ -63,7 +62,7 @@
                     } else {
                         echo '<div class="question-type2033">
                         <div class="row">
-                            <p style="margin: 10px;"> <b>Chưa có ' . $title . '</b></p>
+                            <p style="margin: 10px;"> <b>Chưa có bài viết</b></p>
                         </div>
                     </div>';
                     }
@@ -145,7 +144,7 @@
                                     if ($count >= 5) {
                                         break;
                                     }
-                                    echo '<li><a href="' . BASE_URL . '/home/tags/' . $tag['name'] . '">' . $tag['name'] . '</a></li>';
+                                    echo '<li><a href="' . BASE_URL . '/tags/' . $tag['id'] . '">' . $tag['name'] . '</a></li>';
                                     $count++;
                                 }
                             }

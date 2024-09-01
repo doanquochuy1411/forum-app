@@ -45,6 +45,7 @@ function sanitizeInput($input)
     return $sanitized;
 }
 
+// Validate các giá trị được gửi qua form
 function validateForm($fieldsToValidate)
 {
     $errors = [];

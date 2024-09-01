@@ -1,4 +1,5 @@
 <?php
+// Thao tác với bài viết như sửa, xóa
 class Posts extends Controller
 {
     protected $PostModel;
@@ -8,7 +9,13 @@ class Posts extends Controller
 
     public function __construct()
     {
-        $this->userID = isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
+        if (!isset($_SESSION['UserID'])) {
+            header("Location: " . BASE_URL);
+            exit();
+        }
+
+
+        $this->userID = $_SESSION["UserID"];
         $this->PostModel = $this->model("Post");
         $this->CommentModel = $this->model("Comment");
     }
@@ -53,5 +60,34 @@ class Posts extends Controller
             echo "<script>history.back();</script>";
             exit();
         }
+    }
+
+    function DeleteComment($id, $token)
+    {
+        // Chưa login sẽ về trang đăng nhập
+        if ($token == "" || $token != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/login");
+            exit();
+        }
+
+        if (!validateID($id)) {
+            $_SESSION['action_status'] = 'error';
+            $_SESSION['title_message'] = "Xóa bình luận thất bại";
+            $_SESSION['message'] = "Dữ liệu không hợp lệ!";
+            echo "<script>history.back();</script>";
+            return;
+        }
+        // // Trả về true nếu xóa thành công và ngược lại
+        $result = $this->CommentModel->DeleteComment($id);
+        if (!$result) {
+            $_SESSION['action_status'] = 'error';
+            $_SESSION['title_message'] = "Xóa bình luận thất bại";
+            $_SESSION['message'] = "Truy vấn gặp sự cố!";
+        } else {
+            $_SESSION['action_status'] = 'success';
+            $_SESSION['title_message'] = "Xóa bình luận thành công";
+        }
+        echo "<script>history.back();</script>";
+        exit();
     }
 }
