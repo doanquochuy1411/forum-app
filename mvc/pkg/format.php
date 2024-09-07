@@ -31,4 +31,13 @@ function stripImages($content)
 {
     return preg_replace('/<img[^>]*>/i', '', $content);
 }
+// format thời gian
+function formatVietnameseDate($dateString)
+{
+    $timestamp = strtotime($dateString);
+
+    $formattedDate = 'Ngày ' . date('d', $timestamp) . ' tháng ' . date('m', $timestamp) . ', ' . date('Y', $timestamp);
+
+    return $formattedDate;
+}
 ?>

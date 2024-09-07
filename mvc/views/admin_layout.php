@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <title><?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-
+    <meta name="title" content="Diễn Đàn IT - IUH">
+    <!-- logo -->
+    <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
+    <!-- Title web -->
+    <title>Diễn Đàn IT - IUH - Admin</title>
     <!-- Favicons -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL ?>/public/admin/assets/img/favicon.ico">
 
@@ -334,304 +338,304 @@
     <!-- <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script> -->
 
     <script>
-    /*Donut Pie chart*/
-    var options = {
-        series: [44, 55],
-        chart: {
-            width: 280,
-            type: 'donut',
+        /*Donut Pie chart*/
+        var options = {
+            series: [44, 55],
+            chart: {
+                width: 280,
+                type: 'donut',
 
-        },
-
-
-        colors: ['#1DBFC1', '#8EE2E3'],
-        dataLabels: {
-            enabled: false
-        },
-
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    show: false
-                }
-            }
-        }],
-        legend: {
-            position: 'right',
-            offsetY: 0,
-            height: 230,
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
+            },
 
 
-    function appendData() {
-        var arr = chart.w.globals.series.slice()
-        arr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1)
-        return arr;
-    }
+            colors: ['#1DBFC1', '#8EE2E3'],
+            dataLabels: {
+                enabled: false
+            },
 
-    function removeData() {
-        var arr = chart.w.globals.series.slice()
-        arr.pop()
-        return arr;
-    }
-
-    function randomize() {
-        return chart.w.globals.series.map(function() {
-            return Math.floor(Math.random() * (100 - 1 + 1)) + 1
-        })
-    }
-
-    function reset() {
-        return options.series
-    }
-    </script>
-
-    <script>
-    /*Stastistics chart*/
-    var options = {
-        series: [{
-            data: [
-                [1327359600000, 30.95],
-                [1327446000000, 31.34],
-                [1327532400000, 31.18],
-                [1327618800000, 31.05],
-                [1327878000000, 31.00],
-                [1327964400000, 30.95],
-                [1328050800000, 31.24],
-                [1328137200000, 31.29],
-                [1328223600000, 31.85],
-                [1328482800000, 31.86],
-                [1328569200000, 32.28],
-                [1328655600000, 32.10],
-                [1328742000000, 32.65],
-                [1328828400000, 32.21],
-                [1329087600000, 32.35],
-                [1329174000000, 32.44],
-                [1329260400000, 32.46],
-                [1329346800000, 32.86],
-                [1329433200000, 32.75],
-                [1329778800000, 32.54],
-                [1329865200000, 32.33],
-                [1329951600000, 32.97],
-                [1330038000000, 33.41],
-                [1330297200000, 33.27],
-                [1330383600000, 33.27],
-                [1330470000000, 32.89],
-                [1330556400000, 33.10],
-                [1330642800000, 33.73],
-                [1330902000000, 33.22],
-                [1330988400000, 31.99],
-                [1331074800000, 32.41],
-                [1331161200000, 33.05],
-                [1331247600000, 33.64],
-                [1331506800000, 33.56],
-                [1331593200000, 34.22],
-                [1331679600000, 33.77],
-                [1331766000000, 34.17],
-                [1331852400000, 33.82],
-                [1332111600000, 34.51],
-                [1332198000000, 33.16],
-                [1332284400000, 33.56],
-                [1332370800000, 33.71]
-
-            ]
-        }],
-        chart: {
-            id: 'area-datetime',
-            type: 'area',
-            height: 350,
-            zoom: {
-                autoScaleYaxis: true
-            }
-        },
-        colors: ['#1DBFC1', '#8EE2E3'],
-        annotations: {
-            yaxis: [{
-                y: 30,
-                borderColor: '#999',
-                label: {
-                    show: true,
-                    text: 'Support',
-                    style: {
-                        color: "#fff",
-                        background: '#00E396'
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        show: false
                     }
                 }
             }],
-            xaxis: [{
-                x: new Date('14 Nov 2012').getTime(),
-                borderColor: '#999',
-                yAxisIndex: 0,
-                label: {
-                    show: true,
-                    text: 'Rally',
-                    style: {
-                        color: "#fff",
-                        background: '#775DD0'
-                    }
-                }
-            }]
-        },
-        dataLabels: {
-            enabled: false
-        },
-        markers: {
-            size: 0,
-            style: 'hollow',
-        },
-        xaxis: {
-            type: 'datetime',
-            min: new Date('01 Mar 2012').getTime(),
-            tickAmount: 6,
-        },
-        tooltip: {
-            x: {
-                format: 'dd MMM yyyy'
+            legend: {
+                position: 'right',
+                offsetY: 0,
+                height: 230,
             }
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.9,
-                stops: [0, 100]
-            }
-        },
-    };
+        };
 
-    var chart = new ApexCharts(document.querySelector("#chart-timeline"), options);
-    chart.render();
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
 
 
-    var resetCssClasses = function(activeEl) {
-        var els = document.querySelectorAll('button')
-        Array.prototype.forEach.call(els, function(el) {
-            el.classList.remove('active')
-        })
+        function appendData() {
+            var arr = chart.w.globals.series.slice()
+            arr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1)
+            return arr;
+        }
 
-        activeEl.target.classList.add('active')
-    }
+        function removeData() {
+            var arr = chart.w.globals.series.slice()
+            arr.pop()
+            return arr;
+        }
+
+        function randomize() {
+            return chart.w.globals.series.map(function () {
+                return Math.floor(Math.random() * (100 - 1 + 1)) + 1
+            })
+        }
+
+        function reset() {
+            return options.series
+        }
     </script>
 
     <script>
-    /*bar chart*/
-    var options = {
-        series: [{
-            name: 'Inflation',
-            data: [2.2, 1.3, 2.4, 0.8]
-        }],
-        chart: {
-            height: 400,
-            type: 'bar',
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 0,
-                dataLabels: {
-                    position: 'top', // top, center, bottom
-                },
-            }
-        },
+        /*Stastistics chart*/
+        var options = {
+            series: [{
+                data: [
+                    [1327359600000, 30.95],
+                    [1327446000000, 31.34],
+                    [1327532400000, 31.18],
+                    [1327618800000, 31.05],
+                    [1327878000000, 31.00],
+                    [1327964400000, 30.95],
+                    [1328050800000, 31.24],
+                    [1328137200000, 31.29],
+                    [1328223600000, 31.85],
+                    [1328482800000, 31.86],
+                    [1328569200000, 32.28],
+                    [1328655600000, 32.10],
+                    [1328742000000, 32.65],
+                    [1328828400000, 32.21],
+                    [1329087600000, 32.35],
+                    [1329174000000, 32.44],
+                    [1329260400000, 32.46],
+                    [1329346800000, 32.86],
+                    [1329433200000, 32.75],
+                    [1329778800000, 32.54],
+                    [1329865200000, 32.33],
+                    [1329951600000, 32.97],
+                    [1330038000000, 33.41],
+                    [1330297200000, 33.27],
+                    [1330383600000, 33.27],
+                    [1330470000000, 32.89],
+                    [1330556400000, 33.10],
+                    [1330642800000, 33.73],
+                    [1330902000000, 33.22],
+                    [1330988400000, 31.99],
+                    [1331074800000, 32.41],
+                    [1331161200000, 33.05],
+                    [1331247600000, 33.64],
+                    [1331506800000, 33.56],
+                    [1331593200000, 34.22],
+                    [1331679600000, 33.77],
+                    [1331766000000, 34.17],
+                    [1331852400000, 33.82],
+                    [1332111600000, 34.51],
+                    [1332198000000, 33.16],
+                    [1332284400000, 33.56],
+                    [1332370800000, 33.71]
 
-        dataLabels: {
-            enabled: false,
-            formatter: function(val) {
-                return val + "%";
+                ]
+            }],
+            chart: {
+                id: 'area-datetime',
+                type: 'area',
+                height: 350,
+                zoom: {
+                    autoScaleYaxis: true
+                }
             },
-            offsetY: -20,
-            style: {
-                fontSize: '12px',
-
-            }
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                colorFrom: '#fff',
-                colorTo: '#fff',
-                stops: [0, 100],
-                opacityFrom: .7,
-                opacityTo: .3,
-                shade: 'light',
-                type: "vertical",
-                shadeIntensity: 1,
-
-            }
-        },
-
-        grid: {
+            colors: ['#1DBFC1', '#8EE2E3'],
+            annotations: {
+                yaxis: [{
+                    y: 30,
+                    borderColor: '#999',
+                    label: {
+                        show: true,
+                        text: 'Support',
+                        style: {
+                            color: "#fff",
+                            background: '#00E396'
+                        }
+                    }
+                }],
+                xaxis: [{
+                    x: new Date('14 Nov 2012').getTime(),
+                    borderColor: '#999',
+                    yAxisIndex: 0,
+                    label: {
+                        show: true,
+                        text: 'Rally',
+                        style: {
+                            color: "#fff",
+                            background: '#775DD0'
+                        }
+                    }
+                }]
+            },
+            dataLabels: {
+                enabled: false
+            },
+            markers: {
+                size: 0,
+                style: 'hollow',
+            },
             xaxis: {
-                lines: {
+                type: 'datetime',
+                min: new Date('01 Mar 2012').getTime(),
+                tickAmount: 6,
+            },
+            tooltip: {
+                x: {
+                    format: 'dd MMM yyyy'
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.9,
+                    stops: [0, 100]
+                }
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart-timeline"), options);
+        chart.render();
+
+
+        var resetCssClasses = function (activeEl) {
+            var els = document.querySelectorAll('button')
+            Array.prototype.forEach.call(els, function (el) {
+                el.classList.remove('active')
+            })
+
+            activeEl.target.classList.add('active')
+        }
+    </script>
+
+    <script>
+        /*bar chart*/
+        var options = {
+            series: [{
+                name: 'Inflation',
+                data: [2.2, 1.3, 2.4, 0.8]
+            }],
+            chart: {
+                height: 400,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 0,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+
+            dataLabels: {
+                enabled: false,
+                formatter: function (val) {
+                    return val + "%";
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    colorFrom: '#fff',
+                    colorTo: '#fff',
+                    stops: [0, 100],
+                    opacityFrom: .7,
+                    opacityTo: .3,
+                    shade: 'light',
+                    type: "vertical",
+                    shadeIntensity: 1,
+
+                }
+            },
+
+            grid: {
+                xaxis: {
+                    lines: {
+                        show: false
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: false
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+            },
+
+            xaxis: {
+
+                categories: [],
+                position: 'top',
+                axisBorder: {
                     show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+
+                tooltip: {
+                    enabled: true,
                 }
             },
             yaxis: {
-                lines: {
+                axisBorder: {
                     show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: false,
+                    formatter: function (val) {
+                        return val + "%";
+                    }
+                }
+
+            },
+            title: {
+                text: '',
+                floating: false,
+                offsetY: 330,
+                align: 'center',
+                style: {
+                    color: '#444'
                 }
             }
-        },
-        dataLabels: {
-            enabled: true,
-        },
+        };
 
-        xaxis: {
-
-            categories: [],
-            position: 'top',
-            axisBorder: {
-                show: false
-            },
-            axisTicks: {
-                show: false
-            },
-
-            tooltip: {
-                enabled: true,
-            }
-        },
-        yaxis: {
-            axisBorder: {
-                show: false
-            },
-            axisTicks: {
-                show: false,
-            },
-            labels: {
-                show: false,
-                formatter: function(val) {
-                    return val + "%";
-                }
-            }
-
-        },
-        title: {
-            text: '',
-            floating: false,
-            offsetY: 330,
-            align: 'center',
-            style: {
-                color: '#444'
-            }
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#bar_chart"), options);
-    chart.render();
+        var chart = new ApexCharts(document.querySelector("#bar_chart"), options);
+        chart.render();
     </script>
 
     <script>
-    var config =
-        `function selectDate(date) {
+        var config =
+            `function selectDate(date) {
           $('.calendar-wrapper').updateCalendarOptions({
             date: date
           });
@@ -646,7 +650,7 @@
         };
 
         $('.calendar-wrapper').calendar(defaultConfig);`;
-    eval(config);
+        eval(config);
     </script>
     <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {

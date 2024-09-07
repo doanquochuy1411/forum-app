@@ -16,6 +16,24 @@ class Post extends DB
     // Lấy tất cả bài viết || câu hỏi với từ khóa cần tìm kiếm
     public function GetPostBySearch($txt)
     {
+        // Tách từ khóa tìm kiếm thành các từ riêng lẻ
+        $keywords = explode(' ', $txt);
+        $placeholders = [];
+        $searchTerms = [];
+
+        // Tạo các placeholder và các từ tìm kiếm cho từng từ khóa
+        foreach ($keywords as $keyword) {
+            if (!empty($keyword)) {
+                $placeholders[] = "(t.name LIKE ? OR p.content LIKE ? OR p.title LIKE ?)";
+                $searchTerms[] = '%' . $keyword . '%';
+                $searchTerms[] = '%' . $keyword . '%';
+                $searchTerms[] = '%' . $keyword . '%';
+            }
+        }
+
+        // Kết hợp các placeholder với toán tử OR
+        $placeholders = implode(' OR ', $placeholders);
+
         $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count 
                 FROM posts p 
                 JOIN user u ON u.id = p.user_id 
@@ -24,19 +42,20 @@ class Post extends DB
                 LEFT JOIN tags t ON t.id = pt.tag_id
                 WHERE p.deleted_at IS NULL 
                 AND (
-                    t.name LIKE ? OR 
-                    p.content LIKE ? OR 
-                    p.title LIKE ?
+                    -- t.name LIKE ? OR 
+                    -- p.content LIKE ? OR 
+                    -- p.title LIKE ?
+                    $placeholders
                 )
                 ORDER BY p.created_at DESC;";
         // Sử dụng ký tự đại diện `%` để tìm kiếm các chuỗi chứa từ khóa
         $searchTerm = '%' . $txt . '%';
-        return $this->executeSelectQuery($sql, [$searchTerm, $searchTerm, $searchTerm]);
+        return $this->executeSelectQuery($sql, $searchTerms);
     }
     // Lấy tất cả bài viết || câu hỏi với tags
     public function GetPostByTag($txt)
     {
-        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count 
+        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count, u.account_name
                 FROM posts p 
                 JOIN user u ON u.id = p.user_id 
                 JOIN post_comment_counts pcc ON pcc.post_id = p.id 
@@ -51,25 +70,25 @@ class Post extends DB
     // Lấy tất cả bài viết và câu hỏi của danh mục
     public function GetAllPostWithCategory($category_id)
     {
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? order by p.created_at DESC";
         return $this->executeSelectQuery($sql, [$category_id]);
     }
     public function GetAllPostWithTypeAndUserID($type, $userID)
     {
         // $sql = "SELECT p.*, c.content as comment_content, c.created_at as comment_created_at, a.* FROM posts p left join likes l on l.post_id = p.id left join comments c on c.post_id = p.id left join attachments a on a.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? and p.user_id = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? and p.user_id = ? order by p.created_at DESC";
         return $this->executeSelectQuery($sql, [$type, $userID]);
     }
     public function GetPostWithTypeAndLimit($type, $limit)
     {
         // $sql = "SELECT p.*, c.content as comment_content, c.created_at as comment_created_at, a.* FROM posts p left join likes l on l.post_id = p.id left join comments c on c.post_id = p.id left join attachments a on a.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
         return $this->executeSelectQuery($sql, [$type, $limit]);
     }
 
     public function GetPostByID($id)
     {
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
         return $this->executeSelectQuery($sql, [$id]);
     }
 
@@ -99,5 +118,29 @@ class Post extends DB
             JOIN posts p2 ON pt2.post_id = p2.id WHERE p1.id = ?
             AND p2.id != ? order by p2.views DESC LIMIT ?";
         return $this->executeSelectQuery($sql, [$post_id, $post_id, $limit]);
+    }
+
+    public function UpdatePost($id, $title, $content, $category_id, $type)
+    {
+        $sql = "UPDATE posts set title = ?, content=?, category_id=?, type= ? where id = ?";
+        $result = $this->executeQuery($sql, [$title, $content, $category_id, $type, $id]);
+
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    // Soft delete
+    public function DeletePost($id)
+    {
+        $sql = "UPDATE posts set deleted_at = NOW() Where id = ?";
+        $result = $this->executeQuery($sql, [$id]);
+
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

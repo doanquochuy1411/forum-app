@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" content="Ask online Form">
+    <meta name="title" content="Diễn Đàn IT - IUH">
     <!-- <meta name="description"
         content="The Ask is a bootstrap design help desk, support forum website template coded and designed with bootstrap Design, Bootstrap, HTML5 and CSS. Ask ideal for wiki sites, knowledge base sites, support forum sites">
      -->
@@ -14,7 +14,10 @@
     <meta name="robots" content="index, nofollow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <title>Ask Me</title>
+    <!-- logo -->
+    <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
+    <!-- Title web -->
+    <title>Diễn Đàn IT - IUH</title>
     <link href="<?php echo BASE_URL; ?>/public/client/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/client/css/style.css" rel="stylesheet" type="text/css">
     <!-- <link href="<?php echo BASE_URL; ?>/public/client/css/animate.css" rel="stylesheet" type="text/css"> -->
@@ -42,22 +45,11 @@
 
     }
 
-    /* .no-hover:hover {
-        color: #000 !important;
-        background-color: #fff !important;
+    .dropdown:hover .dropdown-menu {
+        display: block;
     }
-
-    .no-focus:focus {
-        color: #000 !important;
-        background-color: #fff !important;
-    } */
     </style>
 </head>
-<style>
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-</style>
 
 
 <body>
@@ -118,8 +110,9 @@
                         <li>
                             <div class="col-md-12">
                                 <div class="navbar-serch-right-side">
-                                    <form class="navbar-form" role="search" method="post"
-                                        action="<?php echo BASE_URL ?>/home/handleSearch">
+                                    <form class="navbar-form" role="search" id="searchForm" method="post"
+                                        action="<?php echo BASE_URL ?>/home/search" id="formSearch"
+                                        onsubmit="return validateFormSearch()">
                                         <div class="input-group add-on">
                                             <input class="form-control form-control222" placeholder="Tìm kiếm"
                                                 id="srch-term" type="text" name="txtSearch">
@@ -140,8 +133,8 @@
                             <ul class="dropdown-menu animated zoomIn">
                                 <li><a href="' . BASE_URL . '/users/info"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar"> <b>' . $_SESSION["UserName"] . '</b></a></li>
                                 <hr>
-                                <li><a href="' . BASE_URL . '/users/info">Trang cá nhân</a></li>
-                                <li><a href="' . BASE_URL . '/users/password">Đổi mật khẩu</a></li>
+                                <li><a href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '">Trang cá nhân</a></li>
+                                <li><a href="' . BASE_URL . '/home/password">Đổi mật khẩu</a></li>
                                 <li><a href="' . BASE_URL . '/home/logout">Đăng xuất</a></li>
                             </ul>
                         </li>';
@@ -211,14 +204,6 @@
                         <div class="info-part-three320">
                             <h4>Các câu hỏi phổ biến</h4>
                             <?php
-                            function formatVietnameseDate($dateString)
-                            {
-                                $timestamp = strtotime($dateString);
-
-                                $formattedDate = 'Ngày ' . date('d', $timestamp) . ' tháng ' . date('m', $timestamp) . ', ' . date('Y', $timestamp);
-
-                                return $formattedDate;
-                            }
 
                             $counter = 0; // Biến đếm để theo dõi số phần tử đã lặp qua
                             
@@ -227,7 +212,7 @@
                                     break; // Thoát khỏi vòng lặp nếu đã lặp qua 3 phần tử
                                 }
 
-                                $originalDate = '2024-05-25';
+                                // $originalDate = '2024-05-25';
                                 $formattedDate = formatVietnameseDate($question['created_at']);
                                 echo '<div class="news-info209">
                                 <h5>' . $question['title'] . '</h5>
@@ -330,109 +315,121 @@
         if (title) {
             title.addEventListener('input', validateTitleOfPost);
         }
+
+        var phoneNumber = document.querySelector('input[name="phone_number"]');
+        if (phoneNumber) {
+            phoneNumber.addEventListener('input', validatePhoneNumber);
+        }
     });
     </script>
     <!-- Trình soạn thảo -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.core.js"></script> -->
     <script>
-    // Initialize Quill
-    var quill = new Quill('#editor', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{
-                    'header': '1'
-                }, {
-                    'header': '2'
-                }, {
-                    'font': []
-                }],
-                [{
-                    'list': 'ordered'
-                }, {
-                    'list': 'bullet'
-                }],
-                ['bold', 'italic', 'underline'],
-                [{
-                    'align': []
-                }],
-                ['link', 'image', 'video'],
-                ['clean']
-            ]
-        }
-    });
-
-    // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
-    document.getElementById('postForm').addEventListener('submit', function(event) {
-        // Cập nhật nội dung của trường ẩn
-        document.getElementById('editorContent').value = quill.root.innerHTML;
-
-        // var editorContent = document.getElementById('editorContent').value.trim();
-        var editorContent = quill.root.innerHTML.trim();
-        if (editorContent === '' || editorContent === '<p><br></p>') {
-            event.preventDefault(); // Ngăn chặn việc gửi form
-        }
-
-    });
-
-    // <!-- tags -->
-    document.addEventListener('DOMContentLoaded', function() {
-        const tagsInput = document.getElementById('tagsInput');
-        const tagsInputContainer = document.getElementById('tagsInputContainer');
-        const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
-        let tags = [];
-
-        tagsInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Ngăn chặn hành vi Enter mặc định
-                if (tags.length < 10) {
-                    const tagText = tagsInput.value.trim();
-                    if (tagText !== '' && !tags.includes(tagText)) {
-                        addTag(tagText);
-                        tags.push(tagText);
-                        tagsInput.value = '';
-                        updateHiddenTags(); // Cập nhật các input ẩn
-                    }
-                }
+    if (document.querySelector('#editor')) {
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{
+                        'header': '1'
+                    }, {
+                        'header': '2'
+                    }, {
+                        'font': []
+                    }],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    ['bold', 'italic', 'underline'],
+                    [{
+                        'align': []
+                    }],
+                    ['link', 'image', 'video'],
+                    ['clean']
+                ]
             }
         });
 
-        function addTag(tagText) {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'badge badge-primary mx-1 tags';
-            tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>`;
-            tagsInputContainer.insertBefore(tagElement, tagsInput);
-        }
+        // Gán nội dung từ biến PHP vào Quill editor
+        var existingContent = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
+        quill.root.innerHTML = existingContent; // Đưa nội dung vào trình soạn thảo
 
-        window.removeTag = function(tagText) {
-            tags = tags.filter(tag => tag !== tagText);
-            const tagElements = tagsInputContainer.getElementsByClassName('badge');
-            for (let i = 0; i < tagElements.length; i++) {
-                if (tagElements[i].textContent.includes(tagText)) {
-                    tagsInputContainer.removeChild(tagElements[i]);
-                    break;
-                }
+        // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            // Cập nhật nội dung của trường ẩn
+            document.getElementById('editorContent').value = quill.root.innerHTML;
+
+            // var editorContent = document.getElementById('editorContent').value.trim();
+            var editorContent = quill.root.innerHTML.trim();
+            if (editorContent === '' || editorContent === '<p><br></p>') {
+                event.preventDefault(); // Ngăn chặn việc gửi form
             }
-            updateHiddenTags(); // Cập nhật các input ẩn sau khi xóa tag
-        }
 
-        function updateHiddenTags() {
-            // Xóa tất cả các input ẩn cũ
-            hiddenTagsContainer.innerHTML = '';
+        });
 
-            // Tạo lại các input ẩn mới
-            tags.forEach(tag => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'tags[]';
-                hiddenInput.value = tag;
-                hiddenTagsContainer.appendChild(hiddenInput);
+        // <!-- tags -->
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagsInput = document.getElementById('tagsInput');
+            const tagsInputContainer = document.getElementById('tagsInputContainer');
+            const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
+            let tags = [];
+
+            tagsInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Ngăn chặn hành vi Enter mặc định
+                    if (tags.length < 10) {
+                        const tagText = tagsInput.value.trim();
+                        if (tagText !== '' && !tags.includes(tagText)) {
+                            addTag(tagText);
+                            tags.push(tagText);
+                            tagsInput.value = '';
+                            updateHiddenTags(); // Cập nhật các input ẩn
+                        }
+                    }
+                }
             });
-        }
-    });
+
+            function addTag(tagText) {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'badge badge-primary mx-1 tags';
+                tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>`;
+                tagsInputContainer.insertBefore(tagElement, tagsInput);
+            }
+
+            window.removeTag = function(tagText) {
+                tags = tags.filter(tag => tag !== tagText);
+                const tagElements = tagsInputContainer.getElementsByClassName('badge');
+                for (let i = 0; i < tagElements.length; i++) {
+                    if (tagElements[i].textContent.includes(tagText)) {
+                        tagsInputContainer.removeChild(tagElements[i]);
+                        break;
+                    }
+                }
+                updateHiddenTags(); // Cập nhật các input ẩn sau khi xóa tag
+            }
+
+            function updateHiddenTags() {
+                // Xóa tất cả các input ẩn cũ
+                hiddenTagsContainer.innerHTML = '';
+
+                // Tạo lại các input ẩn mới
+                tags.forEach(tag => {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'tags[]';
+                    hiddenInput.value = tag;
+                    hiddenTagsContainer.appendChild(hiddenInput);
+                });
+            }
+        });
+    } else {
+        console.warn("Element #editor not found in the DOM.");
+    }
     </script>
     <!-- SweetAlert2 JS -->
     <!-- popup thông báo -->
@@ -467,10 +464,14 @@
             case 'success':
                 echo 'showSuccessNotification();';
                 $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
                 break;
             case 'error':
                 echo 'showFailNotification();';
                 $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
                 break;
             default:
                 echo '';
@@ -510,27 +511,71 @@
             // }
         });
     }
-
-    // Gán sự kiện click cho tất cả các liên kết có class 'delete-link'
-    // document.querySelectorAll('.delete-link').forEach(link => {
-    //   link.addEventListener('click', function(event) {
-    //       event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-    //       var targetHref = this.href; // Lấy giá trị href của liên kết
-
-    //       // Hiển thị SweetAlert2 popup
-    //       Swal.fire({
-    //           title: "Bạn có chắc chắn xóa không?",
-    //           width: '400px',
-    //           confirmButtonText: "Xóa",
-    //           showCancelButton: true,
-    //       }).then((result) => {
-    //           if (result.isConfirmed) {
-    //               window.location.href = targetHref; // Điều hướng đến href đã lưu
-    //           }
-    //       });
-    //   });
-    // });
     </script>
+    <script>
+    // Search ở trang body trang hompage
+    function handleSearchLink(event) {
+        // Ngăn chặn hành động mặc định của thẻ <a>
+        event.preventDefault();
+
+        // Thực hiện hành động khi nhấp vào thẻ <a>
+        console.log('Thẻ <a> đã được nhấp.');
+
+        // Lấy phần tử input bằng id
+        var inputElement = document.getElementById('txtSearch_body');
+
+        // Kiểm tra xem phần tử có tồn tại không
+        if (inputElement) {
+            // Lấy giá trị của input
+            // var inputValue = inputElement.value;
+            var input = document.getElementById('srch-term');
+            var form = document.getElementById('searchForm');
+
+            input.value = inputElement.value;
+            console.log('Giá trị của input là:', input.value);
+
+            var submitButton = form.querySelector('button[name="btnSearch"]');
+
+            if (submitButton) {
+                submitButton.click(); // Giả lập việc nhấn nút submit
+            }
+        } else {
+            console.error('Phần tử input không tồn tại');
+        }
+
+        // Nếu có một form và bạn muốn gửi nó
+        // var form = document.getElementById('myForm');
+        // if (form) {
+        //     form.submit(); // Hoặc thực hiện các hành động khác
+        // } else {
+        //     console.error('Form không tồn tại');
+        // }
+    }
+    </script>
+    <!-- popup -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var editIcon = document.querySelector('.edit-icon');
+        var popup = document.getElementById('edit-popup');
+        var close = document.querySelector('.close');
+
+        editIcon.addEventListener('click', function(event) {
+            event.preventDefault();
+            popup.style.display = 'flex';
+        });
+
+        close.addEventListener('click', function() {
+            popup.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
 </body>
 
 </html>

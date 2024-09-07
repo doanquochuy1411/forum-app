@@ -15,7 +15,7 @@ class Tag extends DB
     }
     public function GetTagsOfPost($post_id)
     {
-        $sql = "SELECT * FROM tags t JOIN post_tags pt ON t.id = pt.tag_id Where pt.post_id = ?";
+        $sql = "SELECT distinct * FROM tags t JOIN post_tags pt ON t.id = pt.tag_id Where pt.post_id = ?";
         return $this->executeSelectQuery($sql, [$post_id]);
     }
     public function GetPopularTags()
@@ -50,4 +50,14 @@ class Tag extends DB
         }
     }
 
+    public function DeleteTagOfPost($post_id)
+    {
+        $sql = "DELETE FROM post_tags WHERE post_id =?";
+        $result = $this->executeQuery($sql, [$post_id]);
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

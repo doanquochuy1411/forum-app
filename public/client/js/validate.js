@@ -13,6 +13,32 @@ function valPassword(string) {
     return pattern.test(string);
 }
 
+function valPhoneNumber(phoneNumber) {
+    // Sử dụng biểu thức chính quy để kiểm tra định dạng số điện thoại
+    const phoneNumberPattern = /^0\d{9,11}$/;
+
+    // Kiểm tra xem số điện thoại có hợp lệ không
+    return phoneNumberPattern.test(phoneNumber);
+}
+
+function validatePhoneNumber() {
+    const phoneNumber = document.querySelector('input[name="phone_number"]').value.trim();
+    const phoneNumberError = document.getElementById('phone_number_err');
+
+    if (phoneNumber === "") {
+        phoneNumberError.textContent = "Số diện thoại không được để trống";
+        phoneNumberError.style.color = 'red'
+        return false;
+    } else if (!valPhoneNumber(phoneNumber)) {
+        phoneNumberError.textContent = "Số điện thoại không hợp lệ";
+        phoneNumberError.style.color = 'red'
+        return false;
+    } else {
+        phoneNumberError.textContent = "";
+        phoneNumberError.style.color = 'red'
+        return true;
+    }
+}
 
 function validateEmail() {
     const email = document.querySelector('input[name="email"]').value.trim();
@@ -75,11 +101,11 @@ function validateUserName() {
     const userNameError = document.getElementById('user_name_err');
 
     if (userName === "") {
-        userNameError.textContent = "Tên tài khoản không được để trống";
+        userNameError.textContent = "Tên người dùng không được để trống";
         userNameError.style.color = 'red'
         return false;
     } else if (!validateNoSpecialChars(userName)) {
-        userNameError.textContent = "Tên tài khoản không được chứa ký tự đặc biệt";
+        userNameError.textContent = "Tên người dùng không được chứa ký tự đặc biệt";
         userNameError.style.color = 'red'
         return false;
     } else {
@@ -148,6 +174,19 @@ function validateTitleOfPost() {
     }
 }
 
+function validateTxtSearch() {
+    // const txtSearch = document.querySelector('input[name="txtSearch"]').value.trim();
+    const txtSearch = document.getElementById('srch-term').value.trim();
+
+    if (txtSearch === "") {
+        return false;
+    } else if (!validateNoSpecialChars(txtSearch)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function validateFormHandelRegister() {
     const isFullNameValid = validateFullName();
     const isAccountNameValid = validateAccountName();
@@ -177,6 +216,18 @@ function validateFormLogin() {
 function validateFormCreatePost() {
     const isValidTitle = validateTitleOfPost();
     return isValidTitle;
+}
+
+function validateFormSearch() {
+    const isValidTxtSearch = validateTxtSearch();
+    return isValidTxtSearch;
+}
+
+function validateFormEditInfo() {
+    const isValidUserName = validateUserName();
+    const isValidEmail = validateEmail();
+    const isValidPhoneNumber = validatePhoneNumber();
+    return isValidUserName && isValidEmail && isValidPhoneNumber;
 }
 
 // document.querySelector('input[name="email"]').addEventListener('input', validateEmail);

@@ -18,9 +18,11 @@
             <div class="form-style8292">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control form-control8392"
+                    <input type="text" id="txtSearch_body" class="form-control form-control8392"
                         placeholder="Đặt câu hỏi bất kỳ và bạn sẽ chắc chắn tìm thấy câu trả lời của mình?">
-                    <span class="input-group-addon"><a href="#">Đặt Câu Hỏi Ngay</a></span>
+                    <span class="input-group-addon">
+                        <a href="#" onclick="handleSearchLink(event)">Đặt Câu Hỏi Ngay</a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -57,105 +59,6 @@
 
                     <!--  End of content-1------>
 
-                    <!-- commements -->
-                    <!-- <section id="content2"> -->
-                    <!--Most Response Content Section -->
-                    <!-- <div class="scrollable-sidebar">
-                            <div class="question-type2033">
-                                <?php
-                                // function timeAgo($datetime, $full = false)
-                                // {
-                                //     $now = new DateTime();
-                                //     $ago = new DateTime($datetime);
-                                //     $diff = $now->diff($ago);
-                                
-                                //     $diff->w = floor($diff->d / 7);
-                                //     $diff->d -= $diff->w * 7;
-                                
-                                //     $string = array(
-                                //         'y' => 'năm',
-                                //         'm' => 'tháng',
-                                //         'w' => 'tuần',
-                                //         'd' => 'ngày',
-                                //         'h' => 'giờ',
-                                //         'i' => 'phút',
-                                //         's' => 'giây',
-                                //     );
-                                //     foreach ($string as $k => &$v) {
-                                //         if ($diff->$k) {
-                                //             $output[] = $diff->$k . ' ' . $v;
-                                //         }
-                                //     }
-                                //     if (!$full)
-                                //         $output = array_slice($output, 0, 1);
-                                //     return $output ? implode(', ', $output) . ' trước' : 'vừa mới';
-                                // }
-                                
-
-                                foreach ($comments as $comment) {
-                                    echo '                            <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="left-user12923 left-user12923-repeat">
-                                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
-                                                        class="fa fa-check" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="right-description893">
-                                                <div id="que-hedder2983">
-                                                    <p><a href="#">' . $comment["comment_user_name"] . '</a> đã bình luận cho bài viết</p><h3> <a href="' . BASE_URL . '/home/posts/' . $comment["post_id"] . '" target="_blank">' . $comment['post_title'] . '</a></h3>
-                                                    <p><i>Của <a href="#">' . $comment["owner_name"] . '</a> </i></p>
-                                                    </div>
-                                                <div class="ques-details10018">
-                                                    <p><a href="#" style="text-decoration: none; color: #000">' . $comment["content"] . '</a></p>
-                                                </div>
-                                                <hr>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="ques-type302">
-                                                <a href="#"><i class="fa fa-clock-o"
-                                                                aria-hidden="true"> ' . timeAgo($comment['created_at']) . '</i></a>
-                                                <a href="#">
-                                                    <button type="button" class="q-type238"><i class="fa fa-comment"
-                                                            aria-hidden="true"> ' . $comment["comment_count"] . '
-                                                            câu trả lời</i></button>
-                                                </a>
-                                                <a href="#">
-                                                    <button type="button" class="q-type23 button-ques2973"> <i
-                                                            class="fa fa-user-circle-o" aria-hidden="true"> ' . $comment["views"] . ' lượt xem</i>
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>';
-                                }
-                                ?>
-                            </div>
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li>
-                                        <a href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div> -->
-                    <!-- </section> -->
-
-                    <!----end of content-2----->
-
                     <!-- Posts -->
                     <section id="content1">
                         <!--Recently answered Content Section -->
@@ -167,7 +70,7 @@
                                 echo '<div class="row">
                                     <div class="col-md-1">
                                         <div class="left-user12923 left-user12923-repeat">
-                                            <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
+                                            <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
                                                     class="fa fa-check" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
@@ -242,14 +145,17 @@
                                     echo '<div class="row">
                                         <div class="col-md-1">
                                             <div class="left-user12923 left-user12923-repeat">
-                                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
+                                                <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
                                                         class="fa fa-check" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="right-description893">
                                                 <div id="que-hedder2983">
-                                                    <h3><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a></h3>
+                                                    <h3>
+                                                    <a href="' . BASE_URL . '/posts/edit/' . $post["id"] . '" target="_blank">' . $post['title'] . '</a>
+                                                    <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-close" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/delete/' . $post['id'] . '\')"></i></a>
+                                                    </h3>
                                                 </div>
                                                 <div class="ques-details10018">
                                                     <p>' . $content . '</p>
@@ -329,7 +235,7 @@
                                 echo '<div class="row">
                                 <div class="col-md-1">
                                     <div class="left-user12923 left-user12923-repeat">
-                                        <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png"
+                                        <a href="' . BASE_URL . '/home/info/' . encryptData($question["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png"
                             alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
                         </div>
                 </div>
@@ -452,18 +358,29 @@
             </div>
             <!--end of col-md-9 -->
             <!--strart col-md-3 (side bar)-->
-            <aside class=" col-md-3 sidebar97239">
+            <aside class="col-md-3 sidebar97239">
                 <div class="scrollable-sidebar">
-                    <!--        start recent post  -->
+                    <div class="categori-part329">
+                        <h4>Danh mục</h4>
+                        <ul>
+                            <?php
+                            if (count($categories) > 0) {
+                                foreach ($categories as $category) {
+                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
                     <div class="recent-post3290">
                         <h4>Bài viết gần đây</h4>
                         <?php
                         $count = 0;
-                        foreach ($posts as $post) {
+                        foreach ($recent_posts as $post) {
                             if ($count >= 8) {
                                 break;
                             }
-                            echo '<div class="post-details021"> <a href="#">
+                            echo '<div class="post-details021"> <a href="' . BASE_URL . '/home/posts/' . $post['id'] . '">
                                 <h5>' . $post['title'] . '</h5>
                             </a>
                             <small
@@ -484,12 +401,12 @@
                             }
                             echo '<div class="pints-wrapper">
                             <div class="left-user3898">
-                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
                                 <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus"
                                             aria-hidden="true"></i></a>
                                 </div>
                             </div> <span class="points-details938">
-                                <a href="#">
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '">
                                     <h5>' . $user["user_name"] . '</h5>
                                 </a>
                                 <a href="#" class="designetion439">Người dùng</a>
@@ -501,8 +418,28 @@
                         }
                         ?>
                     </div>
+                    <!--               end of Highest points -->
+                    <!--          start tags part-->
+                    <div class="tags-part2398">
+                        <h4>Tags</h4>
+                        <ul>
+                            <?php
+                            if (count($tags)) {
+                                $count = 0;
+                                foreach ($tags as $tag) {
+                                    if ($count >= 5) {
+                                        break;
+                                    }
+                                    echo '<li><a href="' . BASE_URL . '/home/tags/' . $tag['name'] . '">' . $tag['name'] . '</a></li>';
+                                    $count++;
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <!--          End tags part-->
+
                 </div>
-                <!--       end recent post    -->
             </aside>
         </div>
     </div>

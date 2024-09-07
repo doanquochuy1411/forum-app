@@ -1,6 +1,6 @@
 <section class="header-descriptin329">
     <div class="container">
-        <h3>Post Details</h3>
+        <h3>Chi tiết bài viết</h3>
         <ol class="breadcrumb breadcrumb839">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
             <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
@@ -15,8 +15,16 @@
                 <div class="post-details">
                     <div class="details-header923">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 post">
                                 <div class="post-title-left129">
+                                    <i>
+                                        Được tạo bởi
+                                        <a href="<?php echo BASE_URL ?>/home/info/<?php echo encryptData($posts[0]["account_name"]) ?>"
+                                            style="text-decoration: none;">
+                                            <img style="width: 22px"
+                                                src="<?php echo BASE_URL ?>/public/client/image/images.png" alt="">
+                                            <span><?php echo $posts[0]["user_name"] ?></span></i>
+                                    </a>
                                     <h3><?php echo $posts[0]["title"] ?></h3>
                                 </div>
                             </div>
@@ -32,24 +40,12 @@
                         <hr>
                         <div class="post-footer29032">
                             <div class="l-side2023">
-                                <!-- <i class="fa fa-check check2" aria-hidden="true"> solved</i> <a href="#"><i
-                                        class="fa fa-star star2" aria-hidden="true"> 5</i></a> <i -->
-                                <!-- class="fa fa-folder folder2" aria-hidden="true"> wordpress</i> -->
                                 <i class="fa fa-clock-o clock2" aria-hidden="true">
                                     <?php echo timeAgo($posts[0]["created_at"]) ?></i> <a href="#"><i
                                         class="fa fa-commenting commenting2" aria-hidden="true">
                                         <?php echo count($comments) ?> trả lời</i></a> <i class="fa fa-user user2"
                                     aria-hidden="true"> <?php echo $posts[0]["views"] ?> lượt xem</i>
                             </div>
-                            <!-- <div class="l-rightside39">
-                                <button type="button" class="tolltip-button thumbs-up2" data-toggle="tooltip"
-                                    data-placement="bottom" title="Like"><i class="fa fa-thumbs-o-up "
-                                        aria-hidden="true"></i></button>
-                                <button type="button" class="tolltip-button  thumbs-down2" data-toggle="tooltip"
-                                    data-placement="bottom" title="Dislike"><i class="fa fa-thumbs-o-down"
-                                        aria-hidden="true"></i></button> <span
-                                    class="single-question-vote-result">+22</span>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -73,16 +69,12 @@
                         </a>
                     </div>
 
-
                     <div class="R-tags309"> <i class="fa fa-tags" aria-hidden="true">
                             <?php if (count($tags_of_post) > 0) {
                                 $tagNames = [];
 
                                 foreach ($tags_of_post as $tag) {
-                                    // Lặp qua từng tag và thêm tên vào mảng $tagNames
-                                    foreach ($tags_of_post as $tag) {
-                                        $tagNames[] = $tag['name'];
-                                    }
+                                    $tagNames[] = $tag['name'];
                                 }
 
                                 // Nối các phần tử của mảng $tagNames thành một chuỗi và in ra
@@ -300,12 +292,12 @@
                             }
                             echo '<div class="pints-wrapper">
                             <div class="left-user3898">
-                                <a href="#"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
                                 <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus"
                                             aria-hidden="true"></i></a>
                                 </div>
                             </div> <span class="points-details938">
-                                <a href="#">
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '">
                                     <h5>' . $user["user_name"] . '</h5>
                                 </a>
                                 <a href="#" class="designetion439">Người dùng</a>

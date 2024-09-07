@@ -20,6 +20,9 @@ class DB
         $this->username = $_ENV['DB_USERNAME'];
         $this->password = $_ENV['DB_PASSWORD'];
         $this->dbname = $_ENV['DB_NAME'];
+        $_SESSION['Key'] = $_ENV["KEY"]; // Lấy key
+        $_SESSION['SECRET_KEY'] = $_ENV["SECRET_KEY"]; // Lấy secret key -> BE
+        $_SESSION['PUBLIC_KEY'] = $_ENV["PUBLIC_KEY"]; // Lấy public key => FE
 
         $this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 

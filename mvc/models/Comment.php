@@ -58,4 +58,10 @@ class Comment extends DB
         $sql = "DELETE FROM comments WHERE id = ?";
         return $this->executeQuery($sql, [$id]);
     }
+
+    public function GetCommentByID($id)
+    {
+        $sql = "SELECT * FROM comments WHERE id = ?";
+        return $this->executeSelectQuery($sql, [$id]);
+    }
 }

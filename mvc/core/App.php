@@ -1,11 +1,13 @@
 <?php
-class App {
+class App
+{
 
     protected $controller = 'Home';
     protected $action = 'Index';
     protected $params = [];
 
-    function __construct() {
+    function __construct()
+    {
         $arr = $this->UrlProcess();
 
         // Handle Controller
@@ -15,11 +17,11 @@ class App {
                 $this->controller = $controllerName;
                 unset($arr[0]);
             } else {
-                $this->controller = 'NotFound';
+                $this->controller = 'Errors';
             }
         }
         require_once "./mvc/controllers/" . $this->controller . ".php";
-        $this -> controller = new $this -> controller;
+        $this->controller = new $this->controller;
 
         // Instantiate controller
         $this->controller = new $this->controller;
@@ -38,7 +40,8 @@ class App {
         call_user_func_array([$this->controller, $this->action], $this->params);
     }
 
-    function UrlProcess() {
+    function UrlProcess()
+    {
         if (isset($_GET["url"])) {
             return explode("/", filter_var(trim($_GET["url"], "/"), FILTER_SANITIZE_URL));
         }

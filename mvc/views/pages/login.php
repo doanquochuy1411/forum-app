@@ -20,6 +20,10 @@
                 <div class="form-group text-right">
                     <a href="<?php echo BASE_URL; ?>/reset">Quên mật khẩu?</a>
                 </div>
+                <div class="form-group">
+                    <div class="g-recaptcha"
+                        data-sitekey="<?php echo isset($_SESSION["PUBLIC_KEY"])?$_SESSION["PUBLIC_KEY"]:""?>"></div>
+                </div>
                 <div class="form-group text-center">
                     <button class="btn btn-primary account-btn" name="btnLogin" type="submit">Đăng nhập</button>
                 </div>

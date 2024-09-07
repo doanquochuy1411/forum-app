@@ -4,10 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Preadmin - Bootstrap Admin Template</title>
-
+    <!-- <title>Preadmin - Bootstrap Admin Template</title> -->
+    <meta name="title" content="Diễn Đàn IT - IUH">
+    <!-- logo -->
+    <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
+    <!-- Title web -->
+    <title>Diễn Đàn IT - IUH</title>
     <!-- Favicons -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/favicon.ico">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/favicon.ico"> -->
 
     <!-- Font Family -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
@@ -55,6 +59,54 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"
         integrity="sha256-rTq0xiLu1Njw5mB3ky3DZhpI5WhYdkNlQbGXUc0Si6E=" crossorigin="anonymous"></script>
     <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- popup thông báo -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+        var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
+
+        function showSuccessNotification() {
+            Swal.fire({
+                icon: 'success',
+                title: title_mess,
+                text: text_mes,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
+
+        function showFailNotification() {
+            Swal.fire({
+                icon: 'error',
+                title: title_mess,
+                text: text_mes,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
+        <?php
+        $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
+        switch ($status) {
+            case 'success':
+                echo 'showSuccessNotification();';
+                $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
+                break;
+            case 'error':
+                echo 'showFailNotification();';
+                $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
+                break;
+            default:
+                echo '';
+                break;
+        }
+        ?>
+    </script>
 </body>
 
 </html>

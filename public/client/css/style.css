@@ -1472,7 +1472,9 @@ h5:hover {
 
 
 .form-description43 {
-    margin-right: 108px;
+    /* margin-right: 108px; */
+    display: inline-block!important;
+    width: 20%!important;
     color: #fd7362;
     font-family: fontawesome;
     font-weight: bold;
@@ -1494,7 +1496,9 @@ h5:hover {
 }
 
 .form-description442 {
-    margin-right: 130px;
+    display: inline-block!important;
+    width: 20%!important;
+    /* margin-right: 130px; */
     color: #fd7362;
     font-family: fontawesome;
     font-weight: bold;
@@ -1538,7 +1542,9 @@ h5:hover {
 }
 
 .form-description4342 {
-    margin-right: 90px;
+    /* margin-right: 90px; */
+    display: inline-block!important;
+    width: 20%!important;
     color: #fd7362;
     font-family: fontawesome;
     font-weight: bold;
@@ -1549,7 +1555,9 @@ h5:hover {
 }
 
 .form-description43305 {
-    margin-right: 117px;
+    /* margin-right: 117px; */
+    display: inline-block!important;
+    width: 20%!important;
     color: #fd7362;
     font-family: fontawesome;
     font-weight: bold;
@@ -1592,7 +1600,9 @@ h5:hover {
 }
 
 .form-description43313 {
-    margin-right: 131px;
+    /* margin-right: 131px; */
+    display: inline-block;
+    width: 25%;
     color: #fd7362;
     font-family: fontawesome;
     font-weight: bold;

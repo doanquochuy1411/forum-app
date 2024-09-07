@@ -11,7 +11,7 @@ function validateFullName($fullName)
 
 function validatePhoneNumber($phoneNumber)
 {
-    return preg_match('/^0\d{9}$/', $phoneNumber);
+    return preg_match('/^0\d{9,11}$/', $phoneNumber);
 }
 
 function validatePassword($password)
@@ -43,6 +43,31 @@ function sanitizeInput($input)
 
     // Trả về chuỗi đã được làm sạch
     return $sanitized;
+}
+
+function validateImage($file)
+{
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+    $maxSize = 2 * 1024 * 1024;
+
+    // Kiểm tra xem file có trống không
+    if ($file['size'] == 0) {
+        return "File hình ảnh bị trống.";
+    }
+
+    // Kiểm tra loại file
+    $fileType = mime_content_type($file['tmp_name']);
+    if (!in_array($fileType, $allowedTypes)) {
+        return "Loại file không hợp lệ. Chỉ chấp nhận JPEG, JPG, PNG, và GIF.";
+    }
+
+    // Kiểm tra kích thước file
+    if ($file['size'] > $maxSize) {
+        return "Kích thước file quá lớn. Kích thước tối đa là " . ($maxSize / 1024 / 1024) . " MB.";
+    }
+
+    // Nếu không có lỗi, trả về null
+    return null;
 }
 
 // Validate các giá trị được gửi qua form
