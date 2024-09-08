@@ -80,8 +80,9 @@ class User extends DB
 
     public function CreateUser($account_name, $user_name, $email, $password)
     {
-        $sql = "INSERT INTO user(account_name, user_name, email, password) values (?,?,?,?)";
-        return $this->executeQuery($sql, [$account_name, $user_name, $email, $password]);
+        $image = "images.png"; //default
+        $sql = "INSERT INTO user(account_name, user_name, email, password, image) values (?,?,?,?,?)";
+        return $this->executeQuery($sql, [$account_name, $user_name, $email, $password, $image]);
     }
 
     public function GetAllRole()
@@ -94,6 +95,18 @@ class User extends DB
     {
         $sql = "INSERT INTO user_role(user_id, role_id) values (?,?)";
         return $this->executeQuery($sql, [$userID, $roleID]);
+    }
+
+    public function UpdateUser($id, $user_name, $email, $phone_number, $file_name)
+    {
+        $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, image=? where id = ?";
+        $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $file_name, $id]);
+
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

@@ -28,8 +28,8 @@
                         </h3>
                         <hr>
                     </div>
-                    <div class="user-image293"> <img src="<?php echo BASE_URL ?>/public/client/image/images.png"
-                            alt="Image">
+                    <div class="user-image293"> <img
+                            src="<?php echo BASE_URL . '/public/src/uploads/'.$user_details['image']?>" alt="Image">
                     </div>
                     <div class="user-list10039">
                         <div class="ul-list-user-left29">

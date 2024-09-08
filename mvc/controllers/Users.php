@@ -24,46 +24,59 @@ class Users extends Controller
         exit();
     }
 
-    // function UpdateInfo()
-    // {
-    //     // Chưa login sẽ về trang đăng nhập
-    //     if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
-    //         header("Location: " . BASE_URL . "/errors/unauthorized");
-    //         exit();
-    //     }
+    function UpdateInfo()
+    {
+        // Kiểm tra token
+        if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
 
-    //     if (isset($_REQUEST["btnUpdateInfo"])) {
-    //         $user_name = $_REQUEST["user_name"];
-    //         $email = $_REQUEST["email"];
-    //         $phone_number = $_REQUEST["phone_number"];
-    //         $file = $_FILES["user_image"];
+        if (isset($_REQUEST["btnUpdateInfo"])) {
+            $file = $_FILES["user_image"];
+            $user_name = $_REQUEST["user_name"];
+            $email = $_REQUEST["email"];
+            $phone_number = $_REQUEST["phone_number"];
 
-    //         if ($file['error'] !== UPLOAD_ERR_OK) {
-    //             return "Lỗi khi tải lên hình ảnh.";
-    //         } else {
-    //             $errors = validateForm(["user_name", "email", "phone_number"]);
-    //             if (!empty($errors)) {
-    //                 $_SESSION['action_status'] = 'error';
-    //                 $_SESSION['title_message'] = "Cập nhật thất bại";
-    //                 $_SESSION['message'] = "Dữ liệu không hợp lệ!";
-    //                 echo "<script>history.back();</script>";
-    //                 return;
-    //             }
-    //         }
+            $errors = validateForm(["user_name", "email", "phone_number"]);
+            if (!empty($errors)) {
+                $title = 'Cập nhật thất bại';
+                $message = 'Dữ liệu không hợp lệ!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
 
+            $file_name = "";
+            // Kiểm tra xem file có trống không
+            if ($file['size'] > 0) {
+                // Upload ảnh và kiểm tra kết quả
+                $uploadResult = uploadImage($file);
 
+                if ($uploadResult['status'] === 'error') {
+                    $title = 'Ảnh không hợp lệ';
+                    $message = $uploadResult['message'];
+                    response_error($title, $message);
+                    echo "<script>history.back();</script>";
+                    exit();
+                }
 
-    //         $post_id = $this->CommentModel->CreateComment($content, $this->userID, $post_id, $parent_comment_id);
-    //         if ($post_id == 0) {
-    //             $_SESSION['action_status'] = 'error';
-    //             $_SESSION['title_message'] = "Bình luận thất bại";
-    //             $_SESSION['message'] = "Không thể tạo bình luận!";
-    //         } else {
-    //             $_SESSION['action_status'] = 'success';
-    //             $_SESSION['title_message'] = "Bình luận thành công";
-    //         }
-    //         echo "<script>history.back();</script>";
-    //         exit();
-    //     }
-    // }
+                $file_name = $uploadResult['file_name'];
+            }
+
+            $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name);
+            if ($result) {
+                $title = 'Cập nhật thông tin thành công';
+                $_SESSION['Avatar'] = $file_name;
+                response_success($title, "");
+            } else {
+                deleteImage($file_name);
+                $title = 'Cập nhật thông tin thất bại';
+                $message = "Lỗi hệ thống!";
+                response_error($title, $message);
+            }
+            echo "<script>history.back();</script>";
+            exit();
+        }
+    }
 }

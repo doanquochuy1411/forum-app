@@ -212,10 +212,7 @@ class Posts extends Controller
                 $_SESSION['title_message'] = "Cập nhật thành công";
                 $_SESSION['message'] = "Cập nhật thành công nhưng một số tags không được cập nhật!";
             }
-            // } else {
-            //     $_SESSION['action_status'] = 'error';
-            //     $_SESSION['title_message'] = "Cập nhật thất bại";
-            // }
+
             echo "<script>history.back();</script>";
             exit();
         }

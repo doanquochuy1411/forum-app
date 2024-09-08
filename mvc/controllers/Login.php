@@ -62,6 +62,7 @@ class Login extends Controller
                 $_SESSION['UserName'] = $userAccount["user_name"]; // Hiển thị trên tên trên trang chủ
                 $_SESSION['AccountName'] = encryptData($userAccount["account_name"]); // Tên tài khoản của user
                 $_SESSION['RoleID'] = $userAccount["role_id"];
+                $_SESSION['Avatar'] = $userAccount["image"];
                 $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại. (none / success / error)
                 $_SESSION['title_message'] = ""; // Tiêu đề lỗi hoặc thành công
                 $_SESSION['message'] = ""; // Thông báo chi tiết lỗi hoặc thành công

@@ -129,9 +129,10 @@
                         <li class="nav-item dropdown">
                             <?php
                             if (isset($_SESSION["UserID"])) {
-                                echo '<li class="dropdown"> <a href="#" class="dropdown-toggle avt-user" data-toggle="dropdown"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar"></span></a>
+                                $image = $_SESSION["Avatar"];
+                                echo '<li class="dropdown"> <a href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '" class="dropdown-toggle avt-user" data-toggle="dropdown"><img src="' . BASE_URL . '/public/src/uploads/' . $image . '" alt="Avatar"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
-                                <li><a href="' . BASE_URL . '/users/info"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Avatar"> <b>' . $_SESSION["UserName"] . '</b></a></li>
+                                <li><a href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '"><img src="' . BASE_URL . '/public/src/uploads/' . $image . '" alt="Avatar"> <b>' . $_SESSION["UserName"] . '</b></a></li>
                                 <hr>
                                 <li><a href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '">Trang cá nhân</a></li>
                                 <li><a href="' . BASE_URL . '/home/password">Đổi mật khẩu</a></li>

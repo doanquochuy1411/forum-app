@@ -1,6 +1,9 @@
 <?php
 function timeAgo($datetime, $full = false)
 {
+    // Đảm bảo múi giờ Việt Nam
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+
     $now = new DateTime();
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);

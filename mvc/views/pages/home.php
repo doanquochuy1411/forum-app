@@ -70,7 +70,7 @@
                                 echo '<div class="row">
                                     <div class="col-md-1">
                                         <div class="left-user12923 left-user12923-repeat">
-                                            <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
+                                            <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/src/uploads/' . $post['avatar'] . '" alt="image"> </a> <a href="#"><i
                                                     class="fa fa-check" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
                                     echo '<div class="row">
                                         <div class="col-md-1">
                                             <div class="left-user12923 left-user12923-repeat">
-                                                <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="image"> </a> <a href="#"><i
+                                                <a href="' . BASE_URL . '/home/info/' . encryptData($post["account_name"]) . '"><img src="' . BASE_URL . '/public/src/uploads/' . $post['image'] . '" alt="image"> </a> <a href="#"><i
                                                         class="fa fa-check" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
@@ -235,7 +235,7 @@
                                 echo '<div class="row">
                                 <div class="col-md-1">
                                     <div class="left-user12923 left-user12923-repeat">
-                                        <a href="' . BASE_URL . '/home/info/' . encryptData($question["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png"
+                                        <a href="' . BASE_URL . '/home/info/' . encryptData($question["account_name"]) . '"><img src="' . BASE_URL . '/public/src/uploads/' . $post['avatar'] . '"
                             alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
                         </div>
                 </div>
@@ -401,7 +401,7 @@
                             }
                             echo '<div class="pints-wrapper">
                             <div class="left-user3898">
-                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/src/uploads/' . $post['avatar'] . '" alt="Image"></a>
                                 <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus"
                                             aria-hidden="true"></i></a>
                                 </div>

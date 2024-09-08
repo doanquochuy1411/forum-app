@@ -23,6 +23,7 @@ class DB
         $_SESSION['Key'] = $_ENV["KEY"]; // Lấy key
         $_SESSION['SECRET_KEY'] = $_ENV["SECRET_KEY"]; // Lấy secret key -> BE
         $_SESSION['PUBLIC_KEY'] = $_ENV["PUBLIC_KEY"]; // Lấy public key => FE
+        $_SESSION['SCAN_KEY'] = $_ENV["SCAN_KEY"]; // Lấy scan key => scan image
 
         $this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 

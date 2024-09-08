@@ -22,7 +22,8 @@
                                         <a href="<?php echo BASE_URL ?>/home/info/<?php echo encryptData($posts[0]["account_name"]) ?>"
                                             style="text-decoration: none;">
                                             <img style="width: 22px"
-                                                src="<?php echo BASE_URL ?>/public/client/image/images.png" alt="">
+                                                src="<?php echo BASE_URL ?>/public/src/uploads/<?php echo $posts[0]["avatar"] ?>"
+                                                alt="">
                                             <span><?php echo $posts[0]["user_name"] ?></span></i>
                                     </a>
                                     <h3><?php echo $posts[0]["title"] ?></h3>
@@ -136,7 +137,7 @@
                                                 // Nếu là chủ comment thì có thể sửa hoặc xóa
                                                 if ($comment['user_id'] != $userID) {
                                                     echo '<div class="comment-main-level">
-                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
                                                         <div class="comment-box">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
@@ -149,7 +150,7 @@
                                                 } else {
                                                     // chủ comment
                                                     echo '<div class="comment-main-level">
-                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
                                                         <div class="comment-box">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
@@ -169,7 +170,7 @@
                                                     foreach ($data['replies'] as $reply) {
                                                         if ($reply['user_id'] != $userID) {
                                                             echo '<li>
-                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
                                                         <div class="comment-box">
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
@@ -182,7 +183,7 @@
                                                         } else {
                                                             // Chủ comment con
                                                             echo '<li>
-                                                            <div class="comment-avatar"><img src="' . BASE_URL . '/public/client/image/images.png" alt=""></div>
+                                                            <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
                                                             <div class="comment-box">
                                                                 <div class="comment-head">
                                                                     <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
@@ -292,7 +293,7 @@
                             }
                             echo '<div class="pints-wrapper">
                             <div class="left-user3898">
-                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/client/image/images.png" alt="Image"></a>
+                                <a href="' . BASE_URL . '/home/info/' . encryptData($user["account_name"]) . '"><img src="' . BASE_URL . '/public/src/uploads/' . $user['image'] . '" alt="Image"></a>
                                 <div class="imag-overlay39"> <a href="#"><i class="fa fa-plus"
                                             aria-hidden="true"></i></a>
                                 </div>
