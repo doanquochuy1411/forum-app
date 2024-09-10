@@ -14,17 +14,62 @@ class Post extends DB
         return $this->executeSelectQuery($sql, [$category_id, $type]);
     }
     // Lấy tất cả bài viết || câu hỏi với từ khóa cần tìm kiếm
+    // public function GetPostBySearch($txt)
+    // {
+    //     // Tách từ khóa tìm kiếm thành các từ riêng lẻ
+    //     $keywords = explode(' ', $txt);
+    //     $placeholders = [];
+    //     $searchTerms = [];
+
+    //     // Tạo các placeholder và các từ tìm kiếm cho từng từ khóa
+    //     foreach ($keywords as $keyword) {
+    //         if (!empty($keyword)) {
+    //             $placeholders[] = "(t.name LIKE ? OR p.content LIKE ? OR p.title LIKE ?)";
+    //             $searchTerms[] = '%' . $keyword . '%';
+    //             $searchTerms[] = '%' . $keyword . '%';
+    //             $searchTerms[] = '%' . $keyword . '%';
+    //         }
+    //     }
+
+    //     // Kết hợp các placeholder với toán tử OR
+    //     $placeholders = implode(' OR ', $placeholders);
+
+    //     $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count 
+    //             FROM posts p 
+    //             JOIN user u ON u.id = p.user_id 
+    //             JOIN post_comment_counts pcc ON pcc.post_id = p.id 
+    //             LEFT JOIN post_tags pt ON pt.post_id = p.id 
+    //             LEFT JOIN tags t ON t.id = pt.tag_id
+    //             WHERE p.deleted_at IS NULL 
+    //             AND (
+
+    //                 $placeholders
+    //             )
+    //             ORDER BY p.created_at DESC;";
+    //     // Sử dụng ký tự đại diện `%` để tìm kiếm các chuỗi chứa từ khóa
+    //     $searchTerm = '%' . $txt . '%';
+    //     return $this->executeSelectQuery($sql, $searchTerms);
+    // }
     public function GetPostBySearch($txt)
     {
         // Tách từ khóa tìm kiếm thành các từ riêng lẻ
         $keywords = explode(' ', $txt);
         $placeholders = [];
         $searchTerms = [];
+        $keywordMatches = [];
 
         // Tạo các placeholder và các từ tìm kiếm cho từng từ khóa
         foreach ($keywords as $keyword) {
             if (!empty($keyword)) {
                 $placeholders[] = "(t.name LIKE ? OR p.content LIKE ? OR p.title LIKE ?)";
+                $searchTerms[] = '%' . $keyword . '%';
+                $searchTerms[] = '%' . $keyword . '%';
+                $searchTerms[] = '%' . $keyword . '%';
+
+                // Đếm số lần match với mỗi từ khóa
+                $keywordMatches[] = "(CASE WHEN t.name LIKE ? THEN 1 ELSE 0 END 
+                                 + CASE WHEN p.content LIKE ? THEN 1 ELSE 0 END 
+                                 + CASE WHEN p.title LIKE ? THEN 1 ELSE 0 END)";
                 $searchTerms[] = '%' . $keyword . '%';
                 $searchTerms[] = '%' . $keyword . '%';
                 $searchTerms[] = '%' . $keyword . '%';
@@ -34,24 +79,23 @@ class Post extends DB
         // Kết hợp các placeholder với toán tử OR
         $placeholders = implode(' OR ', $placeholders);
 
-        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count 
-                FROM posts p 
-                JOIN user u ON u.id = p.user_id 
-                JOIN post_comment_counts pcc ON pcc.post_id = p.id 
-                LEFT JOIN post_tags pt ON pt.post_id = p.id 
-                LEFT JOIN tags t ON t.id = pt.tag_id
-                WHERE p.deleted_at IS NULL 
-                AND (
-                    -- t.name LIKE ? OR 
-                    -- p.content LIKE ? OR 
-                    -- p.title LIKE ?
-                    $placeholders
-                )
-                ORDER BY p.created_at DESC;";
-        // Sử dụng ký tự đại diện `%` để tìm kiếm các chuỗi chứa từ khóa
-        $searchTerm = '%' . $txt . '%';
+        // Tính tổng số lần match từ khóa cho mỗi bài viết
+        $keywordMatchScore = implode(' + ', $keywordMatches);
+
+        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count,
+                   ($keywordMatchScore) AS match_score
+            FROM posts p 
+            JOIN user u ON u.id = p.user_id 
+            JOIN post_comment_counts pcc ON pcc.post_id = p.id 
+            LEFT JOIN post_tags pt ON pt.post_id = p.id 
+            LEFT JOIN tags t ON t.id = pt.tag_id
+            WHERE p.deleted_at IS NULL 
+            AND ($placeholders)
+            ORDER BY match_score DESC, p.created_at DESC;";
+
         return $this->executeSelectQuery($sql, $searchTerms);
     }
+
     // Lấy tất cả bài viết || câu hỏi với tags
     public function GetPostByTag($txt)
     {

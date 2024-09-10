@@ -18,6 +18,7 @@
                         <h3><a href="#"><?php echo $user_details["user_name"] ?></a>
                             <?php
                             if (isset($_SESSION["UserID"]) && $user_details["id"] == $_SESSION["UserID"]) {
+                                // echo '<a href="#" class="edit-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
                                 echo '<a href="#" class="edit-icon" data-toggle="modal" data-target="#edit-user-modal"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
                             }
                             ?>

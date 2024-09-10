@@ -164,7 +164,8 @@ function validateForm($fieldsToValidate)
         'contentCategory' => 'validateNoSpecialChars',
         'title' => 'validateNoSpecialChars',
         'parent_comment_id' => 'validateParentID',
-        'post_id' => 'validateID',
+        'current_password' => 'validatePassword',
+        'new_password' => 'validatePassword',
     ];
 
 

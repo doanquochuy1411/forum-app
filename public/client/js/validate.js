@@ -135,10 +135,71 @@ function validatePassword() {
     }
 }
 
+function validateCurrentPassword() {
+    const password = document.querySelector('input[name="current_password"]').value.trim();
+    const passwordError = document.getElementById('current_password_err');
+
+    if (password === "") {
+        passwordError.textContent = "Mật khẩu không được để trống";
+        passwordError.style.color = 'red'
+        return false;
+    } else if (!valPassword(password)) {
+        passwordError.textContent =
+            "Mật khẩu phải có ít nhất một chữ hoa, thường, số và 1 trong các ký tự !,@,$,%,&,* (tối thiểu 8 ký tự)";
+        passwordError.style.color = 'red'
+        return false;
+    } else {
+        passwordError.textContent = "";
+        passwordError.style.color = 'red'
+        return true;
+    }
+}
+
+function validateNewPassword() {
+    const password = document.querySelector('input[name="new_password"]').value.trim();
+    const passwordError = document.getElementById('new_password_err');
+
+    if (password === "") {
+        passwordError.textContent = "Mật khẩu không được để trống";
+        passwordError.style.color = 'red'
+        return false;
+    } else if (!valPassword(password)) {
+        passwordError.textContent =
+            "Mật khẩu phải có ít nhất một chữ hoa, thường, số và 1 trong các ký tự !,@,$,%,&,* (tối thiểu 8 ký tự)";
+        passwordError.style.color = 'red'
+        return false;
+    } else {
+        passwordError.textContent = "";
+        passwordError.style.color = 'red'
+        return true;
+    }
+}
+
 function validateRetypePassword() {
     const password = document.querySelector('input[name="password"]').value.trim();
     const retypePassword = document.querySelector('input[name="retype_password"]').value.trim();
     const retypePasswordError = document.getElementById('retype_password_err');
+
+    if (retypePassword === "") {
+        retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
+        retypePasswordError.style.color = 'red'
+        return false;
+    } else if (password !== retypePassword) {
+        retypePasswordError.textContent = "Mật khẩu và xác nhận mật khẩu không khớp";
+        retypePasswordError.style.color = 'red'
+        return false;
+    } else {
+        retypePasswordError.textContent = "";
+        retypePasswordError.style.color = 'red'
+        return true;
+    }
+}
+
+
+function validateRetypePasswordOfChangePass() {
+    const password = document.querySelector('input[name="new_password"]').value.trim();
+    const retypePassword = document.querySelector('input[name="retype_password_of_change"]').value.trim();
+    const retypePasswordError = document.getElementById('retype_password_of_change_err');
 
     if (retypePassword === "") {
         retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
@@ -228,6 +289,13 @@ function validateFormEditInfo() {
     const isValidEmail = validateEmail();
     const isValidPhoneNumber = validatePhoneNumber();
     return isValidUserName && isValidEmail && isValidPhoneNumber;
+}
+
+function validateFormChangePassword() {
+    const isPasswordValid = validateCurrentPassword();
+    const isNewPasswordValid = validateNewPassword();
+    const isRetypePasswordValid = validateRetypePasswordOfChangePass();
+    return isPasswordValid && isNewPasswordValid && isRetypePasswordValid;
 }
 
 // document.querySelector('input[name="email"]').addEventListener('input', validateEmail);

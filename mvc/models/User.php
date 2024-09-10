@@ -99,10 +99,28 @@ class User extends DB
 
     public function UpdateUser($id, $user_name, $email, $phone_number, $file_name)
     {
-        $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, image=? where id = ?";
-        $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $file_name, $id]);
+        $sql = "";
+        $result = false;
+        if ($file_name != "") {
+            $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, image=? where id = ?";
+            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $file_name, $id]);
+        } else {
+            $sql = "UPDATE user set user_name = ?, email=?, phone_number=? where id = ?";
+            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $id]);
+        }
 
-        if ($result > 0) {
+        if ($result) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    public function ChangePassword($id, $password)
+    {
+        $sql = "UPDATE user set password=? where id = ?";
+        $result = $this->executeQuery($sql, [$password, $id]);
+
+        if ($result) {
             return 1;
         } else {
             return 0;

@@ -28,14 +28,23 @@ class Register extends Controller
             $email = $_POST["email"];
 
             if (!validateEmail($email)) {
-                echo "<script>alert('Email không hợp lệ!'); history.back();</script>";
-                return;
+                // echo "<script>alert('Email không hợp lệ!'); history.back();</script>";
+                $title = 'Yêu cầu gửi mã xác thực thất bại!';
+                $message = 'Email không hợp lệ!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+                // return;
             }
 
             $userAccount = $this->UserModel->GetUserByEmail($email);
             if ($userAccount) {
-                echo "<script>alert('Email đã được đăng ký!'); history.back();</script>";
-                return;
+                // echo "<script>alert('Email đã được đăng ký!'); history.back();</script>";
+                $title = 'Yêu cầu gửi mã xác thực thất bại!';
+                $message = 'Email đã được sử dụng!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
             }
 
             if (sendCode($email)) {
@@ -55,7 +64,11 @@ class Register extends Controller
             $code = $_POST["code"];
 
             if (!verifyCode($code)) {
-                echo "<script>alert('Mã xác minh không chính xác!');</script>";
+                // echo "<script>alert('Mã xác minh không chính xác!');</script>";
+                $title = 'Xác thực thất bại!';
+                $message = 'Mã xác minh không chính xác!';
+                response_error($title, $message);
+                // echo "<script>history.back();</script>";
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,
@@ -80,7 +93,10 @@ class Register extends Controller
 
             $errors = validateForm(["full_name", "account_name", "password"]);
             if (!empty($errors)) {
-                echo "<script>alert('Error: " . implode(", ", $errors) . "');</script>";
+                // echo "<script>alert('Error: " . implode(", ", $errors) . "');</script>";
+                $title = 'Đăng ký thất bại!';
+                $message = 'Dữ liệu đăng ký không hợp lệ: ' . implode(", ", $errors);
+                response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
                     "title" => $this->title,
@@ -91,7 +107,10 @@ class Register extends Controller
 
 
             if ($password != $retypePassword) {
-                echo "<script>alert('Password and retype password do not matching');</script>";
+                // echo "<script>alert('Password and retype password do not matching');</script>";
+                $title = 'Đăng ký thất bại!';
+                $message = 'Mật khẩu và xác nhận mật khẩu không trùng khớp';
+                response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
                 ]);
@@ -105,9 +124,15 @@ class Register extends Controller
                 $this->UserModel->SetRole($userAccount["id"], "2");
                 // 1: admin
                 // 2: customer
+                $title = 'Đăng ký thành công!';
+                $message = '';
+                response_success($title, $message);
                 $this->response($this->layout, "login", $this->title, [$email, $password]);
             } else {
-                echo "<script>alert('Fail to register');</script>";
+                // echo "<script>alert('Fail to register');</script>";
+                $title = 'Đăng ký thất bại!';
+                $message = 'Lỗi hệ thống!';
+                response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
                 ]);
