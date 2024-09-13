@@ -32,8 +32,8 @@ class Login extends Controller
         }
 
         if (isset($_POST["btnLogin"])) {
-            $user_name = $_POST["user_name"];
-            $password = $_POST["password"];
+            $user_name = htmlspecialchars($_POST["user_name"]);
+            $password = htmlspecialchars($_POST["password"]);
 
             $errors = validateForm(["user_name", "password"]);
             if (!empty($errors)) {

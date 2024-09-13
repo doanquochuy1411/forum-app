@@ -235,6 +235,22 @@ function validateTitleOfPost() {
     }
 }
 
+function validateAgreeTerms() {
+    const termsCheckbox = document.getElementById('agree_terms');
+    const termsError = document.getElementById('terms_err');
+
+    // Kiểm tra nếu checkbox chưa được chọn
+    if (!termsCheckbox.checked) {
+        termsError.textContent = "Bạn phải đồng ý với Chính sách và Điều khoản!";
+        termsError.style.color = 'red';
+        return false;
+    } else {
+        termsError.textContent = "";
+        return true;
+    }
+}
+
+
 function validateTxtSearch() {
     // const txtSearch = document.querySelector('input[name="txtSearch"]').value.trim();
     const txtSearch = document.getElementById('srch-term').value.trim();
@@ -259,7 +275,8 @@ function validateFormHandelRegister() {
 
 function validateFormSendCode() {
     const isEmailValid = validateEmail();
-    return isEmailValid;
+    const isTermValid = validateAgreeTerms();
+    return isEmailValid && isTermValid;
 }
 
 function validateFormResetPassword() {

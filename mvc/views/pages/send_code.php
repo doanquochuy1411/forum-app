@@ -12,6 +12,13 @@
                     <input type="text" class="form-control" name="email" autofocus>
                     <small id="email_err"></small>
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" id="agree_terms" name="agree_terms" value="yes">
+                    <label for="agree_terms">Tôi đồng ý với <a href="/terms-and-conditions" target="_blank"><b>Chính
+                                sách
+                                và Điều khoản</b></a></label> <br>
+                    <small id="terms_err" style="color: red;"></small>
+                </div>
                 <div class="form-group text-center">
                     <button class="btn btn-primary account-btn" name="btnSendCode" type="submit">Tiếp theo</button>
                 </div>

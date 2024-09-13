@@ -344,6 +344,7 @@
                                 <label for="editor">Nội dung</label>
                                 <div id="editor"></div>
                                 <input type="hidden" id="editorContent" name="content" />
+                                <small id="editorContent_err"></small>
                             </div>
 
                             <input type="hidden" name="token"

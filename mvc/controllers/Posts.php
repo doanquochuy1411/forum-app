@@ -43,9 +43,9 @@ class Posts extends Controller
         }
 
         if (isset($_REQUEST["btnComment"])) {
-            $content = $_REQUEST["content"];
-            $parent_comment_id = $_REQUEST["parent_comment_id"];
-            $post_id = $_REQUEST["post_id"];
+            $content = htmlspecialchars($_REQUEST["content"]);
+            $parent_comment_id = htmlspecialchars($_REQUEST["parent_comment_id"]);
+            $post_id = htmlspecialchars($_REQUEST["post_id"]);
 
             $errors = validateForm(["parent_comment_id", "post_id"]);
             if (!empty($errors)) {
@@ -72,6 +72,7 @@ class Posts extends Controller
 
     function DeleteComment($id, $token)
     {
+        $id = htmlspecialchars($id);
         // Chưa login sẽ về trang đăng nhập
         if ($token == "" || $token != $_SESSION['_token']) {
             header("Location: " . BASE_URL . "/login");
@@ -111,6 +112,7 @@ class Posts extends Controller
     // To view edit
     function Edit($id)
     {
+        $id = htmlspecialchars($id);
         $post_db = $this->PostModel->GetPostByID($id);
         $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
 
@@ -164,11 +166,11 @@ class Posts extends Controller
         }
 
         if (isset($_REQUEST["btnEditPost"])) {
-            $type = $_REQUEST["contentType"];
-            $category_id = $_REQUEST["contentCategory"];
-            $title = $_REQUEST["title"];
-            $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
-            $content = $_REQUEST["content"];
+            $type = htmlspecialchars($_REQUEST["contentType"]);
+            $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
+            $title = htmlspecialchars($_REQUEST["title"]);
+            $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
+            $content = htmlspecialchars($_REQUEST["content"]);
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';

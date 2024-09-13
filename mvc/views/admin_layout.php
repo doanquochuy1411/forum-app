@@ -3,11 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title><?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="title" content="Diễn Đàn IT - IUH">
-    <!-- logo -->
-    <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
+
     <!-- Title web -->
     <title>Diễn Đàn IT - IUH - Admin</title>
     <!-- Favicons -->
@@ -45,7 +43,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/loader.css">
     <!-- <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css"> -->
-
+    <!-- logo -->
+    <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
     <!--[if lt IE 9]>
         <script src="<?php echo BASE_URL ?>/public/admin/assets/js/html5shiv.min.js"></script>
         <script src="<?php echo BASE_URL ?>/public/admin/assets/js/respond.min.js"></script>

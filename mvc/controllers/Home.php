@@ -59,6 +59,7 @@ class Home extends Controller
     // Get post details
     function Posts($id)
     {
+        $id = htmlspecialchars($id);
         $relate_post_db = $this->PostModel->GetRelatePosts($id, 10);
         $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $post_db = $this->PostModel->GetPostByID($id);
@@ -106,11 +107,11 @@ class Home extends Controller
         }
 
         if (isset($_REQUEST["btnCreatePost"])) {
-            $type = $_REQUEST["contentType"];
-            $category_id = $_REQUEST["contentCategory"];
-            $title = $_REQUEST["title"];
-            $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
-            $content = $_REQUEST["content"];
+            $type = htmlspecialchars($_REQUEST["contentType"]);
+            $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
+            $title = htmlspecialchars($_REQUEST["title"]);
+            $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
+            $content = htmlspecialchars($_REQUEST["content"]);
             $user_id = $_SESSION["UserID"];
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {

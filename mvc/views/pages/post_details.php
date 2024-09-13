@@ -31,7 +31,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="post-que-rep-rihght320"> <a href="#"><i class="fa fa-question-circle"
-                                            aria-hidden="true"></i> Câu hỏi</a> <a href="#" class="r-clor10">Báo cáo</a>
+                                            aria-hidden="true"></i> Câu hỏi</a> <a href="#" id="openReportModal"
+                                        class="r-clor10">Báo xấu</a>
                                 </div>
                             </div>
                         </div>
@@ -246,6 +247,75 @@
                         }
                     }
                     ?>
+                </div>
+            </div>
+            <!-- Pop up -->
+            <div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="edit-user-modal-label"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center">
+                            <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Lý do báo
+                                    xấu</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="report-post-form" action="' . BASE_URL . '/posts/report" method="post"
+                                onsubmit="return validateFormReport()">
+                                <div class="form-group">
+                                    <label for="report_reasons">Chọn lý do báo xấu:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="report_reasons[]"
+                                            value="Spam" id="reason1">
+                                        <label class="form-check-label" for="reason1">
+                                            Spam
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="report_reasons[]"
+                                            value="Ngôn từ thô tục" id="reason2">
+                                        <label class="form-check-label" for="reason2">
+                                            Ngôn từ thô tục
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="report_reasons[]"
+                                            value="Nội dung không phù hợp" id="reason3">
+                                        <label class="form-check-label" for="reason3">
+                                            Nội dung không phù hợp
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="report_reasons[]"
+                                            value="Quảng cáo không liên quan" id="reason4">
+                                        <label class="form-check-label" for="reason4">
+                                            Quảng cáo không liên quan
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="report_reasons[]"
+                                            value="Khác" id="reason5">
+                                        <label class="form-check-label" for="reason5">
+                                            Khác
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="additional_info">Thông tin bổ sung (tùy chọn):</label>
+                                    <textarea class="form-control" id="additional_info" name="additional_info"
+                                        rows="3"></textarea>
+                                </div>
+
+                                <input type="hidden" name="post_id" value="' . $postId . '" />
+                                <!-- Hidden field to store post or question ID -->
+                                <input type="hidden" name="token" value="' . $_SESSION['_token'] . '" />
+                                <button type="submit" name="btnReportPost" class="btn btn-danger">Báo xấu</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--                end of col-md-9 -->
