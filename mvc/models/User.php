@@ -127,5 +127,11 @@ class User extends DB
         }
     }
 
+    public function GetAllAdmin()
+    {
+        $sql = "SELECT * FROM user u join user_role ur on ur.user_id = u.id Where u.deleted_at is null and ur.role_id = 1";
+        return $this->executeSelectQuery($sql);
+    }
+
 }
 ?>

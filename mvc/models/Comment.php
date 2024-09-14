@@ -64,4 +64,16 @@ class Comment extends DB
         $sql = "SELECT * FROM comments WHERE id = ?";
         return $this->executeSelectQuery($sql, [$id]);
     }
+
+    public function GetAuthOfComment($cmt_id)
+    {
+        $sql = "SELECT u.user_name AS comment_user_name, u.image AS avatar
+        FROM comments c
+        LEFT JOIN
+            user u ON u.id = c.user_id
+        where c.id = ?";
+        $result = $this->executeSelectQuery($sql, [$cmt_id]);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $data;
+    }
 }

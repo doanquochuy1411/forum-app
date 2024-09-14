@@ -250,6 +250,50 @@ function validateAgreeTerms() {
     }
 }
 
+function validateCheckBox() {
+    // Lấy tất cả các checkbox lý do báo cáo
+    var checkboxes = document.querySelectorAll('input[name="report_reasons[]"]');
+    const checkboxErr = document.getElementById('report_reasons_err');
+    var checked = false;
+
+    // Kiểm tra xem ít nhất một checkbox đã được chọn
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checked = true;
+            break;
+        }
+    }
+
+    // Nếu không có checkbox nào được chọn, hiển thị thông báo lỗi
+    if (!checked) {
+        checkboxErr.textContent = "Bạn phải chọn ít nhất một lý do báo cáo";
+        checkboxErr.style.color = 'red'
+        return false;
+    } else {
+        checkboxErr.textContent = "";
+        checkboxErr.style.color = ''
+        return true;
+    }
+}
+
+function validateAdditionalReportInfo() {
+    // Lấy tất cả các checkbox lý do báo cáo
+    var additionalInfo = document.getElementById('additional_info').value;
+    const additionalInfoErr = document.getElementById('additional_info_err');
+    if (additionalInfo == "") {
+        return true;
+    }
+    if (!validateNoSpecialChars(additionalInfo)) {
+        additionalInfoErr.textContent = "Nội dung báo cáo không hợp lệ!";
+        additionalInfoErr.style.color = 'red'
+        return false;
+    } else {
+        additionalInfoErr.textContent = "";
+        additionalInfoErr.style.color = ''
+        return true
+    }
+}
+
 
 function validateTxtSearch() {
     // const txtSearch = document.querySelector('input[name="txtSearch"]').value.trim();
@@ -313,6 +357,13 @@ function validateFormChangePassword() {
     const isNewPasswordValid = validateNewPassword();
     const isRetypePasswordValid = validateRetypePasswordOfChangePass();
     return isPasswordValid && isNewPasswordValid && isRetypePasswordValid;
+}
+
+function validateFormReport() {
+    const isReasonValid = validateCheckBox();
+    const isAdditionalValid = validateAdditionalReportInfo();
+
+    return isReasonValid && isAdditionalValid
 }
 
 // document.querySelector('input[name="email"]').addEventListener('input', validateEmail);

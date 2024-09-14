@@ -262,7 +262,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="report-post-form" action="' . BASE_URL . '/posts/report" method="post"
+                            <form id="report-post-form"
+                                action="<?php echo BASE_URL ?>/reports/send/<?php echo $posts[0]["id"] ?>" method="post"
                                 onsubmit="return validateFormReport()">
                                 <div class="form-group">
                                     <label for="report_reasons">Chọn lý do báo xấu:</label>
@@ -301,18 +302,19 @@
                                             Khác
                                         </label>
                                     </div>
+                                    <small id="report_reasons_err"></small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="additional_info">Thông tin bổ sung (tùy chọn):</label>
                                     <textarea class="form-control" id="additional_info" name="additional_info"
                                         rows="3"></textarea>
+                                    <small id="additional_info_err"></small>
                                 </div>
 
-                                <input type="hidden" name="post_id" value="' . $postId . '" />
                                 <!-- Hidden field to store post or question ID -->
-                                <input type="hidden" name="token" value="' . $_SESSION['_token'] . '" />
-                                <button type="submit" name="btnReportPost" class="btn btn-danger">Báo xấu</button>
+                                <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?>" />
+                                <button type="submit" name="btnReport" class="btn btn-danger">Báo xấu</button>
                             </form>
                         </div>
                     </div>

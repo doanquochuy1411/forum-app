@@ -1,4 +1,6 @@
 <?php
+
+
 function response_success($title, $message)
 {
     $_SESSION['action_status'] = 'success';

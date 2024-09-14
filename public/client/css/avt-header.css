@@ -21,4 +21,17 @@
     color: inherit!important; /* Thay đổi màu chữ khi hover */
 }
 
+/* un-hover */
+.un-hover:hover{
+    background-color: #2F3239!important; /* Thay đổi màu nền khi hover */
+    color: #fff!important; /* Thay đổi màu chữ khi hover */
+    opacity: 0.8;
+}
+
+.un-hover:active{
+    background-color: transparent!important; /* Thay đổi màu nền khi hover */
+    color: inherit!important; /* Thay đổi màu chữ khi hover */
+}
+
+
 

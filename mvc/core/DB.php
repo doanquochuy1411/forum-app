@@ -25,6 +25,7 @@ class DB
         $_SESSION['PUBLIC_KEY'] = $_ENV["PUBLIC_KEY"]; // Lấy public key => FE
         $_SESSION['SCAN_KEY'] = $_ENV["SCAN_KEY"]; // Lấy scan key => scan image
 
+
         $this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 
         if ($this->con->connect_error) {

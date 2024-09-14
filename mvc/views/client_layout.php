@@ -25,6 +25,7 @@
     <link href="<?php echo BASE_URL; ?>/public/client/css/footer.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/client/css/sidebar.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/client/css/avt-header.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>/public/client/css/pusher.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
@@ -33,21 +34,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
-    #editor {
-        height: 300px;
-        margin-top: 20px;
-    }
+        #editor {
+            height: 300px;
+            margin-top: 20px;
+        }
 
-    .dropdown-menu>li:first-child>a:hover,
-    .dropdown-menu>li:first-child>a:focus {
-        color: #000;
-        background-color: #fff !important;
+        .dropdown-menu>li:first-child>a:hover,
+        .dropdown-menu>li:first-child>a:focus {
+            color: #000;
+            background-color: #fff !important;
 
-    }
+        }
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
     </style>
 </head>
 
@@ -126,6 +127,24 @@
                             </div>
                         </li>
 
+                        <!-- Thêm icon chuông và dropdown thông báo -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle un-hover" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                <span class="badge" style="position: relative; top: -9px; background-color:red">0</span>
+                                <!-- Số lượng thông báo -->
+                            </a>
+                            <ul class="dropdown-menu animated zoomIn" id="notification-dropdown">
+                                <li class="dropdown-header">
+                                    <h5 style="font-size: large; margin-bottom: 0">Thông báo</h5>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Xem tất cả thông báo</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- User menu -->
                         <li class="nav-item dropdown">
                             <?php
                             if (isset($_SESSION["UserID"])) {
@@ -317,205 +336,205 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var emailInput = document.querySelector('input[name="email"]');
-        if (emailInput) {
-            emailInput.addEventListener('input', validateEmail);
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var emailInput = document.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.addEventListener('input', validateEmail);
+            }
 
-        var fullNameInput = document.querySelector('input[name="full_name"]');
-        if (fullNameInput) {
-            fullNameInput.addEventListener('input', validateFullName);
-        }
+            var fullNameInput = document.querySelector('input[name="full_name"]');
+            if (fullNameInput) {
+                fullNameInput.addEventListener('input', validateFullName);
+            }
 
-        var userNameInput = document.querySelector('input[name="user_name"]');
-        if (userNameInput) {
-            userNameInput.addEventListener('input', validateUserName);
-        }
+            var userNameInput = document.querySelector('input[name="user_name"]');
+            if (userNameInput) {
+                userNameInput.addEventListener('input', validateUserName);
+            }
 
-        var accountNameInput = document.querySelector('input[name="account_name"]');
-        if (accountNameInput) {
-            accountNameInput.addEventListener('input', validateAccountName);
-        }
+            var accountNameInput = document.querySelector('input[name="account_name"]');
+            if (accountNameInput) {
+                accountNameInput.addEventListener('input', validateAccountName);
+            }
 
-        var passwordInput = document.querySelector('input[name="password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validatePassword);
-        }
+            var passwordInput = document.querySelector('input[name="password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validatePassword);
+            }
 
-        var passwordInput = document.querySelector('input[name="current_password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validateCurrentPassword);
-        }
+            var passwordInput = document.querySelector('input[name="current_password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validateCurrentPassword);
+            }
 
-        var passwordInput = document.querySelector('input[name="new_password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validateNewPassword);
-        }
+            var passwordInput = document.querySelector('input[name="new_password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validateNewPassword);
+            }
 
-        var retypePasswordInput = document.querySelector('input[name="retype_password"]');
-        if (retypePasswordInput) {
-            retypePasswordInput.addEventListener('input', validateRetypePassword);
-        }
+            var retypePasswordInput = document.querySelector('input[name="retype_password"]');
+            if (retypePasswordInput) {
+                retypePasswordInput.addEventListener('input', validateRetypePassword);
+            }
 
-        var retypePasswordInput = document.querySelector('input[name="retype_password_of_change"]');
-        if (retypePasswordInput) {
-            retypePasswordInput.addEventListener('input', validateRetypePasswordOfChangePass);
-        }
+            var retypePasswordInput = document.querySelector('input[name="retype_password_of_change"]');
+            if (retypePasswordInput) {
+                retypePasswordInput.addEventListener('input', validateRetypePasswordOfChangePass);
+            }
 
-        var title = document.querySelector('input[name="title"]');
-        if (title) {
-            title.addEventListener('input', validateTitleOfPost);
-        }
+            var title = document.querySelector('input[name="title"]');
+            if (title) {
+                title.addEventListener('input', validateTitleOfPost);
+            }
 
-        var phoneNumber = document.querySelector('input[name="phone_number"]');
-        if (phoneNumber) {
-            phoneNumber.addEventListener('input', validatePhoneNumber);
-        }
-    });
+            var phoneNumber = document.querySelector('input[name="phone_number"]');
+            if (phoneNumber) {
+                phoneNumber.addEventListener('input', validatePhoneNumber);
+            }
+        });
     </script>
     <!-- Trình soạn thảo -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.core.js"></script> -->
     <script>
-    if (document.querySelector('#editor')) {
-        var quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: [
-                    [{
-                        'header': '1'
-                    }, {
-                        'header': '2'
-                    }, {
-                        'font': []
-                    }],
-                    [{
-                        'list': 'ordered'
-                    }, {
-                        'list': 'bullet'
-                    }],
-                    ['bold', 'italic', 'underline'],
-                    [{
-                        'align': []
-                    }],
-                    ['link', 'image', 'video'],
-                    ['clean']
-                ]
-            }
-        });
-
-        // Gán nội dung từ biến PHP vào Quill editor
-        var existingContent = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
-        quill.root.innerHTML = existingContent; // Đưa nội dung vào trình soạn thảo
-
-        // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
-        document.getElementById('postForm').addEventListener('submit', function(event) {
-            // Cập nhật nội dung của trường ẩn
-            document.getElementById('editorContent').value = quill.root.innerHTML;
-
-            // var editorContent = document.getElementById('editorContent').value.trim();
-            var editorContent = quill.root.innerHTML.trim();
-            if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
-                event.preventDefault(); // Ngăn chặn việc gửi form
-                document.getElementById('editorContent_err').textContent =
-                    'Nội dung phải có ít nhất 100 ký tự.';
-                document.getElementById('editorContent_err').style.color = 'red'
-            } else {
-                document.getElementById('editorContent_err').textContent = '';
-            }
-
-        });
-
-        // <!-- tags -->
-        document.addEventListener('DOMContentLoaded', function() {
-            const tagsInput = document.getElementById('tagsInput');
-            const tagsInputContainer = document.getElementById('tagsInputContainer');
-            const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
-            let tags = [];
-
-            tagsInput.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault(); // Ngăn chặn hành vi Enter mặc định
-                    if (tags.length < 10) {
-                        const tagText = tagsInput.value.trim();
-                        if (tagText !== '' && !tags.includes(tagText)) {
-                            addTag(tagText);
-                            tags.push(tagText);
-                            tagsInput.value = '';
-                            updateHiddenTags(); // Cập nhật các input ẩn
-                        }
-                    }
+        if (document.querySelector('#editor')) {
+            var quill = new Quill('#editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{
+                            'header': '1'
+                        }, {
+                            'header': '2'
+                        }, {
+                            'font': []
+                        }],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['bold', 'italic', 'underline'],
+                        [{
+                            'align': []
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
                 }
             });
 
-            function addTag(tagText) {
-                const tagElement = document.createElement('span');
-                tagElement.className = 'badge badge-primary mx-1 tags';
-                tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
+            // Gán nội dung từ biến PHP vào Quill editor
+            var existingContent = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
+            quill.root.innerHTML = existingContent; // Đưa nội dung vào trình soạn thảo
+
+            // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
+            document.getElementById('postForm').addEventListener('submit', function (event) {
+                // Cập nhật nội dung của trường ẩn
+                document.getElementById('editorContent').value = quill.root.innerHTML;
+
+                // var editorContent = document.getElementById('editorContent').value.trim();
+                var editorContent = quill.root.innerHTML.trim();
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
+                    event.preventDefault(); // Ngăn chặn việc gửi form
+                    document.getElementById('editorContent_err').textContent =
+                        'Nội dung phải có ít nhất 100 ký tự.';
+                    document.getElementById('editorContent_err').style.color = 'red'
+                } else {
+                    document.getElementById('editorContent_err').textContent = '';
+                }
+
+            });
+
+            // <!-- tags -->
+            document.addEventListener('DOMContentLoaded', function () {
+                const tagsInput = document.getElementById('tagsInput');
+                const tagsInputContainer = document.getElementById('tagsInputContainer');
+                const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
+                let tags = [];
+
+                tagsInput.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Ngăn chặn hành vi Enter mặc định
+                        if (tags.length < 10) {
+                            const tagText = tagsInput.value.trim();
+                            if (tagText !== '' && !tags.includes(tagText)) {
+                                addTag(tagText);
+                                tags.push(tagText);
+                                tagsInput.value = '';
+                                updateHiddenTags(); // Cập nhật các input ẩn
+                            }
+                        }
+                    }
+                });
+
+                function addTag(tagText) {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'badge badge-primary mx-1 tags';
+                    tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
                                         <span aria-hidden="true">&times;</span>
                                       </button>`;
-                tagsInputContainer.insertBefore(tagElement, tagsInput);
-            }
-
-            window.removeTag = function(tagText) {
-                tags = tags.filter(tag => tag !== tagText);
-                const tagElements = tagsInputContainer.getElementsByClassName('badge');
-                for (let i = 0; i < tagElements.length; i++) {
-                    if (tagElements[i].textContent.includes(tagText)) {
-                        tagsInputContainer.removeChild(tagElements[i]);
-                        break;
-                    }
+                    tagsInputContainer.insertBefore(tagElement, tagsInput);
                 }
-                updateHiddenTags(); // Cập nhật các input ẩn sau khi xóa tag
-            }
 
-            function updateHiddenTags() {
-                // Xóa tất cả các input ẩn cũ
-                hiddenTagsContainer.innerHTML = '';
+                window.removeTag = function (tagText) {
+                    tags = tags.filter(tag => tag !== tagText);
+                    const tagElements = tagsInputContainer.getElementsByClassName('badge');
+                    for (let i = 0; i < tagElements.length; i++) {
+                        if (tagElements[i].textContent.includes(tagText)) {
+                            tagsInputContainer.removeChild(tagElements[i]);
+                            break;
+                        }
+                    }
+                    updateHiddenTags(); // Cập nhật các input ẩn sau khi xóa tag
+                }
 
-                // Tạo lại các input ẩn mới
-                tags.forEach(tag => {
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'tags[]';
-                    hiddenInput.value = tag;
-                    hiddenTagsContainer.appendChild(hiddenInput);
-                });
-            }
-        });
-    } else {
-        console.warn("Element #editor not found in the DOM.");
-    }
+                function updateHiddenTags() {
+                    // Xóa tất cả các input ẩn cũ
+                    hiddenTagsContainer.innerHTML = '';
+
+                    // Tạo lại các input ẩn mới
+                    tags.forEach(tag => {
+                        const hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.name = 'tags[]';
+                        hiddenInput.value = tag;
+                        hiddenTagsContainer.appendChild(hiddenInput);
+                    });
+                }
+            });
+        } else {
+            console.warn("Element #editor not found in the DOM.");
+        }
     </script>
     <!-- SweetAlert2 JS -->
     <!-- popup thông báo -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-    var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
-    var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
+        var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+        var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
 
-    function showSuccessNotification() {
-        Swal.fire({
-            icon: 'success',
-            title: title_mess,
-            text: text_mes,
-            timer: 2000,
-            timerProgressBar: true
-        });
-    }
+        function showSuccessNotification() {
+            Swal.fire({
+                icon: 'success',
+                title: title_mess,
+                text: text_mes,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
 
-    function showFailNotification() {
-        Swal.fire({
-            icon: 'error',
-            title: title_mess,
-            text: text_mes,
-            timer: 3000,
-            timerProgressBar: true
-        });
-    }
+        function showFailNotification() {
+            Swal.fire({
+                icon: 'error',
+                title: title_mess,
+                text: text_mes,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
 
-    <?php
+        <?php
         $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
         switch ($status) {
             case 'success':
@@ -538,120 +557,124 @@
     </script>
 
     <script>
-    function confirmDelete(event, targetHref) {
-        event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-        Swal.fire({
-            title: "Bạn có chắc chắn xóa không",
-            width: '400px', // Tăng chiều rộng của popup
-            confirmButtonText: "Xóa",
-            // denyButtonText: `Don't save`,
-            // showDenyButton: true,
-            showCancelButton: true,
-            // customClass: {
-            //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
-            //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
-            //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
-            //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
-            //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
-            // }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
-                // console.log("href: ", targetHref);
-                window.location.href = targetHref;
-                // window.location.href = event.target.href;
-                // Swal.fire("Xóa thành công!", "", "success");
-            }
-            // else if (result.isDenied) {
-            //     Swal.fire("Changes are not saved", "", "info");
-            // }
-        });
-    }
+        function confirmDelete(event, targetHref) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+            Swal.fire({
+                title: "Bạn có chắc chắn xóa không",
+                width: '400px', // Tăng chiều rộng của popup
+                confirmButtonText: "Xóa",
+                // denyButtonText: `Don't save`,
+                // showDenyButton: true,
+                showCancelButton: true,
+                // customClass: {
+                //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
+                //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
+                //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
+                //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
+                //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
+                // }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
+                    // console.log("href: ", targetHref);
+                    window.location.href = targetHref;
+                    // window.location.href = event.target.href;
+                    // Swal.fire("Xóa thành công!", "", "success");
+                }
+                // else if (result.isDenied) {
+                //     Swal.fire("Changes are not saved", "", "info");
+                // }
+            });
+        }
     </script>
     <script>
-    // Search ở trang body trang hompage
-    function handleSearchLink(event) {
-        // Ngăn chặn hành động mặc định của thẻ <a>
-        event.preventDefault();
+        // Search ở trang body trang hompage
+        function handleSearchLink(event) {
+            // Ngăn chặn hành động mặc định của thẻ <a>
+            event.preventDefault();
 
-        // Thực hiện hành động khi nhấp vào thẻ <a>
-        console.log('Thẻ <a> đã được nhấp.');
+            // Thực hiện hành động khi nhấp vào thẻ <a>
+            console.log('Thẻ <a> đã được nhấp.');
 
-        // Lấy phần tử input bằng id
-        var inputElement = document.getElementById('txtSearch_body');
+            // Lấy phần tử input bằng id
+            var inputElement = document.getElementById('txtSearch_body');
 
-        // Kiểm tra xem phần tử có tồn tại không
-        if (inputElement) {
-            // Lấy giá trị của input
-            // var inputValue = inputElement.value;
-            var input = document.getElementById('srch-term');
-            var form = document.getElementById('searchForm');
+            // Kiểm tra xem phần tử có tồn tại không
+            if (inputElement) {
+                // Lấy giá trị của input
+                // var inputValue = inputElement.value;
+                var input = document.getElementById('srch-term');
+                var form = document.getElementById('searchForm');
 
-            input.value = inputElement.value;
-            console.log('Giá trị của input là:', input.value);
+                input.value = inputElement.value;
+                console.log('Giá trị của input là:', input.value);
 
-            var submitButton = form.querySelector('button[name="btnSearch"]');
+                var submitButton = form.querySelector('button[name="btnSearch"]');
 
-            if (submitButton) {
-                submitButton.click(); // Giả lập việc nhấn nút submit
+                if (submitButton) {
+                    submitButton.click(); // Giả lập việc nhấn nút submit
+                }
+            } else {
+                console.error('Phần tử input không tồn tại');
             }
-        } else {
-            console.error('Phần tử input không tồn tại');
-        }
 
-        // Nếu có một form và bạn muốn gửi nó
-        // var form = document.getElementById('myForm');
-        // if (form) {
-        //     form.submit(); // Hoặc thực hiện các hành động khác
-        // } else {
-        //     console.error('Form không tồn tại');
-        // }
-    }
+            // Nếu có một form và bạn muốn gửi nó
+            // var form = document.getElementById('myForm');
+            // if (form) {
+            //     form.submit(); // Hoặc thực hiện các hành động khác
+            // } else {
+            //     console.error('Form không tồn tại');
+            // }
+        }
     </script>
     <!-- popup -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var editIcon = document.querySelector('.edit-icon');
-        var popup = document.getElementById('edit-popup');
-        var close = document.querySelector('.close');
+        document.addEventListener('DOMContentLoaded', function () {
+            var editIcon = document.querySelector('.edit-icon');
+            var popup = document.getElementById('edit-popup');
+            var close = document.querySelector('.close');
 
-        if (editIcon) { // Kiểm tra nếu phần tử tồn tại
-            editIcon.addEventListener('click', function(event) {
-                event.preventDefault();
-                popup.style.display = 'flex';
-            });
-        }
-        if (close) {
-            close.addEventListener('click', function() {
-                popup.style.display = 'none';
-            });
-        }
-
-        window.addEventListener('click', function(event) {
-            if (event.target == popup) {
-                popup.style.display = 'none';
+            if (editIcon) { // Kiểm tra nếu phần tử tồn tại
+                editIcon.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    popup.style.display = 'flex';
+                });
             }
+            if (close) {
+                close.addEventListener('click', function () {
+                    popup.style.display = 'none';
+                });
+            }
+
+            window.addEventListener('click', function (event) {
+                if (event.target == popup) {
+                    popup.style.display = 'none';
+                }
+            });
         });
-    });
     </script>
     <!-- popup change password -->
     <script>
-    $(document).ready(function() {
-        // Khi người dùng nhấn vào nút "Đổi Mật Khẩu"
-        $('#openChangePasswordModal').on('click', function() {
-            // Hiển thị modal popup
-            $('#change-password').modal('show');
+        $(document).ready(function () {
+            // Khi người dùng nhấn vào nút "Đổi Mật Khẩu"
+            $('#openChangePasswordModal').on('click', function () {
+                // Hiển thị modal popup
+                $('#change-password').modal('show');
+            });
         });
-    });
 
-    $(document).ready(function() {
-        // Khi người dùng nhấn vào nút "Báo cáo"
-        $('#openReportModal').on('click', function() {
-            // Hiển thị modal popup
-            $('#report').modal('show');
+        $(document).ready(function () {
+            // Khi người dùng nhấn vào nút "Báo cáo"
+            $('#openReportModal').on('click', function () {
+                // Hiển thị modal popup
+                $('#report').modal('show');
+            });
         });
-    });
     </script>
+
+    <!-- Pusher Thông báo realtime -->
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
 
 </body>
 
