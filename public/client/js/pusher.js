@@ -57,7 +57,7 @@ Pusher.logToConsole = true;
     function addNotificationToDropdown(notification, image) {
         $('#notification-dropdown').append(
             `<li>
-                <a href="http://localhost/forum-app/home/posts/${notification.post_id}/read">
+                <a href="http://localhost/forum-app/home/notifications/${notification.id}">
                     <div style="display: flex; align-items: center;">
                         <img src="${image}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                         <div class="notification-message" style="max-width: 200px;">

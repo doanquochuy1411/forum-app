@@ -43,4 +43,24 @@ class Notification extends DB
             return 0;
         }
     }
+
+    public function GetNotificationByID($id)
+    {
+        $sql = "select * from notifications where id = ?";
+        $result = $this->executeSelectQuery($sql, [$id]);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    public function UpdateIsRead($notification_id)
+    {
+        $sql = "update notifications set is_read = ? where id = ?";
+        $result = $this->executeQuery($sql, ["1", $notification_id]);
+        if ($result > 0) {
+            return $this->con->insert_id;
+        } else {
+            return 0;
+        }
+    }
 }

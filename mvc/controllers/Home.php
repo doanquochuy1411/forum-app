@@ -6,6 +6,7 @@ class Home extends Controller
     protected $CommentModel;
     protected $CategoryModel;
     protected $TagModel;
+    protected $NotificationModel;
     private $userID;
 
     public $layout = "client_layout";
@@ -20,6 +21,7 @@ class Home extends Controller
         $this->CommentModel = $this->model("Comment");
         $this->CategoryModel = $this->model("Category");
         $this->TagModel = $this->model("Tag");
+        $this->NotificationModel = $this->model("Notification");
     }
     function Index()
     {
@@ -314,8 +316,8 @@ class Home extends Controller
             }
 
         } else {
-            // header("Location: " . BASE_URL . "");
-            // exit();
+            header("Location: " . BASE_URL . "");
+            exit();
         }
     }
 
@@ -346,6 +348,14 @@ class Home extends Controller
             "tags" => $tags,
             "recent_posts" => $recent_posts,
         ]);
+    }
+
+    function notifications($notification_id)
+    {
+        $notification = $this->NotificationModel->GetNotificationByID($notification_id);
+        $this->NotificationModel->UpdateIsRead($notification_id);
+        header("Location: " . BASE_URL . "/home/posts/" . $notification[0]["post_id"]);
+        exit();
     }
     // Thông tin chi tiết của user
     function Info($account_name)
