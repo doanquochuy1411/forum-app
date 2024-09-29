@@ -25,24 +25,14 @@ class Home extends Controller
     }
     function Index()
     {
-        $post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
-        $comment_db = $this->CommentModel->GetAllComment();
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
-        $category_db = $this->CategoryModel->GetAllCategory();
-        $my_post_db = $this->PostModel->GetAllPostWithTypeAndUserID("post", $this->userID); // Lấy bài viết của tôi
-        $tag_db = $this->TagModel->GetPopularTags();
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
-
-
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $my_posts = mysqli_fetch_all($my_post_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
+        $posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
+        $comments = $this->CommentModel->GetAllComment();
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $categories = $this->CategoryModel->GetAllCategory();
+        $my_posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $this->userID); // Lấy bài viết của tôi
+        $tags = $this->TagModel->GetPopularTags();
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
 
 
         $this->view($this->layout, [
@@ -61,28 +51,16 @@ class Home extends Controller
     // Get post details
     function Posts($id)
     {
-        $id = htmlspecialchars($id);
-        $relate_post_db = $this->PostModel->GetRelatePosts($id, 10);
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
-        $post_db = $this->PostModel->GetPostByID($id);
-        $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $relate_posts = $this->PostModel->GetRelatePosts($id, 10);
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
+        $posts = $this->PostModel->GetPostByID($id);
+        $comments = $this->CommentModel->GetAllCommentOfPost($id);
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
         $this->PostModel->IncrementView(1, $id); // Tăng view lên 1
-        $category_db = $this->CategoryModel->GetAllCategory();
-        $tag_db = $this->TagModel->GetPopularTags();
-        $tag_of_post_db = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
-
-
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $relate_posts = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $tags_of_post = mysqli_fetch_all($tag_of_post_db, MYSQLI_ASSOC);
+        $categories = $this->CategoryModel->GetAllCategory();
+        $tags = $this->TagModel->GetPopularTags();
+        $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
 
 
         $this->view($this->layout, [
@@ -166,10 +144,10 @@ class Home extends Controller
     // Get question details
     // function Questions($id)
     // {
-    //     $relate_post_db = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
-    //     $post_db = $this->PostModel->GetPostByID($id);
-    //     $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
-    //     $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+    //     $relate_posts = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
+    //     $posts = $this->PostModel->GetPostByID($id);
+    //     $comments = $this->CommentModel->GetAllCommentOfPost($id);
+    //     $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
 
     //     $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
     //     $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
@@ -189,24 +167,16 @@ class Home extends Controller
     function Categories($category_id, $type)
     {
         if ($type != "post" && $type != "question") {
-            $post_db = $this->PostModel->GetAllPostWithCategory($category_id); // body
+            $posts = $this->PostModel->GetAllPostWithCategory($category_id); // body
         } else {
-            $post_db = $this->PostModel->GetAllPostWithCategoryAndType($category_id, $type); // body
+            $posts = $this->PostModel->GetAllPostWithCategoryAndType($category_id, $type); // body
         }
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
-        $category_db = $this->CategoryModel->GetAllCategory(); // header
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-        $tag_db = $this->TagModel->GetPopularTags();
-        $category_details_db = $this->CategoryModel->GetCategoryByID($category_id); // Lấy thông tin chi tiết của danh mục
-
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
-        $category_details = mysqli_fetch_all($category_details_db, MYSQLI_ASSOC);
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $categories = $this->CategoryModel->GetAllCategory(); // header
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tags = $this->TagModel->GetPopularTags();
+        $category_details = $this->CategoryModel->GetCategoryByID($category_id); // Lấy thông tin chi tiết của danh mục
 
         $sub_title = ""; // Tiêu đề cho đường dẫn
         switch ($type) {
@@ -235,19 +205,12 @@ class Home extends Controller
     // Tất cả bài viết || Câu hỏi
     function AllPosts($type)
     {
-        $post_db = $this->PostModel->GetAllPostWithType($type); // body
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
-        $category_db = $this->CategoryModel->GetAllCategory(); // header
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-        $tag_db = $this->TagModel->GetPopularTags();
-
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+        $posts = $this->PostModel->GetAllPostWithType($type); // body
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $categories = $this->CategoryModel->GetAllCategory(); // header
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tags = $this->TagModel->GetPopularTags();
 
         $sub_title = ""; // Tiêu đề cho đường dẫn
         switch ($type) {
@@ -279,24 +242,17 @@ class Home extends Controller
         if (isset($_REQUEST["btnSearch"]) && $_REQUEST["txtSearch"] != "") {
             // echo '<script>alert("' . $_REQUEST["txtSearch"] . '")</script>';
             $txtSearch = sanitizeInput($_REQUEST["txtSearch"]); // làm sạch chuỗi
-            $post_db = $this->PostModel->GetPostBySearch($txtSearch); // body
+            $posts = $this->PostModel->GetPostBySearch($txtSearch); // body
 
-            $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+            // $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
 
             if (count($posts) > 0) { // success
-                // $post_db = $this->PostModel->GetPostBySearch($txt); // body
-                $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-                $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
-                $category_db = $this->CategoryModel->GetAllCategory(); // header
-                $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-                $tag_db = $this->TagModel->GetPopularTags();
-
-                // $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-                $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-                $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-                $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-                $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-                $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+                // $posts = $this->PostModel->GetPostBySearch($txt); // body
+                $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+                $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+                $categories = $this->CategoryModel->GetAllCategory(); // header
+                $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+                $tags = $this->TagModel->GetPopularTags();
 
                 $this->view($this->layout, [
                     "Page" => "search",
@@ -323,20 +279,12 @@ class Home extends Controller
 
     function tags($tag)
     {
-        $post_db = $this->PostModel->GetPostByTag($tag); // body
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
-        $category_db = $this->CategoryModel->GetAllCategory(); // header
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-        $tag_db = $this->TagModel->GetPopularTags();
-
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+        $posts = $this->PostModel->GetPostByTag($tag); // body
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $categories = $this->CategoryModel->GetAllCategory(); // header
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tags = $this->TagModel->GetPopularTags();
 
         $this->view($this->layout, [
             "Page" => "search",
@@ -366,17 +314,11 @@ class Home extends Controller
         // echo '<script>alert("' . $decryptedData . '")</script>';
         // print_r($user_details);
         if ($user_details) { // success
-            $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-            $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
-            $category_db = $this->CategoryModel->GetAllCategory(); // header
-            $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-            $tag_db = $this->TagModel->GetPopularTags(); // scroll
-
-            $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-            $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-            $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-            $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-            $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
+            $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+            $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+            $categories = $this->CategoryModel->GetAllCategory(); // header
+            $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+            $tags = $this->TagModel->GetPopularTags(); // scroll
 
             $this->view($this->layout, [
                 "Page" => "user_details",

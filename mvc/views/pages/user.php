@@ -6,7 +6,8 @@
                 <h4 class="page-title">Người dùng</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
-                <a href="#" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm người
+                <a href="#" class="btn btn btn-primary btn-rounded float-right" id="openAddUserModal"><i
+                        class="fa fa-plus"></i> Thêm người
                     dùng</a>
             </div>
         </div>
@@ -32,9 +33,9 @@
                                     foreach ($all_users as $user) {
                                         echo '<tr>
                                         <td>' . $count . '</td>
-                                            <td><img width="28" height="28"
-                                                    src="' . BASE_URL . '/public/admin/assets/img/user.jpg"
-                                    class="rounded-circle m-r-5" alt="Img"> ' . $user['user_name'] . '</td>
+                                            <td><b><a style="color: #000" href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '"><img width="28" height="28"
+                                                    src="' . BASE_URL . '/public/src/uploads/' . $user['image'] . '"
+                                    class="rounded-circle m-r-5" alt="Img"> ' . $user['user_name'] . '</a></b></td>
                                     <td>' . date('d/m/Y', strtotime($user["created_at"])) . '</td>
                                     <td>' . $user['email'] . '</td>
                                     <td>' . $user['phone_number'] . '</td>

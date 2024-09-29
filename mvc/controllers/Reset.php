@@ -26,7 +26,7 @@ class Reset extends Controller
     function SendCode()
     {
         if (isset($_POST["btnSendCode"])) {
-            $email = $_POST["email"];
+            $email = strtolower(trim($_POST["email"]));
 
             if (!validateEmail($email)) {
                 echo "<script>alert('Email không hợp lệ!'); history.back();</script>";
@@ -59,7 +59,7 @@ class Reset extends Controller
     function VerifyCode()
     {
         if (isset($_POST["btnVerifyCode"])) {
-            $email = $_POST["email"];
+            $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
 
             if (!verifyCode($code)) {
@@ -81,7 +81,7 @@ class Reset extends Controller
     function HandelReset()
     {
         if (isset($_POST["btnReset"])) {
-            $email = $_POST["email"];
+            $email = strtolower(trim($_POST["email"]));
             $password = $_POST["password"];
             $retypePassword = $_POST["retype_password"];
 

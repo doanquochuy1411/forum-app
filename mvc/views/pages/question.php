@@ -24,6 +24,7 @@
                                         <th>Ngày tạo</th>
                                         <th>Lượt xem</th>
                                         <th>Lượt bình luận</th>
+                                        <th>Lượt báo xấu</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -33,14 +34,15 @@
                                     foreach ($questions as $question) {
                                         echo '<tr>
                                     <td>' . $count . '</td>
-                                    <td>' . $question["title"] . '</td>
+                                    <td><b><a style="color: #000" href="' . BASE_URL . '/home/posts/' . $question["id"] . '">' . $question["title"] . '</a><b></td>
                                     <td>' . $question["user_name"] . '</td>
                                     <td>' . date('d/m/Y', strtotime($question["created_at"])) . '</td>
                                     <td>' . $question['views'] . '</td>
                                     <td>' . $question['comment_count'] . '</td>
+                                    <td>' . $question['report_count'] . '</td>
                                     <td>
                                         <a href="' . BASE_URL . '/admin/questions/edit/' . $question["id"] . '" class="px-2 edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="' . BASE_URL . '/admin/questions/delete/' . $question["id"] . '" class="px-2 del" data-toggle="modal" data-target="#delete_patient"><i class="far fa-trash-alt"></i></a>
+                                        <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/delete/' . $question['id'] . '\')"></i></a>
                                         </td>
                                     </tr>';
                                         $count++;

@@ -13,6 +13,7 @@ class DB
     protected $username;
     protected $password;
     protected $dbname;
+    protected $validOrderByColumns = ['id', 'user_name', 'created_at', 'updated_at'];
 
     function __construct()
     {
@@ -24,7 +25,10 @@ class DB
         $_SESSION['SECRET_KEY'] = $_ENV["SECRET_KEY"]; // Lấy secret key -> BE
         $_SESSION['PUBLIC_KEY'] = $_ENV["PUBLIC_KEY"]; // Lấy public key => FE
         $_SESSION['SCAN_KEY'] = $_ENV["SCAN_KEY"]; // Lấy scan key => scan image
-
+        // printf($this->servername);
+        // printf($this->username);
+        // printf($this->password);
+        // printf($this->dbname);
 
         $this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -48,9 +52,25 @@ class DB
             $stmt->bind_param($types, ...$params);
         }
 
-        $success = $stmt->execute();
-        if (!$success) {
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
+        // $success = $stmt->execute();
+        // if (!$success) {
+        //     die('Execute failed: ' . htmlspecialchars($stmt->error));
+        // }
+        if (!$stmt->execute()) {
+            // Try to re-prepare the statement
+            $stmt = $this->con->prepare($sql);
+            if ($stmt === false) {
+                throw new Exception("Re-prepare failed: " . $this->con->error);
+            }
+
+            if (!empty($params)) {
+                $types = str_repeat('s', count($params));
+                $stmt->bind_param($types, ...$params);
+            }
+
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
         }
 
         // $result = $stmt->get_result();
@@ -72,15 +92,28 @@ class DB
             $stmt->bind_param($types, ...$params);
         }
 
-        $success = $stmt->execute();
-        if (!$success) {
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
+        if (!$stmt->execute()) {
+            // Try to re-prepare the statement
+            $stmt = $this->con->prepare($sql);
+            if ($stmt === false) {
+                throw new Exception("Re-prepare failed: " . $this->con->error);
+            }
+
+            if (!empty($params)) {
+                $types = str_repeat('s', count($params));
+                $stmt->bind_param($types, ...$params);
+            }
+
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
         }
 
         $result = $stmt->get_result();
         // $data = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
         return $result;
+
     }
 }
 

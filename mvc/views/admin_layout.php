@@ -45,10 +45,6 @@
     <!-- <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css"> -->
     <!-- logo -->
     <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
-    <!--[if lt IE 9]>
-        <script src="<?php echo BASE_URL ?>/public/admin/assets/js/html5shiv.min.js"></script>
-        <script src="<?php echo BASE_URL ?>/public/admin/assets/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -61,9 +57,9 @@
             <div class="header-menu">
                 <div class="header-left">
                     <a href="index.html" class="logo">
-                        <img src="<?php echo BASE_URL ?>/public/admin/assets/img/Logo_Hospital.png" width="35"
-                            height="35" alt="">
-                        <span>PreAdmin</span>
+                        <img src="<?php echo BASE_URL ?>/public/admin/assets/img/logo-iuh.ico" width="35" height="35"
+                            alt="">
+                        <span>Admin</span>
                     </a>
                 </div>
 
@@ -105,27 +101,6 @@
                                     <li class="notification-message">
                                         <a href="#">
                                             <div class="media">
-                                                <span class="avatar">
-                                                    <img alt="John Doe"
-                                                        src="<?php echo BASE_URL ?>/public/admin/assets/img/user.jpg"
-                                                        class="img-fluid">
-                                                </span>
-                                                <div class="media-body">
-                                                    <p class="noti-details"><span class="noti-title">John Doe</span>
-                                                        added
-                                                        new task <span class="noti-title">Patient appointment
-                                                            booking</span>
-                                                    </p>
-                                                    <p class="noti-time"><span class="notification-time">4 mins
-                                                            ago</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media">
                                                 <span class="avatar">V</span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">Tarah
@@ -134,55 +109,6 @@
                                                             booking
                                                             with payment gateway</span></p>
                                                     <p class="noti-time"><span class="notification-time">6 mins
-                                                            ago</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media">
-                                                <span class="avatar">L</span>
-                                                <div class="media-body">
-                                                    <p class="noti-details"><span class="noti-title">Misty Tison</span>
-                                                        added <span class="noti-title">Domenic Houston</span> and <span
-                                                            class="noti-title">Claire Mapes</span> to project <span
-                                                            class="noti-title">Doctor available module</span></p>
-                                                    <p class="noti-time"><span class="notification-time">8 mins
-                                                            ago</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media">
-                                                <span class="avatar">G</span>
-                                                <div class="media-body">
-                                                    <p class="noti-details"><span class="noti-title">Rolland
-                                                            Webber</span>
-                                                        completed task <span class="noti-title">Patient and Doctor video
-                                                            conferencing</span></p>
-                                                    <p class="noti-time"><span class="notification-time">12 mins
-                                                            ago</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media">
-                                                <span class="avatar">V</span>
-                                                <div class="media-body">
-                                                    <p class="noti-details"><span class="noti-title">Bernardo
-                                                            Galaviz</span>
-                                                        added new task <span class="noti-title">Private chat
-                                                            module</span>
-                                                    </p>
-                                                    <p class="noti-time"><span class="notification-time">2 days
                                                             ago</span>
                                                     </p>
                                                 </div>
@@ -210,8 +136,6 @@
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Trang cá nhân</a>
-                            <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
-                            <!-- <a class="dropdown-item" href="#">Settings</a> -->
                             <a class="dropdown-item" href="login.html">Đăng xuất</a>
                         </div>
                     </li>
@@ -224,9 +148,7 @@
                             class="fa fa-ellipsis-v"></i></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#">Trang cá nhân</a>
-                        <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
-                        <!-- <a class="dropdown-item" href="#">Settings</a> -->
-                        <a class="dropdown-item" href="<?php echo BASE_URL ?>/home/logout">Logout</a>
+                        <a class="dropdown-item" href="<?php echo BASE_URL ?>/home/logout">Đăng xuất</a>
                     </div>
                 </div>
                 <!--/ User Menu -->
@@ -249,12 +171,6 @@
                                         dùng</span></a>
                             </li>
                             <li>
-                                <a href="<?php echo BASE_URL ?>/admin/usersClone"><i class="fa fa-user-md"></i>
-
-                                    <span>Người
-                                        dùng clone</span></a>
-                            </li>
-                            <li>
                                 <a href="<?php echo BASE_URL ?>/admin/posts"><i class="fa fa-edit"></i> <span>Bài
                                         viết</span></a>
                             </li>
@@ -266,6 +182,10 @@
                             <li>
                                 <a href="<?php echo BASE_URL ?>/admin/categories"><i class="fa fa-folder"></i>
                                     <span>Danh mục</span></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo BASE_URL ?>"><i class="fas fa-home"></i> <span>Diễn
+                                        đàn</span></a>
                             </li>
                             <li class="submenu">
                                 <a href="#"><i class="fa fa-columns"></i> <span>Khác</span> <span
@@ -305,6 +225,56 @@
 
             </div>
             <!--Delete patient modal-->
+
+            <!-- Add User modal -->
+            <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="edit-user-modal-label"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center">
+                            <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Thêm thành
+                                    viên</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-user-form" action="<?php echo BASE_URL ?>/admin/addUser" method="post"
+                                onsubmit="return validateFormAddUser()()">
+                                <div class="form-group">
+                                    <label for="email">Email*</label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                    <small id="email_err"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="account_name">Tên tài khoản*</label>
+                                    <input type="text" class="form-control" id="account_name" name="account_name">
+                                    <small id="account_name_err"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_name">Tên người dùng*</label>
+                                    <input type="text" class="form-control" id="full_name" name="full_name">
+                                    <small id="full_name_err"></small>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="phone_number">Số điện thoại*</label>
+                                    <input type="phone_number" class="form-control" id="phone_number"
+                                        name="phone_number">
+                                    <small id="phone_number_err"></small>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="password">Mật khẩu*</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                    <small id="password_err"></small>
+                                </div>
+                                <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?>" />
+                                <button type="submit" name="btnAddUser" class="btn btn-primary">Thêm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End add user modal -->
         </div>
     </div>
 
@@ -651,26 +621,159 @@
         $('.calendar-wrapper').calendar(defaultConfig);`;
         eval(config);
     </script>
-    <!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Kiểm tra xem có phải là lần đầu tiên tải trang không
-        if (!localStorage.getItem("pageLoaded")) {
-            // Nếu là lần đầu tiên, hiển thị màn hình loading
-            document.querySelector(".loader").style.display = "block";
-
-            // Sau khi trang tải xong, ẩn màn hình loading
-            window.addEventListener('load', function() {
-                document.querySelector(".loader").style.display = "none";
-                // Đánh dấu rằng trang đã được tải
-                localStorage.setItem("pageLoaded", "true");
+    <script>
+        $(document).ready(function () {
+            // Add user modal
+            $('#openAddUserModal').on('click', function () {
+                $('#add-user').modal('show');
             });
-        } else {
-            // Nếu không phải lần đầu tiên, ẩn màn hình loading ngay lập tức
-            document.querySelector(".loader").style.display = "none";
-        }
-    });
-    </script> -->
 
+            // Add category modal
+            $('#openAddCategoryModal').on('click', function () {
+                $('#add-category').modal('show');
+            });
+
+            // Edit category modal
+            $('#openEditCategoryModal').on('click', function () {
+                var categoryId = $(this).data('category-id');
+                // console.log(categoryId);
+                $('#edit-category').modal('show');
+            });
+        });
+    </script>
+    <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var emailInput = document.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.addEventListener('input', validateEmail);
+            }
+
+            var fullNameInput = document.querySelector('input[name="full_name"]');
+            if (fullNameInput) {
+                fullNameInput.addEventListener('input', validateFullName);
+            }
+
+            var userNameInput = document.querySelector('input[name="user_name"]');
+            if (userNameInput) {
+                userNameInput.addEventListener('input', validateUserName);
+            }
+
+            var accountNameInput = document.querySelector('input[name="account_name"]');
+            if (accountNameInput) {
+                accountNameInput.addEventListener('input', validateAccountName);
+            }
+
+            var passwordInput = document.querySelector('input[name="password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validatePassword);
+            }
+
+            var phoneNumber = document.querySelector('input[name="phone_number"]');
+            if (phoneNumber) {
+                phoneNumber.addEventListener('input', validatePhoneNumber);
+            }
+
+            var categoryName = document.querySelector('input[name="category_name"]');
+            if (categoryName) {
+                categoryName.addEventListener('input', validateCategoryName);
+            }
+
+            var categoryDescription = document.querySelector('input[name="category_description"]');
+            if (categoryDescription) {
+                categoryDescription.addEventListener('input', validateCategoryDescription);
+
+            }
+            var categoryName = document.querySelector('input[name="category_name_update"]');
+            if (categoryName) {
+                categoryName.addEventListener('input', validateCategoryNameUpdate);
+            }
+
+            var categoryDescription = document.querySelector('input[name="category_description_update"]');
+            if (categoryDescription) {
+                categoryDescription.addEventListener('input', validateCategoryDescription);
+            }
+        });
+    </script>
+    <!-- popup thông báo -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+        var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
+
+        function showSuccessNotification() {
+            Swal.fire({
+                icon: 'success',
+                title: title_mess,
+                text: text_mes,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
+
+        function showFailNotification() {
+            Swal.fire({
+                icon: 'error',
+                title: title_mess,
+                text: text_mes,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
+        <?php
+        $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
+        switch ($status) {
+            case 'success':
+                echo 'showSuccessNotification();';
+                $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
+                break;
+            case 'error':
+                echo 'showFailNotification();';
+                $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
+                break;
+            default:
+                echo '';
+                break;
+        }
+        ?>
+    </script>
+    <script>
+        function confirmDelete(event, targetHref) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+            Swal.fire({
+                title: "Bạn có chắc chắn xóa không",
+                width: '500px', // Tăng chiều rộng của popup
+                confirmButtonText: "Xóa",
+                // denyButtonText: `Don't save`,
+                // showDenyButton: true,
+                showCancelButton: true,
+                // customClass: {
+                //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
+                //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
+                //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
+                //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
+                //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
+                // }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
+                    // console.log("href: ", targetHref);
+                    window.location.href = targetHref;
+                    // window.location.href = event.target.href;
+                    // Swal.fire("Xóa thành công!", "", "success");
+                }
+                // else if (result.isDenied) {
+                //     Swal.fire("Changes are not saved", "", "info");
+                // }
+            });
+        }
+    </script>
 </body>
 
 </html>

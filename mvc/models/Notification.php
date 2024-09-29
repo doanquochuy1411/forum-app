@@ -3,10 +3,20 @@ class Notification extends DB
 {
     public function GetUnreadNotificationsByUserId($receiver_id)
     {
+        $receiver_id = decryptData($receiver_id);
         $sql = "select * from notifications where is_read = 0 and receiver_id = ?";
         $result = $this->executeSelectQuery($sql, [$receiver_id]);
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($data as &$row) {
+            $row['id'] = encryptData($row['id']);
+            $row['receiver_id'] = encryptData($row['receiver_id']);
+            $row['comment_id'] = encryptData($row['comment_id']);
+            $row['post_id'] = encryptData($row['post_id']);
+            $row['report_id'] = encryptData($row['report_id']);
+        }
 
+        // return $data;
         return $data;
     }
 
@@ -21,7 +31,7 @@ class Notification extends DB
         $result = $this->executeQuery($sql, [$post_id, $message, $post_id, $report_id]);
 
         if ($result > 0) {
-            return $this->con->insert_id;
+            return encryptData($this->con->insert_id);
         } else {
             return 0;
         }
@@ -29,6 +39,8 @@ class Notification extends DB
 
     public function CreateReportNotificationToAdmin($message, $report_id, $post_id)
     {
+        $report_id = decryptData($report_id);
+        $post_id = decryptData($post_id);
         // Sử dụng subquery để lấy receiver_id (tác giả của bài viết)
         $sql = "INSERT INTO notifications (receiver_id, message, post_id, report_id)
             SELECT user_id, ?, ?, ?
@@ -38,7 +50,7 @@ class Notification extends DB
         $result = $this->executeQuery($sql, [$message, $post_id, $report_id]);
 
         if ($result > 0) {
-            return $this->con->insert_id;
+            return encryptData($this->con->insert_id);
         } else {
             return 0;
         }
@@ -46,15 +58,25 @@ class Notification extends DB
 
     public function GetNotificationByID($id)
     {
+        $id = decryptData($id);
         $sql = "select * from notifications where id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($data as &$row) {
+            $row['id'] = encryptData($row['id']);
+            $row['receiver_id'] = encryptData($row['receiver_id']);
+            $row['comment_id'] = encryptData($row['comment_id']);
+            $row['post_id'] = encryptData($row['post_id']);
+            $row['report_id'] = encryptData($row['report_id']);
+        }
 
         return $data;
     }
 
     public function UpdateIsRead($notification_id)
     {
+        $notification_id = decryptData($notification_id);
         $sql = "update notifications set is_read = ? where id = ?";
         $result = $this->executeQuery($sql, ["1", $notification_id]);
         if ($result > 0) {

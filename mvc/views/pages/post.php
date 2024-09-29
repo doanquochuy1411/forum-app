@@ -5,10 +5,10 @@
             <div class="col-sm-4 col-3">
                 <h4 class="page-title">Bài viết</h4>
             </div>
-            <div class="col-sm-8 col-9 text-right m-b-20">
+            <!-- <div class="col-sm-8 col-9 text-right m-b-20">
                 <a href="#" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm bài
                     viết</a>
-            </div>
+            </div> -->
         </div>
         <div class="card mb-0">
             <div class="card-body">
@@ -24,6 +24,7 @@
                                         <th>Ngày tạo</th>
                                         <th>Lượt xem</th>
                                         <th>Lượt bình luận</th>
+                                        <th>Lượt báo xấu</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -33,15 +34,16 @@
                                     foreach ($posts as $post) {
                                         echo '<tr>
                                     <td>' . $count . '</td>
-                                    <td>' . $post["title"] . '</td>
+                                    <td><b><a style="color: #000" href="' . BASE_URL . '/home/posts/' . $post["id"] . '">' . $post["title"] . '</a><b></td>
                                     <td>' . $post["user_name"] . '</td>
                                     <td>' . date('d/m/Y', strtotime($post["created_at"])) . '</td>
                                     <td>' . $post['views'] . '</td>
                                     <td>' . $post['comment_count'] . '</td>
+                                    <td>' . $post['report_count'] . '</td>
                                     <td>
-                                        <a href="' . BASE_URL . '/admin/posts/edit/' . $post["id"] . '" class="px-2 edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="' . BASE_URL . '/admin/posts/delete/' . $post["id"] . '" class="px-2 del" data-toggle="modal" data-target="#delete_patient"><i class="far fa-trash-alt"></i></a>
-                                    </td>
+                                        <a href="' . BASE_URL . '/admin/posts/edit/' . $post["id"] . '" class="px-2 edit"><i class="fas fa-exclamation-triangle"></i></a>
+                                        <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/delete/' . $post['id'] . '\')"></i></a>
+                                        </td>
                                     </tr>';
                                         $count++;
                                     }

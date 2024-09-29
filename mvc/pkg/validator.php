@@ -22,20 +22,16 @@ function validatePassword($password)
 
 function validateNoSpecialChars($input)
 {
+    if ($input === '') {
+        return true;
+    }
+
     return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\[\]]+$/u', $input);
 }
 
 function validateAddress($address)
 {
     return preg_match('/^[0-9a-zA-Z\s,\.\/\-]+$/u', $address);
-}
-function validateID($id)
-{
-    return filter_var($id, FILTER_VALIDATE_INT) !== false;
-}
-function validateParentID($id)
-{
-    return filter_var($id, FILTER_VALIDATE_INT) !== false || $id == "";
 }
 function sanitizeInput($input)
 {
@@ -130,7 +126,7 @@ function scanFileWithVirusTotal($filePath)
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    print_r($response);
+    // print_r($response);
 
     if ($httpCode != 200) {
         return ['error' => ['message' => 'Không thể kết nối với Hybrid Analysis API. Mã trạng thái HTTP: ' . $httpCode]];
@@ -164,9 +160,9 @@ function validateForm($fieldsToValidate)
         'contentType' => 'validateNoSpecialChars',
         'contentCategory' => 'validateNoSpecialChars',
         'title' => 'validateNoSpecialChars',
-        'parent_comment_id' => 'validateParentID',
         'current_password' => 'validatePassword',
-        'new_password' => 'validatePassword',
+        'category_name' => 'validateNoSpecialChars',
+        'category_description' => 'validateNoSpecialChars',
     ];
 
 

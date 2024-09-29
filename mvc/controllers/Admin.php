@@ -12,6 +12,7 @@ class Admin extends Controller
     public $page = "dashboard";
     public $title = "Admin";
 
+
     public function __construct()
     {
         if (!isset($_SESSION['RoleID']) || $_SESSION['RoleID'] != 1) {
@@ -27,17 +28,11 @@ class Admin extends Controller
 
     function Index()
     {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $all_user_db = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
-        $post_db = $this->PostModel->GetAllPostWithType("post"); // get all post
-        $question_db = $this->PostModel->GetAllPostWithType("question"); // get all question
-        $comment_db = $this->CommentModel->GetAllComment(); // get all comment
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $all_users = mysqli_fetch_all($all_user_db, MYSQLI_ASSOC);
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $all_users = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
+        $posts = $this->PostModel->GetAllPostWithType("post"); // get all post
+        $questions = $this->PostModel->GetAllPostWithType("question"); // get all question
+        $comments = $this->CommentModel->GetAllComment(); // get all comment
 
         $this->view($this->layout, [
             "Page" => $this->page,
@@ -52,29 +47,10 @@ class Admin extends Controller
 
     function Users()
     {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $all_user_db = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $all_users = mysqli_fetch_all($all_user_db, MYSQLI_ASSOC);
-
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $all_users = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
         $this->view($this->layout, [
             "Page" => 'user',
-            "title" => $this->title,
-            "user" => $user,
-            "all_users" => $all_users,
-        ]);
-    }
-    function UsersClone()
-    {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $all_user_db = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $all_users = mysqli_fetch_all($all_user_db, MYSQLI_ASSOC);
-
-        $this->view("admin_layout_clone", [
-            "Page" => 'user_clone',
             "title" => $this->title,
             "user" => $user,
             "all_users" => $all_users,
@@ -83,27 +59,21 @@ class Admin extends Controller
 
     function Posts()
     {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $post_db = $this->PostModel->GetAllPostWithType("post"); // get all post
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $users = $this->UserModel->GetUserByID($this->userID); // get user details
+        $posts = $this->PostModel->GetAllPostWithType("post"); // get all post
 
         $this->view($this->layout, [
             "Page" => 'post',
             "title" => $this->title,
-            "user" => $user,
+            "user" => $users,
             "posts" => $posts,
         ]);
     }
 
     function Questions()
     {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $questions_db = $this->PostModel->GetAllPostWithType("question"); // get all questions
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($questions_db, MYSQLI_ASSOC);
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $questions = $this->PostModel->GetAllPostWithType("question"); // get all questions
 
         $this->view($this->layout, [
             "Page" => 'question',
@@ -115,19 +85,151 @@ class Admin extends Controller
     }
     function Categories()
     {
-        $user_db = $this->UserModel->GetUserByID($this->userID); // get user details
-        $categories_db = $this->CategoryModel->GetAllCategory(); // get all category
-
-        $user = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($categories_db, MYSQLI_ASSOC);
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $categories = $this->CategoryModel->GetAllCategory(); // get all category
 
         $this->view($this->layout, [
-            "Page" => 'category',
+            "Page" => 'category_admin',
             "title" => $this->title,
             "user" => $user,
             "categories" => $categories,
         ]);
     }
+
+    function AddUser()
+    {
+        // Kiểm tra token
+        if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+
+        if (isset($_REQUEST["btnAddUser"])) {
+            $full_name = htmlspecialchars($_POST["full_name"]);
+            $account_name = htmlspecialchars(strtolower(trim($_POST["account_name"])));
+            $email = strtolower(trim($_POST["email"]));
+            $password = $_POST["password"];
+
+            $errors = validateForm(["full_name", "account_name", "email", "password"]);
+            if (!empty($errors)) {
+                $title = 'Thêm thành viên thất bại!';
+                $message = 'Thông tin thành viên không hợp lệ: ' . implode(", ", $errors);
+                response_error($title, $message);
+                $this->view($this->layout, [
+                    "Page" => "admin",
+                    "title" => $this->title,
+                ]);
+                return;
+            }
+
+            $userAccount = $this->UserModel->GetUserByEmail($email);
+            if ($userAccount) {
+                $title = 'Thêm thành viên thất bại!';
+                $message = 'Email đã được sử dụng!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
+            $userAccount = $this->UserModel->CheckAccountName($account_name);
+            if ($userAccount) {
+                $title = 'Thêm thành viên thất bại!';
+                $message = 'Tên tài khoản đã được sử dụng!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $hashedPassword);
+            if ($result) {
+                $userAccount = $this->UserModel->GetUserByEmail($email);
+                $this->UserModel->SetRole($userAccount["id"], "2");
+                // 1: admin
+                // 2: customer
+                $title = 'Thêm thành viên thành công!';
+                $message = '';
+                response_success($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            } else {
+                // echo "<script>alert('Fail to register');</script>";
+                $title = 'Thêm thành viên thất bại!';
+                $message = 'Lỗi hệ thống!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+        }
+    }
+
+    function DeleteCategory($id, $token)
+    {
+        // Xác minh token
+        if ($token == "" || $token != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+
+        $result = $this->CategoryModel->DeleteCategoryByID($id);
+        if ($result == 0) {
+            $_SESSION['action_status'] = 'error';
+            $_SESSION['title_message'] = "Xóa thất bại";
+            $_SESSION['message'] = "Lỗi hệ thống!";
+        } else {
+
+        }
+        if ($result == 1) {
+            $_SESSION['action_status'] = 'success';
+            $_SESSION['title_message'] = "Xóa thành công";
+        } else {
+            $_SESSION['action_status'] = 'error';
+            $_SESSION['title_message'] = "Xóa thất bại";
+            $_SESSION['message'] = "Không thể xóa. $result bài viết thuộc danh mục này!";
+        }
+        echo "<script>history.back();</script>";
+        exit();
+    }
+
+    function AddCategory()
+    {
+        // Kiểm tra token
+        if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+
+        if (isset($_REQUEST["btnAddCategory"])) {
+            $category_name = htmlspecialchars($_POST["category_name"]);
+            $category_description = htmlspecialchars($_POST["category_description"]);
+
+            $errors = validateForm(["category_name", "category_description"]);
+            if (!empty($errors)) {
+                $title = 'Thêm danh mục thất bại!';
+                $message = 'Thông tin danh mục không hợp lệ: ' . implode(", ", $errors);
+                response_error($title, $message);
+                $this->view($this->layout, [
+                    "Page" => "admin",
+                    "title" => $this->title,
+                ]);
+                return;
+            }
+            $result = $this->CategoryModel->CreateCategory($category_name, $category_description);
+            if ($result) {
+                $title = 'Thêm danh mục thành công';
+                response_success($title);
+            } else {
+                $title = 'Thêm danh mục thất bại';
+                $mes = "Lỗi hệ thống!";
+                response_error($title, $mes);
+            }
+            echo "<script>history.back();</script>";
+            exit();
+        } else {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+        }
+    }
+
 }
 
 ?>

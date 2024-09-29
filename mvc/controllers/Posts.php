@@ -79,8 +79,7 @@ class Posts extends Controller
             exit();
         }
 
-        $comment_db = $this->CommentModel->GetCommentByID($id);
-        $comment = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
+        $comment = $this->CommentModel->GetCommentByID($id);
 
         if ($comment[0]['user_id'] != $_SESSION['UserID']) {
             $_SESSION['action_status'] = 'error';
@@ -89,13 +88,6 @@ class Posts extends Controller
             exit();
         }
 
-        if (!validateID($id)) {
-            $_SESSION['action_status'] = 'error';
-            $_SESSION['title_message'] = "Xóa bình luận thất bại";
-            $_SESSION['message'] = "Dữ liệu không hợp lệ!";
-            echo "<script>history.back();</script>";
-            return;
-        }
         // // Trả về true nếu xóa thành công và ngược lại
         $result = $this->CommentModel->DeleteComment($id);
         if (!$result) {
@@ -113,8 +105,7 @@ class Posts extends Controller
     function Edit($id)
     {
         $id = htmlspecialchars($id);
-        $post_db = $this->PostModel->GetPostByID($id);
-        $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $posts = $this->PostModel->GetPostByID($id);
 
         if ($posts[0]['user_id'] != $_SESSION['UserID']) {
             $_SESSION['action_status'] = 'error';
@@ -123,25 +114,15 @@ class Posts extends Controller
             exit();
         }
 
-        $relate_post_db = $this->PostModel->GetRelatePosts($id, 10);
-        $recent_post_db = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
-        $comment_db = $this->CommentModel->GetAllCommentOfPost($id);
-        $user_db = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $relate_posts = $this->PostModel->GetRelatePosts($id, 10);
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
+        $comments = $this->CommentModel->GetAllCommentOfPost($id);
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
         $this->PostModel->IncrementView(1, $id); // Tăng view lên 1
-        $category_db = $this->CategoryModel->GetAllCategory();
-        $tag_db = $this->TagModel->GetPopularTags();
-        $tag_of_post_db = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
-        $question_db = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
-
-
-        $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
-        $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-        $relate_posts = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
-        $recent_posts = mysqli_fetch_all($recent_post_db, MYSQLI_ASSOC);
-        $categories = mysqli_fetch_all($category_db, MYSQLI_ASSOC);
-        $tags = mysqli_fetch_all($tag_db, MYSQLI_ASSOC);
-        $questions = mysqli_fetch_all($question_db, MYSQLI_ASSOC);
-        $tags_of_post = mysqli_fetch_all($tag_of_post_db, MYSQLI_ASSOC);
+        $categories = $this->CategoryModel->GetAllCategory();
+        $tags = $this->TagModel->GetPopularTags();
+        $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
 
         $this->view($this->layout, [
             "Page" => "edit_post",
@@ -219,7 +200,7 @@ class Posts extends Controller
             exit();
         }
     }
-
+    // Delete post
     function Delete($id, $token)
     {
         // Xác minh token
@@ -228,23 +209,15 @@ class Posts extends Controller
             exit();
         }
 
-        $post_db = $this->PostModel->GetPostByID($id);
-        $post = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+        $post = $this->PostModel->GetPostByID($id);
 
-        if ($post[0]['user_id'] != $_SESSION['UserID']) {
+        if ($post[0]['user_id'] != $_SESSION['UserID'] && $_SESSION['RoleID'] != 1) {
             $_SESSION['action_status'] = 'error';
             $_SESSION['title_message'] = "Không có quyền truy cập!";
             header("Location: " . BASE_URL);
             exit();
         }
 
-        if (!validateID($id)) {
-            $_SESSION['action_status'] = 'error';
-            $_SESSION['title_message'] = "Xóa bài viết thất bại";
-            $_SESSION['message'] = "Dữ liệu không hợp lệ!";
-            echo "<script>history.back();</script>";
-            return;
-        }
         // // Trả về true nếu xóa thành công và ngược lại
         $result = $this->PostModel->DeletePost($id);
         if (!$result) {

@@ -366,6 +366,106 @@ function validateFormReport() {
     return isReasonValid && isAdditionalValid
 }
 
+function validateFormAddUser() {
+    const isValidAccountName = validateAccountName();
+    const isValidUserName = validateUserName();
+    const isValidEmail = validateEmail();
+    const isValidPhoneNumber = validatePhoneNumber();
+    const isValidPassword = validatePassword();
+
+    return isValidAccountName && isValidUserName && isValidEmail && isValidPhoneNumber && isValidPassword
+}
+
+function validateFormAddCategory() {
+    const isCategoryName = validateCategoryName();
+    const isCategoryDescription = validateCategoryDescription();
+
+    return isCategoryName && isCategoryDescription
+}
+
+function validateFormEditCategory() {
+    const isCategoryName = validateCategoryNameUpdate();
+    const isCategoryDescription = validateCategoryDescriptionUpdate();
+
+    return isCategoryName && isCategoryDescription
+}
+
+function validateCategoryName() {
+    const categoryName = document.querySelector('input[name="category_name"]').value.trim();
+    const categoryNameError = document.getElementById('category_name_err');
+
+    if (categoryName === "") {
+        categoryNameError.textContent = "Tên danh mục không được để trống";
+        categoryNameError.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(categoryName)) {
+        categoryNameError.textContent = "Tên danh mục không được chứa ký tự đặc biệt";
+        categoryNameError.style.color = 'red'
+        return false;
+    } else {
+        categoryNameError.textContent = "";
+        categoryNameError.style.color = 'red'
+        return true;
+    }
+}
+
+function validateCategoryNameUpdate() {
+    const categoryName = document.querySelector('input[name="category_name_update"]').value.trim();
+    const categoryNameError = document.getElementById('category_name_update_err');
+
+    if (categoryName === "") {
+        categoryNameError.textContent = "Tên danh mục không được để trống";
+        categoryNameError.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(categoryName)) {
+        categoryNameError.textContent = "Tên danh mục không được chứa ký tự đặc biệt";
+        categoryNameError.style.color = 'red'
+        return false;
+    } else {
+        categoryNameError.textContent = "";
+        categoryNameError.style.color = 'red'
+        return true;
+    }
+}
+
+function validateCategoryDescription() {
+    const categoryDescription = document.querySelector('input[name="category_description"]').value.trim();
+    const categoryDescriptionError = document.getElementById('category_description_err');
+
+    if (categoryDescription == ""){
+        return true;
+    }
+
+    if (!validateNoSpecialChars(categoryDescription)) {
+        categoryDescriptionError.textContent = "Mô tả không được chứa ký tự đặc biệt";
+        categoryDescriptionError.style.color = 'red'
+        return false;
+    } else {
+        categoryDescriptionError.textContent = "";
+        categoryDescriptionError.style.color = 'red'
+        return true;
+    }
+}
+
+function validateCategoryDescriptionUpdate() {
+    const categoryDescription = document.querySelector('input[name="category_description_update"]').value.trim();
+    const categoryDescriptionError = document.getElementById('category_description_update_err');
+
+    if (categoryDescription == ""){
+        return true;
+    }
+
+    if (!validateNoSpecialChars(categoryDescription)) {
+        categoryDescriptionError.textContent = "Mô tả không được chứa ký tự đặc biệt";
+        categoryDescriptionError.style.color = 'red'
+        return false;
+    } else {
+        categoryDescriptionError.textContent = "";
+        categoryDescriptionError.style.color = 'red'
+        return true;
+    }
+}
+
 // document.querySelector('input[name="email"]').addEventListener('input', validateEmail);
 // document.querySelector('input[name="full_name"]').addEventListener('input', validateFullName);
 // document.querySelector('input[name="user_name"]').addEventListener('input', validateUserName);

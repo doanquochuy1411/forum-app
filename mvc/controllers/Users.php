@@ -104,8 +104,8 @@ class Users extends Controller
                 exit();
             }
 
-            $user_details_db = $this->UserModel->GetUserByID($this->userID);
-            $user_details = mysqli_fetch_all($user_details_db, MYSQLI_ASSOC);
+            $user_details = $this->UserModel->GetUserByID($this->userID);
+            // $user_details = mysqli_fetch_all($user_details_db, MYSQLI_ASSOC);
 
             if (!password_verify($current_password, $user_details[0]['password'])) {
                 $title = 'Cập nhật thất bại';

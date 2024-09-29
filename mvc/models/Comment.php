@@ -15,7 +15,14 @@ class Comment extends DB
         ORDER BY
             p.created_at DESC;
         ";
-        return $this->executeSelectQuery($sql);
+        $result = $this->executeSelectQuery($sql);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($data as &$row) {
+            $row['id'] = encryptData($row['id']);
+            $row['post_owner_id'] = encryptData($row['post_owner_id']);
+        }
+
+        return $data;
     }
 
     public function GetAllCommentOfPost($post_id)
@@ -31,11 +38,21 @@ class Comment extends DB
         LEFT JOIN post_comment_counts pcc on pcc.post_id = c.post_id
         where c.post_id = ?
         ";
-        return $this->executeSelectQuery($sql, [$post_id]);
+        $result = $this->executeSelectQuery($sql, [$post_id]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($data as &$row) {
+            $row['id'] = encryptData($row['id']);
+            $row['post_owner_id'] = encryptData($row['post_owner_id']);
+        }
+
+        return $data;
     }
 
     public function CreateComment($content, $user_id, $post_id, $parent_comment_id)
     {
+        $user_id = decryptData($user_id);
+        $post_id = decryptData($post_id);
+        $parent_comment_id = decryptData($parent_comment_id);
         $sql = "";
         $result = false;
         if ($parent_comment_id == "") {
@@ -47,7 +64,7 @@ class Comment extends DB
         }
 
         if ($result) {
-            return $this->con->insert_id;
+            return encryptData($this->con->insert_id);
         } else {
             return 0;
         }
@@ -55,18 +72,27 @@ class Comment extends DB
 
     public function DeleteComment($id)
     {
+        $id = decryptData($id);
         $sql = "DELETE FROM comments WHERE id = ?";
         return $this->executeQuery($sql, [$id]);
     }
 
     public function GetCommentByID($id)
     {
+        $id = decryptData($id);
         $sql = "SELECT * FROM comments WHERE id = ?";
-        return $this->executeSelectQuery($sql, [$id]);
+        $result = $this->executeSelectQuery($sql, [$id]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($data as &$row) {
+            $row['id'] = encryptData($row['id']);
+        }
+
+        return $data;
     }
 
     public function GetAuthOfComment($cmt_id)
     {
+        $cmt_id = decryptData($cmt_id);
         $sql = "SELECT u.user_name AS comment_user_name, u.image AS avatar
         FROM comments c
         LEFT JOIN

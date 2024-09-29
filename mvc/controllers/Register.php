@@ -25,7 +25,7 @@ class Register extends Controller
     function SendCode()
     {
         if (isset($_POST["btnSendCode"])) {
-            $email = $_POST["email"];
+            $email = strtolower(trim($_POST["email"]));
 
             if (!validateEmail($email)) {
                 // echo "<script>alert('Email không hợp lệ!'); history.back();</script>";
@@ -60,7 +60,7 @@ class Register extends Controller
     function VerifyCode()
     {
         if (isset($_POST["btnVerifyCode"])) {
-            $email = $_POST["email"];
+            $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
 
             if (!verifyCode($code)) {
@@ -86,8 +86,8 @@ class Register extends Controller
     {
         if (isset($_POST["btnRegister"])) {
             $full_name = $_POST["full_name"];
-            $account_name = $_POST["account_name"];
-            $email = $_POST["email"];
+            $account_name = htmlspecialchars(strtolower(trim($_POST["account_name"])));
+            $email = strtolower(trim($_POST["email"]));
             $password = $_POST["password"];
             $retypePassword = $_POST["retype_password"];
 
@@ -103,6 +103,15 @@ class Register extends Controller
                     "data" => $email
                 ]);
                 return;
+            }
+
+            $userAccount = $this->UserModel->CheckAccountName($account_name);
+            if ($userAccount) {
+                $title = 'Đăng ký thất bại!';
+                $message = 'Tên tài khoản đã được sử dụng!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
             }
 
 
