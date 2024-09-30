@@ -4,34 +4,34 @@ class Notification extends DB
     public function GetUnreadNotificationsByUserId($receiver_id)
     {
         $receiver_id = decryptData($receiver_id);
-        $sql = "select * from notifications where is_read = 0 and receiver_id = ?";
+        $sql = "select * from notifications where is_read = 0 and receiver_id = ? order by created_at desc";
         $result = $this->executeSelectQuery($sql, [$receiver_id]);
         // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
             $row['receiver_id'] = encryptData($row['receiver_id']);
-            $row['comment_id'] = encryptData($row['comment_id']);
+            $row['comment_id'] = $row['comment_id'] != null ? encryptData($row['comment_id']) : $row['comment_id'];
             $row['post_id'] = encryptData($row['post_id']);
-            $row['report_id'] = encryptData($row['report_id']);
+            $row['report_id'] = $row['report_id'] != null ? encryptData($row['report_id']) : $row['report_id'];
         }
 
         // return $data;
         return $data;
     }
 
-    public function CreateReportNotification($message, $report_id, $post_id)
+    public function CreateNotification($post_id, $message, $report_id = null, $comment_id = null)
     {
-        // $sql = "INSERT INTO notifications(receiver_id, message, comment_id, report_id) values (?,?,?,?)";
-        // Sử dụng subquery để lấy receiver_id (tác giả của bài viết)
-        $sql = "INSERT INTO notifications (receiver_id, message, post_id, report_id)
+        $post_id = decryptData($post_id);
+
+        $sql = "INSERT INTO notifications (receiver_id, message, comment_id, post_id, report_id)
                 VALUES (
-                    (SELECT user_id FROM posts WHERE id = ?), ?, ?, ?
+                    (SELECT user_id FROM posts WHERE id = ?), ?, ?, ?, ?
                 )";
-        $result = $this->executeQuery($sql, [$post_id, $message, $post_id, $report_id]);
+        $result = $this->executeQuery($sql, [$post_id, $message, $comment_id, $post_id, $report_id]);
 
         if ($result > 0) {
-            return encryptData($this->con->insert_id);
+            return $this->con->insert_id;
         } else {
             return 0;
         }
@@ -39,7 +39,6 @@ class Notification extends DB
 
     public function CreateReportNotificationToAdmin($message, $report_id, $post_id)
     {
-        $report_id = decryptData($report_id);
         $post_id = decryptData($post_id);
         // Sử dụng subquery để lấy receiver_id (tác giả của bài viết)
         $sql = "INSERT INTO notifications (receiver_id, message, post_id, report_id)
@@ -50,7 +49,7 @@ class Notification extends DB
         $result = $this->executeQuery($sql, [$message, $post_id, $report_id]);
 
         if ($result > 0) {
-            return encryptData($this->con->insert_id);
+            return $this->con->insert_id;
         } else {
             return 0;
         }

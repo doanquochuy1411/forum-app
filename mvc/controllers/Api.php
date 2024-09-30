@@ -38,6 +38,17 @@ class Api extends Controller
         // Lấy danh sách thông báo từ database
         $notifications = $this->NotificationModel->GetUnreadNotificationsByUserId($this->userID);
 
+        if (empty($notifications)) {
+            // Trả về lỗi 400 nếu không tìm thấy dữ liệu
+            http_response_code(400); // Đặt mã phản hồi là 400
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy thông báo cho người dùng này.",
+            ]);
+            return; // Dừng lại nếu dữ liệu trống
+        }
+
         // Trả về JSON
         echo json_encode([
             'code' => 200,
@@ -51,12 +62,23 @@ class Api extends Controller
     {
         // Lấy danh sách thông báo từ database
         $userDetails = $this->CommentModel->GetAuthOfComment($cmt_id);
+        // print_r($userDetails);
+        if (empty($userDetails)) {
+            // Trả về lỗi 400 nếu không tìm thấy dữ liệu
+            http_response_code(400); // Đặt mã phản hồi là 400
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu người dùng cho bình luận này.",
+            ]);
+            return; // Dừng lại nếu dữ liệu trống
+        }
 
         // Trả về JSON
         echo json_encode([
             'code' => 200,
             'status' => "success",
-            'user_details' => $userDetails
+            'user_details' => $userDetails,
         ]);
     }
 }

@@ -441,23 +441,36 @@
         var existingContent = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
         quill.root.innerHTML = existingContent; // Đưa nội dung vào trình soạn thảo
 
-        // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
-        document.getElementById('postForm').addEventListener('submit', function(event) {
-            // Cập nhật nội dung của trường ẩn
-            document.getElementById('editorContent').value = quill.root.innerHTML;
+        var postFormElement = document.getElementById('postForm');
+        if (postFormElement) {
+            // Gán nội dung của trình soạn thảo vào trường ẩn trước khi gửi form
+            postFormElement.addEventListener('submit', function(event) {
+                // Cập nhật nội dung của trường ẩn
+                document.getElementById('editorContent').value = quill.root.innerHTML;
 
-            // var editorContent = document.getElementById('editorContent').value.trim();
-            var editorContent = quill.root.innerHTML.trim();
-            if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
-                event.preventDefault(); // Ngăn chặn việc gửi form
-                document.getElementById('editorContent_err').textContent =
-                    'Nội dung phải có ít nhất 100 ký tự.';
-                document.getElementById('editorContent_err').style.color = 'red'
-            } else {
-                document.getElementById('editorContent_err').textContent = '';
-            }
+                // var editorContent = document.getElementById('editorContent').value.trim();
+                var editorContent = quill.root.innerHTML.trim();
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
+                    event.preventDefault(); // Ngăn chặn việc gửi form
+                    document.getElementById('editorContent_err').textContent =
+                        'Nội dung phải có ít nhất 100 ký tự.';
+                    document.getElementById('editorContent_err').style.color = 'red'
+                } else {
+                    document.getElementById('editorContent_err').textContent = '';
+                }
+            });
+        }
 
-        });
+        var postCommentFormElement = document.getElementById('postCommentForm');
+        if (postCommentFormElement) {
+            postCommentFormElement.addEventListener('submit', function(event) {
+                document.getElementById('editorCommentContent').value = quill.root.innerHTML;
+                var editorContent = quill.root.innerHTML.trim();
+                if (editorContent === '' || editorContent === '<p><br></p>') {
+                    event.preventDefault(); // Ngăn chặn việc gửi form
+                }
+            });
+        }
 
         // <!-- tags -->
         document.addEventListener('DOMContentLoaded', function() {

@@ -33,10 +33,11 @@
     /* Màu của thanh kéo khi hover */
 }
 
+
 .notification-message {
-    max-width: 200px; /* Chiều rộng tối đa */
-    max-height: 4.8em; /* Chiều cao tối đa để cho phép 3 dòng văn bản */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.6em; /* Chiều cao dòng để xác định số dòng */
+    max-width: 200px; /* Giới hạn chiều rộng tối đa */
+    white-space: nowrap; /* Ngăn chặn việc xuống dòng */
+    overflow: hidden; /* Ẩn phần vượt quá chiều rộng */
+    text-overflow: ellipsis; /* Hiển thị dấu ... khi văn bản vượt quá chiều rộng */
+    display: inline-block; /* Đảm bảo phần tử này có thể áp dụng các thuộc tính trên */
 }

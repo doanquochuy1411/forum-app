@@ -3,7 +3,8 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Câu hỏi</h4>
+                <h3 class="text-primary font-weight-bold position-relative">Câu Hỏi</h3>
+                <div class="title-underline"></div>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
                 <a href="#" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm câu
@@ -41,7 +42,7 @@
                                     <td>' . $question['comment_count'] . '</td>
                                     <td>' . $question['report_count'] . '</td>
                                     <td>
-                                        <a href="' . BASE_URL . '/admin/questions/edit/' . $question["id"] . '" class="px-2 edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="#" class="px-2 edit"></a>
                                         <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/delete/' . $question['id'] . '\')"></i></a>
                                         </td>
                                     </tr>';

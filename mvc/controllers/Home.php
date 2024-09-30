@@ -62,7 +62,7 @@ class Home extends Controller
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
 
-
+        // print_r($comments);
         $this->view($this->layout, [
             "Page" => "post_details",
             "title" => $this->title,
@@ -91,7 +91,7 @@ class Home extends Controller
             $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
             $title = htmlspecialchars($_REQUEST["title"]);
             $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
-            $content = htmlspecialchars($_REQUEST["content"]);
+            $content = $_REQUEST["content"];
             $user_id = $_SESSION["UserID"];
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {

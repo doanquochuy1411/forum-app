@@ -131,19 +131,19 @@
                                         function print_comments($comments_tree)
                                         {
                                             $userID = $_SESSION["UserID"] ?? ""; // Toán tử gán null
-                                            // $userID = isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
+                                            $userID = decryptData($userID);
                                             foreach ($comments_tree as $parent_id => $data) {
                                                 echo '<li>';
                                                 $comment = $data['comment'];
                                                 // Nếu là chủ comment thì có thể sửa hoặc xóa
-                                                if ($comment['user_id'] != $userID) {
+                                                if (decryptData($comment['user_id']) != $userID) {
                                                     echo '<div class="comment-main-level">
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
                                                         <div class="comment-box">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
-                                                                <i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . $comment['id'] . ')"></i>
+                                                                <i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i>
                                                             </div>
                                                             <div class="comment-content"> ' . $comment['content'] . '
                                                         </div>
@@ -156,9 +156,8 @@
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
-                                                                <a href="' . BASE_URL . '/posts/replyComment/' . $comment['id'] . '"><i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . $comment['id'] . ')"></i></a>
-                                                                <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . $comment['id'] . '\')"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="editComment(' . $comment['id'] . ')"></i></a>
+                                                                <a href="' . BASE_URL . '/posts/replyComment/' . $comment['id'] . '"><i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i></a>
+                                                                <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . encryptData($comment['id']) . '\')"></i></a>
                                                                 </div>
                                                             <div class="comment-content"> ' . $comment['content'] . '
                                                         </div>
@@ -169,7 +168,7 @@
                                                 if (isset($data['replies']) && count($data['replies']) > 0) {
                                                     echo '<ul class="comments-list reply-list">';
                                                     foreach ($data['replies'] as $reply) {
-                                                        if ($reply['user_id'] != $userID) {
+                                                        if (decryptData($reply['user_id']) != $userID) {
                                                             echo '<li>
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
                                                         <div class="comment-box">
@@ -189,8 +188,7 @@
                                                                 <div class="comment-head">
                                                                     <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
                                                                     <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
-                                                                    <a href="#" ><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '\')"></i></a>
-                                                                    <a href="#"><i class="fa fa-pencil" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . $reply['id'] . '\')"></i></a>
+                                                                    <a href="#" ><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . encryptData($reply['id']) . '\')"></i></a>
                                                                     </div>
                                                                 <div class="comment-content"> ' . $reply['content'] . '
                                                                 </div>
@@ -204,7 +202,6 @@
                                             }
                                         }
                                         print_comments($comments_tree);
-
                                     }
                                     ?>
                                 </ul>
@@ -218,11 +215,11 @@
                     <h3 style="margin-bottom: 15px;">Câu trả lời của bạn</h3>
                     <!-- <hr> -->
                     <div class="row">
-                        <form id="postForm" action="<?php echo BASE_URL ?>/posts/createComment" method="post">
+                        <form id="postCommentForm" action="<?php echo BASE_URL ?>/posts/createComment" method="post">
                             <div class=" col-md-12">
                                 <div id="editorContainer" class="post9320-box">
                                     <div id="editor" style="border: solid 1px #000"></div>
-                                    <input type="hidden" id="editorContent" name="content" />
+                                    <input type="hidden" id="editorCommentContent" name="content" />
                                     <input type="hidden" value="<?php echo $posts[0]["id"] ?>" name="post_id" />
                                     <input type="hidden" value="" name="parent_comment_id" />
                                 </div>

@@ -18,7 +18,7 @@ class Comment extends DB
         $result = $this->executeSelectQuery($sql);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
-            $row['id'] = encryptData($row['id']);
+            // $row['id'] = encryptData($row['id']);
             $row['post_owner_id'] = encryptData($row['post_owner_id']);
         }
 
@@ -27,6 +27,7 @@ class Comment extends DB
 
     public function GetAllCommentOfPost($post_id)
     {
+        $post_id = decryptData($post_id);
         $sql = "SELECT p.views, c.*, u.user_name AS comment_user_name, u.image AS avatar, p.title AS post_title, p.user_id AS post_owner_id, owner_user.user_name AS owner_name, owner_user.image AS owner_image, pcc.comment_count 
         FROM comments c
         LEFT JOIN
@@ -41,8 +42,7 @@ class Comment extends DB
         $result = $this->executeSelectQuery($sql, [$post_id]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
-            $row['id'] = encryptData($row['id']);
-            $row['post_owner_id'] = encryptData($row['post_owner_id']);
+            $row['user_id'] = encryptData($row['user_id']);
         }
 
         return $data;
@@ -52,7 +52,7 @@ class Comment extends DB
     {
         $user_id = decryptData($user_id);
         $post_id = decryptData($post_id);
-        $parent_comment_id = decryptData($parent_comment_id);
+        $parent_comment_id = empty($parent_comment_id) ? null : decryptData($parent_comment_id);
         $sql = "";
         $result = false;
         if ($parent_comment_id == "") {
@@ -64,7 +64,7 @@ class Comment extends DB
         }
 
         if ($result) {
-            return encryptData($this->con->insert_id);
+            return $this->con->insert_id;
         } else {
             return 0;
         }

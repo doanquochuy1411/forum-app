@@ -31,46 +31,36 @@ class Reports extends Controller
     function Send($post_id)
     {
         if (isset($_POST["btnReport"])) {
-            // Kiểm tra token
             if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
                 header("Location: " . BASE_URL . "/errors/Unauthorized");
                 exit();
             }
 
             $finalReport = "";
-            // Lấy lý do báo cáo từ checkbox
             if (isset($_POST['report_reasons'])) {
-                // Escape từng giá trị trong mảng report_reasons
                 $reportReasons = array_map('htmlspecialchars', $_POST['report_reasons']);
-                // Nối các phần tử mảng thành chuỗi, cách nhau bởi dấu phẩy
                 $reportReasonsString = implode(", ", $reportReasons);
 
-                // Lấy thông tin bổ sung và thoát các ký tự đặc biệt để tránh lỗi XSS
                 $additionalInfo = htmlspecialchars($_POST['additional_info']);
                 $post_id = htmlspecialchars($post_id);
 
-                // Kiểm tra nếu người dùng nhập thông tin bổ sung
                 if (!empty($additionalInfo)) {
-                    // Nối thông tin bổ sung vào sau chuỗi các lý do
                     $finalReport = $reportReasonsString . ". Thông tin bổ sung: " . $additionalInfo;
                 } else {
-                    // Nếu không có thông tin bổ sung, chỉ hiển thị các lý do
                     $finalReport = $reportReasonsString;
                 }
             }
 
-            // Thực hiện các thao tác cần thiết như lưu vào database, kiểm tra token, hoặc xử lý lý do báo cáo
             if (!empty($finalReport)) {
                 $report_id = $this->ReportModel->CreateReport($post_id, $finalReport, $this->userID);
                 if ($report_id != 0) {
                     // Thông báo cho tác giả
-                    $this->NotificationModel->CreateReportNotification("Bài viết của bạn đã bị báo cáo với lý do: $finalReport", $report_id, $post_id);
+                    $this->NotificationModel->CreateNotification($post_id, "Bài viết của bạn đã bị báo cáo với lý do: $finalReport", $report_id);
                     // Gửi thông báo real-time qua Pusher cho tác giả
                     $this->sendNotification($this->userID, "Bài viết của bạn đã bị báo cáo với lý do: $finalReport", null, $post_id);
 
                     // Lấy danh sách tất cả các admin
-                    $admins_db = $this->UserModel->GetAllAdmin();
-                    $admins = mysqli_fetch_all($admins_db, MYSQLI_ASSOC);
+                    $admins = $this->UserModel->GetAllAdmin();
                     // Gửi thông báo cho tất cả các admin
                     $this->NotificationModel->CreateReportNotificationToAdmin("Một bài viết đã bị báo cáo với lý do: $finalReport", $report_id, $post_id);
                     foreach ($admins as $admin) {

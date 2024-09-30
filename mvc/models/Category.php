@@ -13,6 +13,7 @@ class Category extends DB
         return $data;
 
     }
+
     public function GetCategoryByID($category_id)
     {
         $category_id = decryptData($category_id);
@@ -24,6 +25,18 @@ class Category extends DB
         }
 
         return $data;
+    }
+    public function CheckNameCategory($category_name)
+    {
+        $sql = "SELECT id FROM categories WHERE name = ?";
+        $result = $this->executeSelectQuery($sql, [$category_name]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        if (!empty($data)) {
+            return $data[0];
+        }
+
+        return null;
     }
 
     public function CreateCategory($category_name, $category_description)
@@ -37,11 +50,22 @@ class Category extends DB
         }
     }
 
+    public function UpdateCategory($category_id, $category_name, $category_description = "")
+    {
+        $id = decryptData($category_id);
+        $sql = "update categories set name = ?, description= ? where id = ?";
+        $result = $this->executeQuery($sql, [$category_name, $category_description, $id]);
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function DeleteCategoryByID($category_id)
     {
         $category_id = decryptData($category_id);
         $re_sql = "select count(id) as total_posts from posts where category_id = $category_id";
-
 
         $result = $this->con->query($re_sql);
         if ($result) {
@@ -55,9 +79,9 @@ class Category extends DB
         $sql = "DELETE FROM categories WHERE id = ?";
         $result = $this->executeQuery($sql, [$category_id]);
         if ($result > 0) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
 
     }

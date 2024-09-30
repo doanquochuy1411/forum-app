@@ -3,12 +3,9 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Bài viết</h4>
+                <h3 class="text-primary font-weight-bold position-relative">Bài Viết</h3>
+                <div class="title-underline"></div>
             </div>
-            <!-- <div class="col-sm-8 col-9 text-right m-b-20">
-                <a href="#" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm bài
-                    viết</a>
-            </div> -->
         </div>
         <div class="card mb-0">
             <div class="card-body">
@@ -41,7 +38,7 @@
                                     <td>' . $post['comment_count'] . '</td>
                                     <td>' . $post['report_count'] . '</td>
                                     <td>
-                                        <a href="' . BASE_URL . '/admin/posts/edit/' . $post["id"] . '" class="px-2 edit"><i class="fas fa-exclamation-triangle"></i></a>
+                                        <a href="#" class="px-2 edit"></a>
                                         <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/delete/' . $post['id'] . '\')"></i></a>
                                         </td>
                                     </tr>';

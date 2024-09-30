@@ -172,23 +172,83 @@ class Admin extends Controller
         }
 
         $result = $this->CategoryModel->DeleteCategoryByID($id);
-        if ($result == 0) {
-            $_SESSION['action_status'] = 'error';
-            $_SESSION['title_message'] = "Xóa thất bại";
-            $_SESSION['message'] = "Lỗi hệ thống!";
-        } else {
-
-        }
-        if ($result == 1) {
-            $_SESSION['action_status'] = 'success';
-            $_SESSION['title_message'] = "Xóa thành công";
-        } else {
-            $_SESSION['action_status'] = 'error';
-            $_SESSION['title_message'] = "Xóa thất bại";
-            $_SESSION['message'] = "Không thể xóa. $result bài viết thuộc danh mục này!";
+        switch ($result) {
+            case false:
+                $title = 'Xóa thất bại';
+                $mes = "Lỗi hệ thống!";
+                response_error($title, $mes);
+                break;
+            case true:
+                $title = 'Xóa thành công';
+                response_success($title);
+                break;
+            default:
+                $title = 'Xóa thành viên thất bại';
+                $mes = "Không thể xóa. Có $result bài viết thuộc danh mục này!";
+                response_error($title, $mes);
+                break;
         }
         echo "<script>history.back();</script>";
         exit();
+    }
+
+    function UpdateCategory($category_id)
+    {
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $category = $this->CategoryModel->GetCategoryByID($category_id); // get category by id
+
+        $this->view($this->layout, [
+            "Page" => 'edit_category',
+            "title" => $this->title,
+            "user" => $user,
+            "category" => $category,
+        ]);
+    }
+
+    function HandelUpdateCategory($category_id)
+    {
+        // Kiểm tra token
+        if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+
+        if (isset($_REQUEST["btnUpdateCategory"])) {
+            $category_name = htmlspecialchars($_POST["category_name_update"]);
+            $category_description = htmlspecialchars($_POST["category_description_update"]);
+
+            $errors = validateForm(["category_name_update", "category_description_update"]);
+            if (!empty($errors)) {
+                $title = 'Cập nhật danh mục thất bại!';
+                $message = 'Thông tin danh mục không hợp lệ: ' . implode(", ", $errors);
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
+            $checkCategoryName = $this->CategoryModel->CheckNameCategory($category_name);
+            if ($checkCategoryName) {
+                $title = 'Cập nhật thất bại';
+                $mes = "Tên danh mục đã tồn tại!";
+                response_error($title, $mes);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
+            $result = $this->CategoryModel->UpdateCategory($category_id, $category_name, $category_description);
+            if (!$result) {
+                $title = 'Cập nhật thất bại';
+                $mes = "Lỗi hệ thống!";
+                response_error($title, $mes);
+            } else {
+                $title = 'Cập nhật thành công';
+                response_success($title);
+            }
+            echo "<script>history.back();</script>";
+            exit();
+        } else {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+        }
     }
 
     function AddCategory()
@@ -208,12 +268,19 @@ class Admin extends Controller
                 $title = 'Thêm danh mục thất bại!';
                 $message = 'Thông tin danh mục không hợp lệ: ' . implode(", ", $errors);
                 response_error($title, $message);
-                $this->view($this->layout, [
-                    "Page" => "admin",
-                    "title" => $this->title,
-                ]);
-                return;
+                echo "<script>history.back();</script>";
+                exit();
             }
+
+            $checkCategoryName = $this->CategoryModel->CheckNameCategory($category_name);
+            if ($checkCategoryName) {
+                $title = 'Thêm danh mục thất bại';
+                $mes = "Tên danh mục đã tồn tại!";
+                response_error($title, $mes);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
             $result = $this->CategoryModel->CreateCategory($category_name, $category_description);
             if ($result) {
                 $title = 'Thêm danh mục thành công';
@@ -228,6 +295,35 @@ class Admin extends Controller
         } else {
             header("Location: " . BASE_URL . "/errors/unauthorized");
         }
+    }
+
+    function DeleteUser($user_id, $token)
+    {
+        // Kiểm tra token
+        if (empty($token) || $token != $_SESSION['_token']) {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+
+        $result = $this->UserModel->DeleteUser($user_id);
+        switch ($result) {
+            case false:
+                $title = 'Xóa thành viên thất bại';
+                $mes = "Lỗi hệ thống!";
+                response_error($title, $mes);
+                break;
+            case true:
+                $title = 'Xóa thành viên thành công';
+                response_success($title);
+                break;
+            default:
+                $title = 'Xóa thành viên thất bại';
+                $mes = "Không thể xóa. Có $result bài viết thuộc tác giả này!";
+                response_error($title, $mes);
+                break;
+        }
+        echo "<script>history.back();</script>";
+        exit();
     }
 
 }

@@ -163,6 +163,8 @@ function validateForm($fieldsToValidate)
         'current_password' => 'validatePassword',
         'category_name' => 'validateNoSpecialChars',
         'category_description' => 'validateNoSpecialChars',
+        'category_name_update' => 'validateNoSpecialChars',
+        'category_description_update' => 'validateNoSpecialChars',
     ];
 
 

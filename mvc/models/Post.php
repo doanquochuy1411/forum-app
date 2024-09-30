@@ -150,6 +150,7 @@ class Post extends DB
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
+            $row['user_id'] = encryptData($row['user_id']);
         }
 
         return $data;
@@ -216,5 +217,14 @@ class Post extends DB
         } else {
             return 0;
         }
+    }
+
+    public function GetAuthOfPost($post_id)
+    {
+        $id = decryptData($post_id);
+        $sql = "select user_id from posts where id = ?";
+        $result = $this->executeSelectQuery($sql, [$id]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        return $data;
     }
 }

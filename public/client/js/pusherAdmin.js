@@ -30,7 +30,6 @@ Pusher.logToConsole = true;
                         var image = 'http://localhost/forum-app/public/client/image/images.png';
                         if (notification.comment_id != null) {
                             // Gọi API để lấy thông tin người dùng từ comment_id
-                            // console.log(notification.comment_id)
                             getAuthOfComment(notification.comment_id, function(userDetail) {
                             // console.log("user details: " + userDetail.user_details[0]);
                             image = 'http://localhost/forum-app/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
@@ -57,17 +56,18 @@ Pusher.logToConsole = true;
 
     function addNotificationToDropdown(notification, image) {
         $('#notification-dropdown').append(
-            `<li>
-                <a href="http://localhost/forum-app/home/notifications/${notification.id}">
-                    <div style="display: flex; align-items: center;">
-                        <img src="${image}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-                        <div class="notification-message" style="max-width: 200px;">
-                            ${notification.message}
-                        </div>
-                        <span style="font-size: 0.8em; color: grey; margin-left: 10px;">${timeAgo(notification.created_at)}</span>
-                    </div>
-                </a>
-            </li>`
+            `<li class="notification-message">
+                                        <a href="http://localhost/forum-app/home/notifications/${notification.id}">
+                                            <div class="media">
+                                                <span class="avatar">U</span>
+                                                <div class="media-body">
+                                                    <p class="noti-details">${notification.message}</p>
+                                                    <p class="noti-time"><span class="notification-time">${timeAgo(notification.created_at)}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>`
         );
     }
 

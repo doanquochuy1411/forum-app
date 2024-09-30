@@ -3,7 +3,8 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Danh mục</h4>
+                <!-- <h4 class="page-title">Danh mục</h4> -->
+                <h3 class="text-primary font-weight-bold position-relative">Danh mục</h3>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
                 <a href="#" id="openAddCategoryModal" class="btn btn btn-primary btn-rounded float-right"><i
@@ -34,7 +35,7 @@
                                     <td>' . $category["name"] . '</td>
                                     <td>' . $category["description"] . '</td>
                                     <td>
-                                        <a href="' . BASE_URL . '/admin/editCategory/' . $category['id'] . '" class="px-2 edit"><i
+                                        <a href="' . BASE_URL . '/admin/UpdateCategory/' . $category['id'] . '" class="px-2 edit"><i
                                         class="fas fa-pencil-alt"></i></a>
                                         <a href="#" style="color: red" title="Xóa danh mục"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/admin/deleteCategory/' . $category['id'] . '\')"></i></a>
                                         </td>

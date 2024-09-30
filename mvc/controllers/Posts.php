@@ -7,6 +7,7 @@ class Posts extends Controller
     protected $UserModel;
     protected $CategoryModel;
     protected $TagModel;
+    protected $NotificationModel;
     private $userID;
 
     public $layout = "client_layout";
@@ -26,6 +27,7 @@ class Posts extends Controller
         $this->CommentModel = $this->model("Comment");
         $this->CategoryModel = $this->model("Category");
         $this->TagModel = $this->model("Tag");
+        $this->NotificationModel = $this->model("Notification");
     }
 
     function Index()
@@ -43,7 +45,7 @@ class Posts extends Controller
         }
 
         if (isset($_REQUEST["btnComment"])) {
-            $content = htmlspecialchars($_REQUEST["content"]);
+            $content = $_REQUEST["content"];
             $parent_comment_id = htmlspecialchars($_REQUEST["parent_comment_id"]);
             $post_id = htmlspecialchars($_REQUEST["post_id"]);
 
@@ -56,17 +58,24 @@ class Posts extends Controller
                 return;
             }
 
-            $post_id = $this->CommentModel->CreateComment($content, $this->userID, $post_id, $parent_comment_id);
-            if ($post_id == 0) {
+            $cmt_id = $this->CommentModel->CreateComment($content, $this->userID, $post_id, $parent_comment_id);
+            if ($cmt_id == 0) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Bình luận thất bại";
-                $_SESSION['message'] = "Không thể tạo bình luận!";
+                $_SESSION['message'] = "Không thể bình luận!";
             } else {
+                $this->NotificationModel->CreateNotification($post_id, "đã bình luận: " . stripImages($content), null, $cmt_id);
+                $auth = $this->PostModel->GetAuthOfPost($post_id);
+                // Gửi thông báo real-time qua Pusher cho tác giả
+                $this->sendNotification($auth[0]["user_id"], "đã bình luận: " . stripImages($content), $cmt_id, $post_id);
+
                 $_SESSION['action_status'] = 'success';
                 $_SESSION['title_message'] = "Bình luận thành công";
             }
             echo "<script>history.back();</script>";
             exit();
+        } else {
+            header("Location: " . BASE_URL . "/errors/Unauthorized");
         }
     }
 
@@ -80,8 +89,11 @@ class Posts extends Controller
         }
 
         $comment = $this->CommentModel->GetCommentByID($id);
-
-        if ($comment[0]['user_id'] != $_SESSION['UserID']) {
+        // print_r($comment);
+        // echo $comment[0]['user_id'];
+        // echo "<br>";
+        // echo decryptData($_SESSION['UserID']);
+        if ($comment[0]['user_id'] != decryptData($_SESSION['UserID'])) {
             $_SESSION['action_status'] = 'error';
             $_SESSION['title_message'] = "Không có quyền truy cập!";
             header("Location: " . BASE_URL);
@@ -106,8 +118,10 @@ class Posts extends Controller
     {
         $id = htmlspecialchars($id);
         $posts = $this->PostModel->GetPostByID($id);
+        $authID = decryptData($posts[0]['user_id']);
+        $loginID = decryptData($_SESSION['UserID']);
 
-        if ($posts[0]['user_id'] != $_SESSION['UserID']) {
+        if ($authID != $loginID) {
             $_SESSION['action_status'] = 'error';
             $_SESSION['title_message'] = "Không có quyền truy cập!";
             header("Location: " . BASE_URL);
@@ -151,7 +165,7 @@ class Posts extends Controller
             $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
             $title = htmlspecialchars($_REQUEST["title"]);
             $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
-            $content = htmlspecialchars($_REQUEST["content"]);
+            $content = $_REQUEST["content"];
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';
@@ -211,14 +225,14 @@ class Posts extends Controller
 
         $post = $this->PostModel->GetPostByID($id);
 
-        if ($post[0]['user_id'] != $_SESSION['UserID'] && $_SESSION['RoleID'] != 1) {
+        if (decryptData($post[0]['user_id']) != decryptData($_SESSION['UserID']) && $_SESSION['RoleID'] != 1) {
             $_SESSION['action_status'] = 'error';
             $_SESSION['title_message'] = "Không có quyền truy cập!";
             header("Location: " . BASE_URL);
             exit();
         }
 
-        // // Trả về true nếu xóa thành công và ngược lại
+        // Trả về true nếu xóa thành công và ngược lại
         $result = $this->PostModel->DeletePost($id);
         if (!$result) {
             $_SESSION['action_status'] = 'error';
@@ -230,5 +244,26 @@ class Posts extends Controller
         }
         echo "<script>history.back();</script>";
         exit();
+    }
+
+    private function sendNotification($receiver_id, $message, $commentId = null, $postId = null)
+    {
+        global $pusher;
+
+        $data['message'] = array(
+            'receiver_id' => $receiver_id,
+            'message' => $message,
+            'commentId' => $commentId,
+            'postId' => $postId,
+        );
+
+        $result = $pusher->trigger('post-reported', 'PostReported', $data);
+
+        // In ra kết quả của Pusher trigger
+        if ($result === true) {
+            error_log("Notification sent successfully: " . json_encode($data));
+        } else {
+            error_log("Notification failed: " . json_encode($data));
+        }
     }
 }

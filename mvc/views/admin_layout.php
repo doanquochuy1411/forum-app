@@ -56,7 +56,7 @@
             <!-- Header start -->
             <div class="header-menu">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="<?php echo BASE_URL ?>" class="logo">
                         <img src="<?php echo BASE_URL ?>/public/admin/assets/img/logo-iuh.ico" width="35" height="35"
                             alt="">
                         <span>Admin</span>
@@ -70,35 +70,29 @@
                 <!-- /Mobile Menu Toggle -->
 
                 <!-- Search-->
-                <div class="searchbar">
+                <!-- <div class="searchbar">
                     <form class="form-inline my-1 w-25 float-left">
                         <input class="form-control mr-sm-2 search-input search_icon" type="search"
                             placeholder="Search...">
                     </form>
-                </div>
+                </div> -->
                 <!--/ Search-->
 
                 <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
 
                 <!-- Header Right Menu -->
                 <ul class="nav user-menu float-right">
-                    <li class="nav-item dropdown d-none d-sm-block">
-                        <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i
-                                class="far fa-paper-plane"></i> <span
-                                class="badge badge-pill bg-danger float-right">8</span></a>
-                    </li>
-
                     <!-- /Notifications -->
                     <li class="nav-item dropdown d-none d-sm-block">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="far fa-bell"></i>
                             <span class="badge badge-pill bg-danger float-right">3</span></a>
                         <div class="dropdown-menu notifications">
                             <div class="topnav-dropdown-header">
-                                <span>Notifications</span>
+                                <span>Thông báo</span>
                             </div>
                             <div class="drop-scroll">
-                                <ul class="notification-list">
-                                    <li class="notification-message">
+                                <ul class="notification-list" id="notification-dropdown">
+                                    <!-- <li class="notification-message">
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar">V</span>
@@ -114,11 +108,8 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
-                            </div>
-                            <div class="topnav-dropdown-footer">
-                                <a href="#">View all Notifications</a>
                             </div>
                         </div>
                     </li>
@@ -129,14 +120,14 @@
                             <span><?php echo $user[0]["user_name"] ?></span>&nbsp;
                             <span class="user-img">
                                 <img class="rounded-circle"
-                                    src="<?php echo BASE_URL ?>/public/admin/assets/img/user.jpg" width="24"
-                                    alt="Admin">
+                                    src="<?php echo BASE_URL ?>/public/src/uploads/<?php echo $user[0]["image"] ?>"
+                                    width="24" alt="Admin">
                                 <span class="status online"></span>
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Trang cá nhân</a>
-                            <a class="dropdown-item" href="login.html">Đăng xuất</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL ?>">Trang chính</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL ?>/home/logout">Đăng xuất</a>
                         </div>
                     </li>
                 </ul>
@@ -186,15 +177,6 @@
                             <li>
                                 <a href="<?php echo BASE_URL ?>"><i class="fas fa-home"></i> <span>Diễn
                                         đàn</span></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fa fa-columns"></i> <span>Khác</span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="<?php echo BASE_URL ?>/profile/info"> Trang cá nhân </a></li>
-                                    <li><a href="<?php echo BASE_URL ?>/profile/changePassword"> Đổi mật khẩu </a></li>
-                                    <li><a href="<?php echo BASE_URL ?>/home/logout"> Đăng xuất </a></li>
-                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -305,6 +287,10 @@
     <!-- Custom JS -->
     <script src="<?php echo BASE_URL ?>/public/admin/assets/js/app.js"></script>
     <!-- <script src="<?php echo BASE_URL; ?>/public/admin/assets/js/loading.js"></script> -->
+
+    <!-- Pusher -->
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="<?php echo BASE_URL ?>/public/client/js/pusherAdmin.js"></script>
 
     <script>
         /*Donut Pie chart*/
@@ -750,30 +736,17 @@
                 title: "Bạn có chắc chắn xóa không",
                 width: '500px', // Tăng chiều rộng của popup
                 confirmButtonText: "Xóa",
-                // denyButtonText: `Don't save`,
-                // showDenyButton: true,
                 showCancelButton: true,
-                // customClass: {
-                //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
-                //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
-                //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
-                //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
-                //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
-                // }
             }).then((result) => {
                 if (result.isConfirmed) {
                     targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
-                    // console.log("href: ", targetHref);
                     window.location.href = targetHref;
-                    // window.location.href = event.target.href;
-                    // Swal.fire("Xóa thành công!", "", "success");
                 }
-                // else if (result.isDenied) {
-                //     Swal.fire("Changes are not saved", "", "info");
-                // }
             });
         }
     </script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
 </body>
 
 </html>

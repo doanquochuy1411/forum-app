@@ -180,5 +180,29 @@ class User extends DB
         return $data;
     }
 
+    public function DeleteUser($user_id)
+    {
+        $id = decryptData($user_id);
+
+        $re_sql = "select count(id) as total_posts from posts where user_id = $id";
+
+        $result = $this->con->query($re_sql);
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $total_posts = $row['total_posts'];
+            if ($total_posts > 0) {
+                return $total_posts; // danh mục có chứa bài viết    
+            }
+        }
+
+        $sql = "UPDATE user set deleted_at = NOW() where id = ?";
+        $result = $this->executeQuery($sql, [$id]);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

@@ -3,7 +3,9 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Người dùng</h4>
+                <!-- <h4 class="page-title">Người dùng</h4> -->
+                <h3 class="text-primary font-weight-bold position-relative">Người Dùng</h3>
+                <div class="title-underline"></div>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
                 <a href="#" class="btn btn btn-primary btn-rounded float-right" id="openAddUserModal"><i
@@ -40,8 +42,8 @@
                                     <td>' . $user['email'] . '</td>
                                     <td>' . $user['phone_number'] . '</td>
                                     <td>
-                                        <a href="' . BASE_URL . '/admin/users/edit/' . $user["id"] . '" class="px-2 edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="' . BASE_URL . '/admin/users/delete/' . $user["id"] . '" class="px-2 del" data-toggle="modal" data-target="#delete_patient"><i class="far fa-trash-alt"></i></a>
+                                        <a href="#" class="px-2 edit"></a>
+                                        <a href="#" style="color: red" title="Xóa thành viên"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/admin/deleteUser/' . $user['id'] . '\')"></i></a>
                                         </td>
                                     </tr>';
                                         $count++;
@@ -73,198 +75,6 @@
                                 </div>
                                 <div class="list-body">
                                     <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item new-message">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">John Doe</span>
-                                    <span class="message-time">1 Aug</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Tarah Shropshire </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Mike Litorus</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Catherine Manseau </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">D</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Domenic Houston </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">B</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Buster Wigton </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Rolland Webber </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Claire Mapes </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Melita Faucher</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Jeffery Lalor</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">L</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Loren Gatlin</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Tarah Shropshire</span>
                                     <span class="message-time">12:28 AM</span>
                                     <div class="clearfix"></div>
                                     <span class="message-content">Lorem ipsum dolor sit amet, consectetur
