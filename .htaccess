@@ -1,0 +1,23 @@
+RewriteEngine On
+
+# Điều kiện để không áp dụng rewrite nếu URL bắt đầu bằng /public/
+RewriteCond %{REQUEST_URI} !^/public/
+
+# Kiểm tra nếu file hoặc thư mục không tồn tại
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Quy tắc rewrite
+RewriteRule ^(.+)$ index.php?url=$1 [L,QSA]
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php5_module>
+
+</IfModule>
+<IfModule lsapi_module>
+
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

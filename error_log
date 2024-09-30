@@ -1,0 +1,1354 @@
+[29-Sep-2024 07:42:44 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all(): Argument #1 ($result) must be of type mysqli_result, null given in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php:38
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(38): mysqli_fetch_all()
+#1 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Index()
+#2 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#3 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php on line 38
+[29-Sep-2024 07:45:34 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all(): Argument #1 ($result) must be of type mysqli_result, null given in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php:38
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(38): mysqli_fetch_all()
+#1 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Index()
+#2 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#3 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php on line 38
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key "_token" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 316
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:02 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:02 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:46:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:46:02 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:46:02 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:53 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:47:53 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:55 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:55 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:56 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:56 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:47:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:47:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:48:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:48:00 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:48:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:52:53 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:52:53 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:53:43 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:53:43 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:54:56 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:54:56 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:56:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:56:04 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:56:04 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:56:20 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:56:20 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:56:20 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:56:24 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:56:24 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:56:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:56:26 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:56:26 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 07:56:29 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:56:29 UTC] PHP Warning:  Undefined array key "image" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/home.php on line 148
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 07:56:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:56:50 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 14:56:50 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 21:23:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key "_token" in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 316
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 7
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 22
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 25
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 27
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 29
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 41
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Undefined array key 0 in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 14:23:01 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php on line 46
+[29-Sep-2024 21:23:01 Asia/Ho_Chi_Minh] PHP Warning:  Undefined variable $output in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29
+[29-Sep-2024 21:23:01 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught TypeError: array_slice(): Argument #1 ($array) must be of type array, null given in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php:29
+Stack trace:
+#0 /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php(29): array_slice()
+#1 /home/xjlyuqbs9m31/public_html/mvc/views/pages/post_details.php(46): timeAgo()
+#2 /home/xjlyuqbs9m31/public_html/mvc/views/client_layout.php(226): require_once('/home/xjlyuqbs9...')
+#3 /home/xjlyuqbs9m31/public_html/mvc/core/Controller.php(14): require_once('/home/xjlyuqbs9...')
+#4 /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php(99): Controller->view()
+#5 /home/xjlyuqbs9m31/public_html/mvc/core/App.php(51): Home->Posts()
+#6 /home/xjlyuqbs9m31/public_html/index.php(8): App->__construct()
+#7 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/pkg/format.php on line 29

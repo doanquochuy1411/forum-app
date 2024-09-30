@@ -1,0 +1,4 @@
+[28-Sep-2024 01:54:47 UTC] PHP Fatal error:  Uncaught Error: Class "Controller" not found in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/xjlyuqbs9m31/public_html/mvc/controllers/Home.php on line 2

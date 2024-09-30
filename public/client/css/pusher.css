@@ -1,0 +1,42 @@
+
+#notification-dropdown {
+    max-height: 300px;
+    /* Đặt chiều cao tối đa cho dropdown */
+    overflow-y: auto;
+    /* Thêm thanh kéo dọc khi nội dung vượt quá chiều cao tối đa */
+    scrollbar-width: thin;
+    /* Độ rộng của thanh kéo */
+    scrollbar-color: #888 #f1f1f1;
+    /* Màu sắc của thanh kéo và nền */
+}
+
+/* Tùy chỉnh thanh kéo cho trình duyệt Webkit (Chrome, Safari) */
+#notification-dropdown::-webkit-scrollbar {
+    width: 8px;
+    /* Độ rộng của thanh kéo */
+}
+
+#notification-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Màu nền của thanh kéo */
+}
+
+#notification-dropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Màu của thanh kéo */
+    border-radius: 4px;
+    /* Bo góc thanh kéo */
+}
+
+#notification-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Màu của thanh kéo khi hover */
+}
+
+.notification-message {
+    max-width: 200px; /* Chiều rộng tối đa */
+    max-height: 4.8em; /* Chiều cao tối đa để cho phép 3 dòng văn bản */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6em; /* Chiều cao dòng để xác định số dòng */
+}
