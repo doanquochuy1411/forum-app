@@ -90,23 +90,21 @@ class Home extends Controller
             $type = htmlspecialchars($_REQUEST["contentType"]);
             $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
             $title = htmlspecialchars($_REQUEST["title"]);
-            $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
+            $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
             $content = $_REQUEST["content"];
             $user_id = $_SESSION["UserID"];
+
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng bài thất bại";
                 $_SESSION['message'] = "Tiêu đề không hợp lệ!";
-                // $errorMessage = implode(", ", $errors);
                 echo "<script>history.back();</script>";
                 return;
             }
 
             $post_id = $this->PostModel->CreatePost($title, $content, $user_id, $category_id, $type);
-
             if ($post_id != 0) { // success
-
                 $allTagsInserted = true; // Flag to check if all tags were inserted correctly
 
                 if (count($tags) > 0) {
@@ -118,7 +116,6 @@ class Home extends Controller
 
                         $result = $this->TagModel->AddTag($post_id, $tag_id);
                         if ($result === false) {
-
                             $allTagsInserted = false; // Set flag to false if insertion fails
                         }
                     }

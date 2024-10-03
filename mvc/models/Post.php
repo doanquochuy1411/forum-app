@@ -159,6 +159,7 @@ class Post extends DB
     public function CreatePost($title, $content, $user_id, $category_id, $type)
     {
         $user_id = decryptData($user_id);
+        $category_id = decryptData($category_id);
         $sql = "INSERT INTO posts(title, content, user_id, category_id, type) values (?,?,?,?,?)";
         $result = $this->executeQuery($sql, [$title, $content, $user_id, $category_id, $type]);
 

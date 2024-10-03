@@ -26,7 +26,7 @@ function validateNoSpecialChars($input)
         return true;
     }
 
-    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\[\]]+$/u', $input);
+    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\=[\]]+$/u', $input);
 }
 
 function validateAddress($address)

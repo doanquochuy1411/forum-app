@@ -46,7 +46,7 @@ class Posts extends Controller
 
         if (isset($_REQUEST["btnComment"])) {
             $content = $_REQUEST["content"];
-            $parent_comment_id = htmlspecialchars($_REQUEST["parent_comment_id"]);
+            $parent_comment_id = (int) ($_REQUEST["parent_comment_id"]);
             $post_id = htmlspecialchars($_REQUEST["post_id"]);
 
             $errors = validateForm(["parent_comment_id", "post_id"]);
