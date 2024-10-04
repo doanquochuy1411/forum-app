@@ -27,6 +27,7 @@ class User extends DB
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
+            $row['account_name'] = encryptData($row['account_name']);
         }
         return $data;
     }
@@ -57,6 +58,7 @@ class User extends DB
 
     public function GetUserByAccountName($account_name)
     {
+        $account_name = decryptData($account_name);
         $sql = "SELECT u.*, ur.role_id, uas.total_posts, uas.total_questions, uas.total_comments FROM user u Join user_role ur on ur.user_id = u.id join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL AND u.account_name = ?";
         $result = $this->executeSelectQuery($sql, [$account_name]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -203,6 +205,23 @@ class User extends DB
         } else {
             return false;
         }
+    }
+
+    public function GetUserAmountPerMonthByYear($year)
+    {
+        $sql = "SELECT 
+            MONTH(created_at) AS month, 
+            COUNT(*) AS user_count
+        FROM 
+            user
+        WHERE 
+            YEAR(created_at) = ?
+        GROUP BY 
+            MONTH(created_at)
+        ORDER BY 
+            month ASC;
+        ";
+        return $this->executeSelectQuery($sql, [$year]);
     }
 }
 ?>

@@ -33,6 +33,7 @@ class Admin extends Controller
         $posts = $this->PostModel->GetAllPostWithType("post"); // get all post
         $questions = $this->PostModel->GetAllPostWithType("question"); // get all question
         $comments = $this->CommentModel->GetAllComment(); // get all comment
+        $years = $this->getCurrentAndPreviousYears(); // lấy 5 năm gần nhất
 
         $this->view($this->layout, [
             "Page" => $this->page,
@@ -42,6 +43,7 @@ class Admin extends Controller
             "posts" => $posts,
             "questions" => $questions,
             "comments" => $comments,
+            "years" => $years,
         ]);
     }
 
@@ -214,6 +216,7 @@ class Admin extends Controller
         }
 
         if (isset($_REQUEST["btnUpdateCategory"])) {
+            $current_name = htmlspecialchars($_POST["current_name"]);
             $category_name = htmlspecialchars($_POST["category_name_update"]);
             $category_description = htmlspecialchars($_POST["category_description_update"]);
 
@@ -226,13 +229,15 @@ class Admin extends Controller
                 exit();
             }
 
-            $checkCategoryName = $this->CategoryModel->CheckNameCategory($category_name);
-            if ($checkCategoryName) {
-                $title = 'Cập nhật thất bại';
-                $mes = "Tên danh mục đã tồn tại!";
-                response_error($title, $mes);
-                echo "<script>history.back();</script>";
-                exit();
+            if ($current_name != $category_name) {
+                $checkCategoryName = $this->CategoryModel->CheckNameCategory($category_name);
+                if ($checkCategoryName) {
+                    $title = 'Cập nhật thất bại';
+                    $mes = "Tên danh mục đã tồn tại!";
+                    response_error($title, $mes);
+                    echo "<script>history.back();</script>";
+                    exit();
+                }
             }
 
             $result = $this->CategoryModel->UpdateCategory($category_id, $category_name, $category_description);
@@ -324,6 +329,18 @@ class Admin extends Controller
         }
         echo "<script>history.back();</script>";
         exit();
+    }
+
+    function getCurrentAndPreviousYears()
+    {
+        $currentYear = date("Y");
+        $previousYears = [];
+
+        for ($i = 0; $i < 5; $i++) {
+            $previousYears[] = $currentYear - $i;
+        }
+
+        return $previousYears;
     }
 
 }

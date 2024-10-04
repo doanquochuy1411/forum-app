@@ -228,4 +228,21 @@ class Post extends DB
         $data = $result->fetch_all(MYSQLI_ASSOC);
         return $data;
     }
+
+    public function GetPostAmountPerMonthByYear($year)
+    {
+        $sql = "SELECT 
+            MONTH(created_at) AS month, 
+            COUNT(*) AS post_count
+        FROM 
+            posts
+        WHERE 
+            YEAR(created_at) = ?
+        GROUP BY 
+            MONTH(created_at)
+        ORDER BY 
+            month ASC;
+        ";
+        return $this->executeSelectQuery($sql, [$year]);
+    }
 }

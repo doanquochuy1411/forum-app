@@ -29,68 +29,152 @@
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                    $count = 1;
-                                    foreach ($all_users as $user) {
-                                        echo '<tr>
-                                        <td>' . $count . '</td>
-                                            <td><b><a style="color: #000" href="' . BASE_URL . '/home/info/' . $_SESSION["AccountName"] . '"><img width="28" height="28"
-                                                    src="' . BASE_URL . '/public/src/uploads/' . $user['image'] . '"
-                                    class="rounded-circle m-r-5" alt="Img"> ' . $user['user_name'] . '</a></b></td>
-                                    <td>' . date('d/m/Y', strtotime($user["created_at"])) . '</td>
-                                    <td>' . $user['email'] . '</td>
-                                    <td>' . $user['phone_number'] . '</td>
-                                    <td>
-                                        <a href="#" class="px-2 edit"></a>
-                                        <a href="#" style="color: red" title="Xóa thành viên"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/admin/deleteUser/' . $user['id'] . '\')"></i></a>
-                                        </td>
-                                    </tr>';
-                                        $count++;
-                                    }
-                                    ?>
-
+                                <tbody id="userTableBody">
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
                 </div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </div>
     </div>
-
-    <!--Notification box-->
-    <div class="notification-box">
-        <div class="msg-sidebar notifications msg-noti">
-            <div class="topnav-dropdown-header">
-                <span>Messages</span>
-            </div>
-            <div class="drop-scroll msg-list-scroll">
-                <ul class="list-box">
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="#">See all messages</a>
-            </div>
-        </div>
-    </div>
-    <!--Notification box-->
-
 </div>
 <!--/ content-->
+
+<script>
+    // Dữ liệu người dùng từ PHP
+    const allUsers = <?php echo json_encode($all_users); ?>;
+    let current_page = 1;
+    const usersPerPage = 5;
+    let filteredUsers = allUsers;
+
+    // Hàm hiển thị người dùng
+    function displayUsers(users) {
+        const userTableBody = document.getElementById('userTableBody');
+        userTableBody.innerHTML = ''; // Xóa dữ liệu cũ
+
+        // Tính toán vị trí bắt đầu và kết thúc
+        const start = (current_page - 1) * usersPerPage;
+        const end = start + usersPerPage;
+        const paginatedUsers = users.slice(start, end);
+
+        paginatedUsers.forEach((user, index) => {
+            // Tạo một phần tử tr từ chuỗi HTML
+            const row = document.createElement('tr');
+
+            // Thêm lớp user-row
+            row.className = 'data-row';
+
+            // Thiết lập nội dung HTML cho hàng
+            row.innerHTML = `
+        <td>${start + index + 1}</td>
+        <td><b><a style="color: #000" href="<?php echo BASE_URL . '/home/info/' ?>${user.account_name}">
+        <img width="28" height="28" src="<?php echo BASE_URL . '/public/src/uploads/' ?>${user.image}" class="rounded-circle m-r-5" alt="Img"> ${user.user_name}</a></b></td>
+        <td>${new Date(user.created_at).toLocaleDateString('en-GB')}</td>
+        <td>${user.email || ''}</td>
+        <td>${user.phone_number || ''}</td>
+        <td>
+            <a href="#" class="px-2 edit"></a>
+            <a href="#" style="color: red" title="Xóa thành viên"><i class="fa fa-trash-alt" onclick="confirmDelete(event,'<?php echo BASE_URL ?>/admin/deleteUser/${user.id}')"></i></a>
+        </td>
+    `;
+
+            // Chèn hàng vào bảng
+            userTableBody.appendChild(row);
+
+            // Sử dụng setTimeout để thêm lớp `show` sau khi hàng được thêm vào
+            setTimeout(() => {
+                row.classList.add('show'); // Thêm lớp `show` để kích hoạt hiệu ứng
+            }, 0); // Đặt thời gian 0 để hiệu ứng diễn ra ngay lập tức
+        });
+
+    }
+
+    function setupPagination(users) {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = ''; // Xóa phân trang cũ
+        const pageCount = Math.ceil(users.length / usersPerPage);
+
+        // Nút "Trước"
+        if (current_page > 1) {
+            const prevButton = document.createElement('a');
+            prevButton.textContent = '« Trước';
+            prevButton.className = 'page-link';
+            prevButton.href = '#'; // Thêm href để biến nó thành liên kết
+            prevButton.onclick = function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                current_page--;
+                displayUsers(users);
+                setupPagination(users);
+            };
+            pagination.appendChild(prevButton);
+        } else {
+            const disabledPrevButton = document.createElement('span');
+            disabledPrevButton.textContent = '« Trước';
+            disabledPrevButton.className = 'disabled';
+            pagination.appendChild(disabledPrevButton);
+        }
+
+        // Nút trang
+        for (let i = 1; i <= pageCount; i++) {
+            const pageButton = document.createElement('a');
+            pageButton.textContent = i;
+            pageButton.className = 'page-link';
+            if (i === current_page) {
+                pageButton.classList.add('active'); // Nút hiện tại
+                pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
+            } else {
+                pageButton.onclick = function (event) {
+                    event.preventDefault(); // Ngăn chặn hành vi mặc định
+                    current_page = i;
+                    displayUsers(users);
+                    setupPagination(users);
+                };
+            }
+            pagination.appendChild(pageButton);
+        }
+
+        // Nút "Sau"
+        if (current_page < pageCount) {
+            const nextButton = document.createElement('a');
+            nextButton.textContent = 'Sau »';
+            nextButton.className = 'page-link';
+            nextButton.href = '#'; // Thêm href để biến nó thành liên kết
+            nextButton.onclick = function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                current_page++;
+                displayUsers(users);
+                setupPagination(users);
+            };
+            pagination.appendChild(nextButton);
+        } else {
+            const disabledNextButton = document.createElement('span');
+            disabledNextButton.textContent = 'Sau »';
+            disabledNextButton.className = 'disabled';
+            pagination.appendChild(disabledNextButton);
+        }
+    }
+
+    // Hàm lọc dữ liệu dựa trên từ khóa tìm kiếm
+    function filterUsers(keyword) {
+        filteredUsers = allUsers.filter(user =>
+            user.user_name.toLowerCase().includes(keyword.toLowerCase()) ||
+            user.email.toLowerCase().includes(keyword.toLowerCase()) ||
+            (user.phone_number && user.phone_number.toLowerCase().includes(keyword.toLowerCase()))
+        );
+        current_page = 1; // Quay về trang 1 sau khi lọc
+        displayUsers(filteredUsers);
+        setupPagination(filteredUsers);
+    }
+
+    // Gọi hàm khi trang được tải
+    displayUsers(allUsers);
+    setupPagination(allUsers);
+
+    // Bắt sự kiện nhập liệu vào ô tìm kiếm
+    document.getElementById('searchInput').addEventListener('input', function () {
+        filterUsers(this.value);
+    });
+</script>

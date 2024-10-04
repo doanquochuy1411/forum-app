@@ -11,7 +11,7 @@ Pusher.logToConsole = true;
 
     function updateNotifications() {
         $.ajax({
-            url: 'http://localhost/forum-app/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            url: BASE_URL+'/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
             type: 'GET',
             success: function(response) {
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
@@ -27,13 +27,13 @@ Pusher.logToConsole = true;
                     // Thêm các thông báo mới vào dropdown
                     data.notifications.forEach(function(notification) {
                         // console.log(notification)
-                        var image = 'http://localhost/forum-app/public/client/image/images.png';
+                        var image = BASE_URL+'/public/client/image/images.png';
                         if (notification.comment_id != null) {
                             // Gọi API để lấy thông tin người dùng từ comment_id
                             // console.log(notification.comment_id)
                             getAuthOfComment(notification.comment_id, function(userDetail) {
                             // console.log("user details: " + userDetail.user_details[0]);
-                            image = 'http://localhost/forum-app/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
+                            image = BASE_URL+'/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
                             // notification.message += userDetail.user_details[0].comment_user_name
                             notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message) 
                             // Thêm thông báo vào dropdown
@@ -58,7 +58,7 @@ Pusher.logToConsole = true;
     function addNotificationToDropdown(notification, image) {
         $('#notification-dropdown').append(
             `<li>
-                <a href="http://localhost/forum-app/home/notifications/${notification.id}">
+                <a href=BASE_URL+"/home/notifications/${notification.id}">
                     <div style="display: flex; align-items: center;">
                         <img src="${image}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                         <div class="notification-message" style="max-width: 200px;">
@@ -73,7 +73,7 @@ Pusher.logToConsole = true;
 
     function getAuthOfComment(cmt_id, callback) {
         $.ajax({
-            url: `http://localhost/forum-app/api/getUserDetailsViaCmtID/${cmt_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            url: BASE_URL+`/api/getUserDetailsViaCmtID/${cmt_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
             type: 'GET',
             success: function(response) {
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
@@ -83,7 +83,7 @@ Pusher.logToConsole = true;
             },
             error: function() {
                 console.log("Error fetching notifications.");
-                callback({ avatar: 'http://localhost/forum-app/public/client/image/images.png' });
+                callback({ avatar: BASE_URL+'/public/client/image/images.png' });
             }
         });
     }

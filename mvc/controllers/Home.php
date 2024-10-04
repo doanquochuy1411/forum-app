@@ -305,8 +305,8 @@ class Home extends Controller
     // Thông tin chi tiết của user
     function Info($account_name)
     {
-        $decryptedData = decryptData($account_name); // giải mã account_name để nhận lại tên tài khoản
-        $user_details = $this->UserModel->GetUserByAccountName($decryptedData); // body
+        // $decryptedData = decryptData($account_name); // giải mã account_name để nhận lại tên tài khoản
+        $user_details = $this->UserModel->GetUserByAccountName($account_name); // body
         // echo "key" . $_SESSION['Key'] . "<br>";
         // echo '<script>alert("' . $decryptedData . '")</script>';
         // print_r($user_details);

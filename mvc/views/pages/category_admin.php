@@ -26,27 +26,13 @@
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                    $count = 1;
-                                    foreach ($categories as $category) {
-                                        echo '<tr>
-                                    <td>' . $count . '</td>
-                                    <td>' . $category["name"] . '</td>
-                                    <td>' . $category["description"] . '</td>
-                                    <td>
-                                        <a href="' . BASE_URL . '/admin/UpdateCategory/' . $category['id'] . '" class="px-2 edit"><i
-                                        class="fas fa-pencil-alt"></i></a>
-                                        <a href="#" style="color: red" title="Xóa danh mục"><i class="fa fa-trash-alt" onclick="confirmDelete(event,\'' . BASE_URL . '/admin/deleteCategory/' . $category['id'] . '\')"></i></a>
-                                        </td>
-                                    </tr>';
-                                        $count++;
-                                    } ?>
+                                <tbody id="dataTableBody">
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </div>
     </div>
@@ -86,231 +72,137 @@
         </div>
     </div>
     <!-- End add category modal -->
-
-    <!--Notification box-->
-    <div class="notification-box">
-        <div class="msg-sidebar notifications msg-noti">
-            <div class="topnav-dropdown-header">
-                <span>Messages</span>
-            </div>
-            <div class="drop-scroll msg-list-scroll">
-                <ul class="list-box">
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item new-message">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">John Doe</span>
-                                    <span class="message-time">1 Aug</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Tarah Shropshire </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Mike Litorus</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Catherine Manseau </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">D</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Domenic Houston </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">B</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Buster Wigton </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Rolland Webber </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Claire Mapes </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Melita Faucher</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Jeffery Lalor</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">L</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Loren Gatlin</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Tarah Shropshire</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="#">See all messages</a>
-            </div>
-        </div>
-    </div>
-    <!--Notification box-->
-
 </div>
 <!--/ content-->
+
+
+<script>
+    // Dữ liệu người dùng từ PHP
+    const data = <?php echo json_encode($categories); ?>;
+    let current_page = 1;
+    const dataPerPage = 5;
+    // Hàm hiển thị người dùng
+    function displayData(data) {
+        const dataTableBody = document.getElementById('dataTableBody');
+        dataTableBody.innerHTML = ''; // Xóa dữ liệu cũ
+
+        // Tính toán vị trí bắt đầu và kết thúc
+        const start = (current_page - 1) * dataPerPage;
+        const end = start + dataPerPage;
+        const paginatedData = data.slice(start, end);
+
+        paginatedData.forEach((d, index) => {
+            // Tạo một phần tử tr từ chuỗi HTML
+            const row = document.createElement('tr');
+
+            // Thêm lớp user-row
+            row.className = 'data-row';
+
+            // Thiết lập nội dung HTML cho hàng
+            row.innerHTML = `
+        <td>${start + index + 1}</td>
+        <td>${d.name}</td>
+                                    <td>${d.description}</td>
+                                    <td>
+                                        <a href="<?php echo BASE_URL ?>/admin/UpdateCategory/${d.id}" class="px-2 edit"><i
+                                        class="fas fa-pencil-alt"></i></a>
+                                        <a href="#" style="color: red" title="Xóa danh mục"><i class="fa fa-trash-alt" onclick="confirmDelete(event,'<?php echo BASE_URL ?>/admin/deleteCategory/${d.id}')"></i></a>
+                                        </td>
+    `;
+
+            // Chèn hàng vào bảng
+            dataTableBody.appendChild(row);
+
+            // Sử dụng setTimeout để thêm lớp `show` sau khi hàng được thêm vào
+            setTimeout(() => {
+                row.classList.add('show'); // Thêm lớp `show` để kích hoạt hiệu ứng
+            }, 0); // Đặt thời gian 0 để hiệu ứng diễn ra ngay lập tức
+        });
+
+    }
+
+    function setupPagination(data) {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = ''; // Xóa phân trang cũ
+        const pageCount = Math.ceil(data.length / dataPerPage);
+
+        // Nút "Trước"
+        if (current_page > 1) {
+            const prevButton = document.createElement('a');
+            prevButton.textContent = '« Trước';
+            prevButton.className = 'page-link';
+            prevButton.href = '#'; // Thêm href để biến nó thành liên kết
+            prevButton.onclick = function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                current_page--;
+                displayData(data);
+                setupPagination(data);
+            };
+            pagination.appendChild(prevButton);
+        } else {
+            const disabledPrevButton = document.createElement('span');
+            disabledPrevButton.textContent = '« Trước';
+            disabledPrevButton.className = 'disabled';
+            pagination.appendChild(disabledPrevButton);
+        }
+
+        // Nút trang
+        for (let i = 1; i <= pageCount; i++) {
+            const pageButton = document.createElement('a');
+            pageButton.textContent = i;
+            pageButton.className = 'page-link';
+            if (i === current_page) {
+                pageButton.classList.add('active'); // Nút hiện tại
+                pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
+            } else {
+                pageButton.onclick = function (event) {
+                    event.preventDefault(); // Ngăn chặn hành vi mặc định
+                    current_page = i;
+                    displayData(data);
+                    setupPagination(data);
+                };
+            }
+            pagination.appendChild(pageButton);
+        }
+
+        // Nút "Sau"
+        if (current_page < pageCount) {
+            const nextButton = document.createElement('a');
+            nextButton.textContent = 'Sau »';
+            nextButton.className = 'page-link';
+            nextButton.href = '#'; // Thêm href để biến nó thành liên kết
+            nextButton.onclick = function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                current_page++;
+                displayData(data);
+                setupPagination(data);
+            };
+            pagination.appendChild(nextButton);
+        } else {
+            const disabledNextButton = document.createElement('span');
+            disabledNextButton.textContent = 'Sau »';
+            disabledNextButton.className = 'disabled';
+            pagination.appendChild(disabledNextButton);
+        }
+    }
+
+    // Hàm lọc dữ liệu dựa trên từ khóa tìm kiếm
+    function filterData(keyword) {
+        filteredData = data.filter(d =>
+            d.name.toLowerCase().includes(keyword.toLowerCase()) ||
+            d.description.toLowerCase().includes(keyword.toLowerCase())
+        );
+        current_page = 1; // Quay về trang 1 sau khi lọc
+        displayData(filteredData);
+        setupPagination(filteredData);
+    }
+
+    // Gọi hàm khi trang được tải
+    displayData(data);
+    setupPagination(data);
+
+    // Bắt sự kiện nhập liệu vào ô tìm kiếm
+    document.getElementById('searchInput').addEventListener('input', function () {
+        filterData(this.value);
+    });
+</script>

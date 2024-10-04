@@ -9,14 +9,18 @@ Pusher.logToConsole = true;
         updateNotifications();
     });
 
+    $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">3</span>');
     function updateNotifications() {
+        console.log("Fetching notifications...");
         $.ajax({
-            url: 'http://localhost/forum-app/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            url: BASE_URL+'/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
             type: 'GET',
             success: function(response) {
+                // console.log("Response received:", response);
+
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
                 var data = JSON.parse(response);
-                // console.log(data)
+                // console.log("Parsed data:", data);
                 if (data.code === 200) {
                     // Update số lượng thông báo
                     $('.badge').text(data.count);
@@ -27,12 +31,12 @@ Pusher.logToConsole = true;
                     // Thêm các thông báo mới vào dropdown
                     data.notifications.forEach(function(notification) {
                         // console.log(notification)
-                        var image = 'http://localhost/forum-app/public/client/image/images.png';
+                        var image = BASE_URL+'/public/client/image/images.png';
                         if (notification.comment_id != null) {
                             // Gọi API để lấy thông tin người dùng từ comment_id
                             getAuthOfComment(notification.comment_id, function(userDetail) {
                             // console.log("user details: " + userDetail.user_details[0]);
-                            image = 'http://localhost/forum-app/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
+                            image =  BASE_URL+'/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
                             // notification.message += userDetail.user_details[0].comment_user_name
                             notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message) 
                             // Thêm thông báo vào dropdown
@@ -43,6 +47,14 @@ Pusher.logToConsole = true;
                             addNotificationToDropdown(notification, image);
                         }
                     });
+
+                    if (data.count > 0) {
+                        $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">3</span>');
+                    } else {
+                        $('#alert-notification').find('.badge').remove();
+                    }
+
+                    
                 } else {
                     console.log("Lỗi rồi"); // Log trạng thái khi không có thông báo mới
                     console.log(data)
@@ -57,7 +69,7 @@ Pusher.logToConsole = true;
     function addNotificationToDropdown(notification, image) {
         $('#notification-dropdown').append(
             `<li class="notification-message">
-                                        <a href="http://localhost/forum-app/home/notifications/${notification.id}">
+                                        <a href="${BASE_URL}/home/notifications/${notification.id}">
                                             <div class="media">
                                                 <span class="avatar">U</span>
                                                 <div class="media-body">
@@ -73,7 +85,7 @@ Pusher.logToConsole = true;
 
     function getAuthOfComment(cmt_id, callback) {
         $.ajax({
-            url: `http://localhost/forum-app/api/getUserDetailsViaCmtID/${cmt_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            url: BASE_URL+`/api/getUserDetailsViaCmtID/${cmt_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
             type: 'GET',
             success: function(response) {
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
@@ -83,7 +95,7 @@ Pusher.logToConsole = true;
             },
             error: function() {
                 console.log("Error fetching notifications.");
-                callback({ avatar: 'http://localhost/forum-app/public/client/image/images.png' });
+                callback({ avatar: BASE_URL+'/public/client/image/images.png' });
             }
         });
     }

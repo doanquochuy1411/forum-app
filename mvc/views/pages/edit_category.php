@@ -29,7 +29,7 @@
                                 value="<?php echo $category[0]['name'] ?>" required>
                             <small id="category_name_update_err" class="text-danger"></small>
                         </div>
-
+                        <input type="hidden" value="<?php echo $category[0]['name'] ?>" name="current_name">
                         <div class="form-group mb-3">
                             <label for="category_description_update" class="form-label">Mô tả</label>
                             <input type="text" class="form-control" id="category_description_update"

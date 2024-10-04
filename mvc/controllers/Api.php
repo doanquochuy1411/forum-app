@@ -81,6 +81,60 @@ class Api extends Controller
             'user_details' => $userDetails,
         ]);
     }
+
+    public function getPostToStatistics($year)
+    {
+        // Lấy danh sách thông báo từ database
+        $result = $this->PostModel->GetPostAmountPerMonthByYear($year);
+        if (mysqli_num_rows($result) > 0) {
+            $posts = array_fill(0, 12, 0);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $posts[$row['month'] - 1] = $row['post_count'];
+            }
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'posts' => $posts,
+                'message' => "Lấy dữ liệu thành công",
+            ]);
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu thống kê.",
+            ]);
+            return;
+        }
+    }
+
+    public function getUserToStatistics($year)
+    {
+        // Lấy danh sách thông báo từ database
+        $result = $this->UserModel->GetUserAmountPerMonthByYear($year);
+        if (mysqli_num_rows($result) > 0) {
+            $userData = array_fill(0, 12, 0);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $userData[$row['month'] - 1] = $row['user_count'];
+            }
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'users' => $userData,
+                'message' => "Lấy dữ liệu thành công",
+            ]);
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu thống kê.",
+            ]);
+            return;
+        }
+    }
 }
 
 ?>
