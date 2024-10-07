@@ -22,6 +22,10 @@ function validatePassword($password)
 
 function validateNoSpecialChars($input)
 {
+    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\=[\]]+$/u', $input);
+}
+function validateDescription($input)
+{
     if ($input === '') {
         return true;
     }
@@ -154,7 +158,7 @@ function validateForm($fieldsToValidate)
         'email' => 'validateEmail',
         'password' => 'validatePassword',
         'address' => 'validateAddress',
-        'description' => 'validateNoSpecialChars',
+        'description' => 'validateDescription',
         'account_name' => 'validateNoSpecialChars',
         'user_name' => 'validateNoSpecialChars',
         'contentType' => 'validateNoSpecialChars',
@@ -162,9 +166,9 @@ function validateForm($fieldsToValidate)
         'title' => 'validateNoSpecialChars',
         'current_password' => 'validatePassword',
         'category_name' => 'validateNoSpecialChars',
-        'category_description' => 'validateNoSpecialChars',
+        'category_description' => 'validateDescription',
         'category_name_update' => 'validateNoSpecialChars',
-        'category_description_update' => 'validateNoSpecialChars',
+        'category_description_update' => 'validateDescription',
     ];
 
 

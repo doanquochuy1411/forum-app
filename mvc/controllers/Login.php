@@ -44,7 +44,8 @@ class Login extends Controller
                 $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
-            $userAccount = $this->UserModel->GetUserByAccountName($user_name);
+
+            $userAccount = $this->UserModel->GetUserByAccountName(encryptData($user_name));
             if ($userAccount && $userAccount['locked'] == 1) {
                 // echo "<script> alert('Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
                 $_SESSION['action_status'] = 'error';

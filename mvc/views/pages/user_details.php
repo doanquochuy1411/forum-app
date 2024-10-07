@@ -17,7 +17,7 @@
                     <div class="user-title3930">
                         <h3><a href="#"><?php echo $user_details["user_name"] ?></a>
                             <?php
-                            if (isset($_SESSION["UserID"]) && $user_details["id"] == $_SESSION["UserID"]) {
+                            if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
                                 echo '<a href="#" class="edit-icon" data-toggle="modal" data-target="#edit-user-modal"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
                             }
                             ?>
@@ -36,7 +36,7 @@
                                 <li><i class="fa fa-plus" aria-hidden="true"></i> <strong>Ngày tham gia:</strong>
                                     <?php echo formatVietnameseDate($user_details["created_at"]) ?></li>
                                 <?php
-                                if (isset($_SESSION["UserID"]) && $user_details["id"] == $_SESSION["UserID"]) {
+                                if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
                                     echo '<li><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> ' . $user_details["email"] . '
                                 </li>';
                                 } else {
@@ -49,7 +49,7 @@
                         <div class="ul-list-user-right29">
                             <ul>
                                 <?php
-                                if (isset($_SESSION["UserID"]) && $user_details["id"] == $_SESSION["UserID"]) {
+                                if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
                                     echo '<li><i class="fa fa-phone" aria-hidden="true"></i> <strong>Số điện thoại:</strong>
                                     ' . $user_details["phone_number"] . ' 
                                 </li>';
@@ -87,7 +87,7 @@
             <!-- Popup form -->
             <!-- Bootstrap Modal -->
             <?php
-            if (isset($_SESSION["UserID"]) && $user_details["id"] == $_SESSION["UserID"]) {
+            if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
                 echo '<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog"
                 aria-labelledby="edit-user-modal-label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -142,3 +142,29 @@
         </div>
     </div>
 </section>
+<!-- popup -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var editIcon = document.querySelector('.edit-icon');
+        var popup = document.getElementById('edit-popup');
+        var close = document.querySelector('.close');
+
+        if (editIcon) { // Kiểm tra nếu phần tử tồn tại
+            editIcon.addEventListener('click', function (event) {
+                event.preventDefault();
+                popup.style.display = 'flex';
+            });
+        }
+        if (close) {
+            close.addEventListener('click', function () {
+                popup.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', function (event) {
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+</script>

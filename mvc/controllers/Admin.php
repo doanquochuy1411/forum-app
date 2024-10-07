@@ -268,14 +268,14 @@ class Admin extends Controller
             $category_name = htmlspecialchars($_POST["category_name"]);
             $category_description = htmlspecialchars($_POST["category_description"]);
 
-            $errors = validateForm(["category_name", "category_description"]);
-            if (!empty($errors)) {
-                $title = 'Thêm danh mục thất bại!';
-                $message = 'Thông tin danh mục không hợp lệ: ' . implode(", ", $errors);
-                response_error($title, $message);
-                echo "<script>history.back();</script>";
-                exit();
-            }
+            // $errors = validateForm(["category_name", "category_description"]);
+            // if (!empty($errors)) {
+            //     $title = 'Thêm danh mục thất bại!';
+            //     $message = 'Thông tin danh mục không hợp lệ: ' . implode(", ", $errors);
+            //     response_error($title, $message);
+            //     echo "<script>history.back();</script>";
+            //     exit();
+            // }
 
             $checkCategoryName = $this->CategoryModel->CheckNameCategory($category_name);
             if ($checkCategoryName) {

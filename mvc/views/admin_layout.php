@@ -41,7 +41,6 @@
 
     <!--custom styles-->
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/loader.css">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/admin/assets/css/statistics.css">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/src/css/pagination.css">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/src/css/admin.css">

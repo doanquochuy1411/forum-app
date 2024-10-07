@@ -25,8 +25,8 @@ class Home extends Controller
     }
     function Index()
     {
-        $posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
-        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
+        $posts = $this->PostModel->GetPostWithTypeAndLimit("post");
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question");
         $comments = $this->CommentModel->GetAllComment();
         $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
         $categories = $this->CategoryModel->GetAllCategory();
@@ -138,28 +138,22 @@ class Home extends Controller
             exit();
         }
     }
-    // Get question details
-    // function Questions($id)
-    // {
-    //     $relate_posts = $this->PostModel->GetPostWithTypeAndLimit("question", 4);
-    //     $posts = $this->PostModel->GetPostByID($id);
-    //     $comments = $this->CommentModel->GetAllCommentOfPost($id);
-    //     $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+    // Policy
+    function Policy()
+    {
+        $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+        $categories = $this->CategoryModel->GetAllCategory(); // header
+        $tags = $this->TagModel->GetPopularTags();
 
-    //     $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
-    //     $comments = mysqli_fetch_all($comment_db, MYSQLI_ASSOC);
-    //     $users = mysqli_fetch_all($user_db, MYSQLI_ASSOC);
-    //     $relate_post = mysqli_fetch_all($relate_post_db, MYSQLI_ASSOC);
+        $this->view($this->layout, [
+            "Page" => "policy",
+            "title" => "Chính sách Và Điều khoản",
+            "questions" => $questions,
+            "categories" => $categories,
+            "tags" => $tags,
+        ]);
+    }
 
-    //     $this->view($this->layout, [
-    //         "Page" => "post_details",
-    //         "title" => $this->title,
-    //         "posts" => $posts,
-    //         "recent_post" => $relate_post,
-    //         "comments" => $comments,
-    //         "users" => $users
-    //     ]);
-    // }
     // Trang danh mục
     function Categories($category_id, $type)
     {

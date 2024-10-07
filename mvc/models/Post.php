@@ -129,14 +129,19 @@ class Post extends DB
 
         return $data;
     }
-    public function GetPostWithTypeAndLimit($type, $limit)
+    public function GetPostWithTypeAndLimit($type, $limit = 0)
     {
-        // $sql = "SELECT p.*, c.content as comment_content, c.created_at as comment_created_at, a.* FROM posts p left join likes l on l.post_id = p.id left join comments c on c.post_id = p.id left join attachments a on a.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
-        $result = $this->executeSelectQuery($sql, [$type, $limit]);
+        if ($limit != 0) {
+            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
+            $result = $this->executeSelectQuery($sql, [$type, $limit]);
+        } else {
+            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
+            $result = $this->executeSelectQuery($sql, [$type]);
+        }
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
+            $row['account_name'] = encryptData($row['account_name']);
         }
 
         return $data;

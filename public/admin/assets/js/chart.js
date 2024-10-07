@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
     function updateChartData(year) {
         // Tạo hai promise từ fetch
-        const postStatsPromise = fetch('http://localhost/forum-app/api/getPostToStatistics/' + year)
+        const postStatsPromise = fetch(BASE_URL+'/api/getPostToStatistics/' + year)
             .then(response => response.json());
             
-        const userStatsPromise = fetch('http://localhost/forum-app/api/getUserToStatistics/' + year)
+        const userStatsPromise = fetch(BASE_URL+'/api/getUserToStatistics/' + year)
             .then(response => response.json());
     
         // Sử dụng Promise.all để đợi cả hai fetch hoàn thành

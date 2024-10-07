@@ -28,7 +28,6 @@
     <link href="<?php echo BASE_URL; ?>/public/client/css/pusher.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
     <!-- SweetAlert2 CSS -->
     <!-- Popup thông báo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -48,6 +47,22 @@
 
     .dropdown:hover .dropdown-menu {
         display: block;
+    }
+
+    .data-row {
+        opacity: 0;
+        /* Bắt đầu với độ trong suốt bằng 0 */
+        transform: translateY(20px);
+        /* Di chuyển xuống một chút */
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        /* Hiệu ứng chuyển tiếp */
+    }
+
+    .data-row.show {
+        opacity: 1;
+        /* Đặt độ trong suốt thành 1 khi hiển thị */
+        transform: translateY(0);
+        /* Đưa nó trở lại vị trí ban đầu */
     }
     </style>
 </head>
@@ -102,12 +117,7 @@
                             </ul>
                         </li>
 
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
-                            <ul class="dropdown-menu animated zoomIn">
-                                <li><a href="blog.html">Blog </a></li>
-                            </ul>
-                        </li>
+                        <li><a href="<?php echo BASE_URL ?>/home/policy">Chính sách</a></li>
                         <li>
                             <div class="col-md-12">
                                 <div class="navbar-serch-right-side">
@@ -653,32 +663,6 @@
         // }
     }
     </script>
-    <!-- popup -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var editIcon = document.querySelector('.edit-icon');
-        var popup = document.getElementById('edit-popup');
-        var close = document.querySelector('.close');
-
-        if (editIcon) { // Kiểm tra nếu phần tử tồn tại
-            editIcon.addEventListener('click', function(event) {
-                event.preventDefault();
-                popup.style.display = 'flex';
-            });
-        }
-        if (close) {
-            close.addEventListener('click', function() {
-                popup.style.display = 'none';
-            });
-        }
-
-        window.addEventListener('click', function(event) {
-            if (event.target == popup) {
-                popup.style.display = 'none';
-            }
-        });
-    });
-    </script>
     <!-- popup change password -->
     <script>
     $(document).ready(function() {
@@ -700,8 +684,10 @@
 
     <!-- Pusher Thông báo realtime -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+    const BASE_URL = 'http://localhost/forum-app';
+    </script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
-
 </body>
 
 </html>
