@@ -37,11 +37,13 @@
                                         <p>' . stripImages($post["content"]) . '</p>
                                     </div>
                                     <hr>
-                                    <div class="ques-icon-info3293"> <a href="#"><i
+                                    <div class="ques-icon-info3293">
+                                    <a href="#" style="color: #222629"><i class="fa fa-thumbs-up" aria-hidden="true"> ' . $post["like_count"] . ' Thích</i></a>
+                                     <a href="#"><i
                                                 class="fa fa-clock-o" aria-hidden="true"> ' . timeAgo($post["created_at"]) . '</i></a> <a
-                                            href="' . BASE_URL . '/home/post/' . $post["id"] . '"><i class="fa fa-question-circle-o" aria-hidden="true">
-                                                Câu hỏi</i></a> <a href="' . BASE_URL . '/home/posts/' . $post["id"] . '"><i class="fa fa-bug" aria-hidden="true">
-                                                Báo cáo</i></a> </div>
+                                            href="#"><i class="fa fa-comment" aria-hidden="true"> ' . $post["comment_count"] . '
+                                                Trả lời</i></a> <a href="#"><i class="fa fa-user-circle-o" aria-hidden="true">
+                                                ' . $post["views"] . ' lượt xem</i></a></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -54,7 +56,7 @@
                                                 <button type="button" class="q-type23 button-ques2973"> <i
                                                         class="fa fa-user-circle-o" aria-hidden="true"> ' . $post["views"] . ' lượt xem</i>
                                                 </button>
-                                            </a>
+                                            </a>    
                                 </div>
                             </div>
                         </div>

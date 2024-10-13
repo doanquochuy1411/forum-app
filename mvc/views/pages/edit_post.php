@@ -26,19 +26,22 @@
                         <div class="username-part940">
                             <span class="form-description43">Loại bài đăng*</span>
                             <select id="contentType" name="contentType" class="username029">
-                                <option value="post" <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
+                                <option value="post"
+                                    <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
                                     Bài
                                     viết</option>
-                                <option value="question" <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
+                                <option value="question"
+                                    <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
                                     Đặt câu hỏi</option>
                             </select>
                         </div>
+
                         <div class="email-part320">
                             <span class="form-description442">Danh mục* </span>
                             <select id="contentCategory" name="contentCategory" class="email30">
                                 <?php
                                 foreach ($categories as $category) {
-                                    $selected = $post_to_edit[0]["category_id"] == $category["id"] ? 'selected' : '';
+                                    $selected = $post_to_edit[0]["category_id"] == decryptData($category["id"]) ? 'selected' : '';
                                     echo '<option value="' . $category['id'] . '" ' . $selected . '>' . $category['name'] . '</option>';
                                 }
                                 ?>
@@ -55,8 +58,9 @@
                             <span class="form-description43305" style="margin-bottom: 5px">Tags </span>
                             <div id="tagsInputContainer" class="browsers" style="display: contents">
                                 <?php if (count($tags_of_post) > 0) {
-                                    foreach ($tags_of_post as $tag) {
-                                        echo '<span class="badge badge-primary mx-1 tags">' . $tag["name"] . ' <button type="button" class="close" aria-label="Close" onclick="removeTag(\'' . $tag["name"] . '\')">
+                                    foreach ($tags_of_post as $t) {
+                                        // print_r($t["name"]);
+                                        echo '<span class="badge badge-primary mx-1 tags">' . $t["name"] . ' <button type="button" class="close" aria-label="Close" onclick="removeTag(\'' . $t["name"] . '\')">
                                         <span aria-hidden="true">×</span>
                                       </button></span>';
                                     }
@@ -67,10 +71,10 @@
                             <div id="hiddenTagsContainer"></div>
                         </div>
                         <div id="editorContainer">
-                            <!-- <label for="editor">Nội dung</label> -->
                             <span class="form-description43305" style="margin-bottom: 5px">Nội dung </span>
                             <div id="editor"></div>
                             <input type="hidden" id="editorContent" name="content" />
+                            <small id="editorContent_err"></small>
                         </div>
                         <input type="hidden" name="token"
                             value="<?php echo isset($_SESSION['_token']) ? $_SESSION['_token'] : "" ?>" />

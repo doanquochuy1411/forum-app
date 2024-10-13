@@ -142,7 +142,8 @@
                             <a href="#" class="dropdown-toggle un-hover" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell" aria-hidden="true"></i>
-                                <span class="badge" style="position: relative; top: -9px; background-color:red">0</span>
+                                <span class="badge pushertag"
+                                    style="position: relative; top: -9px; background-color:red">0</span>
                                 <!-- Số lượng thông báo -->
                             </a>
                             <ul class="dropdown-menu animated zoomIn" id="notification-dropdown">
@@ -421,31 +422,66 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.core.js"></script> -->
     <script>
     if (document.querySelector('#editor')) {
+        // var quill = new Quill('#editor', {
+        //     theme: 'snow',
+        //     modules: {
+        //         toolbar: [
+        //             [{
+        //                 'header': '1'
+        //             }, {
+        //                 'header': '2'
+        //             }, {
+        //                 'font': []
+        //             }],
+        //             [{
+        //                 'list': 'ordered'
+        //             }, {
+        //                 'list': 'bullet'
+        //             }],
+        //             ['bold', 'italic', 'underline'],
+        //             [{
+        //                 'align': []
+        //             }],
+        //             ['link', 'image', 'video'],
+        //             ['clean']
+        //         ]
+        //     }
+        // });
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
                 toolbar: [
                     [{
-                        'header': '1'
-                    }, {
-                        'header': '2'
-                    }, {
+                        'header': [1, 2, 3, false]
+                    }], // Tùy chọn header (h1, h2, h3)
+                    [{
                         'font': []
-                    }],
+                    }], // Định dạng font
+                    [{
+                        'size': ['small', false, 'large', 'huge']
+                    }], // Tùy chọn kích thước font
+                    [{
+                        'color': []
+                    }, {
+                        'background': []
+                    }], // Màu chữ và màu nền
                     [{
                         'list': 'ordered'
                     }, {
                         'list': 'bullet'
-                    }],
-                    ['bold', 'italic', 'underline'],
+                    }], // Danh sách có thứ tự và không thứ tự
                     [{
                         'align': []
-                    }],
-                    ['link', 'image', 'video'],
-                    ['clean']
+                    }], // Căn chỉnh văn bản
+                    ['bold', 'italic', 'underline',
+                    'strike'], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                    ['blockquote', 'code-block'], // Trích dẫn và khối mã
+                    ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
+                    ['clean'] // Xóa định dạng
                 ]
             }
         });
+
 
         // Gán nội dung từ biến PHP vào Quill editor
         var existingContent = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
@@ -482,12 +518,24 @@
             });
         }
 
+
         // <!-- tags -->
         document.addEventListener('DOMContentLoaded', function() {
             const tagsInput = document.getElementById('tagsInput');
             const tagsInputContainer = document.getElementById('tagsInputContainer');
             const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
             let tags = [];
+
+            function initializeTags() {
+                const existingTags = document.querySelectorAll('.tags');
+                for (let i = 0; i < existingTags.length; i++) {
+                    let tagText = existingTags[i].textContent.trim();
+                    tagText = tagText.replace('×', '').trim();
+                    if (tagText !== "") {
+                        tags.push(tagText);
+                    }
+                }
+            }
 
             tagsInput.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter') {
@@ -538,6 +586,8 @@
                     hiddenTagsContainer.appendChild(hiddenInput);
                 });
             }
+            initializeTags();
+            updateHiddenTags();
         });
     } else {
         console.warn("Element #editor not found in the DOM.");
@@ -623,7 +673,7 @@
         });
     }
     </script>
-    <script>
+    <!-- <script>
     // Search ở trang body trang hompage
     function handleSearchLink(event) {
         // Ngăn chặn hành động mặc định của thẻ <a>
@@ -662,7 +712,7 @@
         //     console.error('Form không tồn tại');
         // }
     }
-    </script>
+    </script> -->
     <!-- popup change password -->
     <script>
     $(document).ready(function() {

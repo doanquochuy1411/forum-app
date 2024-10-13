@@ -54,6 +54,7 @@ class Tag extends DB
     }
     public function AddTag($post_id, $tag_id)
     {
+        $post_id = decryptData($post_id);
         $sql = "INSERT INTO post_tags (post_id, tag_id) values (?,?)";
         return $this->executeQuery($sql, [$post_id, $tag_id]);
         if ($this->con->affected_rows > 0) {

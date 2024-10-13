@@ -135,6 +135,56 @@ class Api extends Controller
             return;
         }
     }
+
+    public function HandelLikePost()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $postId = $_POST['post_id'];
+            $userId = $_POST['user_id'];
+            $status = "";
+
+            $checkLiked = $this->PostModel->CheckLikedPostByUser($userId, $postId);
+            if ($checkLiked) {
+                $this->PostModel->CancelLikedPostByUser($userId, $postId);
+                $status = 'unliked';
+            } else {
+                $this->PostModel->CreateLikedPostByUser($userId, $postId);
+                $status = 'liked';
+            }
+        }
+
+        $likeCount = $this->PostModel->CountLikedOfPost($postId);
+        http_response_code(200);
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'like_status' => $status,
+            'like_count' => $likeCount,
+            'message' => "Dữ liệu đã được xử lý",
+        ]);
+    }
+
+    public function CheckLikedPost($postId, $userId)
+    {
+        $checkLiked = $this->PostModel->CheckLikedPostByUser($userId, $postId);
+        if ($checkLiked) {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'like_status' => "liked",
+                'message' => "Kiểm tra trạng thái thích thành công",
+            ]);
+        } else {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'like_status' => "unliked",
+                'message' => "Kiểm tra trạng thái thích thành công",
+            ]);
+        }
+    }
 }
 
 ?>

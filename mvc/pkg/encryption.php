@@ -41,6 +41,8 @@ function decryptData($encryptedData)
         return $decrypted;
     } catch (Exception $e) {
         echo "Lỗi: " . $e->getMessage();
+        response_error("Dữ liệu không hợp lệ", "Vui lòng thử lại sau.", "");
+        echo "<script>history.back()</script>";
     }
 }
 ?>

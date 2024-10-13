@@ -1,3 +1,28 @@
+<style>
+    .like-button {
+        background-color: transparent;
+        border: none;
+        color: #007bff;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        transition: color 0.3s ease;
+    }
+
+    .like-button.liked {
+        color: #ff4500;
+    }
+
+    .like-button i {
+        margin-right: 5px;
+    }
+
+    #like-count {
+        margin-left: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+</style>
 <section class="header-descriptin329">
     <div class="container">
         <h3>Chi tiết bài viết</h3>
@@ -47,6 +72,12 @@
                                         class="fa fa-commenting commenting2" aria-hidden="true">
                                         <?php echo count($comments) ?> trả lời</i></a> <i class="fa fa-user user2"
                                     aria-hidden="true"> <?php echo $posts[0]["views"] ?> lượt xem</i>
+                            </div>
+                            <div class="r-side-like" style="margin-top: 12px">
+                                <button id="like-btn" class="like-button">
+                                    <i class="fa fa-thumbs-up"></i> Thích
+                                </button>
+                                <span id="like-count"><?php echo $posts[0]["like_count"] ?></span> lượt thích
                             </div>
                         </div>
                     </div>
@@ -325,3 +356,71 @@
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Lấy thông tin bài post và user (truyền từ server vào)
+        let postId = "<?php echo $posts[0]['id']; ?>";
+        let userId = "<?php echo $_SESSION['UserID']; ?>"; // Giả sử bạn lưu user ID trong session
+
+        // Biến lưu số lượt like ban đầu (lấy từ server)
+        let likeCount = parseInt($('#like-count').text());
+
+        // Gọi API chỉ một lần khi trang tải
+        $.ajax({
+            url: '<?php echo BASE_URL ?>/api/CheckLikedPost/' + postId + '/' + userId,
+            type: 'GET',
+            success: function (data) {
+                let response = JSON.parse(data);
+                console.log(response);
+                // Cập nhật trạng thái và số lượt like
+                if (response.like_status === 'liked') {
+                    $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Đã thích').addClass('liked');
+                } else {
+                    $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Thích').removeClass('liked');
+                }
+                // Cập nhật số lượt like
+                $('#like-count').text(response.like_count);
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
+
+        // Sự kiện khi người dùng bấm nút "Like"
+        $('#like-btn').on('click', function () {
+            // Toggle trạng thái liked
+            const isLiked = $(this).hasClass('liked');
+            const action = isLiked ? 'unlike' : 'like';
+
+            // Cập nhật UI ngay lập tức để cải thiện trải nghiệm người dùng
+            $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Thích' : 'Đã thích')).toggleClass(
+                'liked');
+
+            // Gửi yêu cầu Ajax đến API để xử lý like/unlike
+            $.ajax({
+                url: '<?php echo BASE_URL ?>/api/handelLikePost',
+                type: 'POST',
+                data: {
+                    post_id: postId,
+                    user_id: userId,
+                    action: action
+                },
+                success: function (data) {
+                    let response = JSON.parse(data);
+                    console.log(response);
+                    // Cập nhật số lượt like
+                    likeCount = response.like_count;
+                    $('#like-count').text(likeCount);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                    // Nếu có lỗi, khôi phục trạng thái UI
+                    $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Đã thích' :
+                        'Thích')).toggleClass('liked');
+                }
+            });
+        });
+    });
+</script>

@@ -19,7 +19,7 @@ Pusher.logToConsole = true;
                 // console.log(data)
                 if (data.code === 200) {
                     // Update số lượng thông báo
-                    $('.badge').text(data.count);
+                    $('.pushertag').text(data.count);
 
                     // Xóa các thông báo cũ trong dropdown
                     $('#notification-dropdown').find('li:not(.dropdown-header, .divider)').remove();

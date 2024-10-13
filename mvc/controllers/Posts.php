@@ -162,9 +162,9 @@ class Posts extends Controller
 
         if (isset($_REQUEST["btnEditPost"])) {
             $type = htmlspecialchars($_REQUEST["contentType"]);
-            $category_id = htmlspecialchars($_REQUEST["contentCategory"]);
+            $category_id = $_REQUEST["contentCategory"];
             $title = htmlspecialchars($_REQUEST["title"]);
-            $tags = isset($_REQUEST["tags"]) ? htmlspecialchars($_REQUEST["tags"]) : [];
+            $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
             $content = $_REQUEST["content"];
             $errors = validateForm(["contentType", "contentCategory", "title"]);
             if (!empty($errors)) {
@@ -175,16 +175,17 @@ class Posts extends Controller
                 return;
             }
 
+            // print_r($tags);
             $result = $this->PostModel->UpdatePost($id, $title, $content, $category_id, $type);
 
             // if ($result != 0) { // success
             $allTagsInserted = true; // Flag to check if all tags were inserted correctly
 
-            $tag_delete_result = $this->TagModel->DeleteTagOfPost($id);
-            if ($tag_delete_result == 0) { // fail
-                $allTagsInserted = false; // Set flag to false if insertion fails
+            $this->TagModel->DeleteTagOfPost($id);
+            // if ($tag_delete_result == 0) { // fail
+            //     $allTagsInserted = false; // Set flag to false if insertion fails
 
-            }
+            // }
 
             if (count($tags) > 0) {
                 foreach ($tags as $tag) {

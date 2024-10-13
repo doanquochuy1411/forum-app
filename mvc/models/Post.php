@@ -3,7 +3,7 @@ class Post extends DB
 {
     public function GetAllPostWithType($type)
     {
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, pcc.report_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, pcc.report_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$type]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -17,7 +17,7 @@ class Post extends DB
     public function GetAllPostWithCategoryAndType($category_id, $type)
     {
         $category_id = decryptData($category_id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? and p.type = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? and p.type = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$category_id, $type]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -60,7 +60,7 @@ class Post extends DB
         $keywordMatchScore = implode(' + ', $keywordMatches);
 
         $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count,
-                   ($keywordMatchScore) AS match_score
+                   ($keywordMatchScore) AS match_score, pcc.like_count
             FROM posts p 
             JOIN user u ON u.id = p.user_id 
             JOIN post_comment_counts pcc ON pcc.post_id = p.id 
@@ -82,7 +82,7 @@ class Post extends DB
     // Lấy tất cả bài viết || câu hỏi với tags
     public function GetPostByTag($txt)
     {
-        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count, u.account_name
+        $sql = "SELECT DISTINCT p.*, u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count
                 FROM posts p 
                 JOIN user u ON u.id = p.user_id 
                 JOIN post_comment_counts pcc ON pcc.post_id = p.id 
@@ -105,7 +105,7 @@ class Post extends DB
     public function GetAllPostWithCategory($category_id)
     {
         $category_id = decryptData($category_id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$category_id]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -119,8 +119,7 @@ class Post extends DB
         if ($userID != "") {
             $userID = decryptData($userID);
         }
-        // $sql = "SELECT p.*, c.content as comment_content, c.created_at as comment_created_at, a.* FROM posts p left join likes l on l.post_id = p.id left join comments c on c.post_id = p.id left join attachments a on a.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? and p.user_id = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? and p.user_id = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$type, $userID]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -132,10 +131,10 @@ class Post extends DB
     public function GetPostWithTypeAndLimit($type, $limit = 0)
     {
         if ($limit != 0) {
-            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
+            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC limit ?";
             $result = $this->executeSelectQuery($sql, [$type, $limit]);
         } else {
-            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
+            $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
             $result = $this->executeSelectQuery($sql, [$type]);
         }
         $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -150,7 +149,7 @@ class Post extends DB
     public function GetPostByID($id)
     {
         $id = decryptData($id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -202,6 +201,7 @@ class Post extends DB
     public function UpdatePost($id, $title, $content, $category_id, $type)
     {
         $id = decryptData($id);
+        $category_id = decryptData($category_id);
         $sql = "UPDATE posts set title = ?, content=?, category_id=?, type= ? where id = ?";
         $result = $this->executeQuery($sql, [$title, $content, $category_id, $type, $id]);
 
@@ -249,5 +249,41 @@ class Post extends DB
             month ASC;
         ";
         return $this->executeSelectQuery($sql, [$year]);
+    }
+
+    public function CheckLikedPostByUser($user_id, $post_id)
+    {
+        $user_id = decryptData($user_id);
+        $post_id = decryptData($post_id);
+        $sql = "SELECT id FROM likes WHERE post_id = ? AND user_id = ?";
+        $result = $this->executeSelectQuery($sql, [$post_id, $user_id]);
+        if ($result->num_rows > 0) {
+            return true; // liked
+        }
+        return false;
+    }
+
+    public function CancelLikedPostByUser($user_id, $post_id)
+    {
+        $user_id = decryptData($user_id);
+        $post_id = decryptData($post_id);
+        $sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
+        return $this->executeQuery($sql, [$post_id, $user_id]);
+    }
+
+    public function CreateLikedPostByUser($user_id, $post_id)
+    {
+        $user_id = decryptData($user_id);
+        $post_id = decryptData($post_id);
+        $sql = "INSERT INTO likes (post_id, user_id) VALUES (?, ?)";
+        return $this->executeQuery($sql, [$post_id, $user_id]);
+    }
+
+    public function CountLikedOfPost($post_id)
+    {
+        $post_id = decryptData($post_id);
+        $sql = "SELECT COUNT(*) AS like_count FROM likes WHERE post_id = ?";
+        $result = $this->executeSelectQuery($sql, [$post_id]);
+        return $result->fetch_assoc()['like_count'];
     }
 }
