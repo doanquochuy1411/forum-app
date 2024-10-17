@@ -63,12 +63,7 @@ class Register extends Controller
             $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
 
-            if (!verifyCode($code)) {
-                // echo "<script>alert('Mã xác minh không chính xác!');</script>";
-                $title = 'Xác thực thất bại!';
-                $message = 'Mã xác minh không chính xác!';
-                response_error($title, $message);
-                // echo "<script>history.back();</script>";
+            if (!verifyCode($email, $code)) {
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,

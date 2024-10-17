@@ -117,7 +117,18 @@
                             </ul>
                         </li>
 
-                        <li><a href="<?php echo BASE_URL ?>/home/policy">Chính sách</a></li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">Tài liệu <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated zoomIn">
+                                <li><a href="#">Tài liệu đại cương</a></li>
+                                <li><a href="#">Tài liệu chuyên ngành</a></li>
+                                <li><a href="#">Khóa học</a></li>
+                                <li><a href="#">Đề thi</a></li>
+                                <li><a href="#">Bài giải</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- <li><a href="<?php echo BASE_URL ?>/home/policy">Chính sách</a></li> -->
                         <li>
                             <div class="col-md-12">
                                 <div class="navbar-serch-right-side">
@@ -139,7 +150,9 @@
 
                         <!-- Thêm icon chuông và dropdown thông báo -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle un-hover" data-toggle="dropdown" role="button"
+                            <?php
+                            if (isset($_SESSION["UserID"])) {
+                                echo '<a href="#" class="dropdown-toggle un-hover" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell" aria-hidden="true"></i>
                                 <span class="badge pushertag"
@@ -152,7 +165,9 @@
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Xem tất cả thông báo</a></li>
-                            </ul>
+                            </ul>';
+                            }
+                            ?>
                         </li>
 
                         <!-- User menu -->
@@ -474,7 +489,8 @@
                         'align': []
                     }], // Căn chỉnh văn bản
                     ['bold', 'italic', 'underline',
-                    'strike'], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                        'strike'
+                    ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
                     ['blockquote', 'code-block'], // Trích dẫn và khối mã
                     ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
                     ['clean'] // Xóa định dạng
@@ -496,7 +512,8 @@
 
                 // var editorContent = document.getElementById('editorContent').value.trim();
                 var editorContent = quill.root.innerHTML.trim();
-                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length <
+                    script 100) {
                     event.preventDefault(); // Ngăn chặn việc gửi form
                     document.getElementById('editorContent_err').textContent =
                         'Nội dung phải có ít nhất 100 ký tự.';
@@ -564,7 +581,7 @@
             window.removeTag = function(tagText) {
                 tags = tags.filter(tag => tag !== tagText);
                 const tagElements = tagsInputContainer.getElementsByClassName('badge');
-                for (let i = 0; i < tagElements.length; i++) {
+                for (let i = 0; i < script tagElements.length; i++) {
                     if (tagElements[i].textContent.includes(tagText)) {
                         tagsInputContainer.removeChild(tagElements[i]);
                         break;

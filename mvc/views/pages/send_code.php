@@ -14,7 +14,8 @@
                 </div>
                 <div class="form-group">
                     <input type="checkbox" id="agree_terms" name="agree_terms" value="yes">
-                    <label for="agree_terms">Tôi đồng ý với <a href="/terms-and-conditions" target="_blank"><b>Chính
+                    <label for="agree_terms">Tôi đồng ý với <a href="<?php echo BASE_URL?>/home/policy"
+                            target="_blank"><b>Chính
                                 sách
                                 và Điều khoản</b></a></label> <br>
                     <small id="terms_err" style="color: red;"></small>

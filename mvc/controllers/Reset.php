@@ -29,13 +29,19 @@ class Reset extends Controller
             $email = strtolower(trim($_POST["email"]));
 
             if (!validateEmail($email)) {
-                echo "<script>alert('Email không hợp lệ!'); history.back();</script>";
+                $title = 'Email không hợp lệ';
+                $message = '';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
                 return;
             }
 
             $userAccount = $this->UserModel->GetUserByEmail($email);
             if ($userAccount == null) {
-                echo "<script> alert('Email chưa được đăng ký'); history.back();</script>";
+                $title = 'Email chưa được đăng ký';
+                $message = '';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
                 // $this->view($this->layout, [
                 //     "Page" => "send_code",
                 //     "title" => $this->title,
@@ -62,8 +68,8 @@ class Reset extends Controller
             $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
 
-            if (!verifyCode($code)) {
-                echo "<script>alert('Mã xác minh không chính xác!');</script>";
+            if (!verifyCode($email, $code)) {
+                // echo "<script>alert('Mã xác minh không chính xác!');</script>";
                 // $this->response($this->layout, "verify_code", $this->title, $email);
                 $this->view($this->layout, [
                     "Page" => "verify_code",
@@ -86,7 +92,10 @@ class Reset extends Controller
             $retypePassword = $_POST["retype_password"];
 
             if (!validatePassword($password)) {
-                echo "<script>alert('Mật khẩu không hợp lệ!');</script>";
+                $title = 'Mật khẩu không hợp lệ!';
+                $message = '';
+                response_error($title, $message);
+                // echo "<script>alert('Mật khẩu không hợp lệ!');</script>";
                 $this->view($this->layout, [
                     "Page" => "reset",
                     "title" => $this->title,
@@ -96,7 +105,9 @@ class Reset extends Controller
             }
 
             if ($password != $retypePassword) {
-                echo "<script>alert('Password and retype password do not matching');</script>";
+                $title = 'Mật khẩu và xác nhận mật khẩu không trùng khớp!';
+                $message = '';
+                response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "reset",
                 ]);
@@ -108,10 +119,12 @@ class Reset extends Controller
             if ($result) {
                 $this->UserModel->ResetLoginAttemptsWithEmail($email);
                 $this->UserModel->ResetLockedWithEmail($email);
-                echo "<script>alert('Khôi phục mật khẩu thành công');</script>";
+                $title = 'Khôi phục mật khẩu thành công';
+                response_success($title);
                 $this->response($this->layout, "login", $this->title, [$email, $password]);
             } else {
-                echo "<script>alert('Khôi phục mật khẩu thất bại');</script>";
+                $title = 'Khôi phục mật khẩu thất bại. Vui lòng thử lại sau!';
+                response_error($title);
                 $this->view($this->layout, [
                     "Page" => "reset",
                 ]);
