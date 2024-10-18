@@ -22,11 +22,123 @@
     font-size: 16px;
     color: #333;
 }
+
+#editorComment {
+    height: 200px;
+    width: 100%;
+    border: solid 1px #ccc;
+}
+
+/* Giới hạn kích thước của container */
+.quill-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px 15px 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    /* Bo góc container */
+    overflow-wrap: break-word;
+    /* Xử lý từ dài không bị tràn */
+}
+
+/* Đảm bảo nội dung Quill không bị vỡ giao diện */
+.quill-container .ql-editor {
+    font-family: Arial, sans-serif;
+    /* Chọn font mặc định */
+    font-size: 16px;
+    /* Kích thước chữ */
+    line-height: 1.5;
+    /* Giãn cách dòng */
+    color: #333;
+    /* Màu chữ */
+    overflow: hidden;
+    /* Giữ nội dung không tràn ra ngoài */
+}
+
+/* Đảm bảo hình ảnh và video trong container không vượt quá kích thước */
+.quill-container img,
+.quill-container video {
+    max-width: 100%;
+    /* Giữ hình ảnh/video trong giới hạn container */
+    height: auto;
+    /* Giữ tỷ lệ ảnh */
+    display: block;
+    /* Hiển thị block để không bị ảnh hưởng bởi nội dung khác */
+    margin: 10px 0;
+    /* Khoảng cách giữa hình ảnh/video và nội dung khác */
+}
+
+/* Định dạng các heading */
+.quill-container h1,
+.quill-container h2,
+.quill-container h3,
+.quill-container h4,
+.quill-container h5,
+.quill-container h6 {
+    color: #222;
+    /* Màu chữ của tiêu đề */
+    margin-top: 20px;
+    /* Khoảng cách trên */
+    margin-bottom: 10px;
+    /* Khoảng cách dưới */
+    line-height: 1.4;
+    /* Giãn cách dòng trong heading */
+}
+
+/* Định dạng danh sách */
+.quill-container ul,
+.quill-container ol {
+    margin: 10px 0;
+    /* Khoảng cách trên dưới */
+    padding-left: 20px;
+    /* Thụt lề cho danh sách */
+}
+
+.quill-container ul li,
+.quill-container ol li {
+    margin-bottom: 5px;
+    /* Khoảng cách giữa các mục danh sách */
+}
+
+/* Định dạng blockquote */
+.quill-container blockquote {
+    border-left: 4px solid #ccc;
+    /* Viền trái cho blockquote */
+    margin: 10px 0;
+    /* Khoảng cách trên dưới */
+    padding-left: 15px;
+    /* Thụt vào trong */
+    color: #666;
+    /* Màu chữ blockquote */
+    font-style: italic;
+    /* Chữ nghiêng */
+}
+
+/* Đảm bảo table không bị tràn */
+.quill-container table {
+    width: 100%;
+    /* Table chiếm toàn bộ chiều ngang container */
+    border-collapse: collapse;
+    /* Gộp viền bảng */
+    margin: 10px 0;
+    /* Khoảng cách trên dưới */
+}
+
+.quill-container table td,
+.quill-container table th {
+    border: 1px solid #ccc;
+    /* Viền của ô bảng */
+    padding: 8px;
+    /* Khoảng cách bên trong ô bảng */
+    text-align: left;
+    /* Căn trái cho nội dung */
+}
 </style>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <section class="header-descriptin329">
     <div class="container">
         <h3>Chi tiết bài viết</h3>
-        <ol class="breadcrumb breadcrumb839">
+        <ol class="breadcrumb breadcrumb840">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
             <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
             <li class="active"><?php echo $posts[0]["title"] ?></li>
@@ -36,9 +148,9 @@
 <section class="main-content920">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="post-details">
-                    <div class="details-header923">
+                    <div class="details-header923" style="padding: 15px 15px 0px 15px">
                         <div class="row">
                             <div class="col-md-8 post">
                                 <div class="post-title-left129">
@@ -63,7 +175,10 @@
                         </div>
                     </div>
                     <div class="post-details-info1982">
-                        <p><?php echo $posts[0]["content"] ?></p>
+                        <div class="quill-container">
+                            <!-- {{ post_content }} -->
+                            <?php echo $posts[0]["content"] ?>
+                        </div>
                         <hr>
                         <div class="post-footer29032">
                             <div class="l-side2023">
@@ -120,7 +235,6 @@
                 <div class="comment-list12993">
                     <div class="container">
                         <div class="row">
-
                             <div class="comments-container">
                                 <h3><?php echo count($comments) ?> Bình luận</h3>
                                 <ul id="comments-list" class="comments-list">
@@ -161,8 +275,8 @@
                                         // Hàm đệ quy để in comment và các comment con
                                         function print_comments($comments_tree)
                                         {
-                                            $userID = $_SESSION["UserID"] ?? ""; // Toán tử gán null
-                                            $userID = decryptData($userID);
+                                            $userID = isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "";
+                                            // $userID = decryptData($userID);
                                             foreach ($comments_tree as $parent_id => $data) {
                                                 echo '<li>';
                                                 $comment = $data['comment'];
@@ -249,7 +363,7 @@
                         <form id="postCommentForm" action="<?php echo BASE_URL ?>/posts/createComment" method="post">
                             <div class=" col-md-12">
                                 <div id="editorContainer" class="post9320-box">
-                                    <div id="editor" style="border: solid 1px #000"></div>
+                                    <div id="editorComment"></div>
                                     <input type="hidden" id="editorCommentContent" name="content" />
                                     <input type="hidden" value="<?php echo $posts[0]["id"] ?>" name="post_id" />
                                     <input type="hidden" value="" name="parent_comment_id" />
@@ -341,7 +455,7 @@
                                 </div>
 
                                 <!-- Hidden field to store post or question ID -->
-                                <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?>" />
+                                <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?? "" ?>" />
                                 <button type="submit" name="btnReport" class="btn btn-danger">Báo xấu</button>
                             </form>
                         </div>
@@ -350,12 +464,120 @@
             </div>
             <!--                end of col-md-9 -->
             <!--           strart col-md-3 (side bar)-->
-            <?php require_once 'sidebar.php' ?>
+            <aside class="col-md-12 sidebar97240">
+                <div class="scrollable-sidebar">
+                    <div class="categori-part329">
+                        <h4>Danh mục</h4>
+                        <ul>
+                            <?php
+                            if (count($categories) > 0) {
+                                foreach ($categories as $category) {
+                                    echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="recent-post3290">
+                        <h4>Bài viết gần đây</h4>
+                        <?php
+                        $count = 0;
+                        foreach ($recent_posts as $post) {
+                            if ($count >= 8) {
+                                break;
+                            }
+                            echo '<div class="post-details021"> <a href="' . BASE_URL . '/home/posts/' . $post['id'] . '">
+                                <h5>' . $post['title'] . '</h5>
+                            </a>
+                            <small
+                                style="color: red">', $post['created_at'], '</small>    
+                        </div>
+                        <hr>';
+                            $count++;
+                        }
+                        ?>
+                    </div>
+                    <!--          start tags part-->
+                    <div class="tags-part2398">
+                        <h4>Tags</h4>
+                        <ul>
+                            <?php
+                            if (count($tags)) {
+                                $count = 0;
+                                foreach ($tags as $tag) {
+                                    if ($count >= 5) {
+                                        break;
+                                    }
+                                    echo '<li><a href="' . BASE_URL . '/home/tags/' . $tag['name'] . '">' . $tag['name'] . '</a></li>';
+                                    $count++;
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <!--          End tags part-->
 
+                </div>
+            </aside>
 
         </div>
     </div>
 </section>
+
+<!-- Thêm vào phần <head> -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
+<script>
+if (document.querySelector('#editorComment')) {
+    var quill = new Quill('#editorComment', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{
+                    'header': [1, 2, 3, false]
+                }], // Tùy chọn header (h1, h2, h3)
+                [{
+                    'font': []
+                }], // Định dạng font
+                [{
+                    'size': ['small', false, 'large', 'huge']
+                }], // Tùy chọn kích thước font
+                [{
+                    'color': []
+                }, {
+                    'background': []
+                }], // Màu chữ và màu nền
+                [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }], // Danh sách có thứ tự và không thứ tự
+                [{
+                    'align': []
+                }], // Căn chỉnh văn bản
+                ['bold', 'italic', 'underline',
+                    'strike'
+                ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                ['blockquote', 'code-block'], // Trích dẫn và khối mã
+                ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
+                ['clean'] // Xóa định dạng
+            ]
+        }
+    });
+
+
+    var postCommentFormElement = document.getElementById('postCommentForm');
+    if (postCommentFormElement) {
+        postCommentFormElement.addEventListener('submit', function(event) {
+            document.getElementById('editorCommentContent').value = DOMPurify.sanitize(quill.root.innerHTML);
+            var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
+            if (editorContent === '' || editorContent === '<p><br></p>') {
+                event.preventDefault(); // Ngăn chặn việc gửi form
+            }
+        });
+    }
+}
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -373,7 +595,7 @@ $(document).ready(function() {
         type: 'GET',
         success: function(data) {
             let response = JSON.parse(data);
-            console.log(response);
+            // console.log(response);
             // Cập nhật trạng thái và số lượt like
             if (response.like_status === 'liked') {
                 $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Đã thích').addClass('liked');
@@ -391,7 +613,7 @@ $(document).ready(function() {
     // Sự kiện khi người dùng bấm nút "Like"
     $('#like-btn').on('click', function() {
         if (userId === "") {
-            window.location.href = "<?php echo BASE_URL?>/login";
+            window.location.href = "<?php echo BASE_URL ?>/login";
         }
         // Toggle trạng thái liked
         const isLiked = $(this).hasClass('liked');
@@ -412,7 +634,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 let response = JSON.parse(data);
-                console.log(response);
+                // console.log(response);
                 // Cập nhật số lượt like
                 likeCount = response.like_count;
                 $('#like-count').text(likeCount);

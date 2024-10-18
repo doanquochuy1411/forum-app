@@ -1,3 +1,9 @@
+.sidebar97240 { /* for post detail */
+    border-radius: 4px;
+    /* height: 165vh; Full viewport height */
+    overflow: hidden;
+}
+
 .sidebar97239 {
     /* padding: 15px; */
     background: #f9f9f9;

@@ -37,7 +37,7 @@ function validateAddress($address)
 {
     return preg_match('/^[0-9a-zA-Z\s,\.\/\-]+$/u', $address);
 }
-function sanitizeInput($input)
+function sanitizeInputContent($input)
 {
     // Thay thế các ký tự đặc biệt có thể gây ra SQL Injection
     $sanitized = preg_replace('/[\'"\\\%;\(\)~`\^<>\[\]\{\}\&\|\*]/', '', $input);
@@ -169,6 +169,7 @@ function validateForm($fieldsToValidate)
         'category_description' => 'validateDescription',
         'category_name_update' => 'validateNoSpecialChars',
         'category_description_update' => 'validateDescription',
+        'content' => 'sanitizeInputQuill',
     ];
 
 
@@ -181,4 +182,37 @@ function validateForm($fieldsToValidate)
     }
     return $errors;
 }
+
+function sanitizeInputQuill($input)
+{
+    $disallowed_tags = [
+        'script',
+        'iframe',
+        'object',
+        'embed',
+        'form',
+        'input',
+        'button',
+        'textarea',
+        'link',
+        'style',
+        'meta',
+        'base',
+        'canvas',
+        'svg',
+        'video',
+        'audio',
+        'source'
+    ];
+
+    // Kiểm tra xem nội dung có chứa thẻ không được phép
+    foreach ($disallowed_tags as $tag) {
+        if (stripos($input, '<' . $tag) !== false) {
+            return false; // Nếu tìm thấy thẻ không được phép, trả về false
+        }
+    }
+
+    return true; // Nếu không tìm thấy thẻ không được phép, trả về true
+}
+
 ?>

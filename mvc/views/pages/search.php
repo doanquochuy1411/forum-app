@@ -3,7 +3,7 @@
     <div class="container">
         <h3> Tất cả
         </h3>
-        <ol class="breadcrumb breadcrumb839">
+        <ol class="breadcrumb breadcrumb840">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
             <li><a href="<?php echo BASE_URL ?>">Tìm kiếm</a></li>
             <li class="active"><?php echo $search ?? "" ?></li>
@@ -12,7 +12,7 @@
 </section>
 <!--    body content-->
 <section class="main-content920">
-    <div class="container">
+    <div class="container mg-top-70">
         <div class="row">
             <div class="col-md-9">
                 <section class="category2781">

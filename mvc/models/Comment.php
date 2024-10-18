@@ -73,8 +73,22 @@ class Comment extends DB
     public function DeleteComment($id)
     {
         $id = decryptData($id);
-        $sql = "DELETE FROM comments WHERE id = ?";
-        return $this->executeQuery($sql, [$id]);
+        $this->beginTransaction();
+
+
+        try {
+            $sql = "DELETE FROM comments WHERE id = ?";
+            $this->executeQuery($sql, [$id]);
+
+            $sql2 = "DELETE FROM notifications WHERE comment_id = ?";
+            $this->executeQuery($sql2, [$id]);
+
+            $this->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->rollback();
+            return false;
+        }
     }
 
     public function GetCommentByID($id)

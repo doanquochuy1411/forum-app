@@ -18,7 +18,7 @@ $remainingTime = $expiryTime - time();
                     <input type="text" class="form-control" name="code" autofocus>
                 </div>
                 <div class="form-group text-center">
-                    <p><span id="countdown"><?php echo $remainingTime ?></span></p>
+                    <p><span id="countdown"></span></p>
                 </div>
                 <div class="form-group text-center">
                     <button class="btn btn-primary account-btn" name="btnVerifyCode" type="submit">Tiếp theo</button>

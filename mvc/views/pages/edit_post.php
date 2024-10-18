@@ -26,12 +26,10 @@
                         <div class="username-part940">
                             <span class="form-description43">Loại bài đăng*</span>
                             <select id="contentType" name="contentType" class="username029">
-                                <option value="post"
-                                    <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
+                                <option value="post" <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
                                     Bài
                                     viết</option>
-                                <option value="question"
-                                    <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
+                                <option value="question" <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
                                     Đặt câu hỏi</option>
                             </select>
                         </div>
@@ -94,3 +92,136 @@
         </div>
     </div>
 </section>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
+<script>
+    if (document.querySelector('#editor')) {
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{
+                        'header': [1, 2, 3, false]
+                    }], // Tùy chọn header (h1, h2, h3)
+                    [{
+                        'font': []
+                    }], // Định dạng font
+                    [{
+                        'size': ['small', false, 'large', 'huge']
+                    }], // Tùy chọn kích thước font
+                    [{
+                        'color': []
+                    }, {
+                        'background': []
+                    }], // Màu chữ và màu nền
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }], // Danh sách có thứ tự và không thứ tự
+                    [{
+                        'align': []
+                    }], // Căn chỉnh văn bản
+                    ['bold', 'italic', 'underline',
+                        'strike'
+                    ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                    ['blockquote', 'code-block'], // Trích dẫn và khối mã
+                    ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
+                    ['clean'] // Xóa định dạng
+                ]
+            }
+        });
+
+
+        quill.root.innerHTML = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
+
+        var postFormElement = document.getElementById('postForm');
+        if (postFormElement) {
+            postFormElement.addEventListener('submit', function (event) {
+                document.getElementById('editorContent').value = DOMPurify.sanitize(quill.root.innerHTML);
+
+                var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
+                    event.preventDefault();
+                    document.getElementById('editorContent_err').textContent =
+                        'Nội dung phải có ít nhất 100 ký tự.';
+                    document.getElementById('editorContent_err').style.color = 'red'
+                } else {
+                    document.getElementById('editorContent_err').textContent = '';
+                }
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const tagsInput = document.getElementById('tagsInput');
+            const tagsInputContainer = document.getElementById('tagsInputContainer');
+            const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
+            let tags = [];
+
+            function initializeTags() {
+                const existingTags = document.querySelectorAll('.tags');
+                for (let i = 0; i < existingTags.length; i++) {
+                    let tagText = existingTags[i].textContent.trim();
+                    tagText = tagText.replace('×', '').trim();
+                    if (tagText !== "") {
+                        tags.push(tagText);
+                    }
+                }
+            }
+
+            tagsInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (tags.length < 10) {
+                        const tagText = tagsInput.value.trim();
+                        if (tagText !== '' && !tags.includes(tagText)) {
+                            addTag(tagText);
+                            tags.push(tagText);
+                            tagsInput.value = '';
+                            updateHiddenTags();
+                        }
+                    }
+                }
+            });
+
+            function addTag(tagText) {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'badge badge-primary mx-1 tags';
+                tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>`;
+                tagsInputContainer.insertBefore(tagElement, tagsInput);
+            }
+
+            window.removeTag = function (tagText) {
+                tags = tags.filter(tag => tag !== tagText);
+                const tagElements = tagsInputContainer.getElementsByClassName('badge');
+                for (let i = 0; i < tagElements.length; i++) {
+                    if (tagElements[i].textContent.includes(tagText)) {
+                        tagsInputContainer.removeChild(tagElements[i]);
+                        break;
+                    }
+                }
+                updateHiddenTags();
+            }
+
+            function updateHiddenTags() {
+                hiddenTagsContainer.innerHTML = '';
+
+                tags.forEach(tag => {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'tags[]';
+                    hiddenInput.value = tag;
+                    hiddenTagsContainer.appendChild(hiddenInput);
+                });
+            }
+            initializeTags();
+            updateHiddenTags();
+        });
+    } else {
+        console.warn("Element #editor not found in the DOM.");
+    }
+</script>

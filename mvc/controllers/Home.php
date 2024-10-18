@@ -15,6 +15,8 @@ class Home extends Controller
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->userID = isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
         $this->UserModel = $this->model("User");
         $this->PostModel = $this->model("Post");
@@ -92,9 +94,10 @@ class Home extends Controller
             $title = htmlspecialchars($_REQUEST["title"]);
             $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
             $content = $_REQUEST["content"];
+            // $content = $this->purifier->purify($_REQUEST["content"]);
             $user_id = $_SESSION["UserID"];
 
-            $errors = validateForm(["contentType", "contentCategory", "title"]);
+            $errors = validateForm(["contentType", "contentCategory", "title", "content"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng bài thất bại";
@@ -232,7 +235,7 @@ class Home extends Controller
 
         if (isset($_REQUEST["btnSearch"]) && $_REQUEST["txtSearch"] != "") {
             // echo '<script>alert("' . $_REQUEST["txtSearch"] . '")</script>';
-            $txtSearch = sanitizeInput($_REQUEST["txtSearch"]); // làm sạch chuỗi
+            $txtSearch = sanitizeInputContent($_REQUEST["txtSearch"]); // làm sạch chuỗi
             $posts = $this->PostModel->GetPostBySearch($txtSearch); // body
 
             // $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
@@ -268,8 +271,9 @@ class Home extends Controller
         }
     }
 
-    function tags($tag)
+    function tags($tag_name)
     {
+        $tag = str_replace('-', ' ', $tag_name);
         $posts = $this->PostModel->GetPostByTag($tag); // body
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
         $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 

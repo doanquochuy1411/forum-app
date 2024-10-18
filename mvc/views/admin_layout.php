@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL ?>/public/admin/assets/img/favicon.ico">
 
     <!-- Font Family -->
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet"> -->
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -48,6 +48,11 @@
     <!-- logo -->
     <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
 </head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+</style>
 
 <body>
 

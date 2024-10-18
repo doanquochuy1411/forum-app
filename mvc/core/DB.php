@@ -25,10 +25,6 @@ class DB
         $_SESSION['SECRET_KEY'] = $_ENV["SECRET_KEY"]; // Lấy secret key -> BE
         $_SESSION['PUBLIC_KEY'] = $_ENV["PUBLIC_KEY"]; // Lấy public key => FE
         $_SESSION['SCAN_KEY'] = $_ENV["SCAN_KEY"]; // Lấy scan key => scan image
-        // printf($this->servername);
-        // printf($this->username);
-        // printf($this->password);
-        // printf($this->dbname);
 
         $this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -38,7 +34,22 @@ class DB
 
         $this->con->set_charset('utf8');
     }
+    public function beginTransaction()
+    {
+        $this->con->begin_transaction();
+    }
 
+    // Cam kết transaction
+    public function commit()
+    {
+        $this->con->commit();
+    }
+
+    // Rollback transaction
+    public function rollback()
+    {
+        $this->con->rollback();
+    }
     // INSERT QUERY
     public function executeQuery($sql, $params = [])
     {

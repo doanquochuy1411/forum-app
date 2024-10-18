@@ -1,5 +1,5 @@
 <?php
-// Thao tác với bài viết như sửa, xóa
+
 class Posts extends Controller
 {
     protected $PostModel;
@@ -16,8 +16,11 @@ class Posts extends Controller
 
     public function __construct()
     {
+
+        parent::__construct();
+
         if (!isset($_SESSION['UserID'])) {
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "/login");
             exit();
         }
 
@@ -49,7 +52,7 @@ class Posts extends Controller
             $parent_comment_id = (int) ($_REQUEST["parent_comment_id"]);
             $post_id = htmlspecialchars($_REQUEST["post_id"]);
 
-            $errors = validateForm(["parent_comment_id", "post_id"]);
+            $errors = validateForm(["parent_comment_id", "post_id", "content"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Bình luận thất bại";
@@ -89,10 +92,6 @@ class Posts extends Controller
         }
 
         $comment = $this->CommentModel->GetCommentByID($id);
-        // print_r($comment);
-        // echo $comment[0]['user_id'];
-        // echo "<br>";
-        // echo decryptData($_SESSION['UserID']);
         if ($comment[0]['user_id'] != decryptData($_SESSION['UserID'])) {
             $_SESSION['action_status'] = 'error';
             $_SESSION['title_message'] = "Không có quyền truy cập!";
@@ -166,7 +165,8 @@ class Posts extends Controller
             $title = htmlspecialchars($_REQUEST["title"]);
             $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
             $content = $_REQUEST["content"];
-            $errors = validateForm(["contentType", "contentCategory", "title"]);
+            // $content = $this->purifier->purify($_REQUEST["content"]);
+            $errors = validateForm(["contentType", "contentCategory", "title", "content"]);
             if (!empty($errors)) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Cập nhật thất bại";

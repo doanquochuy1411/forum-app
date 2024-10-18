@@ -14,7 +14,7 @@
     <!-- <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/favicon.ico"> -->
 
     <!-- Font Family -->
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet"> -->
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/css/bootstrap.min.css">
@@ -32,7 +32,11 @@
     <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
 
 </head>
-
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+</style>
 
 <body>
     <span class="loader"></span>

@@ -88,7 +88,7 @@ class Post extends DB
                 JOIN post_comment_counts pcc ON pcc.post_id = p.id 
                 LEFT JOIN post_tags pt ON pt.post_id = p.id 
                 LEFT JOIN tags t ON t.id = pt.tag_id
-                WHERE p.deleted_at IS NULL AND t.name LIKE ? 
+                WHERE p.deleted_at IS NULL AND LOWER(t.name) LIKE LOWER(?) 
                 ORDER BY p.created_at DESC;";
         // Sử dụng ký tự đại diện `%` để tìm kiếm các chuỗi chứa từ khóa
         $searchTerm = '%' . $txt . '%';

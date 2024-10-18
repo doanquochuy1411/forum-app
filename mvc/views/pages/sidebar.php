@@ -70,7 +70,8 @@
                         if ($count >= 5) {
                             break;
                         }
-                        echo '<li><a href="' . BASE_URL . '/home/tags/' . $tag['name'] . '">' . $tag['name'] . '</a></li>';
+                        $handel_tag = create_slug($tag['name']);
+                        echo '<li><a href="' . BASE_URL . '/home/tags/' . $handel_tag . '">' . $tag['name'] . '</a></li>';
                         $count++;
                     }
                 }
