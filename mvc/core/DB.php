@@ -13,7 +13,7 @@ class DB
     protected $username;
     protected $password;
     protected $dbname;
-    protected $validOrderByColumns = ['id', 'user_name', 'created_at', 'updated_at'];
+    protected $validOrderByColumns = ['id', 'user_name', 'created_at', 'updated_at', 'uas.point'];
 
     function __construct()
     {

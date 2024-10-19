@@ -82,6 +82,7 @@ class Register extends Controller
         if (isset($_POST["btnRegister"])) {
             $full_name = $_POST["full_name"];
             $account_name = htmlspecialchars(strtolower(trim($_POST["account_name"])));
+            $gender = htmlspecialchars($_POST["gender"]);
             $email = strtolower(trim($_POST["email"]));
             $password = $_POST["password"];
             $retypePassword = $_POST["retype_password"];
@@ -122,7 +123,7 @@ class Register extends Controller
             }
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $hashedPassword);
+            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $gender, $hashedPassword);
             if ($result) {
                 $userAccount = $this->UserModel->GetUserByEmail($email);
                 $this->UserModel->SetRole($userAccount["id"], "2");

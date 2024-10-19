@@ -532,6 +532,11 @@ hr {
     color: #FF7361;
 }
 
+.ques-details10018 * {
+    font-size: 14px !important;
+    font-weight: normal !important;
+}
+
 .ques-details10018 {
     margin-top: 10px;
     overflow: hidden;

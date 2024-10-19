@@ -22,7 +22,7 @@ class User extends DB
             $orderBy = 'created_at';  // Mặc định là sắp xếp theo 'id' nếu $orderBy không hợp lệ
         }
 
-        $sql = "SELECT * FROM user Where deleted_at is null order by $orderBy $sort ";
+        $sql = "SELECT u.*, uas.total_posts, uas.total_questions, uas.total_comments, uas.total_likes, uas.point FROM user u join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL order by $orderBy $sort";
         $result = $this->executeSelectQuery($sql);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -59,7 +59,7 @@ class User extends DB
     public function GetUserByAccountName($account_name)
     {
         $account_name = decryptData($account_name);
-        $sql = "SELECT u.*, ur.role_id, uas.total_posts, uas.total_questions, uas.total_comments FROM user u Join user_role ur on ur.user_id = u.id join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL AND u.account_name = ?";
+        $sql = "SELECT u.*, ur.role_id, uas.total_posts, uas.total_questions, uas.total_comments, uas.total_likes, uas.point FROM user u Join user_role ur on ur.user_id = u.id join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL AND u.account_name = ?";
         $result = $this->executeSelectQuery($sql, [$account_name]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         $data[0]["id"] = encryptData($data[0]["id"]);
@@ -118,11 +118,11 @@ class User extends DB
         return null;
     }
 
-    public function CreateUser($account_name, $user_name, $email, $password)
+    public function CreateUser($account_name, $user_name, $email, $gender, $password)
     {
         $image = "images.png"; //default
-        $sql = "INSERT INTO user(account_name, user_name, email, password, image) values (?,?,?,?,?)";
-        return $this->executeQuery($sql, [$account_name, $user_name, $email, $password, $image]);
+        $sql = "INSERT INTO user(account_name, user_name, email, password, image, gender) values (?,?,?,?,?,?)";
+        return $this->executeQuery($sql, [$account_name, $user_name, $email, $password, $image, $gender]);
     }
 
     public function GetAllRole()

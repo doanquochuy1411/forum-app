@@ -15,8 +15,6 @@ class Home extends Controller
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->userID = isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
         $this->UserModel = $this->model("User");
         $this->PostModel = $this->model("Post");

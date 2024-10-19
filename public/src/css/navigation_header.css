@@ -84,19 +84,11 @@
     /* Không thể nhấn vào mục hiện tại */
 }
 
-/* Đảm bảo breadcrumb có responsive tốt trên thiết bị nhỏ */
-@media (max-width: 768px) {
-    .breadcrumb840 {
-        flex-wrap: wrap;
-        /* Cho phép xuống dòng khi kích thước quá nhỏ */
-    }
-
-    .header-descriptin329 h3 {
-        font-size: 24px;
-        /* Giảm kích thước tiêu đề trên màn hình nhỏ */
-    }
-}
-
 .mg-top-70 {
     margin-top: -70px;
+}
+
+.z-index-2{
+    position: relative;
+    z-index: 2;
 }

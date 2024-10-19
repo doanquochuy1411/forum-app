@@ -3,11 +3,12 @@ class Post extends DB
 {
     public function GetAllPostWithType($type)
     {
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, pcc.report_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.account_name, u.user_name, u.image as avatar, pcc.comment_count, pcc.report_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.type = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$type]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
+            $row['account_name'] = encryptData($row['account_name']);
         }
 
         return $data;
@@ -17,11 +18,12 @@ class Post extends DB
     public function GetAllPostWithCategoryAndType($category_id, $type)
     {
         $category_id = decryptData($category_id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? and p.type = ? order by p.created_at DESC";
+        $sql = "SELECT p.* , u.account_name, u.user_name, u.image as avatar, pcc.comment_count, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.category_id = ? and p.type = ? order by p.created_at DESC";
         $result = $this->executeSelectQuery($sql, [$category_id, $type]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
+            $row['account_name'] = encryptData($row['account_name']);
         }
 
         return $data;

@@ -284,7 +284,7 @@
                                                 if (decryptData($comment['user_id']) != $userID) {
                                                     echo '<div class="comment-main-level">
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
-                                                        <div class="comment-box">   
+                                                        <div class="comment-box" style="width: 88%">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
@@ -297,7 +297,7 @@
                                                     // chủ comment
                                                     echo '<div class="comment-main-level">
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
-                                                        <div class="comment-box">   
+                                                        <div class="comment-box" style="width: 88%">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
@@ -316,7 +316,7 @@
                                                         if (decryptData($reply['user_id']) != $userID) {
                                                             echo '<li>
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                                        <div class="comment-box">
+                                                        <div class="comment-box" style="width: 88%">
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
@@ -329,7 +329,7 @@
                                                             // Chủ comment con
                                                             echo '<li>
                                                             <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                                            <div class="comment-box">
+                                                            <div class="comment-box" style="width: 88%">
                                                                 <div class="comment-head">
                                                                     <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
                                                                     <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>

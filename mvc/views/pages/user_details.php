@@ -12,7 +12,7 @@
     <div class="container mg-top-70">
         <div class="row">
             <!--    body content-->
-            <div class="col-md-9">
+            <div class="col-md-9 z-index-1ư">
                 <div class="about-user2039 mt-70">
                     <div class="user-title3930">
                         <h3><a href="#"><?php echo $user_details["user_name"] ?></a>
@@ -57,6 +57,18 @@
                                     echo '<li><i class="fa fa-phone" aria-hidden="true"></i> <strong>Số điện thoại:</strong>
                                     **********
                                 </li>';
+                                }
+                                ?>
+                                <?php
+                                if (isset($_SESSION["UserID"]) && $user_details["gender"] == "Nam") {
+                                    echo '<li><i class="fa fa-mars" aria-hidden="true"></i> <strong>Giới tính:</strong>
+                                    Nam</li>';
+                                } else if ($user_details["gender"] == "Nữ") {
+                                    echo '<li><i class="fa fa-venus" aria-hidden="true"></i> <strong>Giới tính:</strong>
+                                    Nữ</li>';
+                                } else {
+                                    echo '<li><i class="fa fa-transgender-alt" aria-hidden="true"></i> <strong>Giới tính:</strong>
+                                    Không xác định</li>';
                                 }
                                 ?>
                             </ul>

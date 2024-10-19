@@ -16,6 +16,18 @@
                     <small id="full_name_err"></small>
                 </div>
                 <div class="form-group">
+                    <label>Giới tính </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="Nam" id="gender_male" checked>
+                        <label class="form-check-label" for="gender_male">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="Nữ" id="gender_female">
+                        <label class="form-check-label" for="gender_female">Nữ</label>
+                    </div>
+                    <small id="gender_err" style="color: red;"></small>
+                </div>
+                <div class="form-group">
                     <label>Tên tài khoản</label>
                     <input type="text" class="form-control" name="account_name" id="account_name"
                         placeholder="Tên tài khoản đăng nhập">
