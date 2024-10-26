@@ -185,6 +185,48 @@ class Api extends Controller
             ]);
         }
     }
+
+    public function GetTopPostsByViews($limit)
+    {
+        $topPosts = $this->PostModel->GetTopPostsByViews($limit);
+        if (empty($topPosts)) {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu bài viết.",
+            ]);
+            return;
+        }
+
+        // Trả về JSON
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'top_posts_by_views' => $topPosts,
+        ]);
+    }
+
+    public function GetTopPostsByLikes($limit)
+    {
+        $topPosts = $this->PostModel->GetTopPostsByLikes($limit);
+        if (empty($topPosts)) {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu bài viết.",
+            ]);
+            return;
+        }
+
+        // Trả về JSON
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'top_posts_by_likes' => $topPosts,
+        ]);
+    }
 }
 
 ?>

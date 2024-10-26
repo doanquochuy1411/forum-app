@@ -95,13 +95,13 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 text-center">
-                            <h4 class="text-dark mb-4">Thống kê Lượt xem theo Tháng</h4>
+                            <h4 class="text-dark mb-4">Top 10 bài viết có lượt xem cao nhất</h4>
                             <div class="card p-3">
                                 <canvas id="viewsChart"></canvas>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 text-center">
-                            <h4 class="text-dark mb-4">Thống kê Lượt thích theo Tháng</h4>
+                            <h4 class="text-dark mb-4">Top 10 bài viết được thích nhiều nhất</h4>
                             <div class="card p-3">
                                 <canvas id="likesChart"></canvas>
                             </div>

@@ -288,4 +288,34 @@ class Post extends DB
         $result = $this->executeSelectQuery($sql, [$post_id]);
         return $result->fetch_assoc()['like_count'];
     }
+
+    public function GetTopPostsByViews($limit)
+    {
+        $sql = "SELECT title, views FROM posts Where posts.type = 'post' ORDER BY views DESC LIMIT ?";
+        $result = $this->executeSelectQuery($sql, [$limit]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    public function GetTopPostsByLikes($limit)
+    {
+        $sql = "SELECT 
+            posts.title,
+            COUNT(likes.id) as likes
+        FROM 
+            posts
+        LEFT JOIN likes on likes.post_id = posts.id
+        Where posts.type = 'post'
+        GROUP BY 
+            posts.id, posts.title
+        ORDER BY 
+            likes DESC
+        LIMIT ?
+        ";
+        $result = $this->executeSelectQuery($sql, [$limit]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
 }
