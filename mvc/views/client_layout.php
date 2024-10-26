@@ -129,11 +129,6 @@
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Tài liệu <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
-                                <!-- <li><a href="#">Tài liệu đại cương</a></li>
-                                <li><a href="#">Tài liệu chuyên ngành</a></li>
-                                <li><a href="#">Khóa học</a></li>
-                                <li><a href="#">Đề thi</a></li>
-                                <li><a href="#">Bài giải</a></li> -->
                                 <?php
                                 if (count($categories) > 0) {
                                     echo '<li><a href="' . BASE_URL . '/home/allPosts/document">Tất cả</a></li>';

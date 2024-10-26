@@ -93,6 +93,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center">
+                            <h4 class="text-dark mb-4">Thống kê Lượt xem theo Tháng</h4>
+                            <div class="card p-3">
+                                <canvas id="viewsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 text-center">
+                            <h4 class="text-dark mb-4">Thống kê Lượt thích theo Tháng</h4>
+                            <div class="card p-3">
+                                <canvas id="likesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

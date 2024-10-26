@@ -4,9 +4,16 @@
             <h4>Danh mục</h4>
             <ul>
                 <?php
+                $count = 0;
                 if (count($categories) > 0) {
                     foreach ($categories as $category) {
-                        echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
+                        if ($count >= 5) {
+                            break;
+                        }
+                        if ($category['category_type'] == "post") {
+                            echo '<li><a href="' . BASE_URL . '/home/categories/' . $category['id'] . '/post">' . $category['name'] . '</a></li>';
+                            $count++;
+                        }
                     }
                 }
                 ?>
