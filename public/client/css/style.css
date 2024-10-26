@@ -1666,13 +1666,13 @@ h5:hover {
 
 .post-details-info1982 {
     margin-top: 30px;
-    line-height: 1.5em;
-    font-family: fontawesome;
+    /* line-height: 1.5em; */
+    /* font-family: fontawesome; */
 }
-
+/* 
 .post-details-info1982 p {
     margin-bottom: 30px;
-}
+} */
 
 .r-clor10 {
     background-color: #fd6372;

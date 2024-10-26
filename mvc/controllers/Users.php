@@ -34,11 +34,12 @@ class Users extends Controller
 
         if (isset($_REQUEST["btnUpdateInfo"])) {
             $file = $_FILES["user_image"];
-            $user_name = $_REQUEST["user_name"];
-            $email = $_REQUEST["email"];
-            $phone_number = $_REQUEST["phone_number"];
+            $user_name = htmlspecialchars($_REQUEST["user_name"]);
+            $email = strtolower(trim($_POST["email"]));
+            $phone_number = htmlspecialchars($_REQUEST["phone_number"]);
+            $gender = htmlspecialchars($_REQUEST["gender"]);
 
-            $errors = validateForm(["user_name", "email", "phone_number"]);
+            $errors = validateForm(["user_name", "email", "phone_number", "gender"]);
             if (!empty($errors)) {
                 $title = 'Cập nhật thất bại';
                 $message = 'Dữ liệu không hợp lệ!';
@@ -64,10 +65,14 @@ class Users extends Controller
                 $file_name = $uploadResult['file_name'];
             }
 
-            $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name);
+            // echo $gender;
+
+            $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name, $gender);
             if ($result) {
                 $title = 'Cập nhật thông tin thành công';
-                $_SESSION['Avatar'] = $file_name;
+                if ($file_name != "") {
+                    $_SESSION['Avatar'] = $file_name;
+                }
                 response_success($title, "");
             } else {
                 if ($file['size'] > 0) {

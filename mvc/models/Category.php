@@ -75,14 +75,12 @@ class Category extends DB
                 return $total_posts; // danh mục có chứa bài viết    
             }
         }
-
         $sql = "DELETE FROM categories WHERE id = ?";
-        $result = $this->executeQuery($sql, [$category_id]);
-        if ($result > 0) {
+        $r = $this->executeQuery($sql, [$category_id]);
+        if ($r) {
             return true;
         } else {
             return false;
         }
-
     }
 }

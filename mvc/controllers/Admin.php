@@ -165,7 +165,7 @@ class Admin extends Controller
         }
     }
 
-    function DeleteCategory($id, $token)
+    function DeleteCategory($id, $token = "")
     {
         // Xác minh token
         if ($token == "" || $token != $_SESSION['_token']) {
@@ -175,17 +175,17 @@ class Admin extends Controller
 
         $result = $this->CategoryModel->DeleteCategoryByID($id);
         switch ($result) {
-            case false:
+            case $result === false:
                 $title = 'Xóa thất bại';
                 $mes = "Lỗi hệ thống!";
                 response_error($title, $mes);
                 break;
-            case true:
+            case $result === true:
                 $title = 'Xóa thành công';
                 response_success($title);
                 break;
             default:
-                $title = 'Xóa thành viên thất bại';
+                $title = 'Xóa danh mục thất bại';
                 $mes = "Không thể xóa. Có $result bài viết thuộc danh mục này!";
                 response_error($title, $mes);
                 break;
@@ -302,7 +302,7 @@ class Admin extends Controller
         }
     }
 
-    function DeleteUser($user_id, $token)
+    function DeleteUser($user_id, $token = "")
     {
         // Kiểm tra token
         if (empty($token) || $token != $_SESSION['_token']) {
@@ -312,12 +312,12 @@ class Admin extends Controller
 
         $result = $this->UserModel->DeleteUser($user_id);
         switch ($result) {
-            case false:
+            case $result === false:
                 $title = 'Xóa thành viên thất bại';
                 $mes = "Lỗi hệ thống!";
                 response_error($title, $mes);
                 break;
-            case true:
+            case $result === true:
                 $title = 'Xóa thành viên thành công';
                 response_success($title);
                 break;

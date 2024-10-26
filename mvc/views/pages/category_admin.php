@@ -64,6 +64,14 @@
                                 name="category_description">
                             <small id="category_description_err"></small>
                         </div>
+                        <div class="form-group">
+                            <label for="category_type">Loại danh mục</label>
+                            <select class="form-control" id="category_type" name="category_type" required>
+                                <option value="post">Bài Viết</option>
+                                <option value="document">Tài liệu</option>
+                            </select>
+                            <small id="category_type_err"></small>
+                        </div>
                         <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?>" />
                         <button type="submit" name="btnAddCategory" class="btn btn-primary">Thêm</button>
                     </form>

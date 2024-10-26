@@ -137,17 +137,17 @@ class User extends DB
         return $this->executeQuery($sql, [$userID, $roleID]);
     }
 
-    public function UpdateUser($id, $user_name, $email, $phone_number, $file_name)
+    public function UpdateUser($id, $user_name, $email, $phone_number, $file_name, $gender)
     {
         $sql = "";
         $result = false;
         $id = decryptData($id);
         if ($file_name != "") {
-            $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, image=? where id = ?";
-            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $file_name, $id]);
+            $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, image=?, gender=? where id = ?";
+            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $file_name, $gender, $id]);
         } else {
-            $sql = "UPDATE user set user_name = ?, email=?, phone_number=? where id = ?";
-            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $id]);
+            $sql = "UPDATE user set user_name = ?, email=?, phone_number=?, gender=? where id = ?";
+            $result = $this->executeQuery($sql, [$user_name, $email, $phone_number, $gender, $id]);
         }
 
         if ($result) {

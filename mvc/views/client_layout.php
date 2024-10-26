@@ -28,6 +28,7 @@
     <link href="<?php echo BASE_URL; ?>/public/client/css/pusher.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/src/css/navigation_header.css" rel="stylesheet" type="text/css">
+    <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
     <!-- SweetAlert2 CSS -->
     <!-- Popup thông báo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">

@@ -206,9 +206,18 @@ function paginate(data, page, limit, containerId) {
             html += '<div class="col-md-11">';
             html += '<div class="right-description893">';
             html += '<div id="que-hedder2983">';
-            html += '<h3><a href="<?php echo BASE_URL ?>/home/posts/' + post.id +
-                '" target="_blank">' +
-                post.title + '</a></h3>';
+            if (containerId === "#content5") {
+                html += '<h3><a href="<?php echo BASE_URL ?>/posts/edit/' + post.id +
+                    '" target="_blank">' +
+                    post.title +
+                    '</a> <a href="#" style="color: red" title="Xóa bài viết"><i class="fa fa-close" onclick="confirmDelete(event,\'<?php echo BASE_URL ?>/posts/delete/' +
+                    post.id +
+                    '\')"></i></a></h3>';
+            } else {
+                html += '<h3><a href="<?php echo BASE_URL ?>/home/posts/' + post.id +
+                    '" target="_blank">' +
+                    post.title + '</a></h3>';
+            }
             html += '</div>';
             html += '<div class="ques-details10018">';
             html += '<div>' + content + '</div>';
@@ -368,28 +377,30 @@ if (document.querySelector('#editor')) {
                 [{
                     'header': [1, 2, 3, false]
                 }], // Tùy chọn header (h1, h2, h3)
-                // [{
-                //     'font': []
-                // }], // Định dạng font
-                [{
-                    'size': ['small', false, 'large', 'huge']
-                }], // Tùy chọn kích thước font
                 [{
                     'color': []
                 }, {
                     'background': []
                 }], // Màu chữ và màu nền
                 [{
+                    'script': 'sub'
+                }, {
+                    'script': 'super'
+                }], // Chỉ số trên và dưới (subscript và superscript)
+                [{
                     'list': 'ordered'
                 }, {
                     'list': 'bullet'
                 }], // Danh sách có thứ tự và không thứ tự
                 [{
+                    'indent': '-1'
+                }, {
+                    'indent': '+1'
+                }], // Thụt lề
+                [{
                     'align': []
                 }], // Căn chỉnh văn bản
-                ['bold', 'italic', 'underline',
-                    'strike'
-                ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                ['bold', 'italic', 'underline', 'strike'], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
                 ['blockquote', 'code-block'], // Trích dẫn và khối mã
                 ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
                 ['clean'] // Xóa định dạng

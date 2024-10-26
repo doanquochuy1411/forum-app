@@ -29,46 +29,38 @@
     border: solid 1px #ccc;
 }
 
-/* Giới hạn kích thước của container */
+
+
 .quill-container {
     max-width: 100%;
     margin: 0 auto;
     padding: 0px 15px 15px 15px;
     box-sizing: border-box;
     border-radius: 5px;
-    /* Bo góc container */
     overflow-wrap: break-word;
-    /* Xử lý từ dài không bị tràn */
 }
 
-/* Đảm bảo nội dung Quill không bị vỡ giao diện */
 .quill-container .ql-editor {
     font-family: Arial, sans-serif;
-    /* Chọn font mặc định */
     font-size: 16px;
-    /* Kích thước chữ */
-    line-height: 1.5;
-    /* Giãn cách dòng */
     color: #333;
-    /* Màu chữ */
     overflow: hidden;
-    /* Giữ nội dung không tràn ra ngoài */
 }
 
-/* Đảm bảo hình ảnh và video trong container không vượt quá kích thước */
+.quill-container p:has(img),
+.quill-container p:has(video) {
+    text-align: center;
+}
+
 .quill-container img,
 .quill-container video {
     max-width: 100%;
-    /* Giữ hình ảnh/video trong giới hạn container */
     height: auto;
-    /* Giữ tỷ lệ ảnh */
     display: block;
-    /* Hiển thị block để không bị ảnh hưởng bởi nội dung khác */
     margin: 10px 0;
-    /* Khoảng cách giữa hình ảnh/video và nội dung khác */
 }
 
-/* Định dạng các heading */
+/* 
 .quill-container h1,
 .quill-container h2,
 .quill-container h3,
@@ -76,65 +68,45 @@
 .quill-container h5,
 .quill-container h6 {
     color: #222;
-    /* Màu chữ của tiêu đề */
     margin-top: 20px;
-    /* Khoảng cách trên */
     margin-bottom: 10px;
-    /* Khoảng cách dưới */
     line-height: 1.4;
-    /* Giãn cách dòng trong heading */
 }
 
-/* Định dạng danh sách */
 .quill-container ul,
 .quill-container ol {
     margin: 10px 0;
-    /* Khoảng cách trên dưới */
     padding-left: 20px;
-    /* Thụt lề cho danh sách */
 }
 
 .quill-container ul li,
 .quill-container ol li {
     margin-bottom: 5px;
-    /* Khoảng cách giữa các mục danh sách */
 }
 
-/* Định dạng blockquote */
 .quill-container blockquote {
     border-left: 4px solid #ccc;
-    /* Viền trái cho blockquote */
     margin: 10px 0;
-    /* Khoảng cách trên dưới */
     padding-left: 15px;
-    /* Thụt vào trong */
     color: #666;
-    /* Màu chữ blockquote */
     font-style: italic;
-    /* Chữ nghiêng */
 }
 
-/* Đảm bảo table không bị tràn */
 .quill-container table {
     width: 100%;
-    /* Table chiếm toàn bộ chiều ngang container */
     border-collapse: collapse;
-    /* Gộp viền bảng */
     margin: 10px 0;
-    /* Khoảng cách trên dưới */
 }
 
 .quill-container table td,
 .quill-container table th {
     border: 1px solid #ccc;
-    /* Viền của ô bảng */
     padding: 8px;
-    /* Khoảng cách bên trong ô bảng */
     text-align: left;
-    /* Căn trái cho nội dung */
-}
+} */
 </style>
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 <section class="header-descriptin329">
     <div class="container">
         <h3>Chi tiết bài viết</h3>
@@ -525,7 +497,8 @@
 </section>
 
 <!-- Thêm vào phần <head> -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<!-- <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
 <script>
 if (document.querySelector('#editorComment')) {
@@ -536,12 +509,12 @@ if (document.querySelector('#editorComment')) {
                 [{
                     'header': [1, 2, 3, false]
                 }], // Tùy chọn header (h1, h2, h3)
-                [{
-                    'font': []
-                }], // Định dạng font
-                [{
-                    'size': ['small', false, 'large', 'huge']
-                }], // Tùy chọn kích thước font
+                // [{
+                //     'font': []
+                // }], // Định dạng font
+                // [{
+                //     'size': ['small', false, 'large', 'huge']
+                // }], // Tùy chọn kích thước font
                 [{
                     'color': []
                 }, {

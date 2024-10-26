@@ -33,6 +33,15 @@ function validateDescription($input)
     return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\=[\]]+$/u', $input);
 }
 
+function validateGender($input)
+{
+    if ($input != 'Nam' && $input != "Nữ") {
+        return false;
+    }
+
+    return true;
+}
+
 function validateAddress($address)
 {
     return preg_match('/^[0-9a-zA-Z\s,\.\/\-]+$/u', $address);
@@ -170,6 +179,7 @@ function validateForm($fieldsToValidate)
         'category_name_update' => 'validateNoSpecialChars',
         'category_description_update' => 'validateDescription',
         'content' => 'sanitizeInputQuill',
+        'gender' => 'validateGender',
     ];
 
 

@@ -121,6 +121,18 @@
                                         value="' . $user_details["user_name"] . '">
             <small id="user_name_err"></small>
         </div>
+         <div class="form-group">
+                    <label>Giới tính </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Nam" id="gender_male" checked>
+                        <label class="form-check-label" for="gender_male">Nam</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Nữ" id="gender_female">
+                        <label class="form-check-label" for="gender_female">Nữ</label>
+                    </div>
+                    <small id="gender_err" style="color: red;"></small>
+                </div>
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email"
@@ -156,27 +168,27 @@
 </section>
 <!-- popup -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var editIcon = document.querySelector('.edit-icon');
-        var popup = document.getElementById('edit-popup');
-        var close = document.querySelector('.close');
+document.addEventListener('DOMContentLoaded', function() {
+    var editIcon = document.querySelector('.edit-icon');
+    var popup = document.getElementById('edit-popup');
+    var close = document.querySelector('.close');
 
-        if (editIcon) { // Kiểm tra nếu phần tử tồn tại
-            editIcon.addEventListener('click', function (event) {
-                event.preventDefault();
-                popup.style.display = 'flex';
-            });
-        }
-        if (close) {
-            close.addEventListener('click', function () {
-                popup.style.display = 'none';
-            });
-        }
-
-        window.addEventListener('click', function (event) {
-            if (event.target == popup) {
-                popup.style.display = 'none';
-            }
+    if (editIcon) { // Kiểm tra nếu phần tử tồn tại
+        editIcon.addEventListener('click', function(event) {
+            event.preventDefault();
+            popup.style.display = 'flex';
         });
+    }
+    if (close) {
+        close.addEventListener('click', function() {
+            popup.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+        }
     });
+});
 </script>
