@@ -267,6 +267,7 @@ class Admin extends Controller
         if (isset($_REQUEST["btnAddCategory"])) {
             $category_name = htmlspecialchars($_POST["category_name"]);
             $category_description = htmlspecialchars($_POST["category_description"]);
+            $category_type = htmlspecialchars($_POST["category_type"]);
 
             // $errors = validateForm(["category_name", "category_description"]);
             // if (!empty($errors)) {
@@ -286,7 +287,7 @@ class Admin extends Controller
                 exit();
             }
 
-            $result = $this->CategoryModel->CreateCategory($category_name, $category_description);
+            $result = $this->CategoryModel->CreateCategory($category_name, $category_description, $category_type);
             if ($result) {
                 $title = 'Thêm danh mục thành công';
                 response_success($title);

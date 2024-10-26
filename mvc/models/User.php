@@ -120,7 +120,11 @@ class User extends DB
 
     public function CreateUser($account_name, $user_name, $email, $gender, $password)
     {
-        $image = "images.png"; //default
+        if ($gender == "Nam") {
+            $image = "image_671cacd73d296_1729932503.jpg"; // Male
+        } else {
+            $image = "image_671caccc4f269_1729932492.jpg"; // FeMale
+        }
         $sql = "INSERT INTO user(account_name, user_name, email, password, image, gender) values (?,?,?,?,?,?)";
         return $this->executeQuery($sql, [$account_name, $user_name, $email, $password, $image, $gender]);
     }

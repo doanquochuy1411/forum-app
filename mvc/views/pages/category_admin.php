@@ -23,6 +23,7 @@
                                         <th>STT</th>
                                         <th>Tên danh mục</th>
                                         <th>Mô tả</th>
+                                        <th>Loại</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -67,7 +68,7 @@
                         <div class="form-group">
                             <label for="category_type">Loại danh mục</label>
                             <select class="form-control" id="category_type" name="category_type" required>
-                                <option value="post">Bài Viết</option>
+                                <option value="post" selected>Bài Viết</option>
                                 <option value="document">Tài liệu</option>
                             </select>
                             <small id="category_type_err"></small>
@@ -85,32 +86,33 @@
 
 
 <script>
-    // Dữ liệu người dùng từ PHP
-    const data = <?php echo json_encode($categories); ?>;
-    let current_page = 1;
-    const dataPerPage = 5;
-    // Hàm hiển thị người dùng
-    function displayData(data) {
-        const dataTableBody = document.getElementById('dataTableBody');
-        dataTableBody.innerHTML = ''; // Xóa dữ liệu cũ
+// Dữ liệu người dùng từ PHP
+const data = <?php echo json_encode($categories); ?>;
+let current_page = 1;
+const dataPerPage = 5;
+// Hàm hiển thị người dùng
+function displayData(data) {
+    const dataTableBody = document.getElementById('dataTableBody');
+    dataTableBody.innerHTML = ''; // Xóa dữ liệu cũ
 
-        // Tính toán vị trí bắt đầu và kết thúc
-        const start = (current_page - 1) * dataPerPage;
-        const end = start + dataPerPage;
-        const paginatedData = data.slice(start, end);
+    // Tính toán vị trí bắt đầu và kết thúc
+    const start = (current_page - 1) * dataPerPage;
+    const end = start + dataPerPage;
+    const paginatedData = data.slice(start, end);
 
-        paginatedData.forEach((d, index) => {
-            // Tạo một phần tử tr từ chuỗi HTML
-            const row = document.createElement('tr');
+    paginatedData.forEach((d, index) => {
+        // Tạo một phần tử tr từ chuỗi HTML
+        const row = document.createElement('tr');
 
-            // Thêm lớp user-row
-            row.className = 'data-row';
+        // Thêm lớp user-row
+        row.className = 'data-row';
 
-            // Thiết lập nội dung HTML cho hàng
-            row.innerHTML = `
+        // Thiết lập nội dung HTML cho hàng
+        row.innerHTML = `
         <td>${start + index + 1}</td>
         <td>${d.name}</td>
                                     <td>${d.description}</td>
+                                    <td>${convertTypeToVietnamese(d.category_type)}</td>
                                     <td>
                                         <a href="<?php echo BASE_URL ?>/admin/UpdateCategory/${d.id}" class="px-2 edit"><i
                                         class="fas fa-pencil-alt"></i></a>
@@ -118,99 +120,103 @@
                                         </td>
     `;
 
-            // Chèn hàng vào bảng
-            dataTableBody.appendChild(row);
+        // Chèn hàng vào bảng
+        dataTableBody.appendChild(row);
 
-            // Sử dụng setTimeout để thêm lớp `show` sau khi hàng được thêm vào
-            setTimeout(() => {
-                row.classList.add('show'); // Thêm lớp `show` để kích hoạt hiệu ứng
-            }, 0); // Đặt thời gian 0 để hiệu ứng diễn ra ngay lập tức
-        });
-
-    }
-
-    function setupPagination(data) {
-        const pagination = document.getElementById('pagination');
-        pagination.innerHTML = ''; // Xóa phân trang cũ
-        const pageCount = Math.ceil(data.length / dataPerPage);
-
-        // Nút "Trước"
-        if (current_page > 1) {
-            const prevButton = document.createElement('a');
-            prevButton.textContent = '« Trước';
-            prevButton.className = 'page-link';
-            prevButton.href = '#'; // Thêm href để biến nó thành liên kết
-            prevButton.onclick = function (event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định
-                current_page--;
-                displayData(data);
-                setupPagination(data);
-            };
-            pagination.appendChild(prevButton);
-        } else {
-            const disabledPrevButton = document.createElement('span');
-            disabledPrevButton.textContent = '« Trước';
-            disabledPrevButton.className = 'disabled';
-            pagination.appendChild(disabledPrevButton);
-        }
-
-        // Nút trang
-        for (let i = 1; i <= pageCount; i++) {
-            const pageButton = document.createElement('a');
-            pageButton.textContent = i;
-            pageButton.className = 'page-link';
-            if (i === current_page) {
-                pageButton.classList.add('active'); // Nút hiện tại
-                pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
-            } else {
-                pageButton.onclick = function (event) {
-                    event.preventDefault(); // Ngăn chặn hành vi mặc định
-                    current_page = i;
-                    displayData(data);
-                    setupPagination(data);
-                };
-            }
-            pagination.appendChild(pageButton);
-        }
-
-        // Nút "Sau"
-        if (current_page < pageCount) {
-            const nextButton = document.createElement('a');
-            nextButton.textContent = 'Sau »';
-            nextButton.className = 'page-link';
-            nextButton.href = '#'; // Thêm href để biến nó thành liên kết
-            nextButton.onclick = function (event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định
-                current_page++;
-                displayData(data);
-                setupPagination(data);
-            };
-            pagination.appendChild(nextButton);
-        } else {
-            const disabledNextButton = document.createElement('span');
-            disabledNextButton.textContent = 'Sau »';
-            disabledNextButton.className = 'disabled';
-            pagination.appendChild(disabledNextButton);
-        }
-    }
-
-    // Hàm lọc dữ liệu dựa trên từ khóa tìm kiếm
-    function filterData(keyword) {
-        filteredData = data.filter(d =>
-            d.name.toLowerCase().includes(keyword.toLowerCase()) ||
-            d.description.toLowerCase().includes(keyword.toLowerCase())
-        );
-        current_page = 1; // Quay về trang 1 sau khi lọc
-        displayData(filteredData);
-        setupPagination(filteredData);
-    }
-
-    // Gọi hàm khi trang được tải
-    displayData(data);
-    setupPagination(data);
-
-    // Bắt sự kiện nhập liệu vào ô tìm kiếm
-    document.getElementById('searchInput').addEventListener('input', function () {
-        filterData(this.value);
+        // Sử dụng setTimeout để thêm lớp `show` sau khi hàng được thêm vào
+        setTimeout(() => {
+            row.classList.add('show'); // Thêm lớp `show` để kích hoạt hiệu ứng
+        }, 0); // Đặt thời gian 0 để hiệu ứng diễn ra ngay lập tức
     });
+
+}
+
+function convertTypeToVietnamese(type) {
+    return type === "post" ? "Bài viết" : type === "document" ? "Tài liệu" : "Không xác định";
+}
+
+function setupPagination(data) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = ''; // Xóa phân trang cũ
+    const pageCount = Math.ceil(data.length / dataPerPage);
+
+    // Nút "Trước"
+    if (current_page > 1) {
+        const prevButton = document.createElement('a');
+        prevButton.textContent = '« Trước';
+        prevButton.className = 'page-link';
+        prevButton.href = '#'; // Thêm href để biến nó thành liên kết
+        prevButton.onclick = function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định
+            current_page--;
+            displayData(data);
+            setupPagination(data);
+        };
+        pagination.appendChild(prevButton);
+    } else {
+        const disabledPrevButton = document.createElement('span');
+        disabledPrevButton.textContent = '« Trước';
+        disabledPrevButton.className = 'disabled';
+        pagination.appendChild(disabledPrevButton);
+    }
+
+    // Nút trang
+    for (let i = 1; i <= pageCount; i++) {
+        const pageButton = document.createElement('a');
+        pageButton.textContent = i;
+        pageButton.className = 'page-link';
+        if (i === current_page) {
+            pageButton.classList.add('active'); // Nút hiện tại
+            pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
+        } else {
+            pageButton.onclick = function(event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                current_page = i;
+                displayData(data);
+                setupPagination(data);
+            };
+        }
+        pagination.appendChild(pageButton);
+    }
+
+    // Nút "Sau"
+    if (current_page < pageCount) {
+        const nextButton = document.createElement('a');
+        nextButton.textContent = 'Sau »';
+        nextButton.className = 'page-link';
+        nextButton.href = '#'; // Thêm href để biến nó thành liên kết
+        nextButton.onclick = function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định
+            current_page++;
+            displayData(data);
+            setupPagination(data);
+        };
+        pagination.appendChild(nextButton);
+    } else {
+        const disabledNextButton = document.createElement('span');
+        disabledNextButton.textContent = 'Sau »';
+        disabledNextButton.className = 'disabled';
+        pagination.appendChild(disabledNextButton);
+    }
+}
+
+// Hàm lọc dữ liệu dựa trên từ khóa tìm kiếm
+function filterData(keyword) {
+    filteredData = data.filter(d =>
+        d.name.toLowerCase().includes(keyword.toLowerCase()) ||
+        d.description.toLowerCase().includes(keyword.toLowerCase())
+    );
+    current_page = 1; // Quay về trang 1 sau khi lọc
+    displayData(filteredData);
+    setupPagination(filteredData);
+}
+
+// Gọi hàm khi trang được tải
+displayData(data);
+setupPagination(data);
+
+// Bắt sự kiện nhập liệu vào ô tìm kiếm
+document.getElementById('searchInput').addEventListener('input', function() {
+    filterData(this.value);
+});
 </script>

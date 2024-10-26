@@ -27,6 +27,7 @@ class Home extends Controller
     {
         $posts = $this->PostModel->GetPostWithTypeAndLimit("post");
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question");
+        $documents = $this->PostModel->GetPostWithTypeAndLimit("document");
         $comments = $this->CommentModel->GetAllComment();
         $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
         $categories = $this->CategoryModel->GetAllCategory();
@@ -40,6 +41,7 @@ class Home extends Controller
             "title" => $this->title,
             "posts" => $posts,
             "questions" => $questions,
+            "documents" => $documents,
             "comments" => $comments,
             "users" => $users,
             "categories" => $categories,
@@ -211,6 +213,9 @@ class Home extends Controller
                 break;
             case "question":
                 $sub_title = "câu hỏi";
+                break;
+            case "document":
+                $sub_title = "tài liệu";
                 break;
             default:
                 $sub_title = "";

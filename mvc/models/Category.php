@@ -39,10 +39,10 @@ class Category extends DB
         return null;
     }
 
-    public function CreateCategory($category_name, $category_description)
+    public function CreateCategory($category_name, $category_description, $category_type)
     {
-        $sql = "Insert into categories(name, description) values (?,?)";
-        $result = $this->executeQuery($sql, [$category_name, $category_description]);
+        $sql = "Insert into categories(name, description, category_type) values (?,?, ?)";
+        $result = $this->executeQuery($sql, [$category_name, $category_description, $category_type]);
         if ($result > 0) {
             return $this->con->insert_id;
         } else {

@@ -1,7 +1,7 @@
 <section class="header-descriptin329">
     <div class="container">
         <h3>Chi tiết bài viết</h3>
-        <ol class="breadcrumb breadcrumb840">
+        <ol class="breadcrumb breadcrumb840 z-index-2">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
             <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
             <li class="active"><?php echo $post_to_edit[0]["title"] ?></li>
@@ -33,6 +33,9 @@
                                 <option value="question"
                                     <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
                                     Đặt câu hỏi</option>
+                                <option value="document"
+                                    <?php echo $post_to_edit[0]["type"] == 'document' ? 'selected' : ''; ?>>
+                                    Tài liệu</option>
                             </select>
                         </div>
 
@@ -40,6 +43,7 @@
                             <span class="form-description442">Danh mục* </span>
                             <select id="contentCategory" name="contentCategory" class="email30">
                                 <?php
+                                // print_r($categories);
                                 foreach ($categories as $category) {
                                     $selected = $post_to_edit[0]["category_id"] == decryptData($category["id"]) ? 'selected' : '';
                                     echo '<option value="' . $category['id'] . '" ' . $selected . '>' . $category['name'] . '</option>';
@@ -230,4 +234,45 @@ if (document.querySelector('#editor')) {
 } else {
     console.warn("Element #editor not found in the DOM.");
 }
+</script>
+
+<!-- Handel category -->
+<script>
+const categories = <?php echo json_encode($categories); ?>;
+// console.log(categories)
+document.addEventListener('DOMContentLoaded', function() {
+    const contentType = document.getElementById('contentType');
+    const contentCategory = document.getElementById('contentCategory');
+
+    function updateCategoryOptions(selectedType) {
+        contentCategory.innerHTML = '';
+
+        let filteredCategories;
+        if (selectedType === 'question') {
+            filteredCategories = categories.filter(category => category.category_type === 'post');
+        } else {
+            filteredCategories = categories.filter(category => category.category_type === selectedType);
+        }
+
+        filteredCategories.forEach((category, index) => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+
+            // Chọn danh mục đầu tiên làm mặc định
+            if (index === 0) {
+                option.selected = true;
+            }
+
+            contentCategory.appendChild(option);
+        });
+    }
+
+    contentType.addEventListener('change', function() {
+        const selectedType = contentType.value;
+        updateCategoryOptions(selectedType);
+    });
+
+    updateCategoryOptions(contentType.value);
+});
 </script>

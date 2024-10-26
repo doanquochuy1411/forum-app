@@ -131,7 +131,6 @@ class Posts extends Controller
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $comments = $this->CommentModel->GetAllCommentOfPost($id);
         $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
-        $this->PostModel->IncrementView(1, $id); // Tăng view lên 1
         $categories = $this->CategoryModel->GetAllCategory();
         $tags = $this->TagModel->GetPopularTags();
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
