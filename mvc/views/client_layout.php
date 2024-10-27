@@ -34,41 +34,41 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
-    body {
-        font-family: 'Arial', sans-serif;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
 
-    #editor {
-        height: 300px;
-        margin-top: 20px;
-    }
+        #editor {
+            height: 300px;
+            margin-top: 20px;
+        }
 
-    .dropdown-menu>li:first-child>a:hover,
-    .dropdown-menu>li:first-child>a:focus {
-        color: #000;
-        background-color: #fff !important;
+        .dropdown-menu>li:first-child>a:hover,
+        .dropdown-menu>li:first-child>a:focus {
+            color: #000;
+            background-color: #fff !important;
 
-    }
+        }
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
 
-    .data-row {
-        opacity: 0;
-        /* Bắt đầu với độ trong suốt bằng 0 */
-        transform: translateY(20px);
-        /* Di chuyển xuống một chút */
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        /* Hiệu ứng chuyển tiếp */
-    }
+        .data-row {
+            opacity: 0;
+            /* Bắt đầu với độ trong suốt bằng 0 */
+            transform: translateY(20px);
+            /* Di chuyển xuống một chút */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            /* Hiệu ứng chuyển tiếp */
+        }
 
-    .data-row.show {
-        opacity: 1;
-        /* Đặt độ trong suốt thành 1 khi hiển thị */
-        transform: translateY(0);
-        /* Đưa nó trở lại vị trí ban đầu */
-    }
+        .data-row.show {
+            opacity: 1;
+            /* Đặt độ trong suốt thành 1 khi hiển thị */
+            transform: translateY(0);
+            /* Đưa nó trở lại vị trí ban đầu */
+        }
     </style>
 </head>
 
@@ -389,62 +389,62 @@
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var emailInput = document.querySelector('input[name="email"]');
-        if (emailInput) {
-            emailInput.addEventListener('input', validateEmail);
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var emailInput = document.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.addEventListener('input', validateEmail);
+            }
 
-        var fullNameInput = document.querySelector('input[name="full_name"]');
-        if (fullNameInput) {
-            fullNameInput.addEventListener('input', validateFullName);
-        }
+            var fullNameInput = document.querySelector('input[name="full_name"]');
+            if (fullNameInput) {
+                fullNameInput.addEventListener('input', validateFullName);
+            }
 
-        var userNameInput = document.querySelector('input[name="user_name"]');
-        if (userNameInput) {
-            userNameInput.addEventListener('input', validateUserName);
-        }
+            var userNameInput = document.querySelector('input[name="user_name"]');
+            if (userNameInput) {
+                userNameInput.addEventListener('input', validateUserName);
+            }
 
-        var accountNameInput = document.querySelector('input[name="account_name"]');
-        if (accountNameInput) {
-            accountNameInput.addEventListener('input', validateAccountName);
-        }
+            var accountNameInput = document.querySelector('input[name="account_name"]');
+            if (accountNameInput) {
+                accountNameInput.addEventListener('input', validateAccountName);
+            }
 
-        var passwordInput = document.querySelector('input[name="password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validatePassword);
-        }
+            var passwordInput = document.querySelector('input[name="password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validatePassword);
+            }
 
-        var passwordInput = document.querySelector('input[name="current_password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validateCurrentPassword);
-        }
+            var passwordInput = document.querySelector('input[name="current_password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validateCurrentPassword);
+            }
 
-        var passwordInput = document.querySelector('input[name="new_password"]');
-        if (passwordInput) {
-            passwordInput.addEventListener('input', validateNewPassword);
-        }
+            var passwordInput = document.querySelector('input[name="new_password"]');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validateNewPassword);
+            }
 
-        var retypePasswordInput = document.querySelector('input[name="retype_password"]');
-        if (retypePasswordInput) {
-            retypePasswordInput.addEventListener('input', validateRetypePassword);
-        }
+            var retypePasswordInput = document.querySelector('input[name="retype_password"]');
+            if (retypePasswordInput) {
+                retypePasswordInput.addEventListener('input', validateRetypePassword);
+            }
 
-        var retypePasswordInput = document.querySelector('input[name="retype_password_of_change"]');
-        if (retypePasswordInput) {
-            retypePasswordInput.addEventListener('input', validateRetypePasswordOfChangePass);
-        }
+            var retypePasswordInput = document.querySelector('input[name="retype_password_of_change"]');
+            if (retypePasswordInput) {
+                retypePasswordInput.addEventListener('input', validateRetypePasswordOfChangePass);
+            }
 
-        var title = document.querySelector('input[name="title"]');
-        if (title) {
-            title.addEventListener('input', validateTitleOfPost);
-        }
+            var title = document.querySelector('input[name="title"]');
+            if (title) {
+                title.addEventListener('input', validateTitleOfPost);
+            }
 
-        var phoneNumber = document.querySelector('input[name="phone_number"]');
-        if (phoneNumber) {
-            phoneNumber.addEventListener('input', validatePhoneNumber);
-        }
-    });
+            var phoneNumber = document.querySelector('input[name="phone_number"]');
+            if (phoneNumber) {
+                phoneNumber.addEventListener('input', validatePhoneNumber);
+            }
+        });
     </script>
     <!-- Trình soạn thảo -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script> -->
@@ -453,30 +453,30 @@
     <!-- popup thông báo -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-    var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
-    var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
+        var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+        var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
 
-    function showSuccessNotification() {
-        Swal.fire({
-            icon: 'success',
-            title: title_mess,
-            text: text_mes,
-            timer: 2000,
-            timerProgressBar: true
-        });
-    }
+        function showSuccessNotification() {
+            Swal.fire({
+                icon: 'success',
+                title: title_mess,
+                text: text_mes,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
 
-    function showFailNotification() {
-        Swal.fire({
-            icon: 'error',
-            title: title_mess,
-            text: text_mes,
-            timer: 3000,
-            timerProgressBar: true
-        });
-    }
+        function showFailNotification() {
+            Swal.fire({
+                icon: 'error',
+                title: title_mess,
+                text: text_mes,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
 
-    <?php
+        <?php
         $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
         switch ($status) {
             case 'success':
@@ -499,99 +499,60 @@
     </script>
 
     <script>
-    function confirmDelete(event, targetHref) {
-        event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-        Swal.fire({
-            title: "Bạn có chắc chắn xóa không",
-            width: '400px', // Tăng chiều rộng của popup
-            confirmButtonText: "Xóa",
-            // denyButtonText: `Don't save`,
-            // showDenyButton: true,
-            showCancelButton: true,
-            // customClass: {
-            //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
-            //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
-            //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
-            //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
-            //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
-            // }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
-                // console.log("href: ", targetHref);
-                window.location.href = targetHref;
-                // window.location.href = event.target.href;
-                // Swal.fire("Xóa thành công!", "", "success");
-            }
-            // else if (result.isDenied) {
-            //     Swal.fire("Changes are not saved", "", "info");
-            // }
-        });
-    }
-    </script>
-    <!-- <script>
-    // Search ở trang body trang hompage
-    function handleSearchLink(event) {
-        // Ngăn chặn hành động mặc định của thẻ <a>
-        event.preventDefault();
-
-        // Thực hiện hành động khi nhấp vào thẻ <a>
-        console.log('Thẻ <a> đã được nhấp.');
-
-        // Lấy phần tử input bằng id
-        var inputElement = document.getElementById('txtSearch_body');
-
-        // Kiểm tra xem phần tử có tồn tại không
-        if (inputElement) {
-            // Lấy giá trị của input
-            // var inputValue = inputElement.value;
-            var input = document.getElementById('srch-term');
-            var form = document.getElementById('searchForm');
-
-            input.value = inputElement.value;
-            console.log('Giá trị của input là:', input.value);
-
-            var submitButton = form.querySelector('button[name="btnSearch"]');
-
-            if (submitButton) {
-                submitButton.click(); // Giả lập việc nhấn nút submit
-            }
-        } else {
-            console.error('Phần tử input không tồn tại');
+        function confirmDelete(event, targetHref) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+            Swal.fire({
+                title: "Bạn có chắc chắn xóa không",
+                width: '400px', // Tăng chiều rộng của popup
+                confirmButtonText: "Xóa",
+                // denyButtonText: `Don't save`,
+                // showDenyButton: true,
+                showCancelButton: true,
+                // customClass: {
+                //     title: 'swal2-title-large', // Kích thước chữ tiêu đề
+                //     popup: 'swal2-popup-large', // Kích thước văn bản trong popup
+                //     confirmButton: 'swal2-button-large', // Kích thước chữ nút xác nhận
+                //     denyButton: 'swal2-button-large', // Kích thước chữ nút từ chối
+                //     cancelButton: 'swal2-button-large' // Kích thước chữ nút hủy
+                // }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
+                    // console.log("href: ", targetHref);
+                    window.location.href = targetHref;
+                    // window.location.href = event.target.href;
+                    // Swal.fire("Xóa thành công!", "", "success");
+                }
+                // else if (result.isDenied) {
+                //     Swal.fire("Changes are not saved", "", "info");
+                // }
+            });
         }
+    </script>
 
-        // Nếu có một form và bạn muốn gửi nó
-        // var form = document.getElementById('myForm');
-        // if (form) {
-        //     form.submit(); // Hoặc thực hiện các hành động khác
-        // } else {
-        //     console.error('Form không tồn tại');
-        // }
-    }
-    </script> -->
     <!-- popup change password -->
     <script>
-    $(document).ready(function() {
-        // Khi người dùng nhấn vào nút "Đổi Mật Khẩu"
-        $('#openChangePasswordModal').on('click', function() {
-            // Hiển thị modal popup
-            $('#change-password').modal('show');
+        $(document).ready(function () {
+            // Khi người dùng nhấn vào nút "Đổi Mật Khẩu"
+            $('#openChangePasswordModal').on('click', function () {
+                // Hiển thị modal popup
+                $('#change-password').modal('show');
+            });
         });
-    });
 
-    $(document).ready(function() {
-        // Khi người dùng nhấn vào nút "Báo cáo"
-        $('#openReportModal').on('click', function() {
-            // Hiển thị modal popup
-            $('#report').modal('show');
+        $(document).ready(function () {
+            // Khi người dùng nhấn vào nút "Báo cáo"
+            $('#openReportModal').on('click', function () {
+                // Hiển thị modal popup
+                $('#report').modal('show');
+            });
         });
-    });
     </script>
 
     <!-- Pusher Thông báo realtime -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
-    const BASE_URL = 'http://localhost/forum-app';
+        const BASE_URL = 'http://localhost/forum-app';
     </script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
 </body>

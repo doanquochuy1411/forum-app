@@ -306,17 +306,16 @@ class Home extends Controller
     // Thông tin chi tiết của user
     function Info($account_name)
     {
-        // $decryptedData = decryptData($account_name); // giải mã account_name để nhận lại tên tài khoản
         $user_details = $this->UserModel->GetUserByAccountName($account_name); // body
-        // echo "key" . $_SESSION['Key'] . "<br>";
-        // echo '<script>alert("' . $decryptedData . '")</script>';
-        // print_r($user_details);
         if ($user_details) { // success
             $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
             $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
             $categories = $this->CategoryModel->GetAllCategory(); // header
             $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
             $tags = $this->TagModel->GetPopularTags(); // scroll
+            $my_posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $user_details["id"]);
+            $my_questions = $this->PostModel->GetAllPostWithTypeAndUserID("question", $user_details["id"]);
+            $my_trades = $this->PostModel->GetAllPostWithTypeAndUserID("document", $user_details["id"]);
 
             $this->view($this->layout, [
                 "Page" => "user_details",
@@ -325,7 +324,10 @@ class Home extends Controller
                 "categories" => $categories,
                 "tags" => $tags,
                 "recent_posts" => $recent_posts,
-                "user_details" => $user_details
+                "user_details" => $user_details,
+                "my_posts" => $my_posts,
+                "my_questions" => $my_questions,
+                "my_trades" => $my_trades
             ]);
         } else {
             $_SESSION['action_status'] = 'error';

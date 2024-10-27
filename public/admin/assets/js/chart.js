@@ -46,138 +46,93 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Top 10 bài viết có lượt xem cao nhất
-    // var ctx3 = document.getElementById('viewsChart').getContext('2d');
-    // var viewsChart = new Chart(ctx3, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: [],
-    //         datasets: [{
-    //             label: 'Số lượt xem',
-    //             data: [],
-    //             backgroundColor: 'rgba(255, 159, 64, 0.2)',
-    //             borderColor: 'rgba(255, 159, 64, 1)',
-    //             borderWidth: 1
-    //         }]
-            
-    //     },
-    //     options: {
-    //         scales: { y: { beginAtZero: true } }
-    //     }
-    // });
-
-    // // Top 10 bài viết có lượt like cao nhất
-    // var ctx4 = document.getElementById('likesChart').getContext('2d');
-    // var likesChart = new Chart(ctx4, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: [],
-    //         datasets: [{
-    //             label: 'Số lượt thích',
-    //             data: [],
-    //             backgroundColor: 'rgba(153, 102, 255, 0.2)',
-    //             borderColor: 'rgba(153, 102, 255, 1)',
-    //             borderWidth: 1
-    //         }]
-            
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     }
-    // });
    // Top 10 bài viết có lượt xem cao nhất
-var ctx3 = document.getElementById('viewsChart').getContext('2d');
-var viewsChart = new Chart(ctx3, {
-    type: 'bar',
-    data: {
-        labels: [], // Nhãn sẽ được cập nhật sau
-        datasets: [{
-            label: 'Số lượt xem',
-            data: [],
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-            borderColor: 'rgba(255, 159, 64, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Số lượt xem'
+    var ctx3 = document.getElementById('viewsChart').getContext('2d');
+    var viewsChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: [], // Nhãn sẽ được cập nhật sau
+            datasets: [{
+                label: 'Số lượt xem',
+                data: [],
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Số lượt xem'
+                    }
+                },
+                x: {
+                    display: false // Ẩn nhãn trục x
                 }
             },
-            x: {
-                display: false // Ẩn nhãn trục x
-            }
-        },
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    title: function(tooltipItems) {
-                        // Hiển thị tiêu đề bài viết khi hover
-                        return tooltipItems[0].label;
-                    },
-                    label: function(tooltipItem) {
-                        // Hiển thị số lượt xem bên cạnh tiêu đề
-                        return `Số lượt xem: ${tooltipItem.raw}`;
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            // Hiển thị tiêu đề bài viết khi hover
+                            return tooltipItems[0].label;
+                        },
+                        label: function(tooltipItem) {
+                            // Hiển thị số lượt xem bên cạnh tiêu đề
+                            return `Số lượt xem: ${tooltipItem.raw}`;
+                        }
                     }
                 }
             }
         }
-    }
-});
+    });
 
-// Top 10 bài viết có lượt thích cao nhất
-var ctx4 = document.getElementById('likesChart').getContext('2d');
-var likesChart = new Chart(ctx4, {
-    type: 'bar',
-    data: {
-        labels: [], // Nhãn sẽ được cập nhật sau
-        datasets: [{
-            label: 'Số lượt thích',
-            data: [],
-            backgroundColor: 'rgba(153, 102, 255, 0.2)',
-            borderColor: 'rgba(153, 102, 255, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Số lượt thích'
+    // Top 10 bài viết có lượt thích cao nhất
+    var ctx4 = document.getElementById('likesChart').getContext('2d');
+    var likesChart = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: [], // Nhãn sẽ được cập nhật sau
+            datasets: [{
+                label: 'Số lượt thích',
+                data: [],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Số lượt thích'
+                    }
+                },
+                x: {
+                    display: false // Ẩn nhãn trục x
                 }
             },
-            x: {
-                display: false // Ẩn nhãn trục x
-            }
-        },
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    title: function(tooltipItems) {
-                        // Hiển thị tiêu đề bài viết khi hover
-                        return tooltipItems[0].label;
-                    },
-                    label: function(tooltipItem) {
-                        // Hiển thị số lượt thích bên cạnh tiêu đề
-                        return `Số lượt thích: ${tooltipItem.raw}`;
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            // Hiển thị tiêu đề bài viết khi hover
+                            return tooltipItems[0].label;
+                        },
+                        label: function(tooltipItem) {
+                            // Hiển thị số lượt thích bên cạnh tiêu đề
+                            return `Số lượt thích: ${tooltipItem.raw}`;
+                        }
                     }
                 }
             }
         }
-    }
-});
-
-
+    });
 
   function getCurrentYear() {
         const currentDate = new Date();
@@ -201,10 +156,6 @@ var likesChart = new Chart(ctx4, {
         // Sử dụng Promise.all để đợi cả fetch hoàn thành
         Promise.all([postStatsPromise, userStatsPromise, postByViewsStatsPromise, postByLikesStatsPromise])
             .then(([postData, userData, postByViewsData, postByLikesData]) => {
-                console.log('Post Data:', postData);
-                console.log('User Data:', userData);
-                console.log('Top Posts by Views:', postByViewsData);
-                console.log('Top Posts by Likes:', postByLikesData);
 
                 // Cập nhật biểu đồ bài viết
                 postsChart.data.datasets[0].data = postData.posts;

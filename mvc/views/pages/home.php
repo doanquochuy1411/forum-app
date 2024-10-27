@@ -1,11 +1,11 @@
 <style>
     /* CSS cho hiệu ứng fade in/out */
-    .question-type2033 {
+    .container-content {
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
     }
 
-    .question-type2033.fade-out {
+    .container-content.fade-out {
         opacity: 0;
     }
 </style>
@@ -37,7 +37,7 @@
                     <!-- Posts -->
                     <section id="content1">
                         <!-- Recently answered Content Section -->
-                        <div class="question-type2033">
+                        <div class="container-content">
                         </div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
@@ -62,7 +62,7 @@
                     <section id="content5">
                         <?php
                         if (count($my_posts) > 0) {
-                            echo '<div class="question-type2033">
+                            echo '<div class="container-content">
 
                         </div>
                         <nav aria-label="Page navigation">
@@ -86,7 +86,7 @@
 
                     <!-- Questions -->
                     <section id="content2">
-                        <div class="question-type2033">
+                        <div class="container-content">
 
                         </div>
 
@@ -109,7 +109,7 @@
 
                     <!-- Documents -->
                     <section id="content3">
-                        <div class="question-type2033">
+                        <div class="container-content">
 
                         </div>
 
@@ -211,7 +211,7 @@
         var end = start + limit;
         var paginatedData = data.slice(start, end);
 
-        var container = document.querySelector(containerId + ' .question-type2033');
+        var container = document.querySelector(containerId + ' .container-content');
         container.classList.add('fade-out');
 
         setTimeout(function () {
@@ -220,7 +220,8 @@
             paginatedData.forEach(function (post) {
                 // console.log(post)
                 var content = stripImages(post.content);
-                var html = '<div class="row">';
+                var html = '<div class="question-type2033">';
+                html += '<div class="row">';
                 html += '<div class="col-md-1">';
                 html += '<div class="left-user12923 left-user12923-repeat">';
                 html += '<a href="<?php echo BASE_URL ?>/home/info/' + post.account_name +
@@ -264,6 +265,7 @@
                 html += '</div>';
                 html += '<div class="col-md-2">';
                 html += '<div class="ques-type302">';
+                html += '</div>';
                 html += '</div>';
                 html += '</div>';
                 html += '</div>';
