@@ -1,11 +1,12 @@
-<div class="account-page">
+<div class="account-page pd-t-90">
     <div class="account-center">
         <div class="account-box">
             <form class="form-signin" action="<?php echo BASE_URL; ?>/Reset/HandelReset" method="post"
                 onsubmit="return validateFormResetPassword()">
                 <div class="account-logo">
                     <a href="<?php echo BASE_URL; ?>"><img
-                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" alt="Preadmin"></a>
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" class="lg-auth"
+                            alt="Preadmin"></a>
                 </div>
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">

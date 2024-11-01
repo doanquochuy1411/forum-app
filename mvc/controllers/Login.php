@@ -2,19 +2,27 @@
 class Login extends Controller
 {
     public $UserModel;
-
-    public $layout = "auth_layout";
+    protected $CategoryModel;
+    public $layout = "client_layout";
     public $page = "login";
     public $title = "Đăng nhập";
 
     public function __construct()
     {
         $this->UserModel = $this->model("User");
+        $this->CategoryModel = $this->model("Category");
     }
 
     function Index()
     {
-        $this->response($this->layout, $this->page, $this->title, "");
+        $categories = $this->CategoryModel->GetAllCategory();
+
+
+        $this->view($this->layout, [
+            "Page" => $this->page,
+            "title" => $this->title,
+            "categories" => $categories,
+        ]);
     }
 
     function HandelLogin()

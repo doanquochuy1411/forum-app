@@ -28,6 +28,11 @@
     <link href="<?php echo BASE_URL; ?>/public/client/css/pusher.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/admin/assets/css/loading.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/src/css/navigation_header.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>/public/src/css/header.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>/public/src/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>/public/src/css/body_auth.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/css/style.css"> -->
+
     <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
     <!-- SweetAlert2 CSS -->
     <!-- Popup thông báo -->
@@ -77,8 +82,8 @@
     <span class="loader"></span>
     <div class="hidden-content">
         <!-- ==========header mega navbar=======-->
-        <div class=" top-menu-bottom932">
-            <nav class="navbar navbar-default">
+        <div class=" top-menu-bottom932 fixed-header">
+            <nav class="navbar navbar-default mg-0">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -86,16 +91,16 @@
                             navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                             class="icon-bar"></span> </button>
                     <a class="navbar-brand" href="<?php echo BASE_URL ?>"><img
-                            src="<?php echo BASE_URL; ?>/public/client/image/logo.png" alt="Logo"></a>
+                            src="<?php echo BASE_URL ?>/public/src/uploads/logo_iuh.png" alt="Logo"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav"> </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right header-right">
                         <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
                         <!-- <li><a href="ask_question.html">Giới thiệu</a></li> -->
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Diễn đàn
+                                aria-haspopup="true" aria-expanded="false">Bài viết
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
                                 <?php
@@ -111,7 +116,7 @@
                             </ul>
                         </li>
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Hỏi đáp <span class="caret"></span></a>
+                                aria-haspopup="true" aria-expanded="false">Câu hỏi <span class="caret"></span></a>
                             <ul class="dropdown-menu animated zoomIn">
                                 <?php
                                 if (count($categories) > 0) {
@@ -267,92 +272,48 @@
         ?>
 
         <!--    footer -->
-        <div class="footer-search">
-        </div>
         <section class="footer-part">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="info-part-one320">
-                            <!-- <h4>Chúng tôi ở đâu?</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit
-                                amet suscipit risus ultrices eu.</p> -->
-                            <h4>Địa chỉ:</h4>
+                            <img src="<?php echo BASE_URL ?>/public/src/uploads/logo_iuh.png" alt="" class="img-footer">
+                            <p class="pd-10">
+                                Chào mừng các bạn đến với Diễn đàn Công nghệ thông tin, kênh thông tin cung cấp các
+                                thông tin, kiến thức cho các bạn sinh viên.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info-part-two320">
+                            <h4>Liên kết nhanh</h4>
+                            <a href="<?php echo BASE_URL ?>">
+                                <p>- Trang chủ</p>
+                            </a>
+                            <a href="<?php echo BASE_URL ?>/home/allposts/post">
+                                <p>- Bài viết</p>
+                            </a>
+                            <a href="<?php echo BASE_URL ?>/home/allposts/post">
+                                <p>- Tài liệu</p>
+                            </a>
+                            <a href="#" class="last-child12892">
+                                <p>- Giúp đỡ</p>
+                            </a>
+                            <a href="#">
+                                <p>- Liên hệ chúng tôi</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info-part-four320">
+                            <h4>Liên hệ</h4>
+                            <!-- <h4>Địa chỉ:</h4> -->
                             <p>12 Nguyễn Văn Bảo, P4, Quận Gò Vấp <br>Thành phố Hồ Chí Minh.
                             </p>
                             <h4>Hỗ trợ:</h4>
                             <p>Số điện thoại hỗ trợ: 0366 555 444</p>
                             <p>Email hỗ trợ:</p>
                             <p>hotro@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-two320">
-                            <h4>Liên kết nhanh</h4>
-                            <a href="#">
-                                <p>- Trang chủ</p>
-                            </a>
-                            <a href="#">
-                                <p>- Đặt câu hỏi</p>
-                            </a>
-                            <a href="#">
-                                <p>- Các câu hỏi</p>
-                            </a>
-                            <a href="#">
-                                <p>- Người dùng</p>
-                            </a>
-                            <a href="#">
-                                <p>- Chỉnh sửa hồ sơ</p>
-                            </a>
-                            <a href="#" class="last-child12892">
-                                <p>- Liên hệ chúng tôi</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-three320">
-                            <h4>Các câu hỏi phổ biến</h4>
-                            <?php
-
-                            $counter = 0; // Biến đếm để theo dõi số phần tử đã lặp qua
-                            
-                            foreach ($questions as $question) {
-                                if ($counter >= 3) {
-                                    break; // Thoát khỏi vòng lặp nếu đã lặp qua 3 phần tử
-                                }
-
-                                // $originalDate = '2024-05-25';
-                                $formattedDate = formatVietnameseDate($question['created_at']);
-                                echo '<div class="news-info209">
-                                <h5>' . $question['title'] . '</h5>
-                                <p>' . $question['content'] . '</p> <small>' . $formattedDate . '</small>
-                            </div>';
-                                $counter++; // Tăng biến đếm lên 1 sau mỗi lần lặp
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-four320">
-                            <h4>Tweet mới nhất</h4>
-                            <div class="tweet-details29">
-                                <p><i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#"> codeThemesCheck
-                                        cập
-                                        nhật mới #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi</a></p> <small>khoảng 2 tuần trước</small>
-                            </div>
-                            <div class="tweet-details29">
-                                <p><i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#"> codeThemesCheck
-                                        cập
-                                        nhật mới #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi</a></p> <small>khoảng 2 tuần trước</small>
-                            </div>
-                            <div class="tweet-details29">
-                                <p><i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#"> codeThemesCheck
-                                        cập
-                                        nhật mới #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi</a></p> <small>khoảng 2 tuần trước</small>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,16 +323,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Bản quyền © 2017 Ask me | <strong>Sudo Coder</strong></p>
+                        <p>Bản quyền © 2024 | <strong>Diễn đàn công nghệ thông tin</strong></p>
                     </div>
                     <div class="col-md-6">
-                        <div class="social-right2389"> <a href="#"><i class="fa fa-twitter-square"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-facebook"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-youtube"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-skype"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin"
-                                    aria-hidden="true"></i></a> <a href="#"><i class="fa fa-rss"
+                        <div class="social-right2389"> <a href="#" class="bg-w"><i class="fa fa-twitter-square"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-google-plus"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-youtube"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-skype"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-linkedin"
+                                    aria-hidden="true"></i></a> <a href="#" class="bg-w"><i class="fa fa-rss"
                                     aria-hidden="true"></i></a>
                         </div>
                     </div>
@@ -555,6 +516,7 @@
         const BASE_URL = 'http://localhost/forum-app';
     </script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 
 </html>

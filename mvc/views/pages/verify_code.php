@@ -2,14 +2,15 @@
 $expiryTime = time() + 60; // Thời gian hết hạn
 $remainingTime = $expiryTime - time();
 ?>
-<div class="account-page">
+<div class="account-page pd-t-90">
     <div class="account-center">
         <div class="account-box">
             <form class="form-signin" action="<?php echo BASE_URL; ?>/<?php echo $controller ?>/VerifyCode"
                 method="post">
                 <div class="account-logo">
                     <a href="<?php echo BASE_URL; ?>"><img
-                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" alt="Preadmin"></a>
+                            src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" class="lg-auth"
+                            alt="Preadmin"></a>
                 </div>
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">

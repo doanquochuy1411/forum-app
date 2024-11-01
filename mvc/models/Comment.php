@@ -52,7 +52,7 @@ class Comment extends DB
     {
         $user_id = decryptData($user_id);
         $post_id = decryptData($post_id);
-        $parent_comment_id = empty($parent_comment_id) ? null : decryptData($parent_comment_id);
+        $parent_comment_id = empty($parent_comment_id) ? null : $parent_comment_id;
         $sql = "";
         $result = false;
         if ($parent_comment_id == "") {

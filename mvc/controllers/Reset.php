@@ -2,8 +2,9 @@
 class Reset extends Controller
 {
     public $UserModel;
+    protected $CategoryModel;
 
-    public $layout = "auth_layout";
+    public $layout = "client_layout";
     public $title = "Quên mật khẩu";
     public $ctr = "Reset";
 
@@ -12,14 +13,19 @@ class Reset extends Controller
     public function __construct()
     {
         $this->UserModel = $this->model("User");
+        $this->CategoryModel = $this->model("Category");
+
     }
 
     function Index()
     {
+        $categories = $this->CategoryModel->GetAllCategory();
+
         $this->view($this->layout, [
             "Page" => "send_code",
             "title" => $this->title,
-            "controller" => $this->ctr
+            "controller" => $this->ctr,
+            "categories" => $categories,
         ]);
     }
 
@@ -42,22 +48,17 @@ class Reset extends Controller
                 $message = '';
                 response_error($title, $message);
                 echo "<script>history.back();</script>";
-                // $this->view($this->layout, [
-                //     "Page" => "send_code",
-                //     "title" => $this->title,
-                //     "data" => $email,
-                //     "controller" => $this->ctr
-                // ]);
                 return;
             }
 
             if (sendCode($email)) {
-                // $this->response($this->layout, "verify_code", $this->title, $email);
+                $categories = $this->CategoryModel->GetAllCategory();
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,
                     "data" => $email,
-                    "controller" => $this->ctr
+                    "controller" => $this->ctr,
+                    "categories" => $categories,
                 ]);
             }
         }
@@ -67,20 +68,27 @@ class Reset extends Controller
         if (isset($_POST["btnVerifyCode"])) {
             $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
+            $categories = $this->CategoryModel->GetAllCategory();
 
             if (!verifyCode($email, $code)) {
-                // echo "<script>alert('Mã xác minh không chính xác!');</script>";
-                // $this->response($this->layout, "verify_code", $this->title, $email);
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,
                     "data" => $email,
-                    "controller" => $this->ctr
+                    "controller" => $this->ctr,
+                    "categories" => $categories,
                 ]);
                 return;
             }
 
-            $this->response($this->layout, "reset", $this->title, $email);
+            $this->view($this->layout, [
+                "Page" => "reset",
+                "title" => $this->title,
+                "data" => $email,
+                "categories" => $categories,
+            ]);
+            return;
+            // $this->response($this->layout, "reset", $this->title, $email, $categories);
         }
     }
 
@@ -90,6 +98,7 @@ class Reset extends Controller
             $email = strtolower(trim($_POST["email"]));
             $password = $_POST["password"];
             $retypePassword = $_POST["retype_password"];
+            $categories = $this->CategoryModel->GetAllCategory();
 
             if (!validatePassword($password)) {
                 $title = 'Mật khẩu không hợp lệ!';
@@ -99,7 +108,8 @@ class Reset extends Controller
                 $this->view($this->layout, [
                     "Page" => "reset",
                     "title" => $this->title,
-                    "data" => $email
+                    "data" => $email,
+                    "categories" => $categories,
                 ]);
                 return;
             }
@@ -110,6 +120,7 @@ class Reset extends Controller
                 response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "reset",
+                    "categories" => $categories,
                 ]);
                 return;
             }
@@ -127,6 +138,7 @@ class Reset extends Controller
                 response_error($title);
                 $this->view($this->layout, [
                     "Page" => "reset",
+                    "categories" => $categories,
                 ]);
                 return;
             }

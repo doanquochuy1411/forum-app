@@ -2,8 +2,9 @@
 class Register extends Controller
 {
     public $UserModel;
+    protected $CategoryModel;
 
-    public $layout = "auth_layout";
+    public $layout = "client_layout";
     public $title = "Đăng ký";
 
     public $ctr = "Register";
@@ -11,14 +12,19 @@ class Register extends Controller
     public function __construct()
     {
         $this->UserModel = $this->model("User");
+        $this->CategoryModel = $this->model("Category");
+
     }
 
     function Index()
     {
+        $categories = $this->CategoryModel->GetAllCategory();
+
         $this->view($this->layout, [
             "Page" => "send_code",
             "title" => $this->title,
-            "controller" => $this->ctr
+            "controller" => $this->ctr,
+            "categories" => $categories,
         ]);
     }
 
@@ -48,11 +54,14 @@ class Register extends Controller
             }
 
             if (sendCode($email)) {
+                $categories = $this->CategoryModel->GetAllCategory();
+
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,
                     "data" => $email,
-                    "controller" => $this->ctr
+                    "controller" => $this->ctr,
+                    "categories" => $categories,
                 ]);
             }
         }
@@ -62,18 +71,27 @@ class Register extends Controller
         if (isset($_POST["btnVerifyCode"])) {
             $email = strtolower(trim($_POST["email"]));
             $code = $_POST["code"];
+            $categories = $this->CategoryModel->GetAllCategory();
 
             if (!verifyCode($email, $code)) {
                 $this->view($this->layout, [
                     "Page" => "verify_code",
                     "title" => $this->title,
                     "data" => $email,
-                    "controller" => $this->ctr
+                    "controller" => $this->ctr,
+                    "categories" => $categories,
                 ]);
                 return;
             }
 
-            $this->response($this->layout, "register", $this->title, $email);
+            $this->view($this->layout, [
+                "Page" => "register",
+                "title" => $this->title,
+                "data" => $email,
+                "controller" => $this->ctr,
+                "categories" => $categories,
+            ]);
+            return;
         }
     }
 
@@ -86,6 +104,7 @@ class Register extends Controller
             $email = strtolower(trim($_POST["email"]));
             $password = $_POST["password"];
             $retypePassword = $_POST["retype_password"];
+            $categories = $this->CategoryModel->GetAllCategory();
 
             $errors = validateForm(["full_name", "account_name", "password"]);
             if (!empty($errors)) {
@@ -96,7 +115,8 @@ class Register extends Controller
                 $this->view($this->layout, [
                     "Page" => "register",
                     "title" => $this->title,
-                    "data" => $email
+                    "data" => $email,
+                    "categories" => $categories,
                 ]);
                 return;
             }
@@ -118,6 +138,7 @@ class Register extends Controller
                 response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
+                    "categories" => $categories,
                 ]);
                 return;
             }
@@ -132,6 +153,10 @@ class Register extends Controller
                 $title = 'Đăng ký thành công!';
                 $message = '';
                 response_success($title, $message);
+                $this->view($this->layout, [
+                    "Page" => "login",
+                    "categories" => $categories,
+                ]);
                 $this->response($this->layout, "login", $this->title, [$email, $password]);
             } else {
                 // echo "<script>alert('Fail to register');</script>";
@@ -140,6 +165,7 @@ class Register extends Controller
                 response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
+                    "categories" => $categories,
                 ]);
                 return;
             }

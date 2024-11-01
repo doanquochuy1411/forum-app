@@ -70,8 +70,12 @@
     .container ul ul ul li {
         margin-bottom: 5px;
     }
+
+    .fixed-header {
+        top: 0;
+    }
 </style>
-<section class="main-content920">
+<section class="main-content920 pd-t-90">
     <div class="container">
         <h1 class="text-center">Điều Khoản Sử Dụng Dịch Vụ I-Channel</h1>
 

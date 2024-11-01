@@ -4487,9 +4487,17 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-right {
     float: right !important;
     margin-right: -15px;
+    display: flex; 
+    justify-content: space-around;
+    width: 90%;
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
+  }
+
+  .navbar-brand > img{
+    height: 220%;
+    margin-top: -14px;
   }
 }
 .navbar-default {

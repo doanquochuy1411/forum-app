@@ -30,3 +30,7 @@
     opacity: 1; /* Đặt độ trong suốt thành 1 khi hiển thị */
     transform: translateY(0); /* Đưa nó trở lại vị trí ban đầu */
 }
+
+.pd-t-20 {
+    padding-top: 20px;
+}

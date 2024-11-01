@@ -89,10 +89,10 @@
 }
 </style>
 <!-- ======breadcrumb ======-->
-<section class="header-descriptin329">
+<section class="header-descriptin329 pd-t-120">
     <div class="container">
         <h3>Thông tin chi tiết</h3>
-        <ol class="breadcrumb breadcrumb840">
+        <ol class="breadcrumb breadcrumb840 z-index-2">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
             <li class="active">Thông tin Chi tiết</li>
         </ol>
@@ -363,12 +363,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
-var currentUser = <?php echo isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : ""; ?>;
+var currentUser = <?php echo isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "empty"; ?>;
 var ownUser = <?php echo isset($user_details["id"]) ? decryptData($user_details["id"]) : "user_details"; ?>;
 </script>
 
 <!-- Handel user's post -->
 <script>
+// console.log("hihi")
 var myQuestionsData = <?php echo json_encode($my_questions); ?>;
 var myPostsData = <?php echo json_encode($my_posts); ?>;
 var myDocumentsData = <?php echo json_encode($my_trades); ?>;

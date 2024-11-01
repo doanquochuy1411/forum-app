@@ -29,7 +29,7 @@ class Home extends Controller
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question");
         $documents = $this->PostModel->GetPostWithTypeAndLimit("document");
         $comments = $this->CommentModel->GetAllComment();
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point');
         $categories = $this->CategoryModel->GetAllCategory();
         $my_posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $this->userID); // Lấy bài viết của tôi
         $tags = $this->TagModel->GetPopularTags();
@@ -57,7 +57,7 @@ class Home extends Controller
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $posts = $this->PostModel->GetPostByID($id);
         $comments = $this->CommentModel->GetAllCommentOfPost($id);
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point');
         $this->PostModel->IncrementView(1, $id); // Tăng view lên 1
         $categories = $this->CategoryModel->GetAllCategory();
         $tags = $this->TagModel->GetPopularTags();
@@ -166,7 +166,7 @@ class Home extends Controller
             $posts = $this->PostModel->GetAllPostWithCategoryAndType($category_id, $type); // body
         }
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
         $categories = $this->CategoryModel->GetAllCategory(); // header
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
         $tags = $this->TagModel->GetPopularTags();
@@ -201,7 +201,7 @@ class Home extends Controller
     {
         $posts = $this->PostModel->GetAllPostWithType($type); // body
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
         $categories = $this->CategoryModel->GetAllCategory(); // header
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
         $tags = $this->TagModel->GetPopularTags();
@@ -246,7 +246,7 @@ class Home extends Controller
             if (count($posts) > 0) { // success
                 // $posts = $this->PostModel->GetPostBySearch($txt); // body
                 $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-                $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+                $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
                 $categories = $this->CategoryModel->GetAllCategory(); // header
                 $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
                 $tags = $this->TagModel->GetPopularTags();
@@ -279,7 +279,7 @@ class Home extends Controller
         $tag = str_replace('-', ' ', $tag_name);
         $posts = $this->PostModel->GetPostByTag($tag); // body
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
         $categories = $this->CategoryModel->GetAllCategory(); // header
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
         $tags = $this->TagModel->GetPopularTags();
@@ -309,7 +309,7 @@ class Home extends Controller
         $user_details = $this->UserModel->GetUserByAccountName($account_name); // body
         if ($user_details) { // success
             $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-            $users = $this->UserModel->GetAllUserDescWithOrderBy('point'); // scroll 
+            $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
             $categories = $this->CategoryModel->GetAllCategory(); // header
             $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
             $tags = $this->TagModel->GetPopularTags(); // scroll

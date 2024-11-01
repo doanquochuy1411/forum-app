@@ -1,113 +1,119 @@
 <style>
-.like-button {
-    background-color: transparent;
-    border: none;
-    color: #007bff;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    transition: color 0.3s ease;
-}
+    .like-button {
+        background-color: transparent;
+        border: none;
+        color: #007bff;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        transition: color 0.3s ease;
+    }
 
-.like-button.liked {
-    color: #ff4500;
-}
+    .like-button.liked {
+        color: #ff4500;
+    }
 
-.like-button i {
-    margin-right: 5px;
-}
+    .like-button i {
+        margin-right: 5px;
+    }
 
-#like-count {
-    margin-left: 10px;
-    font-size: 16px;
-    color: #333;
-}
+    #like-count {
+        margin-left: 10px;
+        font-size: 16px;
+        color: #333;
+    }
 
-#editorComment {
-    height: 200px;
-    width: 100%;
-    border: solid 1px #ccc;
-}
+    #editorComment {
+        height: 200px;
+        width: 100%;
+        border: solid 1px #ccc;
+    }
 
 
 
-.quill-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0px 15px 15px 15px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    overflow-wrap: break-word;
-}
+    .quill-container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0px 15px 15px 15px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        overflow-wrap: break-word;
+    }
 
-.quill-container .ql-editor {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #333;
-    overflow: hidden;
-}
+    .quill-container .ql-editor {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+        overflow: hidden;
+    }
 
-.quill-container p:has(img),
-.quill-container p:has(video) {
-    text-align: center;
-}
+    .quill-container p:has(img),
+    .quill-container p:has(video) {
+        display: flex;
+        justify-content: center;
+    }
 
-.quill-container img,
-.quill-container video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 10px 0;
-}
+    .quill-container img,
+    .quill-container video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px 0;
+    }
 
-/* 
-.quill-container h1,
-.quill-container h2,
-.quill-container h3,
-.quill-container h4,
-.quill-container h5,
-.quill-container h6 {
-    color: #222;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
+    .hidden-answer {
+        display: none;
+    }
 
-.quill-container ul,
-.quill-container ol {
-    margin: 10px 0;
-    padding-left: 20px;
-}
+    .show-answer {
+        display: inline-block;
+    }
 
-.quill-container ul li,
-.quill-container ol li {
-    margin-bottom: 5px;
-}
+    .footer-part {
+        margin-top: 30px;
+    }
 
-.quill-container blockquote {
-    border-left: 4px solid #ccc;
-    margin: 10px 0;
-    padding-left: 15px;
-    color: #666;
-    font-style: italic;
-}
+    /* Reply */
+    .comment-content-reply {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
 
-.quill-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-}
+    .comment-content-reply input[type="text"] {
+        flex-grow: 1;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
 
-.quill-container table td,
-.quill-container table th {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-} */
+    .comment-content-reply input[type="text"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+    .comment-content-reply button {
+        padding: 6px 12px;
+        border: none;
+        background-color: #FF7361;
+        color: #fff;
+        font-size: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .comment-content-reply button:hover {
+        background-color: #03658c;
+    }
 </style>
 <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-<section class="header-descriptin329">
+<section class="header-descriptin329 pd-t-120">
     <div class="container">
         <h3>Chi tiết bài viết</h3>
         <ol class="breadcrumb breadcrumb840">
@@ -146,6 +152,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="post-details-info1982">
                         <div class="quill-container">
                             <!-- {{ post_content }} -->
@@ -254,31 +261,77 @@
                                                 $comment = $data['comment'];
                                                 // Nếu là chủ comment thì có thể sửa hoặc xóa
                                                 if (decryptData($comment['user_id']) != $userID) {
-                                                    echo '<div class="comment-main-level">
+                                                    echo '<div class="comment-main-level" id="comment_' . $comment["id"] . '">
                                                         <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
                                                         <div class="comment-box" style="width: 88%">   
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
-                                                                <i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i>
+                                                                <i class="fa fa-reply" style="display: block" onclick="toggleReply(\'replyList_' . $comment['id'] . '\')"></i>
                                                             </div>
                                                             <div class="comment-content"> ' . $comment['content'] . '
                                                         </div>
+                                                         </div>
                                                     </div>';
+
+                                                    echo '<ul class="comments-list reply-list" id="replyList_' . $comment['id'] . '"
+                                    style="display: none;">
+                                    <li>
+                                        <div class="comment-avatar"><img
+                                                src="' . BASE_URL . '/public/src/uploads/' . $_SESSION['Avatar'] . '"
+                                                alt=""></div>
+                                        <div class="comment-box" style="width: 88%">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name"><a href="">' . $_SESSION['UserName'] . '</a></h6>
+                                            </div>
+                                            <div class="comment-content comment-content-reply">
+                                                <input type="text" id="replyInput_' . $comment['id'] . '"
+                                    placeholder="Nhập câu trả lời của bạn"></input>
+                                    <button onclick="submitReply(\'' . $comment['id'] . '\')">Gửi</button>
+                            </div>
+                        </div>
+                        </li>
+                        </ul>';
                                                 } else {
                                                     // chủ comment
                                                     echo '<div class="comment-main-level">
-                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt=""></div>
-                                                        <div class="comment-box" style="width: 88%">   
-                                                            <div class="comment-head">
-                                                                <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' . $comment['comment_user_name'] . '</a></h6>
-                                                                <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
-                                                                <a href="' . BASE_URL . '/posts/replyComment/' . $comment['id'] . '"><i class="fa fa-reply" style="display: block" onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i></a>
-                                                                <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . encryptData($comment['id']) . '\')"></i></a>
-                                                                </div>
-                                                            <div class="comment-content"> ' . $comment['content'] . '
-                                                        </div>
-                                                    </div>';
+                            <div class="comment-avatar"><img
+                                    src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt="">
+                            </div>
+                            <div class="comment-box" style="width: 88%">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a
+                                            href="' . BASE_URL . '/users/' . $comment['user_id'] . '">' .
+                                                        $comment['comment_user_name'] . '</a></h6>
+                                    <span><i class="fa fa-clock-o" style="display: block;"> ' .
+                                                        timeAgo($comment['created_at']) . '</i></span>
+                                    <a href="javascript:void(0);' . $comment['id'] . '"><i class="fa fa-reply"
+                                            style="display: block"
+                                            onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i></a>
+                                    <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
+                                            onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . encryptData($comment['id']) . '\')"></i></a>
+                                </div>
+                                <div class="comment-content"> ' . $comment['content'] . '
+                                </div>
+                            </div>
+                        </div>';
+
+                                                    echo '<ul class="comments-list reply-list" id="replyList_' . $comment['id'] . '"
+                            style="display: none;">
+                            <li>
+                                <div class="comment-avatar"><img
+                                        src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt="">
+                                </div>
+                                <div class="comment-box" style="width: 88%">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="">' . $comment['UserName'] . '</a></h6>
+                                    </div>
+                                    <div class="comment-content">
+                                        <input type="text" placeholder="Nhập câu trả lời của bạn"></input>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>';
                                                 }
 
                                                 // In các comment con nếu có
@@ -287,30 +340,39 @@
                                                     foreach ($data['replies'] as $reply) {
                                                         if (decryptData($reply['user_id']) != $userID) {
                                                             echo '<li>
-                                                        <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                                        <div class="comment-box" style="width: 88%">
-                                                            <div class="comment-head">
-                                                                <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
-                                                                <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
-                                                            </div>
-                                                            <div class="comment-content"> ' . $reply['content'] . '
-                                                            </div>
-                                                        </div>
-                                                    </li>';
+                                <div class="comment-avatar"><img
+                                        src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
+                                <div class="comment-box" style="width: 88%">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a
+                                                href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' .
+                                                                $reply['comment_user_name'] . '</a></h6>
+                                        <span><i class="fa fa-clock-o" style="display: block;"> ' .
+                                                                timeAgo($reply['created_at']) . '</i></span>
+                                    </div>
+                                    <div class="comment-content"> ' . $reply['content'] . '
+                                    </div>
+                                </div>
+                            </li>';
                                                         } else {
                                                             // Chủ comment con
                                                             echo '<li>
-                                                            <div class="comment-avatar"><img src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                                            <div class="comment-box" style="width: 88%">
-                                                                <div class="comment-head">
-                                                                    <h6 class="comment-name"><a href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' . $reply['comment_user_name'] . '</a></h6>
-                                                                    <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($reply['created_at']) . '</i></span>
-                                                                    <a href="#" ><i class="fa fa-trash" style="cursor: pointer; display: block;" onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . encryptData($reply['id']) . '\')"></i></a>
-                                                                    </div>
-                                                                <div class="comment-content"> ' . $reply['content'] . '
-                                                                </div>
-                                                            </div>
-                                                        </li>';
+                                <div class="comment-avatar"><img
+                                        src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
+                                <div class="comment-box" style="width: 88%">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a
+                                                href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' .
+                                                                $reply['comment_user_name'] . '</a></h6>
+                                        <span><i class="fa fa-clock-o" style="display: block;"> ' .
+                                                                timeAgo($reply['created_at']) . '</i></span>
+                                        <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
+                                                onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . encryptData($reply['id']) . '\')"></i></a>
+                                    </div>
+                                    <div class="comment-content"> ' . $reply['content'] . '
+                                    </div>
+                                </div>
+                            </li>';
                                                         }
                                                     }
                                                     echo '</ul>';
@@ -318,11 +380,11 @@
                                                 echo '</li>';
                                             }
                                         }
+
                                         print_comments($comments_tree);
                                     }
                                     ?>
                                 </ul>
-
                             </div>
                         </div>
                     </div>
@@ -501,124 +563,161 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
 <script>
-if (document.querySelector('#editorComment')) {
-    var quill = new Quill('#editorComment', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{
-                    'header': [1, 2, 3, false]
-                }], // Tùy chọn header (h1, h2, h3)
-                // [{
-                //     'font': []
-                // }], // Định dạng font
-                // [{
-                //     'size': ['small', false, 'large', 'huge']
-                // }], // Tùy chọn kích thước font
-                [{
-                    'color': []
-                }, {
-                    'background': []
-                }], // Màu chữ và màu nền
-                [{
-                    'list': 'ordered'
-                }, {
-                    'list': 'bullet'
-                }], // Danh sách có thứ tự và không thứ tự
-                [{
-                    'align': []
-                }], // Căn chỉnh văn bản
-                ['bold', 'italic', 'underline',
-                    'strike'
-                ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
-                ['blockquote', 'code-block'], // Trích dẫn và khối mã
-                ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
-                ['clean'] // Xóa định dạng
-            ]
-        }
-    });
-
-
-    var postCommentFormElement = document.getElementById('postCommentForm');
-    if (postCommentFormElement) {
-        postCommentFormElement.addEventListener('submit', function(event) {
-            document.getElementById('editorCommentContent').value = DOMPurify.sanitize(quill.root.innerHTML);
-            var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
-            if (editorContent === '' || editorContent === '<p><br></p>') {
-                event.preventDefault(); // Ngăn chặn việc gửi form
+    if (document.querySelector('#editorComment')) {
+        var quill = new Quill('#editorComment', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{
+                        'header': [1, 2, 3, false]
+                    }], // Tùy chọn header (h1, h2, h3)
+                    [{
+                        'color': []
+                    }, {
+                        'background': []
+                    }], // Màu chữ và màu nền
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }], // Danh sách có thứ tự và không thứ tự
+                    [{
+                        'align': []
+                    }], // Căn chỉnh văn bản
+                    ['bold', 'italic', 'underline',
+                        'strike'
+                    ], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                    ['blockquote', 'code-block'], // Trích dẫn và khối mã
+                    ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
+                    ['clean'] // Xóa định dạng
+                ]
             }
         });
+
+
+        var postCommentFormElement = document.getElementById('postCommentForm');
+        if (postCommentFormElement) {
+            postCommentFormElement.addEventListener('submit', function (event) {
+                document.getElementById('editorCommentContent').value = DOMPurify.sanitize(quill.root.innerHTML);
+                var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
+                if (editorContent === '' || editorContent === '<p><br></p>') {
+                    event.preventDefault(); // Ngăn chặn việc gửi form
+                }
+            });
+        }
     }
-}
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    // Lấy thông tin bài post và user (truyền từ server vào)
-    let postId = "<?php echo $posts[0]['id']; ?>";
-    let userId =
-        "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : ""; ?>"; // Giả sử bạn lưu user ID trong session
-    // Biến lưu số lượt like ban đầu (lấy từ server)
-    let likeCount = parseInt($('#like-count').text());
+    $(document).ready(function () {
+        // Lấy thông tin bài post và user (truyền từ server vào)
+        let postId = "<?php echo $posts[0]['id']; ?>";
+        let userId =
+            "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : ""; ?>"; // Giả sử bạn lưu user ID trong session
+        // Biến lưu số lượt like ban đầu (lấy từ server)
+        let likeCount = parseInt($('#like-count').text());
 
-    // Gọi API chỉ một lần khi trang tải
-    $.ajax({
-        url: '<?php echo BASE_URL ?>/api/CheckLikedPost/' + postId + '/' + userId,
-        type: 'GET',
-        success: function(data) {
-            let response = JSON.parse(data);
-            // console.log(response);
-            // Cập nhật trạng thái và số lượt like
-            if (response.like_status === 'liked') {
-                $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Đã thích').addClass('liked');
-            } else {
-                $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Thích').removeClass('liked');
-            }
-            // Cập nhật số lượt like
-            $('#like-count').text(response.like_count);
-        },
-        error: function(xhr, status, error) {
-            console.log("Error: " + error);
-        }
-    });
-
-    // Sự kiện khi người dùng bấm nút "Like"
-    $('#like-btn').on('click', function() {
-        if (userId === "") {
-            window.location.href = "<?php echo BASE_URL ?>/login";
-        }
-        // Toggle trạng thái liked
-        const isLiked = $(this).hasClass('liked');
-        const action = isLiked ? 'unlike' : 'like';
-
-        // Cập nhật UI ngay lập tức để cải thiện trải nghiệm người dùng
-        $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Thích' : 'Đã thích')).toggleClass(
-            'liked');
-
-        // Gửi yêu cầu Ajax đến API để xử lý like/unlike
+        // Gọi API chỉ một lần khi trang tải
         $.ajax({
-            url: '<?php echo BASE_URL ?>/api/handelLikePost',
-            type: 'POST',
-            data: {
-                post_id: postId,
-                user_id: userId,
-                action: action
-            },
-            success: function(data) {
+            url: '<?php echo BASE_URL ?>/api/CheckLikedPost/' + postId + '/' + userId,
+            type: 'GET',
+            success: function (data) {
                 let response = JSON.parse(data);
                 // console.log(response);
+                // Cập nhật trạng thái và số lượt like
+                if (response.like_status === 'liked') {
+                    $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Đã thích').addClass('liked');
+                } else {
+                    $('#like-btn').html('<i class="fa fa-thumbs-up"></i> Thích').removeClass('liked');
+                }
                 // Cập nhật số lượt like
-                likeCount = response.like_count;
-                $('#like-count').text(likeCount);
+                $('#like-count').text(response.like_count);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Error: " + error);
-                // Nếu có lỗi, khôi phục trạng thái UI
-                $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Đã thích' :
-                    'Thích')).toggleClass('liked');
             }
         });
+
+        // Sự kiện khi người dùng bấm nút "Like"
+        $('#like-btn').on('click', function () {
+            if (userId === "") {
+                window.location.href = "<?php echo BASE_URL ?>/login";
+            }
+            // Toggle trạng thái liked
+            const isLiked = $(this).hasClass('liked');
+            const action = isLiked ? 'unlike' : 'like';
+
+            // Cập nhật UI ngay lập tức để cải thiện trải nghiệm người dùng
+            $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Thích' : 'Đã thích')).toggleClass(
+                'liked');
+
+            // Gửi yêu cầu Ajax đến API để xử lý like/unlike
+            $.ajax({
+                url: '<?php echo BASE_URL ?>/api/handelLikePost',
+                type: 'POST',
+                data: {
+                    post_id: postId,
+                    user_id: userId,
+                    action: action
+                },
+                success: function (data) {
+                    let response = JSON.parse(data);
+                    // console.log(response);
+                    // Cập nhật số lượt like
+                    likeCount = response.like_count;
+                    $('#like-count').text(likeCount);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                    // Nếu có lỗi, khôi phục trạng thái UI
+                    $(this).html('<i class="fa fa-thumbs-up"></i> ' + (isLiked ? 'Đã thích' :
+                        'Thích')).toggleClass('liked');
+                }
+            });
+        });
     });
-});
+</script>
+<script>
+    function toggleReply(replyListId) {
+        const $existUser = <?php echo isset($_SESSION["UserID"]) ? true : false; ?>;
+        if (!$existUser) {
+            window.location.href = "<?php echo BASE_URL ?>";
+            exit();
+        }
+
+        const replyList = document.getElementById(replyListId);
+        const inputField = replyList.querySelector('input[type="text"]');
+
+        if (replyList.style.display === 'none' || replyList.style.display === '') {
+            replyList.style.display = 'block'; // Hiển thị phần tử
+            inputField.focus();
+        } else {
+            replyList.style.display = 'none'; // Ẩn phần tử
+        }
+    }
+
+    function submitReply(commentId) {
+        const replyInput = $('#replyInput_' + commentId);
+        const replyContent = replyInput.val();
+
+        if ($.trim(replyContent) === '') {
+            return;
+        }
+
+        const data = {
+            token: '<?php echo isset($_SESSION["_token"]) ? $_SESSION["_token"] : ""; ?>',
+            btnComment: true,
+            content: replyContent,
+            parent_comment_id: commentId,
+            post_id: '<?php echo $posts[0]["id"] ?>'
+        };
+
+        $.ajax({
+            url: '<?php echo BASE_URL; ?>/posts/CreateComment',
+            type: 'POST',
+            data: data
+        });
+        location.reload();
+    }
 </script>
