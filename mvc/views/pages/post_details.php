@@ -307,7 +307,7 @@
                                                         timeAgo($comment['created_at']) . '</i></span>
                                     <a href="javascript:void(0);' . $comment['id'] . '"><i class="fa fa-reply"
                                             style="display: block"
-                                            onclick="toggleReplyForm(' . encryptData($comment['id']) . ')"></i></a>
+                                            onclick="toggleReply(\'replyList_' . $comment['id'] . '\')"></i></a>
                                     <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
                                             onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . encryptData($comment['id']) . '\')"></i></a>
                                 </div>
@@ -317,21 +317,23 @@
                         </div>';
 
                                                     echo '<ul class="comments-list reply-list" id="replyList_' . $comment['id'] . '"
-                            style="display: none;">
-                            <li>
-                                <div class="comment-avatar"><img
-                                        src="' . BASE_URL . '/public/src/uploads/' . $comment['avatar'] . '" alt="">
+                        style="display: none;">
+                        <li>
+                            <div class="comment-avatar"><img
+                                    src="' . BASE_URL . '/public/src/uploads/' . $_SESSION['Avatar'] . '"
+                                    alt=""></div>
+                            <div class="comment-box" style="width: 88%">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="">' . $_SESSION['UserName'] . '</a></h6>
                                 </div>
-                                <div class="comment-box" style="width: 88%">
-                                    <div class="comment-head">
-                                        <h6 class="comment-name"><a href="">' . $comment['UserName'] . '</a></h6>
-                                    </div>
-                                    <div class="comment-content">
-                                        <input type="text" placeholder="Nhập câu trả lời của bạn"></input>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>';
+                                <div class="comment-content comment-content-reply">
+                                    <input type="text" id="replyInput_' . $comment['id'] . '"
+                        placeholder="Nhập câu trả lời của bạn"></input>
+                        <button onclick="submitReply(\'' . $comment['id'] . '\')">Gửi</button>
+                </div>
+            </div>
+            </li>
+            </ul>';
                                                 }
 
                                                 // In các comment con nếu có
@@ -716,8 +718,13 @@
         $.ajax({
             url: '<?php echo BASE_URL; ?>/posts/CreateComment',
             type: 'POST',
-            data: data
+            data: data,
+            success: function (response) {
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.log("Error:", error);
+            },
         });
-        location.reload();
-    }
-</script>
+    } <
+/>
