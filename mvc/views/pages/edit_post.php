@@ -26,15 +26,12 @@
                         <div class="username-part940">
                             <span class="form-description43">Loại bài đăng*</span>
                             <select id="contentType" name="contentType" class="username029">
-                                <option value="post"
-                                    <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
+                                <option value="post" <?php echo $post_to_edit[0]["type"] == 'post' ? 'selected' : ''; ?>>
                                     Bài
                                     viết</option>
-                                <option value="question"
-                                    <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
+                                <option value="question" <?php echo $post_to_edit[0]["type"] == 'question' ? 'selected' : ''; ?>>
                                     Đặt câu hỏi</option>
-                                <option value="document"
-                                    <?php echo $post_to_edit[0]["type"] == 'document' ? 'selected' : ''; ?>>
+                                <option value="document" <?php echo $post_to_edit[0]["type"] == 'document' ? 'selected' : ''; ?>>
                                     Tài liệu</option>
                             </select>
                         </div>
@@ -104,175 +101,175 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
 <script>
-if (document.querySelector('#editor')) {
-    var quill = new Quill('#editor', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{
-                    'header': [1, 2, 3, false]
-                }], // Tùy chọn header (h1, h2, h3)
-                [{
-                    'color': []
-                }, {
-                    'background': []
-                }], // Màu chữ và màu nền
-                [{
-                    'script': 'sub'
-                }, {
-                    'script': 'super'
-                }], // Chỉ số trên và dưới (subscript và superscript)
-                [{
-                    'list': 'ordered'
-                }, {
-                    'list': 'bullet'
-                }], // Danh sách có thứ tự và không thứ tự
-                [{
-                    'indent': '-1'
-                }, {
-                    'indent': '+1'
-                }], // Thụt lề
-                [{
-                    'align': []
-                }], // Căn chỉnh văn bản
-                ['bold', 'italic', 'underline', 'strike'], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
-                ['blockquote', 'code-block'], // Trích dẫn và khối mã
-                ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
-                ['clean'] // Xóa định dạng
-            ]
-        }
-    });
-
-
-    quill.root.innerHTML = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
-
-    var postFormElement = document.getElementById('postForm');
-    if (postFormElement) {
-        postFormElement.addEventListener('submit', function(event) {
-            document.getElementById('editorContent').value = DOMPurify.sanitize(quill.root.innerHTML);
-
-            var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
-            if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
-                event.preventDefault();
-                document.getElementById('editorContent_err').textContent =
-                    'Nội dung phải có ít nhất 100 ký tự.';
-                document.getElementById('editorContent_err').style.color = 'red'
-            } else {
-                document.getElementById('editorContent_err').textContent = '';
+    if (document.querySelector('#editor')) {
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{
+                        'header': [1, 2, 3, false]
+                    }], // Tùy chọn header (h1, h2, h3)
+                    [{
+                        'color': []
+                    }, {
+                        'background': []
+                    }], // Màu chữ và màu nền
+                    [{
+                        'script': 'sub'
+                    }, {
+                        'script': 'super'
+                    }], // Chỉ số trên và dưới (subscript và superscript)
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }], // Danh sách có thứ tự và không thứ tự
+                    [{
+                        'indent': '-1'
+                    }, {
+                        'indent': '+1'
+                    }], // Thụt lề
+                    [{
+                        'align': []
+                    }], // Căn chỉnh văn bản
+                    ['bold', 'italic', 'underline', 'strike'], // Định dạng: đậm, nghiêng, gạch chân, gạch ngang
+                    ['blockquote', 'code-block'], // Trích dẫn và khối mã
+                    ['link', 'image', 'video'], // Chèn liên kết, hình ảnh, video
+                    ['clean'] // Xóa định dạng
+                ]
             }
         });
-    }
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const tagsInput = document.getElementById('tagsInput');
-        const tagsInputContainer = document.getElementById('tagsInputContainer');
-        const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
-        let tags = [];
+        quill.root.innerHTML = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
 
-        function initializeTags() {
-            const existingTags = document.querySelectorAll('.tags');
-            for (let i = 0; i < existingTags.length; i++) {
-                let tagText = existingTags[i].textContent.trim();
-                tagText = tagText.replace('×', '').trim();
-                if (tagText !== "") {
-                    tags.push(tagText);
+        var postFormElement = document.getElementById('postForm');
+        if (postFormElement) {
+            postFormElement.addEventListener('submit', function (event) {
+                document.getElementById('editorContent').value = DOMPurify.sanitize(quill.root.innerHTML);
+
+                var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
+                    event.preventDefault();
+                    document.getElementById('editorContent_err').textContent =
+                        'Nội dung phải có ít nhất 500 ký tự.';
+                    document.getElementById('editorContent_err').style.color = 'red'
+                } else {
+                    document.getElementById('editorContent_err').textContent = '';
                 }
-            }
+            });
         }
 
-        tagsInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                if (tags.length < 10) {
-                    const tagText = tagsInput.value.trim();
-                    if (tagText !== '' && !tags.includes(tagText)) {
-                        addTag(tagText);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const tagsInput = document.getElementById('tagsInput');
+            const tagsInputContainer = document.getElementById('tagsInputContainer');
+            const hiddenTagsContainer = document.getElementById('hiddenTagsContainer');
+            let tags = [];
+
+            function initializeTags() {
+                const existingTags = document.querySelectorAll('.tags');
+                for (let i = 0; i < existingTags.length; i++) {
+                    let tagText = existingTags[i].textContent.trim();
+                    tagText = tagText.replace('×', '').trim();
+                    if (tagText !== "") {
                         tags.push(tagText);
-                        tagsInput.value = '';
-                        updateHiddenTags();
                     }
                 }
             }
-        });
 
-        function addTag(tagText) {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'badge badge-primary mx-1 tags';
-            tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
+            tagsInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (tags.length < 10) {
+                        const tagText = tagsInput.value.trim();
+                        if (tagText !== '' && !tags.includes(tagText)) {
+                            addTag(tagText);
+                            tags.push(tagText);
+                            tagsInput.value = '';
+                            updateHiddenTags();
+                        }
+                    }
+                }
+            });
+
+            function addTag(tagText) {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'badge badge-primary mx-1 tags';
+                tagElement.innerHTML = `${tagText} <button type="button" class="close" aria-label="Close" onclick="removeTag('${tagText}')">
                                         <span aria-hidden="true">&times;</span>
                                       </button>`;
-            tagsInputContainer.insertBefore(tagElement, tagsInput);
-        }
-
-        window.removeTag = function(tagText) {
-            tags = tags.filter(tag => tag !== tagText);
-            const tagElements = tagsInputContainer.getElementsByClassName('badge');
-            for (let i = 0; i < tagElements.length; i++) {
-                if (tagElements[i].textContent.includes(tagText)) {
-                    tagsInputContainer.removeChild(tagElements[i]);
-                    break;
-                }
+                tagsInputContainer.insertBefore(tagElement, tagsInput);
             }
+
+            window.removeTag = function (tagText) {
+                tags = tags.filter(tag => tag !== tagText);
+                const tagElements = tagsInputContainer.getElementsByClassName('badge');
+                for (let i = 0; i < tagElements.length; i++) {
+                    if (tagElements[i].textContent.includes(tagText)) {
+                        tagsInputContainer.removeChild(tagElements[i]);
+                        break;
+                    }
+                }
+                updateHiddenTags();
+            }
+
+            function updateHiddenTags() {
+                hiddenTagsContainer.innerHTML = '';
+
+                tags.forEach(tag => {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'tags[]';
+                    hiddenInput.value = tag;
+                    hiddenTagsContainer.appendChild(hiddenInput);
+                });
+            }
+            initializeTags();
             updateHiddenTags();
-        }
-
-        function updateHiddenTags() {
-            hiddenTagsContainer.innerHTML = '';
-
-            tags.forEach(tag => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'tags[]';
-                hiddenInput.value = tag;
-                hiddenTagsContainer.appendChild(hiddenInput);
-            });
-        }
-        initializeTags();
-        updateHiddenTags();
-    });
-} else {
-    console.warn("Element #editor not found in the DOM.");
-}
+        });
+    } else {
+        console.warn("Element #editor not found in the DOM.");
+    }
 </script>
 
 <!-- Handel category -->
 <script>
-const categories = <?php echo json_encode($categories); ?>;
-// console.log(categories)
-document.addEventListener('DOMContentLoaded', function() {
-    const contentType = document.getElementById('contentType');
-    const contentCategory = document.getElementById('contentCategory');
+    const categories = <?php echo json_encode($categories); ?>;
+    // console.log(categories)
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentType = document.getElementById('contentType');
+        const contentCategory = document.getElementById('contentCategory');
 
-    function updateCategoryOptions(selectedType) {
-        contentCategory.innerHTML = '';
+        function updateCategoryOptions(selectedType) {
+            contentCategory.innerHTML = '';
 
-        let filteredCategories;
-        if (selectedType === 'question') {
-            filteredCategories = categories.filter(category => category.category_type === 'post');
-        } else {
-            filteredCategories = categories.filter(category => category.category_type === selectedType);
-        }
-
-        filteredCategories.forEach((category, index) => {
-            const option = document.createElement('option');
-            option.value = category.id;
-            option.textContent = category.name;
-
-            // Chọn danh mục đầu tiên làm mặc định
-            if (index === 0) {
-                option.selected = true;
+            let filteredCategories;
+            if (selectedType === 'question') {
+                filteredCategories = categories.filter(category => category.category_type === 'post');
+            } else {
+                filteredCategories = categories.filter(category => category.category_type === selectedType);
             }
 
-            contentCategory.appendChild(option);
+            filteredCategories.forEach((category, index) => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+
+                // Chọn danh mục đầu tiên làm mặc định
+                if (index === 0) {
+                    option.selected = true;
+                }
+
+                contentCategory.appendChild(option);
+            });
+        }
+
+        contentType.addEventListener('change', function () {
+            const selectedType = contentType.value;
+            updateCategoryOptions(selectedType);
         });
-    }
 
-    contentType.addEventListener('change', function() {
-        const selectedType = contentType.value;
-        updateCategoryOptions(selectedType);
+        updateCategoryOptions(contentType.value);
     });
-
-    updateCategoryOptions(contentType.value);
-});
 </script>

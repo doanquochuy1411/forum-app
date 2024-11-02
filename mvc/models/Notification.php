@@ -63,6 +63,7 @@ class Notification extends DB
         // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
+            $_SESSION["IndexComment"] = $row['comment_id'];
             $row['id'] = encryptData($row['id']);
             $row['receiver_id'] = encryptData($row['receiver_id']);
             $row['comment_id'] = encryptData($row['comment_id']);

@@ -36,6 +36,13 @@ class Reports extends Controller
                 exit();
             }
 
+            $checkAuth = $this->PostModel->CheckAuthPostByUser($this->userID, $post_id);
+            if ($checkAuth) {
+                response_warning("Nhắc nhở!", "Không thể báo xấu bài viết của chính bạn.");
+                echo "<script>history.back();</script>";
+                return;
+            }
+
             $finalReport = "";
             if (isset($_POST['report_reasons'])) {
                 $reportReasons = array_map('htmlspecialchars', $_POST['report_reasons']);

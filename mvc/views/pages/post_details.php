@@ -110,6 +110,29 @@
     .comment-content-reply button:hover {
         background-color: #03658c;
     }
+
+    /* Scroll comment */
+    /* .highlight {
+        background-color: #CCC !important;
+        transition: background-color 0.5s ease;
+    } */
+    @keyframes highlight {
+        0% {
+            background-color: transparent;
+        }
+
+        50% {
+            background-color: #CCC;
+        }
+
+        100% {
+            background-color: transparent;
+        }
+    }
+
+    .highlight {
+        animation: highlight 3s ease;
+    }
 </style>
 <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -123,6 +146,7 @@
         </ol>
     </div>
 </section>
+<!-- <button onclick="scrollComment()">Click here</button> -->
 <section class="main-content920">
     <div class="container">
         <div class="row">
@@ -136,7 +160,7 @@
                                         Được tạo bởi
                                         <a href="<?php echo BASE_URL ?>/home/info/<?php echo encryptData($posts[0]["account_name"]) ?>"
                                             style="text-decoration: none;">
-                                            <img style="width: 22px"
+                                            <img style="width: 22px; border-radius:50%;"
                                                 src="<?php echo BASE_URL ?>/public/src/uploads/<?php echo $posts[0]["avatar"] ?>"
                                                 alt="">
                                             <span><?php echo $posts[0]["user_name"] ?></span></i>
@@ -255,6 +279,8 @@
                                         function print_comments($comments_tree)
                                         {
                                             $userID = isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "";
+                                            $avatar = isset($_SESSION["Avatar"]) ? $_SESSION["Avatar"] : "";
+                                            $userName = isset($_SESSION["UserName"]) ? $_SESSION["UserName"] : "";
                                             // $userID = decryptData($userID);
                                             foreach ($comments_tree as $parent_id => $data) {
                                                 echo '<li>';
@@ -269,7 +295,7 @@
                                                                 <span><i class="fa fa-clock-o" style="display: block;"> ' . timeAgo($comment['created_at']) . '</i></span>
                                                                 <i class="fa fa-reply" style="display: block" onclick="toggleReply(\'replyList_' . $comment['id'] . '\')"></i>
                                                             </div>
-                                                            <div class="comment-content"> ' . $comment['content'] . '
+                                                            <div class="comment-content" id="comment_index_' . $comment['id'] . '"> ' . $comment['content'] . '
                                                         </div>
                                                          </div>
                                                     </div>';
@@ -278,16 +304,16 @@
                                     style="display: none;">
                                     <li>
                                         <div class="comment-avatar"><img
-                                                src="' . BASE_URL . '/public/src/uploads/' . $_SESSION['Avatar'] . '"
+                                                src="' . BASE_URL . '/public/src/uploads/' . $avatar . '"
                                                 alt=""></div>
                                         <div class="comment-box" style="width: 88%">
                                             <div class="comment-head">
-                                                <h6 class="comment-name"><a href="">' . $_SESSION['UserName'] . '</a></h6>
+                                                <h6 class="comment-name"><a href="">' . $userName . '</a></h6>
                                             </div>
                                             <div class="comment-content comment-content-reply">
                                                 <input type="text" id="replyInput_' . $comment['id'] . '"
                                     placeholder="Nhập câu trả lời của bạn"></input>
-                                    <button onclick="submitReply(\'' . $comment['id'] . '\')">Gửi</button>
+                                    <button onclick="submitReply(\'' . $comment['id'] . '\')"><i class="fas fa-paper-plane"></i></button>
                             </div>
                         </div>
                         </li>
@@ -311,7 +337,7 @@
                                     <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
                                             onclick="confirmDelete(event, \'' . BASE_URL . '/posts/deleteComment/' . encryptData($comment['id']) . '\')"></i></a>
                                 </div>
-                                <div class="comment-content"> ' . $comment['content'] . '
+                                <div class="comment-content" id="comment_index_' . $comment['id'] . '"> ' . $comment['content'] . '
                                 </div>
                             </div>
                         </div>';
@@ -320,11 +346,11 @@
                         style="display: none;">
                         <li>
                             <div class="comment-avatar"><img
-                                    src="' . BASE_URL . '/public/src/uploads/' . $_SESSION['Avatar'] . '"
+                                    src="' . BASE_URL . '/public/src/uploads/' . $avatar . '"
                                     alt=""></div>
                             <div class="comment-box" style="width: 88%">
                                 <div class="comment-head">
-                                    <h6 class="comment-name"><a href="">' . $_SESSION['UserName'] . '</a></h6>
+                                    <h6 class="comment-name"><a href="">' . $userName . '</a></h6>
                                 </div>
                                 <div class="comment-content comment-content-reply">
                                     <input type="text" id="replyInput_' . $comment['id'] . '"
@@ -344,7 +370,7 @@
                                                             echo '<li>
                                 <div class="comment-avatar"><img
                                         src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                <div class="comment-box" style="width: 88%">
+                                <div class="comment-box" style="width: 88%" id="replyList_' . $comment['id'] . '">
                                     <div class="comment-head">
                                         <h6 class="comment-name"><a
                                                 href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' .
@@ -352,7 +378,7 @@
                                         <span><i class="fa fa-clock-o" style="display: block;"> ' .
                                                                 timeAgo($reply['created_at']) . '</i></span>
                                     </div>
-                                    <div class="comment-content"> ' . $reply['content'] . '
+                                    <div class="comment-content" id="comment_index_' . $reply['id'] . '"> ' . $reply['content'] . '
                                     </div>
                                 </div>
                             </li>';
@@ -361,7 +387,7 @@
                                                             echo '<li>
                                 <div class="comment-avatar"><img
                                         src="' . BASE_URL . '/public/src/uploads/' . $reply['avatar'] . '" alt=""></div>
-                                <div class="comment-box" style="width: 88%">
+                                <div class="comment-box" style="width: 88%" id="replyList_' . $comment['id'] . '">
                                     <div class="comment-head">
                                         <h6 class="comment-name"><a
                                                 href="' . BASE_URL . '/users/' . $reply['user_id'] . '">' .
@@ -371,7 +397,7 @@
                                         <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
                                                 onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . encryptData($reply['id']) . '\')"></i></a>
                                     </div>
-                                    <div class="comment-content"> ' . $reply['content'] . '
+                                    <div class="comment-content" id="comment_index_' . $reply['id'] . '"> ' . $reply['content'] . '
                                     </div>
                                 </div>
                             </li>';
@@ -682,7 +708,7 @@
 </script>
 <script>
     function toggleReply(replyListId) {
-        const $existUser = <?php echo isset($_SESSION["UserID"]) ? true : false; ?>;
+        const $existUser = <?php echo isset($_SESSION["UserID"]) ? 1 : 0; ?>;
         if (!$existUser) {
             window.location.href = "<?php echo BASE_URL ?>";
             exit();
@@ -726,5 +752,36 @@
                 console.log("Error:", error);
             },
         });
-    } <
-/>
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        const commentId =
+            "comment_index_<?php echo isset($_SESSION["IndexComment"]) ? $_SESSION["IndexComment"] : ""; ?>";
+        scrollComment(commentId);
+    });
+
+    <?php $_SESSION["IndexComment"] = 0 ?>
+
+    function scrollComment(commentId) {
+        console.log("vào được scroll rồi");
+        var commentSelector = "#" + commentId;
+        var $comment = $(commentSelector);
+
+        if ($comment.length) {
+            var offset = $comment.offset().top;
+            var headerHeight = 300;
+            $('html, body').animate({
+                scrollTop: offset - headerHeight
+            }, 1000);
+
+            $comment.addClass('highlight');
+
+            setTimeout(function () {
+                $comment.removeClass('highlight');
+            }, 3000);
+        } else {
+            console.log("Không tìm thấy bình luận với ID:", commentId);
+        }
+    }
+</script>

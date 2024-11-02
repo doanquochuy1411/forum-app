@@ -15,23 +15,23 @@
         <div class="row">
             <div class="col-md-9">
                 <div id="main">
-                    <input id="tab1" type="radio" name="tabs" checked>
+                    <input id="tab1" type="radio" name="tabs" checked value="post">
                     <label for="tab1">Bài viết</label>
 
-                    <input id="tab2" type="radio" name="tabs">
+                    <input id="tab2" type="radio" name="tabs" value="question">
                     <label for="tab2">Câu hỏi</label>
 
-                    <input id="tab3" type="radio" name="tabs">
+                    <input id="tab3" type="radio" name="tabs" value="document">
                     <label for="tab3">Tài liệu</label>
 
                     <?php
                     if (isset($_SESSION["UserID"])) {
-                        echo '<input id="tab5" type="radio" name="tabs">
+                        echo '<input id="tab5" type="radio" name="tabs" value="myPost">
                         <label for="tab5">Bài viết của tôi</label>';
                     }
                     ?>
 
-                    <input id="tab4" type="radio" name="tabs">
+                    <input id="tab4" type="radio" name="tabs" value="none">
                     <label for="tab4">Tạo mới</label>
 
                     <!-- Posts -->
@@ -496,10 +496,10 @@ if (document.querySelector('#editor')) {
             const ctCategory = document.getElementById('contentCategory').value;
 
             if (ctType === 'post' && isCategoryPost(ctCategory)) {
-                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 100) {
+                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
                     event.preventDefault(); // Ngăn chặn việc gửi form
                     document.getElementById('editorContent_err').textContent =
-                        'Nội dung phải có ít nhất 100 ký tự.';
+                        'Nội dung phải có ít nhất 500 ký tự.';
                     document.getElementById('editorContent_err').style.color = 'red'
                 } else {
                     document.getElementById('editorContent_err').textContent = '';

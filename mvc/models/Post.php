@@ -29,7 +29,7 @@ class Post extends DB
         return $data;
     }
 
-    public function GetPostBySearch($txt)
+    public function GetPostBySearch($txt, $type)
     {
         // Tách từ khóa tìm kiếm thành các từ riêng lẻ
         $keywords = explode(' ', $txt);
@@ -68,11 +68,13 @@ class Post extends DB
             JOIN post_comment_counts pcc ON pcc.post_id = p.id 
             LEFT JOIN post_tags pt ON pt.post_id = p.id 
             LEFT JOIN tags t ON t.id = pt.tag_id
-            WHERE p.deleted_at IS NULL 
-            AND ($placeholders)
+            WHERE p.deleted_at IS NULL
+            AND ($placeholders) AND p.type = ?
             ORDER BY match_score DESC, p.created_at DESC;";
 
-        $result = $this->executeSelectQuery($sql, $searchTerms);
+        $params = array_merge($searchTerms, [$type]);
+
+        $result = $this->executeSelectQuery($sql, $params);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
             $row['id'] = encryptData($row['id']);
@@ -317,5 +319,17 @@ class Post extends DB
         $data = $result->fetch_all(MYSQLI_ASSOC);
 
         return $data;
+    }
+
+    public function CheckAuthPostByUser($user_id, $post_id)
+    {
+        $user_id = decryptData($user_id);
+        $post_id = decryptData($post_id);
+        $sql = "SELECT 1 FROM posts WHERE id = ? AND user_id = ?";
+        $result = $this->executeSelectQuery($sql, [$post_id, $user_id]);
+        if ($result->num_rows > 0) {
+            return true; // is auth
+        }
+        return false;
     }
 }

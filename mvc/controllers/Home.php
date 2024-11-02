@@ -237,14 +237,35 @@ class Home extends Controller
     {
 
         if (isset($_REQUEST["btnSearch"]) && $_REQUEST["txtSearch"] != "") {
-            // echo '<script>alert("' . $_REQUEST["txtSearch"] . '")</script>';
             $txtSearch = sanitizeInputContent($_REQUEST["txtSearch"]); // làm sạch chuỗi
-            $posts = $this->PostModel->GetPostBySearch($txtSearch); // body
+            $searchType = sanitizeInputContent($_REQUEST["search-type"]); // làm sạch chuỗi
+            switch ($searchType) {
+                case 'none':
+                    $posts = $this->PostModel->GetPostBySearch($txtSearch, "post");
+                    $label = "Bài viết";
+                    break;
+                case 'myPost':
+                    $posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $this->userID); // Lấy bài viết của tôi
+                    $label = "Bài viết của tôi";
+                    break;
+                default:
+                    $posts = $this->PostModel->GetPostBySearch($txtSearch, $searchType);
+                    if ($searchType == "post") {
+                        $label = "Bài viết";
+                    }
 
-            // $posts = mysqli_fetch_all($post_db, MYSQLI_ASSOC);
+                    if ($searchType == "question") {
+                        $label = "Câu hỏi";
+                    }
+
+                    if ($searchType == "document") {
+                        $label = "Tài liệu";
+                    }
+                    break;
+            }
+
 
             if (count($posts) > 0) { // success
-                // $posts = $this->PostModel->GetPostBySearch($txt); // body
                 $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
                 $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
                 $categories = $this->CategoryModel->GetAllCategory(); // header
@@ -253,6 +274,7 @@ class Home extends Controller
 
                 $this->view($this->layout, [
                     "Page" => "search",
+                    "label" => $label,
                     "search" => $txtSearch, // từ khóa cần tìm kiếm
                     "posts" => $posts,
                     "questions" => $questions,

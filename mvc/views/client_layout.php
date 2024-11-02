@@ -74,6 +74,10 @@
             transform: translateY(0);
             /* Đưa nó trở lại vị trí ban đầu */
         }
+
+        .modal-backdrop {
+            z-index: 998;
+        }
     </style>
 </head>
 
@@ -156,7 +160,9 @@
                                         onsubmit="return validateFormSearch()">
                                         <div class="input-group add-on">
                                             <input class="form-control form-control222" placeholder="Tìm kiếm"
-                                                id="srch-term" type="text" name="txtSearch">
+                                                id="srch-term" type="text" name="txtSearch"
+                                                value="<?php echo isset($search) ? $search : ""; ?>">
+                                            <input type="hidden" id="search-type" name="search-type">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-default btn-default2913" type="submit"
                                                     name="btnSearch"><i class="glyphicon glyphicon-search"></i></button>
@@ -219,7 +225,7 @@
 
                                 echo '<div class="modal fade" id="change-password" tabindex="-1" role="dialog"
                         aria-labelledby="edit-user-modal-label" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog" role="document" style="z-index: 1050">
                             <div class="modal-content">
                                 <div class="modal-header justify-content-center">
                                     <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Đổi Mật Khẩu</b></h3>
@@ -437,6 +443,16 @@
             });
         }
 
+        function showWarningNotification() {
+            Swal.fire({
+                icon: 'warning',
+                title: title_mess,
+                text: text_mes,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
         <?php
         $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
         switch ($status) {
@@ -448,6 +464,12 @@
                 break;
             case 'error':
                 echo 'showFailNotification();';
+                $_SESSION['action_status'] = 'none';
+                $_SESSION['title_message'] = '';
+                $_SESSION['message'] = '';
+                break;
+            case 'warning':
+                echo 'showWarningNotification();';
                 $_SESSION['action_status'] = 'none';
                 $_SESSION['title_message'] = '';
                 $_SESSION['message'] = '';
@@ -517,6 +539,28 @@
     </script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- handel type search -->
+    <script>
+        $(document).ready(function () {
+            function updateSearchType() {
+                const checkedRadio = $('input[name="tabs"]:checked').val();
+
+                if (checkedRadio) {
+                    $('#search-type').val(checkedRadio);
+                } else {
+                    $('#search-type').val("post");
+                }
+                console.log("Giá trị của #search-type:", document.getElementById('search-type').value);
+            }
+
+            updateSearchType();
+
+            if ($('input[name="tabs"]').length > 0) {
+                $('input[name="tabs"]').change(updateSearchType);
+            }
+        });
+    </script>
 </body>
 
 </html>
