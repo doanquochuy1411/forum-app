@@ -191,7 +191,7 @@ class Post extends DB
         $sql = "SELECT DISTINCT p2.* FROM posts p1 
             JOIN post_tags pt1 ON p1.id = pt1.post_id 
             JOIN post_tags pt2 ON pt1.tag_id = pt2.tag_id 
-            JOIN posts p2 ON pt2.post_id = p2.id WHERE p1.id = ?
+            JOIN posts p2 ON pt2.post_id = p2.id WHERE p1.id = ? and p2.deleted_at is null
             AND p2.id != ? order by p2.views DESC LIMIT ?";
         $result = $this->executeSelectQuery($sql, [$post_id, $post_id, $limit]);
         $data = $result->fetch_all(MYSQLI_ASSOC);

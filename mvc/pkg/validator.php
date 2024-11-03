@@ -64,7 +64,8 @@ function validateImage($file, $tempDir = '/tmp')
     // $tempFile = $tempDir . '/' . uniqid('image_', true) . '.' . $fileExtension;
 
     // Kiểm tra extension của file
-    // $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+    // Để lấy thông tin về hình ảnh, bao gồm kích thước (chiều rộng và chiều cao), loại ảnh (JPEG, PNG, GIF, v.v.), Loại MiMe của ảnh
     if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
         return "Phần mở rộng file không hợp lệ. Chỉ chấp nhận JPEG, JPG, PNG, và GIF.";
     }

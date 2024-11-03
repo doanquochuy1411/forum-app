@@ -11,7 +11,7 @@ class Api extends Controller
 
     public function __construct()
     {
-        if (!isset($_SESSION['UserID'])) {
+        if (!isset($_SESSION['UserID']) || !isset($_SESSION['_token'])) {
             header("Location: " . BASE_URL);
             exit();
         }

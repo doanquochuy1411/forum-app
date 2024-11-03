@@ -445,7 +445,7 @@
                     <?php
                     if (count($relate_posts) > 0) {
                         foreach ($relate_posts as $post) {
-                            if ($post["id"] != $posts[0]["id"]) {
+                            if (decryptData($post["id"]) != decryptData($posts[0]["id"])) {
                                 echo '<p><a href="' . BASE_URL . '/home/posts/' . $post["id"] . '"><i class="fa fa-angle-double-right" aria-hidden="true"></i> ' . $post['title'] . '</a></p>';
                             }
                         }
