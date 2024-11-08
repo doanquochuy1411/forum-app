@@ -7,6 +7,7 @@ class Home extends Controller
     protected $CategoryModel;
     protected $TagModel;
     protected $NotificationModel;
+    protected $FollowModel;
     private $userID;
 
     public $layout = "client_layout";
@@ -22,6 +23,8 @@ class Home extends Controller
         $this->CategoryModel = $this->model("Category");
         $this->TagModel = $this->model("Tag");
         $this->NotificationModel = $this->model("Notification");
+        $this->FollowModel = $this->model("Follow");
+
     }
     function Index()
     {
@@ -94,7 +97,6 @@ class Home extends Controller
             $title = htmlspecialchars($_REQUEST["title"]);
             $tags = isset($_REQUEST["tags"]) ? $_REQUEST["tags"] : [];
             $content = $_REQUEST["content"];
-            // $content = $this->purifier->purify($_REQUEST["content"]);
             $user_id = $_SESSION["UserID"];
 
             $errors = validateForm(["contentType", "contentCategory", "title", "content"]);
@@ -121,6 +123,19 @@ class Home extends Controller
                         if ($result === false) {
                             $allTagsInserted = false; // Set flag to false if insertion fails
                         }
+                    }
+                }
+
+                // Lấy danh sách người theo dõi
+                $followers = $this->FollowModel->GetAllFollower($this->userID);
+                // print_r($followers);
+                if (count($followers) > 0) {
+                    foreach ($followers as $follower) {
+                        // $follower_detail = $this->UserModel->GetUserByID($follower["follower_user_id"]);
+                        // Thông báo 
+                        $this->NotificationModel->CreateNotificationForFollowers($post_id, "đã đăng bài mới", $follower["follower_user_id"]);
+                        // Gửi thông báo real-time qua Pusher cho người theo dõi
+                        $this->sendNotification($follower["follower_user_id"], "Đã đăng bài mới");
                     }
                 }
 
@@ -357,6 +372,27 @@ class Home extends Controller
             $_SESSION['message'] = "Chân thành xin lỗi vì sự bất tiện này";
             header("Location: " . BASE_URL . "/home");
             exit();
+        }
+    }
+
+    private function sendNotification($receiver_id, $message, $commentId = null, $postId = null)
+    {
+        global $pusher;
+
+        $data['message'] = array(
+            'receiver_id' => $receiver_id,
+            'message' => $message,
+            'commentId' => $commentId,
+            'postId' => $postId,
+        );
+
+        $result = $pusher->trigger('post-reported', 'PostReported', $data);
+
+        // In ra kết quả của Pusher trigger
+        if ($result === true) {
+            error_log("Notification sent successfully: " . json_encode($data));
+        } else {
+            error_log("Notification failed: " . json_encode($data));
         }
     }
 

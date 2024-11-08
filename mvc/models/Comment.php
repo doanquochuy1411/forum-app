@@ -75,7 +75,6 @@ class Comment extends DB
         $id = decryptData($id);
         $this->beginTransaction();
 
-
         try {
             $sql = "DELETE FROM comments WHERE id = ?";
             $this->executeQuery($sql, [$id]);

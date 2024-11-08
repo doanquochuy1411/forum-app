@@ -8,6 +8,20 @@
     .container-content.fade-out {
         opacity: 0;
     }
+
+    label[for="tab5"],
+    #tab5 {
+        color: #000;
+        font: 14px Arial, sans-serif;
+        margin: 0px 0px -1px;
+        padding: 13px 15px;
+        font-weight: bold;
+        background-color: #F3F3F3;
+        /* Đặt màu nền */
+        border: none;
+        outline: none;
+        /* text-decoration: none; */
+    }
 </style>
 <!-- ======content section/body=====-->
 <section class="main-content920 pd-t-90">
@@ -27,15 +41,18 @@
                     <input id="tab3" type="radio" name="tabs" value="document">
                     <label for="tab3">Tài liệu</label>
 
-                    <?php
-                    if (isset($_SESSION["UserID"])) {
-                        echo '<input id="tab5" type="radio" name="tabs" value="myPost">
-                        <label for="tab5">Bài viết của tôi</label>';
-                    }
-                    ?>
-
                     <input id="tab4" type="radio" name="tabs" value="none">
                     <label for="tab4">Tạo mới</label>
+
+                    <?php
+                    if (isset($_SESSION["UserID"])) {
+                        echo '
+                         <a class="my-post-btn" href="' . BASE_URL . '/posts/user/' . $_SESSION["UserID"] . '" name="tabs" id="tab5">
+                    Bài đăng của tôi
+                    </a>
+                    ';
+                    }
+                    ?>
 
                     <!-- Posts -->
                     <section id="content1">
@@ -57,40 +74,6 @@
                                 </li>
                             </ul>
                         </nav>
-                    </section>
-
-
-
-                    <!--my posts -->
-                    <section id="content5">
-                        <?php
-                        if (count($my_posts) > 0) {
-                            echo '<div class="container-content">
-
-                        </div>
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous" id="prevBtn">
-                                        <span aria-hidden="true">&laquo; Trước</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" aria-label="Next" id="nextBtn">
-                                        <span aria-hidden="true">Sau &raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>';
-                        } else {
-                            echo '<div class="question-type2033" style="margin: 20px 0 0 0">
-                            <div class="row">
-                                <p style="margin: 10px;"> <b>Chưa có bài viết</b></p>
-                            </div>
-                        </div>';
-                        }
-                        ?>
                     </section>
 
                     <!-- Questions -->

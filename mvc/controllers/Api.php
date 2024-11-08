@@ -5,6 +5,7 @@ class Api extends Controller
     protected $PostModel;
     protected $ReportModel;
     protected $NotificationModel;
+    protected $FollowModel;
     protected $CommentModel;
 
     private $userID;
@@ -12,8 +13,12 @@ class Api extends Controller
     public function __construct()
     {
         if (!isset($_SESSION['UserID']) || !isset($_SESSION['_token'])) {
-            header("Location: " . BASE_URL);
-            exit();
+            echo json_encode([
+                'code' => 401,
+                'status' => "error",
+                'message' => "permission denied.",
+            ]);
+            exit;
         }
 
         $this->userID = $_SESSION["UserID"];
@@ -22,6 +27,7 @@ class Api extends Controller
         $this->ReportModel = $this->model("Report");
         $this->NotificationModel = $this->model("Notification");
         $this->CommentModel = $this->model("Comment");
+        $this->FollowModel = $this->model("Follow");
     }
     // Gửi báo cáo
     function Index()
@@ -225,6 +231,86 @@ class Api extends Controller
             'code' => 200,
             'status' => "success",
             'top_posts_by_likes' => $topPosts,
+        ]);
+    }
+
+    public function CheckFollowUser($authId, $userId)
+    {
+        if ($authId == "none" || $userId == "none") {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'follow_status' => "followed",
+                'message' => "Không tìm thấy dữ liệu người dùng.",
+            ]);
+            return;
+        }
+
+        $checkFollowed = $this->FollowModel->CheckFollowByUser($authId, $userId);
+        if ($checkFollowed) {
+            http_response_code(response_code: 200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'follow_status' => "followed",
+                'message' => "Kiểm tra trạng thái theo dõi thành công",
+            ]);
+        } else {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'follow_status' => "unFollowed",
+                'message' => "Kiểm tra trạng thái theo dõi thành công",
+            ]);
+        }
+    }
+
+    public function HandelFollow()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authId = $_POST['auth_id'];
+            $userId = $_POST['user_id'];
+            $status = "";
+
+            $checkLiked = $this->FollowModel->CheckFollowByUser($authId, $userId);
+            if ($checkLiked) {
+                $this->FollowModel->CancelLikedPostByUser($authId, $userId);
+                $status = 'unFollow';
+            } else {
+                $this->FollowModel->CreateFollowPostByUser($authId, $userId);
+                $status = 'follow';
+            }
+        }
+
+        http_response_code(200);
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'follow_status' => $status,
+            'message' => "Dữ liệu đã được xử lý",
+        ]);
+    }
+
+    public function getAuthOfPost($post_id)
+    {
+        $postDetail = $this->PostModel->GetPostByID($post_id);
+        if (empty($postDetail)) {
+            http_response_code(400); // Đặt mã phản hồi là 400
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy bài viết cho thông báo này.",
+            ]);
+            return; // Dừng lại nếu dữ liệu trống
+        }
+
+        // Trả về JSON
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'post_details' => $postDetail,
         ]);
     }
 }

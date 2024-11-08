@@ -163,8 +163,17 @@
                                             <img style="width: 22px; border-radius:50%;"
                                                 src="<?php echo BASE_URL ?>/public/src/uploads/<?php echo $posts[0]["avatar"] ?>"
                                                 alt="">
-                                            <span><?php echo $posts[0]["user_name"] ?></span></i>
-                                    </a>
+                                            <span><?php echo $posts[0]["user_name"] ?></span>
+                                        </a>
+                                        <!-- Nút theo dõi -->
+                                        <button id="followButton" class="btn btn-sm btn-follow" <?php
+                                        if (!isset($_SESSION["UserID"]) || decryptData($posts[0]["user_id"]) == decryptData($_SESSION["UserID"])) {
+                                            echo "disabled";
+                                        }
+                                        ?>>
+                                            <i class="fa fa-plus i-plus"></i>Theo dõi
+                                        </button>
+                                    </i>
                                     <h3><?php echo $posts[0]["title"] ?></h3>
                                 </div>
                             </div>
@@ -640,18 +649,18 @@
 <script>
     $(document).ready(function () {
         // Lấy thông tin bài post và user (truyền từ server vào)
-        let postId = "<?php echo $posts[0]['id']; ?>";
-        let userId =
+        var postId = "<?php echo $posts[0]['id']; ?>";
+        var userId =
             "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : ""; ?>"; // Giả sử bạn lưu user ID trong session
         // Biến lưu số lượt like ban đầu (lấy từ server)
-        let likeCount = parseInt($('#like-count').text());
+        var likeCount = parseInt($('#like-count').text());
 
         // Gọi API chỉ một lần khi trang tải
         $.ajax({
             url: '<?php echo BASE_URL ?>/api/CheckLikedPost/' + postId + '/' + userId,
             type: 'GET',
             success: function (data) {
-                let response = JSON.parse(data);
+                var response = JSON.parse(data);
                 // console.log(response);
                 // Cập nhật trạng thái và số lượt like
                 if (response.like_status === 'liked') {
@@ -690,7 +699,7 @@
                     action: action
                 },
                 success: function (data) {
-                    let response = JSON.parse(data);
+                    var response = JSON.parse(data);
                     // console.log(response);
                     // Cập nhật số lượt like
                     likeCount = response.like_count;
@@ -782,6 +791,71 @@
             }, 3000);
         } else {
             console.log("Không tìm thấy bình luận với ID:", commentId);
+        }
+    }
+</script>
+
+<!-- Handel Follower -->
+<script>
+    $(document).ready(function () {
+        var userId =
+            "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : "none"; ?>";
+        var authId =
+            "<?php echo isset($posts[0]["user_id"]) ? $posts[0]["user_id"] : "none"; ?>";
+
+        checkFollowStatus(authId, userId);
+
+        $('#followButton').on('click', function () {
+            if (userId === "") {
+                window.location.href = "<?php echo BASE_URL ?>/login";
+            }
+
+            const isFollowed = $(this).hasClass('followed');
+            const action = isFollowed ? 'unFollow' : 'follow';
+
+            $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ? 'Theo dõi' : 'Đang theo dõi'))
+                .toggleClass(
+                    'followed');
+
+            // Gửi yêu cầu Ajax đến API để xử lý follow/unfollow
+            $.ajax({
+                url: '<?php echo BASE_URL ?>/api/handelFollow',
+                type: 'POST',
+                data: {
+                    auth_id: authId,
+                    user_id: userId,
+                    action: action
+                },
+                success: function (data) {
+                    console.log("Theo dõi thành công");
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                    // Nếu có lỗi, khôi phục trạng thái UI
+                    $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ?
+                        'Bỏ theo dõi' :
+                        'Theo dõi')).toggleClass('followed');
+                }
+            });
+        });
+    });
+
+    async function checkFollowStatus(authId, userId) {
+        try {
+            let response = await fetch('<?php echo BASE_URL ?>/api/CheckFollowUser/' + authId + '/' + userId);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            let data = await response.json();
+            console.log("Call api: ", data);
+
+            if (data.follow_status === 'followed') {
+                $('#followButton').html('<i class="fa fa-plus i-plus"></i> Đang theo dõi').addClass('followed');
+            } else {
+                $('#followButton').html('<i class="fa fa-plus i-plus"></i> Theo dõi').removeClass('followed');
+            }
+        } catch (error) {
+            console.log("Error: ", error);
         }
     }
 </script>

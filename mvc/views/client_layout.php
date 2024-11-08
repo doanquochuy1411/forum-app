@@ -31,7 +31,7 @@
     <link href="<?php echo BASE_URL; ?>/public/src/css/header.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/src/css/footer.css" rel="stylesheet" type="text/css">
     <link href="<?php echo BASE_URL; ?>/public/src/css/body_auth.css" rel="stylesheet" type="text/css">
-    <!-- <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/admin/assets/css/style.css"> -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/src/css/body_client.css">
 
     <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
     <!-- SweetAlert2 CSS -->
@@ -95,7 +95,7 @@
                             navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                             class="icon-bar"></span> </button>
                     <a class="navbar-brand" href="<?php echo BASE_URL ?>"><img
-                            src="<?php echo BASE_URL ?>/public/src/uploads/logo_iuh.png" alt="Logo"></a>
+                            src="<?php echo BASE_URL ?>/public/src/uploads/logo-iuh-white.png" alt="Logo"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -162,7 +162,8 @@
                                             <input class="form-control form-control222" placeholder="Tìm kiếm"
                                                 id="srch-term" type="text" name="txtSearch"
                                                 value="<?php echo isset($search) ? $search : ""; ?>">
-                                            <input type="hidden" id="search-type" name="search-type">
+                                            <input type="hidden" id="search-type" name='search-type'>
+
                                             <div class="input-group-btn">
                                                 <button class="btn btn-default btn-default2913" type="submit"
                                                     name="btnSearch"><i class="glyphicon glyphicon-search"></i></button>
@@ -225,7 +226,7 @@
 
                                 echo '<div class="modal fade" id="change-password" tabindex="-1" role="dialog"
                         aria-labelledby="edit-user-modal-label" aria-hidden="true">
-                        <div class="modal-dialog" role="document" style="z-index: 1050">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header justify-content-center">
                                     <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Đổi Mật Khẩu</b></h3>
@@ -283,7 +284,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="info-part-one320">
-                            <img src="<?php echo BASE_URL ?>/public/src/uploads/logo_iuh.png" alt="" class="img-footer">
+                            <img src="<?php echo BASE_URL ?>/public/src/uploads/logo-iuh-white.png" alt=""
+                                class="img-footer">
                             <p class="pd-10">
                                 Chào mừng các bạn đến với Diễn đàn Công nghệ thông tin, kênh thông tin cung cấp các
                                 thông tin, kiến thức cho các bạn sinh viên.
@@ -317,9 +319,8 @@
                             <p>12 Nguyễn Văn Bảo, P4, Quận Gò Vấp <br>Thành phố Hồ Chí Minh.
                             </p>
                             <h4>Hỗ trợ:</h4>
-                            <p>Số điện thoại hỗ trợ: 0366 555 444</p>
-                            <p>Email hỗ trợ:</p>
-                            <p>hotro@gmail.com</p>
+                            <p>Số điện thoại: 0366 555 444</p>
+                            <p>Email: hotro@gmail.com</p>
                         </div>
                     </div>
                 </div>

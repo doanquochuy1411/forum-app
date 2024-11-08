@@ -65,8 +65,6 @@ class Users extends Controller
                 $file_name = $uploadResult['file_name'];
             }
 
-            // echo $gender;
-
             $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name, $gender);
             if ($result) {
                 $title = 'Cập nhật thông tin thành công';

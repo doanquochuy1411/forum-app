@@ -37,6 +37,22 @@ class Notification extends DB
         }
     }
 
+    public function CreateNotificationForFollowers($post_id, $message, $follower_id)
+    {
+        $follower_id = decryptData($follower_id);
+        $sql = "INSERT INTO notifications (receiver_id, message, post_id)
+                VALUES (
+                    ?, ?, ? 
+                )";
+        $result = $this->executeQuery($sql, [$follower_id, $message, $post_id]);
+
+        if ($result > 0) {
+            return $this->con->insert_id;
+        } else {
+            return 0;
+        }
+    }
+
     public function CreateReportNotificationToAdmin($message, $report_id, $post_id)
     {
         $post_id = decryptData($post_id);

@@ -153,7 +153,7 @@ class Post extends DB
     public function GetPostByID($id)
     {
         $id = decryptData($id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, u.id as user_id, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -219,13 +219,20 @@ class Post extends DB
     public function DeletePost($id)
     {
         $id = decryptData($id);
-        $sql = "UPDATE posts set deleted_at = NOW() Where id = ?";
-        $result = $this->executeQuery($sql, [$id]);
+        $this->beginTransaction();
 
-        if ($result > 0) {
-            return 1;
-        } else {
-            return 0;
+        try {
+            $sql = "UPDATE posts set deleted_at = NOW() Where id = ?";
+            $this->executeQuery($sql, [$id]);
+
+            $sql2 = "DELETE FROM notifications WHERE post_id = ?";
+            $this->executeQuery($sql2, [$id]);
+
+            $this->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->rollback();
+            return false;
         }
     }
 
