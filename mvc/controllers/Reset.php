@@ -66,8 +66,8 @@ class Reset extends Controller
     function VerifyCode()
     {
         if (isset($_POST["btnVerifyCode"])) {
-            $email = strtolower(trim($_POST["email"]));
-            $code = $_POST["code"];
+            $email = strtolower(trim(htmlspecialchars($_POST["email"])));
+            $code = htmlspecialchars($_POST["code"]);
             $categories = $this->CategoryModel->GetAllCategory();
 
             if (!verifyCode($email, $code)) {
@@ -88,7 +88,6 @@ class Reset extends Controller
                 "categories" => $categories,
             ]);
             return;
-            // $this->response($this->layout, "reset", $this->title, $email, $categories);
         }
     }
 

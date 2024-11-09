@@ -17,8 +17,6 @@ class Posts extends Controller
     public function __construct()
     {
 
-        parent::__construct();
-
         if (!isset($_SESSION['UserID'])) {
             header("Location: " . BASE_URL . "/login");
             exit();

@@ -1,12 +1,22 @@
 <?php
-$expiryTime = time() + 60; // Thời gian hết hạn
+$expiryTime = time() + 90;
 $remainingTime = $expiryTime - time();
 ?>
+<style>
+    .recode-btn {
+        text-decoration: underline;
+        color: #18568c !important;
+    }
+
+    .recode-btn:hover {
+        opacity: 0.8;
+    }
+</style>
 <div class="account-page pd-t-90">
     <div class="account-center">
         <div class="account-box">
             <form class="form-signin" action="<?php echo BASE_URL; ?>/<?php echo $controller ?>/VerifyCode"
-                method="post">
+                method="post" onsubmit="return validateFormVerifyCode()">
                 <div class="account-logo">
                     <a href="<?php echo BASE_URL; ?>"><img
                             src="<?php echo BASE_URL; ?>/public/admin/assets/img/logo.png" class="lg-auth"
@@ -17,6 +27,7 @@ $remainingTime = $expiryTime - time();
                 <div class="form-group">
                     <label>Nhập mã xác minh</label>
                     <input type="text" class="form-control" name="code" autofocus>
+                    <small id="code_err"></small>
                 </div>
                 <div class="form-group text-center">
                     <p><span id="countdown"></span></p>
@@ -31,19 +42,50 @@ $remainingTime = $expiryTime - time();
         </div>
     </div>
 </div>
-
 <script>
     var timeLeft = <?php echo $remainingTime; ?>;
+    var countdownInterval;
 
     function updateCountdown() {
         if (timeLeft > 0) {
-            document.getElementById("countdown").textContent = "Mã xác nhận có hiệu lực trong " + timeLeft + " giây. ";
+            document.getElementById("countdown").textContent = "Mã xác nhận có hiệu lực trong " + timeLeft + " giây.";
             timeLeft--;
         } else {
-            document.getElementById("countdown").textContent =
-                "Mã xác nhận đã hết hạn. Vui lòng tải lại trang để nhận được mã xác nhận mới.";
+            clearInterval(countdownInterval); // Dừng đếm ngược khi hết thời gian
+            document.getElementById("countdown").innerHTML =
+                "Mã xác nhận đã hết hạn. " +
+                '<a class="recode-btn" href="javascript:void(0)" onclick="resendCode()">Gửi lại.</a>';
         }
     }
 
-    setInterval(updateCountdown, 1000);
+    countdownInterval = setInterval(updateCountdown, 1000);
+
+    function resendCode() {
+        var email = "<?php echo isset($data) ? htmlspecialchars($data) : 'none'; ?>";
+        $.ajax({
+            url: `<?php echo BASE_URL ?>/publicApi/reSendCode/${email}`,
+            type: 'GET',
+            success: function (response) {
+                timeLeft = 90;
+                clearInterval(countdownInterval);
+                countdownInterval = setInterval(updateCountdown, 1000);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Mã xác minh đã được gửi lại thành công.',
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            },
+            error: function () {
+                console.log("Error sending code.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gửi mã xác minh thất bại. Vui lòng thử lại sau!',
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            }
+        });
+    }
 </script>

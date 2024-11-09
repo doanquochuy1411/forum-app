@@ -26,7 +26,7 @@
 <!-- ======content section/body=====-->
 <section class="main-content920 pd-t-90">
     <div>
-        <img src="<?php echo BASE_URL ?>/public/src/uploads/slide.jpg" alt="">
+        <img class="img-side" src="<?php echo BASE_URL ?>/public/src/uploads/slide.jpg" alt="">
     </div>
     <div class="container">
         <div class="row">

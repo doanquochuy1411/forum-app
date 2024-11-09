@@ -249,7 +249,7 @@ class Api extends Controller
 
         $checkFollowed = $this->FollowModel->CheckFollowByUser($authId, $userId);
         if ($checkFollowed) {
-            http_response_code(response_code: 200);
+            http_response_code(200);
             echo json_encode([
                 'code' => 200,
                 'status' => "success",

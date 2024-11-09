@@ -291,6 +291,24 @@ function validateCheckBox() {
     }
 }
 
+function validateCode() {
+    const eValue = document.querySelector('input[name="code"]').value.trim();
+    const eErr = document.getElementById('code_err');
+
+    if (eValue === "") {
+        eErr.textContent = "Vui lòng chọn nhập mã code";
+        eErr.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(eValue)) {
+        eErr.textContent = "Mã code không hợp lệ!";
+        eErr.style.color = 'red'
+        return false;
+    } else {
+        eErr.textContent = "";
+        return true;
+    }
+}
+
 function validateAdditionalReportInfo() {
     // Lấy tất cả các checkbox lý do báo cáo
     var additionalInfo = document.getElementById('additional_info').value;
@@ -482,10 +500,8 @@ function validateCategoryDescriptionUpdate() {
     }
 }
 
-// document.querySelector('input[name="email"]').addEventListener('input', validateEmail);
-// document.querySelector('input[name="full_name"]').addEventListener('input', validateFullName);
-// document.querySelector('input[name="user_name"]').addEventListener('input', validateUserName);
-// document.querySelector('input[name="account_name"]').addEventListener('input', validateAccountName);
-// document.querySelector('input[name="password"]').addEventListener('input', validatePassword);
-// document.querySelector('input[name="retype_password"]').addEventListener('input', validateRetypePassword);
 
+function validateFormVerifyCode() {
+    const isCode = validateCode();
+    return isCode
+}

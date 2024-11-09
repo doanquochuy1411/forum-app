@@ -412,6 +412,16 @@
             if (phoneNumber) {
                 phoneNumber.addEventListener('input', validatePhoneNumber);
             }
+
+            var code = document.querySelector('input[name="code"]');
+            if (code) {
+                code.addEventListener('input', validateCode);
+            }
+
+            var contentCategory = document.querySelector('input[name="contentCategory"]');
+            if (contentCategory) {
+                contentCategory.addEventListener('input', validateContentCategory);
+            }
         });
     </script>
     <!-- Trình soạn thảo -->
