@@ -42,9 +42,14 @@ Pusher.logToConsole = true;
                             // Thêm thông báo vào dropdown
                             addNotificationToDropdown(notification, image);
                         });
-                        } else {
-                            // Thêm thông báo vào dropdown
+                        } else if (notification.report_id != null) {
                             addNotificationToDropdown(notification, image);
+                        } else {
+                            getAuthOfPost(notification.post_id, function(postDetail) {
+                                image = BASE_URL+'/public/src/uploads/' + postDetail.post_details[0].avatar; // Sử dụng avatar của người dùng
+                                notification.message = postDetail.post_details[0].user_name.concat(" ", notification.message) 
+                                addNotificationToDropdown(notification, image);
+                            });
                         }
                     });
 
@@ -92,6 +97,23 @@ Pusher.logToConsole = true;
                 var userDetail = JSON.parse(response);
                 console.log(userDetail)
                 callback(userDetail);
+            },
+            error: function() {
+                console.log("Error fetching notifications.");
+                callback({ avatar: BASE_URL+'/public/client/image/images.png' });
+            }
+        });
+    }
+
+    function getAuthOfPost(post_id, callback) {
+        $.ajax({
+            url: BASE_URL+`/api/getAuthOfPost/${post_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            type: 'GET',
+            success: function(response) {
+                // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+                var postDetail = JSON.parse(response);
+                console.log(postDetail)
+                callback(postDetail);
             },
             error: function() {
                 console.log("Error fetching notifications.");

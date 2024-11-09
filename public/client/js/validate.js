@@ -235,6 +235,21 @@ function validateTitleOfPost() {
     }
 }
 
+function validateContentCategory() {
+    const contentCategory = document.querySelector('input[name="contentCategory"]').value.trim();
+    const contentCategoryError = document.getElementById('contentCategory_err');
+
+    if (contentCategory === "") {
+        contentCategoryError.textContent = "Vui lòng chọn danh mục";
+        contentCategoryError.style.color = 'red'
+        return false;
+    } else {
+        contentCategoryError.textContent = "";
+        // contentCategoryError.style.color = 'red'
+        return true;
+    }
+}
+
 function validateAgreeTerms() {
     const termsCheckbox = document.getElementById('agree_terms');
     const termsError = document.getElementById('terms_err');
@@ -337,7 +352,8 @@ function validateFormLogin() {
 
 function validateFormCreatePost() {
     const isValidTitle = validateTitleOfPost();
-    return isValidTitle;
+    const isValidContentCategory = validateContentCategory();
+    return isValidTitle && isValidContentCategory;
 }
 
 function validateFormSearch() {

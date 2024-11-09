@@ -307,6 +307,7 @@ class Api extends Controller
         }
 
         // Trả về JSON
+        http_response_code(200);
         echo json_encode([
             'code' => 200,
             'status' => "success",

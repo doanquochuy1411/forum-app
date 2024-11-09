@@ -47,6 +47,7 @@
                                 }
                                 ?>
                             </select>
+                            <small id="contentCategory_err"></small>
                         </div>
                         <div class="question-title39">
                             <span class="form-description43305">Tiêu đề* </span>
@@ -149,17 +150,31 @@
                 document.getElementById('editorContent').value = DOMPurify.sanitize(quill.root.innerHTML);
 
                 var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
-                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
-                    event.preventDefault();
-                    document.getElementById('editorContent_err').textContent =
-                        'Nội dung phải có ít nhất 500 ký tự.';
-                    document.getElementById('editorContent_err').style.color = 'red'
+                if (ctType === 'post' && isCategoryPost(ctCategory)) {
+                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
+                        event.preventDefault();
+                        document.getElementById('editorContent_err').textContent =
+                            'Nội dung phải có ít nhất 500 ký tự.';
+                        document.getElementById('editorContent_err').style.color = 'red'
+                    } else {
+                        document.getElementById('editorContent_err').textContent = '';
+                    }
                 } else {
-                    document.getElementById('editorContent_err').textContent = '';
+                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 10) {
+                        event.preventDefault(); // Ngăn chặn việc gửi form
+                        document.getElementById('editorContent_err').textContent =
+                            'Nội dung phải có ít nhất 10 ký tự.';
+                        document.getElementById('editorContent_err').style.color = 'red'
+                    } else {
+                        document.getElementById('editorContent_err').textContent = '';
+                    }
                 }
             });
         }
 
+        function isCategoryPost(categoryId) {
+            return categories.some(category => category.id === categoryId && category.category_type === 'post');
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
             const tagsInput = document.getElementById('tagsInput');

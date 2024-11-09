@@ -66,20 +66,20 @@ class Users extends Controller
             }
 
             $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name, $gender);
-            if ($result) {
-                $title = 'Cập nhật thông tin thành công';
-                if ($file_name != "") {
-                    $_SESSION['Avatar'] = $file_name;
-                }
-                response_success($title, "");
-            } else {
-                if ($file['size'] > 0) {
-                    deleteImage($file_name);
-                }
-                $title = 'Cập nhật thông tin thất bại';
-                $message = "Lỗi hệ thống!";
-                response_error($title, $message);
+            $title = 'Cập nhật thông tin thành công';
+            if ($file_name != "") {
+                $_SESSION['Avatar'] = $file_name;
             }
+            response_success($title, "");
+            // if ($result) {
+            // } else {
+            //     if ($file['size'] > 0) {
+            //         deleteImage($file_name);
+            //     }
+            //     $title = 'Cập nhật thông tin thất bại';
+            //     $message = "Lỗi hệ thống!";
+            //     response_error($title, $message);
+            // }
             echo "<script>history.back();</script>";
             exit();
         }

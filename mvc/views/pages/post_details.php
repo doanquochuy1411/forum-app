@@ -171,7 +171,7 @@
                                             echo "disabled";
                                         }
                                         ?>>
-                                            <i class="fa fa-plus i-plus"></i>Theo dõi
+                                            <i class="fa fa-plus i-plus"></i> ...
                                         </button>
                                     </i>
                                     <h3><?php echo $posts[0]["title"] ?></h3>
@@ -798,6 +798,8 @@
 <!-- Handel Follower -->
 <script>
     $(document).ready(function () {
+        // await checkFollowStatus(authId, userId);
+
         var userId =
             "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : "none"; ?>";
         var authId =
@@ -813,7 +815,8 @@
             const isFollowed = $(this).hasClass('followed');
             const action = isFollowed ? 'unFollow' : 'follow';
 
-            $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ? 'Theo dõi' : 'Đang theo dõi'))
+            $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ? 'Theo dõi' :
+                'Đang theo dõi'))
                 .toggleClass(
                     'followed');
 
@@ -847,7 +850,7 @@
                 throw new Error('Network response was not ok');
             }
             let data = await response.json();
-            console.log("Call api: ", data);
+            // console.log("Call api: ", data);
 
             if (data.follow_status === 'followed') {
                 $('#followButton').html('<i class="fa fa-plus i-plus"></i> Đang theo dõi').addClass('followed');

@@ -16,7 +16,7 @@ Pusher.logToConsole = true;
             success: function(response) {
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
                 var data = JSON.parse(response);
-                // console.log(data)
+                // console.log("data: ", data)
                 if (data.code === 200) {
                     // Update số lượng thông báo
                     $('.pushertag').text(data.count);
@@ -83,7 +83,7 @@ Pusher.logToConsole = true;
             success: function(response) {
                 // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
                 var userDetail = JSON.parse(response);
-                console.log(userDetail)
+                // console.log(userDetail)
                 callback(userDetail);
             },
             error: function() {

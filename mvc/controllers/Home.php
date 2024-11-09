@@ -135,7 +135,7 @@ class Home extends Controller
                         // Thông báo 
                         $this->NotificationModel->CreateNotificationForFollowers($post_id, "đã đăng bài mới", $follower["follower_user_id"]);
                         // Gửi thông báo real-time qua Pusher cho người theo dõi
-                        $this->sendNotification($follower["follower_user_id"], "Đã đăng bài mới");
+                        $this->sendNotification(decryptData($follower["follower_user_id"]), "Đã đăng bài mới", null, $post_id);
                     }
                 }
 

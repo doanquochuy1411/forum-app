@@ -161,7 +161,7 @@
                                 }
                                 ?>
                                 <?php
-                                if (isset($_SESSION["UserID"]) && $user_details["gender"] == "Nam") {
+                                if ($user_details["gender"] == "Nam") {
                                     echo '<li><i class="fa fa-mars" aria-hidden="true"></i> <strong>Giới tính:</strong>
                                     Nam</li>';
                                 } else if ($user_details["gender"] == "Nữ") {
@@ -377,8 +377,8 @@
 </script>
 
 <script>
-    var currentUser = <?php echo isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "empty"; ?>;
-    var ownUser = <?php echo isset($user_details["id"]) ? decryptData($user_details["id"]) : "user_details"; ?>;
+    const currentUser = "<?php echo isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "empty"; ?>";
+    const ownUser = "<?php echo isset($user_details["id"]) ? decryptData($user_details["id"]) : "user_details"; ?>";
 </script>
 
 <!-- Handel user's post -->
@@ -436,7 +436,7 @@
                     ' lượt xem</i>';
                 html += '</div>';
                 // Add action
-                if (currentUser == ownUser) {
+                if (currentUser === ownUser) {
                     html += '<div class="post-actions action-icon">';
                     html +=
                         '<span class="action-dots" onclick="toggleActions(event)" id="action-dots"><i class="fa fa-ellipsis-h"></i></span>';

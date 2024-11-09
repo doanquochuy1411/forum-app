@@ -140,14 +140,16 @@
                                     <label for="contentCategory">Danh mục</label>
                                     <select id="contentCategory" name="contentCategory" class="form-control">
                                         <?php
-                                        $first = true;
-                                        foreach ($categories as $category) {
-                                            $selected = $first ? 'selected' : '';
-                                            echo '<option value="' . $category['id'] . '" ' . $selected . '>' . $category['name'] . '</option>';
-                                            $first = false;
+                                        for ($i = 0; $i < count($categories); $i++) {
+                                            if ($i == 0) {
+                                                echo '<option value="' . $categories[$i]['id'] . '" selected>' . $categories[$i]['name'] . '</option>';
+                                            } else {
+                                                echo '<option value="' . $categories[$i]['id'] . '">' . $categories[$i]['name'] . '</option>';
+                                            }
                                         }
                                         ?>
                                     </select>
+                                    <small id="contentCategory_err"></small>
                                 </div>
                             </div>
 
