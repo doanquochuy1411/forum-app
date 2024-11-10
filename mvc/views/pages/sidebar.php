@@ -56,7 +56,7 @@
                                 <a href="' . BASE_URL . '/home/info/' . $user["account_name"] . '">
                                     <h5>' . $user["user_name"] . '</h5>
                                 </a>
-                                <a href="#" class="designetion439">Người dùng</a>
+                                <a href="#" class="designetion439">Thành viên</a>
                                 <p>' . $user["point"] . ' điểm</p>
                             </span>
                         </div>

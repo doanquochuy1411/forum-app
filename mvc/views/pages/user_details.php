@@ -123,7 +123,7 @@
                             </button>
 
                             <span class="badge229">
-                                <a href="#">Người dùng</a>
+                                <a href="#">Thành viên</a>
                             </span>
                         </h3>
                         <hr>
@@ -424,7 +424,7 @@
                 html += '</div>';
                 html += '<hr>';
                 html +=
-                    '<div class="ques-icon-info3293"><a href="#" style="color:#222629"><i class="fa fa-thumbs-up" aria-hidden="true"> ' +
+                    '<div class="ques-icon-info3293"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"> ' +
                     post
                         .like_count +
                     ' Thích</i></a><a href="#"><i class="fa fa-clock-o" aria-hidden="true"> ' +

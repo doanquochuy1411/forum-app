@@ -33,7 +33,7 @@
         list-style-type: square;
     }
 
-    .container {
+    /* .container {
         width: 80%;
         margin: auto;
         overflow: hidden;
@@ -41,7 +41,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-top: 20px;
         margin-bottom: 20px;
-    }
+    } */
 
     .container p {
         text-align: justify;

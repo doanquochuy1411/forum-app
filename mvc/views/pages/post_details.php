@@ -178,9 +178,11 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="post-que-rep-rihght320"> <a href="#"><i class="fa fa-question-circle"
-                                            aria-hidden="true"></i> Câu hỏi</a> <a href="#" id="openReportModal"
-                                        class="r-clor10">Báo xấu</a>
+                                <div class="post-que-rep-rihght320">
+                                    <!-- <a href="#"><i class="fa fa-question-circle"
+                                            aria-hidden="true"></i> Câu hỏi</a>  -->
+                                    <a href="#" id="openReportModal" class="r-clor10"><i class="fa fa-bug"
+                                            aria-hidden="true"></i> Báo cáo</a>
                                 </div>
                             </div>
                         </div>
@@ -469,7 +471,7 @@
                     <div class="modal-content">
                         <div class="modal-header justify-content-center">
                             <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Lý do báo
-                                    xấu</b></h3>
+                                    cáo</b></h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -479,7 +481,7 @@
                                 action="<?php echo BASE_URL ?>/reports/send/<?php echo $posts[0]["id"] ?>" method="post"
                                 onsubmit="return validateFormReport()">
                                 <div class="form-group">
-                                    <label for="report_reasons">Chọn lý do báo xấu:</label>
+                                    <label for="report_reasons">Chọn lý do báo cáo:</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="report_reasons[]"
                                             value="Spam" id="reason1">
@@ -527,7 +529,7 @@
 
                                 <!-- Hidden field to store post or question ID -->
                                 <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?? "" ?>" />
-                                <button type="submit" name="btnReport" class="btn btn-danger">Báo xấu</button>
+                                <button type="submit" name="btnReport" class="btn btn-danger">báo cáo</button>
                             </form>
                         </div>
                     </div>

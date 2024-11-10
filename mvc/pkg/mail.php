@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 function sendCode($email)
 {
     $otp = rand(100000, 999999);
-    $expiryTime = time() + 60;
+    $expiryTime = time() + 90;
 
     $mail = new PHPMailer(true);
 

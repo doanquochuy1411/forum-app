@@ -74,7 +74,7 @@ class Notification extends DB
     public function GetNotificationByID($id)
     {
         $id = decryptData($id);
-        $sql = "select * from notifications where id = ?";
+        $sql = "select n.*, p.title as post_title from notifications n left join posts p on p.id = n.post_id where n.id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
         // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $data = $result->fetch_all(MYSQLI_ASSOC);

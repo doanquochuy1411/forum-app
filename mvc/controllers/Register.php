@@ -117,6 +117,10 @@ class Register extends Controller
                     "title" => $this->title,
                     "data" => $email,
                     "categories" => $categories,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
                 ]);
                 return;
             }
@@ -126,8 +130,17 @@ class Register extends Controller
                 $title = 'Đăng ký thất bại!';
                 $message = 'Tên tài khoản đã được sử dụng!';
                 response_error($title, $message);
-                echo "<script>history.back();</script>";
-                exit();
+                // echo "<script>history.back();</script>";
+                $this->view($this->layout, [
+                    "Page" => "register",
+                    "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
+                ]);
+                return;
             }
 
 
@@ -139,6 +152,11 @@ class Register extends Controller
                 $this->view($this->layout, [
                     "Page" => "register",
                     "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
                 ]);
                 return;
             }
@@ -158,11 +176,18 @@ class Register extends Controller
                 header("Location: " . BASE_URL . "/login");
                 return;
             } else {
-                // echo "<script>alert('Fail to register');</script>";
                 $title = 'Đăng ký thất bại!';
                 $message = 'Lỗi hệ thống!';
                 response_error($title, $message);
-                header("Location: " . BASE_URL . "/register");
+                $this->view($this->layout, [
+                    "Page" => "register",
+                    "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
+                ]);
                 return;
             }
         }

@@ -337,6 +337,11 @@ class Home extends Controller
     {
         $notification = $this->NotificationModel->GetNotificationByID($notification_id);
         $this->NotificationModel->UpdateIsRead($notification_id);
+        if ($notification[0]["report_id"] != null) {
+            $title = 'Bài đăng bị báo cáo: <em>\'' . $notification[0]["post_title"] . '\'</em>';
+            $message = $notification[0]["message"];
+            response_info($title, $message);
+        }
         header("Location: " . BASE_URL . "/home/posts/" . $notification[0]["post_id"]);
         exit();
     }

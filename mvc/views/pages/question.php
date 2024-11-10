@@ -23,7 +23,7 @@
                                         <th>Ngày tạo</th>
                                         <th>Lượt xem</th>
                                         <th>Lượt bình luận</th>
-                                        <th>Lượt báo xấu</th>
+                                        <th>Lượt báo cáo</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>

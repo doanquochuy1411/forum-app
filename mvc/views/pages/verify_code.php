@@ -1,5 +1,5 @@
 <?php
-$expiryTime = time() + 90;
+$expiryTime = $_SESSION['otp_map'][$data]['otp_expiry'];
 $remainingTime = $expiryTime - time();
 ?>
 <style>

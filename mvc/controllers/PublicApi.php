@@ -12,7 +12,8 @@ class PublicApi extends Controller
 
     public function reSendCode($email)
     {
-        if (htmlspecialchars($email) == "" || !sendCode($email)) {
+        if (htmlspecialchars($email) == "" || !sendCode(email: $email)) {
+            $_SESSION['otp_map'][$email]['otp_expiry'] = time() + 90;
             http_response_code(400); // Đặt mã phản hồi là 400
             echo json_encode([
                 'code' => 400,

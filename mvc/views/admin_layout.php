@@ -49,9 +49,9 @@
     <link rel="icon" href="<?php echo BASE_URL; ?>/public/admin/assets/img/logo-iuh.ico" type="image/x-icon">
 </head>
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-    }
+body {
+    font-family: 'Arial', sans-serif;
+}
 </style>
 
 <body>
@@ -287,107 +287,107 @@
     <script src="<?php echo BASE_URL ?>/public/admin/assets/js/chart.js"></script>
     <script src="<?php echo BASE_URL ?>/public/src/js/main.js"></script>
     <script>
-        $(document).ready(function () {
-            // Add user modal
-            $('#openAddUserModal').on('click', function () {
-                $('#add-user').modal('show');
-            });
-
-            // Add category modal
-            $('#openAddCategoryModal').on('click', function () {
-                $('#add-category').modal('show');
-            });
-
-            // Edit category modal
-            $('#openEditCategoryModal').on('click', function () {
-                var categoryId = $(this).data('category-id');
-                // console.log(categoryId);
-                $('#edit-category').modal('show');
-            });
+    $(document).ready(function() {
+        // Add user modal
+        $('#openAddUserModal').on('click', function() {
+            $('#add-user').modal('show');
         });
+
+        // Add category modal
+        $('#openAddCategoryModal').on('click', function() {
+            $('#add-category').modal('show');
+        });
+
+        // Edit category modal
+        $('#openEditCategoryModal').on('click', function() {
+            var categoryId = $(this).data('category-id');
+            // console.log(categoryId);
+            $('#edit-category').modal('show');
+        });
+    });
     </script>
     <script src="<?php echo BASE_URL; ?>/public/client/js/validate.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var emailInput = document.querySelector('input[name="email"]');
-            if (emailInput) {
-                emailInput.addEventListener('input', validateEmail);
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        var emailInput = document.querySelector('input[name="email"]');
+        if (emailInput) {
+            emailInput.addEventListener('input', validateEmail);
+        }
 
-            var fullNameInput = document.querySelector('input[name="full_name"]');
-            if (fullNameInput) {
-                fullNameInput.addEventListener('input', validateFullName);
-            }
+        var fullNameInput = document.querySelector('input[name="full_name"]');
+        if (fullNameInput) {
+            fullNameInput.addEventListener('input', validateFullName);
+        }
 
-            var userNameInput = document.querySelector('input[name="user_name"]');
-            if (userNameInput) {
-                userNameInput.addEventListener('input', validateUserName);
-            }
+        var userNameInput = document.querySelector('input[name="user_name"]');
+        if (userNameInput) {
+            userNameInput.addEventListener('input', validateUserName);
+        }
 
-            var accountNameInput = document.querySelector('input[name="account_name"]');
-            if (accountNameInput) {
-                accountNameInput.addEventListener('input', validateAccountName);
-            }
+        var accountNameInput = document.querySelector('input[name="account_name"]');
+        if (accountNameInput) {
+            accountNameInput.addEventListener('input', validateAccountName);
+        }
 
-            var passwordInput = document.querySelector('input[name="password"]');
-            if (passwordInput) {
-                passwordInput.addEventListener('input', validatePassword);
-            }
+        var passwordInput = document.querySelector('input[name="password"]');
+        if (passwordInput) {
+            passwordInput.addEventListener('input', validatePassword);
+        }
 
-            var phoneNumber = document.querySelector('input[name="phone_number"]');
-            if (phoneNumber) {
-                phoneNumber.addEventListener('input', validatePhoneNumber);
-            }
+        var phoneNumber = document.querySelector('input[name="phone_number"]');
+        if (phoneNumber) {
+            phoneNumber.addEventListener('input', validatePhoneNumber);
+        }
 
-            var categoryName = document.querySelector('input[name="category_name"]');
-            if (categoryName) {
-                categoryName.addEventListener('input', validateCategoryName);
-            }
+        var categoryName = document.querySelector('input[name="category_name"]');
+        if (categoryName) {
+            categoryName.addEventListener('input', validateCategoryName);
+        }
 
-            var categoryDescription = document.querySelector('input[name="category_description"]');
-            if (categoryDescription) {
-                categoryDescription.addEventListener('input', validateCategoryDescription);
+        var categoryDescription = document.querySelector('input[name="category_description"]');
+        if (categoryDescription) {
+            categoryDescription.addEventListener('input', validateCategoryDescription);
 
-            }
-            var categoryName = document.querySelector('input[name="category_name_update"]');
-            if (categoryName) {
-                categoryName.addEventListener('input', validateCategoryNameUpdate);
-            }
+        }
+        var categoryName = document.querySelector('input[name="category_name_update"]');
+        if (categoryName) {
+            categoryName.addEventListener('input', validateCategoryNameUpdate);
+        }
 
-            var categoryDescription = document.querySelector('input[name="category_description_update"]');
-            if (categoryDescription) {
-                categoryDescription.addEventListener('input', validateCategoryDescription);
-            }
-        });
+        var categoryDescription = document.querySelector('input[name="category_description_update"]');
+        if (categoryDescription) {
+            categoryDescription.addEventListener('input', validateCategoryDescription);
+        }
+    });
     </script>
     <!-- popup thông báo -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-        var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
-        var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
+    var title_mess = "<?php echo isset($_SESSION['title_message']) ? $_SESSION['title_message'] : "" ?>";
+    var text_mes = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : "" ?>";
 
-        function showSuccessNotification() {
-            Swal.fire({
-                icon: 'success',
-                title: title_mess,
-                text: text_mes,
-                timer: 2000,
-                timerProgressBar: true
-            });
-        }
+    function showSuccessNotification() {
+        Swal.fire({
+            icon: 'success',
+            title: title_mess,
+            text: text_mes,
+            timer: 2000,
+            timerProgressBar: true
+        });
+    }
 
-        function showFailNotification() {
-            Swal.fire({
-                icon: 'error',
-                title: title_mess,
-                text: text_mes,
-                timer: 3000,
-                timerProgressBar: true
-            });
-        }
+    function showFailNotification() {
+        Swal.fire({
+            icon: 'error',
+            title: title_mess,
+            text: text_mes,
+            timer: 3000,
+            timerProgressBar: true
+        });
+    }
 
-        <?php
+    <?php
         $status = isset($_SESSION['action_status']) ? $_SESSION['action_status'] : "";
         switch ($status) {
             case 'success':
@@ -409,24 +409,24 @@
         ?>
     </script>
     <script>
-        function confirmDelete(event, targetHref) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-            Swal.fire({
-                title: "Bạn có chắc chắn xóa không",
-                width: '500px', // Tăng chiều rộng của popup
-                confirmButtonText: "Xóa",
-                showCancelButton: true,
-                cancelButtonText: "Thoát",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
-                    window.location.href = targetHref;
-                }
-            });
-        }
+    function confirmDelete(event, targetHref) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+        Swal.fire({
+            title: "Bạn có chắc chắn xóa không",
+            width: '500px', // Tăng chiều rộng của popup
+            confirmButtonText: "Xóa",
+            showCancelButton: true,
+            cancelButtonText: "Thoát",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
+                window.location.href = targetHref;
+            }
+        });
+    }
     </script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-    <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
+    <!-- <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script> -->
 </body>
 
 </html>

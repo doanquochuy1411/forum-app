@@ -128,7 +128,7 @@ class Posts extends Controller
         $relate_posts = $this->PostModel->GetRelatePosts($id, 10);
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $comments = $this->CommentModel->GetAllCommentOfPost($id);
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point');
         $categories = $this->CategoryModel->GetAllCategory();
         $tags = $this->TagModel->GetPopularTags();
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
