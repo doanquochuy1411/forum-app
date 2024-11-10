@@ -10,12 +10,14 @@
                 </div>
                 <div class="form-group mg-b-5">
                     <label>Tên tài khoản</label>
-                    <input type="text" autofocus name="user_name" class="form-control" placeholder="Tên tài khoản">
+                    <input type="text" autofocus name="user_name" class="form-control" placeholder="Tên tài khoản"
+                        value="<?php echo $_SESSION["account_name_info"] ?? "" ?>">
                     <small id="user_name_err" class="alert-valid"></small>
                 </div>
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
+                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu"
+                        value="<?php echo $_SESSION["password_info"] ?? "" ?>">
                     <small id="password_err" class="alert-valid"></small>
                 </div>
                 <div class="form-group text-right">

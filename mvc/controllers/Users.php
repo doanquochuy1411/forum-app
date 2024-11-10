@@ -121,7 +121,7 @@ class Users extends Controller
 
             if ($new_password != $retype_password_of_change) {
                 $title = 'Cập nhật thất bại';
-                $message = 'Mật khẩu và Xác nhận mật khẩu không khớp!';
+                $message = 'Mật khẩu và Nhập lại mật khẩu không khớp!';
                 response_error($title, $message);
                 echo "<script>history.back();</script>";
                 exit();

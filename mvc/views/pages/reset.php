@@ -17,8 +17,8 @@
                     <small id="password_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Xác nhận mật khẩu của bạn</label>
-                    <input type="password" class="form-control" name="retype_password" placeholder="Xác nhận mật khẩu"
+                    <label>Nhập lại mật khẩu của bạn</label>
+                    <input type="password" class="form-control" name="retype_password" placeholder="Nhập lại mật khẩu"
                         onchange="validateRetypePassword()">
                     <small id="retype_password_err"></small>
                 </div>

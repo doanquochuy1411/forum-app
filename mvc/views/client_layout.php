@@ -499,6 +499,7 @@
                 title: "Bạn có chắc chắn xóa không",
                 width: '400px', // Tăng chiều rộng của popup
                 confirmButtonText: "Xóa",
+                cancelButtonText: "Thoát",
                 // denyButtonText: `Don't save`,
                 // showDenyButton: true,
                 showCancelButton: true,

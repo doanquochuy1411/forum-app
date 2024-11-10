@@ -59,7 +59,7 @@ class User extends DB
     public function GetUserByAccountName($account_name)
     {
         $account_name = decryptData($account_name);
-        $sql = "SELECT u.*, ur.role_id, uas.total_posts, uas.total_questions, uas.total_comments, uas.total_likes, uas.point FROM user u Join user_role ur on ur.user_id = u.id join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL AND u.account_name = ?";
+        $sql = "SELECT u.*, ur.role_id, uas.total_posts, uas.total_questions, uas.total_comments, uas.total_likes, uas.point, uas.total_document FROM user u Join user_role ur on ur.user_id = u.id join user_activity_summary uas on uas.user_id = u.id WHERE u.deleted_at IS NULL AND u.account_name = ?";
         $result = $this->executeSelectQuery($sql, [$account_name]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         $data[0]["id"] = encryptData($data[0]["id"]);

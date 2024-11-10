@@ -181,11 +181,11 @@ function validateRetypePassword() {
     const retypePasswordError = document.getElementById('retype_password_err');
 
     if (retypePassword === "") {
-        retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
+        retypePasswordError.textContent = "Vui lòng Nhập lại mật khẩu";
         retypePasswordError.style.color = 'red'
         return false;
     } else if (password !== retypePassword) {
-        retypePasswordError.textContent = "Mật khẩu và xác nhận mật khẩu không khớp";
+        retypePasswordError.textContent = "Mật khẩu và Nhập lại mật khẩu không khớp";
         retypePasswordError.style.color = 'red'
         return false;
     } else {
@@ -202,11 +202,11 @@ function validateRetypePasswordOfChangePass() {
     const retypePasswordError = document.getElementById('retype_password_of_change_err');
 
     if (retypePassword === "") {
-        retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
+        retypePasswordError.textContent = "Vui lòng Nhập lại mật khẩu";
         retypePasswordError.style.color = 'red'
         return false;
     } else if (password !== retypePassword) {
-        retypePasswordError.textContent = "Mật khẩu và xác nhận mật khẩu không khớp";
+        retypePasswordError.textContent = "Mật khẩu và Nhập lại mật khẩu không khớp";
         retypePasswordError.style.color = 'red'
         return false;
     } else {

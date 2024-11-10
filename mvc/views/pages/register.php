@@ -40,9 +40,9 @@
                     <small id="password_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Xác nhận mật khẩu của bạn</label>
+                    <label>Nhập lại mật khẩu của bạn</label>
                     <input type="password" class="form-control" name="retype_password" id="retype_password"
-                        placeholder="Xác nhận mật khẩu">
+                        placeholder="Nhập lại mật khẩu">
                     <small id="retype_password_err"></small>
                 </div>
                 <div class="form-group text-center">

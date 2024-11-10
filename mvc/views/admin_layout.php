@@ -416,6 +416,7 @@
                 width: '500px', // Tăng chiều rộng của popup
                 confirmButtonText: "Xóa",
                 showCancelButton: true,
+                cancelButtonText: "Thoát",
             }).then((result) => {
                 if (result.isConfirmed) {
                     targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"

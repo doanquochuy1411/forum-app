@@ -114,7 +114,7 @@ class Reset extends Controller
             }
 
             if ($password != $retypePassword) {
-                $title = 'Mật khẩu và xác nhận mật khẩu không trùng khớp!';
+                $title = 'Mật khẩu và Nhập lại mật khẩu không trùng khớp!';
                 $message = '';
                 response_error($title, $message);
                 $this->view($this->layout, [
@@ -131,14 +131,12 @@ class Reset extends Controller
                 $this->UserModel->ResetLockedWithEmail($email);
                 $title = 'Khôi phục mật khẩu thành công';
                 response_success($title);
-                $this->response($this->layout, "login", $this->title, [$email, $password]);
+                $_SESSION["password_info"] = $password;
+                header("Location: " . BASE_URL . "/login");
             } else {
                 $title = 'Khôi phục mật khẩu thất bại. Vui lòng thử lại sau!';
                 response_error($title);
-                $this->view($this->layout, [
-                    "Page" => "reset",
-                    "categories" => $categories,
-                ]);
+                header("Location: " . BASE_URL . "/reset");
                 return;
             }
         }

@@ -190,7 +190,7 @@
                             <div class="ul_list_ul_list-icon-ok281">
                                 <ul>
                                     <li><a href="#">Điểm tích lũy ( <?php echo $user_details["point"] ?> )</a></li>
-                                    <li><a href="#">Bình luận ( <?php echo $user_details["total_comments"] ?> )</a></li>
+                                    <li><a href="#">Tài liệu ( <?php echo $user_details["total_document"] ?> )</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                     <label for="tab2">Câu hỏi</label>
 
                     <input id="tab3" type="radio" name="tabs">
-                    <label for="tab3">Trao đổi</label>
+                    <label for="tab3">Tài liệu</label>
 
                     <!-- Posts -->
                     <section id="content1">
