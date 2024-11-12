@@ -24,3 +24,22 @@
 .search-box input:focus + .search-icon {
     color: #007bff; /* Đổi màu icon khi input đang focus */
 }
+
+.overview {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dash-widget-bg1, .dash-widget-bg2, .dash-widget-bg3, .dash-widget-bg4{
+    line-height: 28px;
+    width: 35px;
+    height: 35px;
+}
+
+.dash-widget-info p {
+    font-size: 14px;
+}
+
+.pd-l-0{
+    padding-left: 0;
+}

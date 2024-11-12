@@ -314,6 +314,64 @@ class Api extends Controller
             'post_details' => $postDetail,
         ]);
     }
+
+    public function getQuestionAndDocumentToStatistics($year)
+    {
+        // Lấy danh sách thông báo từ database
+        $questions = $this->PostModel->GetPostAmountPerMonthByYear($year, "question");
+        $documents = $this->PostModel->GetPostAmountPerMonthByYear($year, "document");
+        $posts = $this->PostModel->GetPostAmountPerMonthByYear($year, "post");
+        $questionCounts = array_fill(0, 12, 0);
+        $documentCounts = array_fill(0, 12, 0);
+        $postCounts = array_fill(0, 12, 0);
+        $labels = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+
+        if (mysqli_num_rows($questions) > 0) {
+            while ($row = mysqli_fetch_assoc($questions)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $questionCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        if (mysqli_num_rows($documents) > 0) {
+            while ($row = mysqli_fetch_assoc($documents)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $documentCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        if (mysqli_num_rows($posts) > 0) {
+            while ($row = mysqli_fetch_assoc($posts)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $postCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        $data = [
+            'labels' => $labels,
+            'dataset1' => $questionCounts,
+            'dataset2' => $documentCounts,
+            'dataset3' => $postCounts,
+        ];
+
+        if (!empty($data['dataset1']) || !empty($data['dataset2']) || !empty($data['dataset3'])) {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'data' => $data,
+                'message' => "Lấy dữ liệu thành công",
+            ]);
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu thống kê.",
+            ]);
+        }
+
+    }
 }
 
 ?>

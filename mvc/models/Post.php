@@ -245,7 +245,7 @@ class Post extends DB
         return $data;
     }
 
-    public function GetPostAmountPerMonthByYear($year)
+    public function GetPostAmountPerMonthByYear($year, $type = "post")
     {
         $sql = "SELECT 
             MONTH(created_at) AS month, 
@@ -253,14 +253,16 @@ class Post extends DB
         FROM 
             posts
         WHERE 
-            YEAR(created_at) = ?
+            YEAR(created_at) = ? and type = ?
         GROUP BY 
             MONTH(created_at)
         ORDER BY 
             month ASC;
         ";
-        return $this->executeSelectQuery($sql, [$year]);
+        return $this->executeSelectQuery($sql, [$year, $type]);
     }
+
+
 
     public function CheckLikedPostByUser($user_id, $post_id)
     {

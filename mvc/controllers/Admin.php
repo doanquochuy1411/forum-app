@@ -32,6 +32,7 @@ class Admin extends Controller
         $all_users = $this->UserModel->GetAllUserDescWithOrderBy("created_at"); // get all user
         $posts = $this->PostModel->GetAllPostWithType("post"); // get all post
         $questions = $this->PostModel->GetAllPostWithType("question"); // get all question
+        $documents = $this->PostModel->GetAllPostWithType("document"); // get all documents
         $comments = $this->CommentModel->GetAllComment(); // get all comment
         $years = $this->getCurrentAndPreviousYears(); // lấy 5 năm gần nhất
 
@@ -43,6 +44,7 @@ class Admin extends Controller
             "posts" => $posts,
             "questions" => $questions,
             "comments" => $comments,
+            "documents" => $documents,
             "years" => $years,
         ]);
     }
