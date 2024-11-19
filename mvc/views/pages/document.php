@@ -3,8 +3,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h3 class="text-primary font-weight-bold position-relative">Bài Viết</h3>
+                <h3 class="text-primary font-weight-bold position-relative">Câu Hỏi</h3>
                 <div class="title-underline"></div>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
             </div>
         </div>
         <div class="card mb-0">
@@ -38,13 +40,12 @@
 </div>
 <!--/ content-->
 
+
 <script>
     // Dữ liệu người dùng từ PHP
-    const data = <?php echo json_encode($posts); ?>;
+    const data = <?php echo json_encode($documents); ?>;
     let current_page = 1;
     const dataPerPage = 5;
-    let filteredData = data;
-
     // Hàm hiển thị người dùng
     function displayData(data) {
         const dataTableBody = document.getElementById('dataTableBody');
@@ -65,7 +66,7 @@
             // Thiết lập nội dung HTML cho hàng
             row.innerHTML = `
         <td>${start + index + 1}</td>
-        <td><b><a style="color: #000" href="<?php echo BASE_URL ?>/home/posts/${d.id}">${d.title}</a><b></td>
+        <td><b><a style="color: #000" href="<?php echo BASE_URL . '/home/posts/' ?>${d.id}">${d.title}</a><b></td>
                                     <td>${d.user_name}</td>
                                     <td>${new Date(d.created_at).toLocaleDateString('en-GB')}</td>
                                     <td>${d.views}</td>
@@ -188,18 +189,6 @@
             };
             pagination.appendChild(nextButton);
         }
-    }
-
-
-    // Hàm lọc dữ liệu dựa trên từ khóa tìm kiếm
-    function filterData(keyword) {
-        filteredData = data.filter(d =>
-            d.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            d.user_name.toLowerCase().includes(keyword.toLowerCase())
-        );
-        current_page = 1; // Quay về trang 1 sau khi lọc
-        displayData(filteredData);
-        setupPagination(filteredData);
     }
 
     // Gọi hàm khi trang được tải

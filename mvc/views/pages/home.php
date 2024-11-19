@@ -61,17 +61,7 @@
                         </div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous" id="prevBtn">
-                                        <span aria-hidden="true">&laquo; Trước</span>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#" aria-label="Next" id="nextBtn">
-                                        <span aria-hidden="true">Sau &raquo;</span>
-                                    </a>
-                                </li>
                             </ul>
                         </nav>
                     </section>
@@ -84,17 +74,7 @@
 
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous" id="prevBtn">
-                                        <span aria-hidden="true">&laquo; Trước</span>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#" aria-label="Next" id="nextBtn">
-                                        <span aria-hidden="true">Sau &raquo;</span>
-                                    </a>
-                                </li>
                             </ul>
                         </nav>
                     </section>
@@ -107,17 +87,7 @@
 
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous" id="prevBtn">
-                                        <span aria-hidden="true">&laquo; Trước</span>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#" aria-label="Next" id="nextBtn">
-                                        <span aria-hidden="true">Sau &raquo;</span>
-                                    </a>
-                                </li>
                             </ul>
                         </nav>
                     </section>
@@ -311,81 +281,146 @@
         return content.replace(/<img[^>]*>/g, '');
     }
 
-    function updatePagination(totalItems, limit, containerId, currentPage) {
-        console.log("page: ", containerId)
-        var totalPages = Math.ceil(totalItems / limit);
+    function updatePagination(data, totalItems, limit, containerId, currentPage) {
+        var totalPages = Math.ceil(totalItems / limit); // Tổng số trang
         var paginationContainer = document.querySelector(containerId + ' .pagination');
-        paginationContainer.innerHTML = '';
+        paginationContainer.innerHTML = ''; // Xóa phân trang cũ
 
+        var maxVisiblePages = 5; // Số lượng trang hiển thị tối đa
+        var startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        var endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        if (endPage - startPage + 1 < maxVisiblePages && startPage > 1) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        // Nút "Trước"
         var prevBtn = document.createElement('li');
+        prevBtn.className = currentPage === 1 ? 'page-item disabled' : 'page-item';
         var prevA = document.createElement('a');
+        prevA.className = 'page-link';
         prevA.href = '#';
-        prevA.innerHTML = '<span aria-hidden="true">&laquo; Trước</span>';
+        prevA.innerHTML = '&laquo; Trước';
         prevA.addEventListener('click', function (event) {
             event.preventDefault();
             if (currentPage > 1) {
                 currentPage--;
-                paginate(postsData, currentPage, limit, containerId);
-                updatePagination(totalItems, limit, containerId, currentPage);
+                paginate(data, currentPage, limit, containerId);
+                updatePagination(data, totalItems, limit, containerId, currentPage);
             }
         });
         prevBtn.appendChild(prevA);
         paginationContainer.appendChild(prevBtn);
 
-        for (var i = 1; i <= totalPages; i++) {
+        // Nút "1" và "..."
+        if (startPage > 1) {
+            var firstPage = document.createElement('li');
+            firstPage.className = 'page-item';
+            var firstA = document.createElement('a');
+            firstA.className = 'page-link';
+            firstA.href = '#';
+            firstA.textContent = '1';
+            firstA.addEventListener('click', function (event) {
+                event.preventDefault();
+                currentPage = 1;
+                paginate(data, currentPage, limit, containerId);
+                updatePagination(data, totalItems, limit, containerId, currentPage);
+            });
+            firstPage.appendChild(firstA);
+            paginationContainer.appendChild(firstPage);
+
+            if (startPage > 2) {
+                var dots = document.createElement('li');
+                dots.className = 'page-item disabled';
+                dots.innerHTML = '<span class="page-link">...</span>';
+                paginationContainer.appendChild(dots);
+            }
+        }
+
+        // Các nút trang
+        for (var i = startPage; i <= endPage; i++) {
             var li = document.createElement('li');
+            li.className = i === currentPage ? 'page-item active' : 'page-item';
             var a = document.createElement('a');
+            a.className = 'page-link';
             a.href = '#';
             a.textContent = i;
             a.addEventListener('click', function (event) {
                 event.preventDefault();
                 currentPage = parseInt(this.textContent);
-                paginate(postsData, currentPage, limit, containerId);
-                updatePagination(totalItems, limit, containerId, currentPage);
+                paginate(data, currentPage, limit, containerId);
+                updatePagination(data, totalItems, limit, containerId, currentPage);
             });
-            if (i === currentPage) {
-                li.classList.add('active');
-            }
             li.appendChild(a);
             paginationContainer.appendChild(li);
         }
 
+        // Nút "..." và "Cuối"
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                var dots = document.createElement('li');
+                dots.className = 'page-item disabled';
+                dots.innerHTML = '<span class="page-link">...</span>';
+                paginationContainer.appendChild(dots);
+            }
+
+            var lastPage = document.createElement('li');
+            lastPage.className = 'page-item';
+            var lastA = document.createElement('a');
+            lastA.className = 'page-link';
+            lastA.href = '#';
+            lastA.textContent = totalPages;
+            lastA.addEventListener('click', function (event) {
+                event.preventDefault();
+                currentPage = totalPages;
+                paginate(data, currentPage, limit, containerId);
+                updatePagination(data, totalItems, limit, containerId, currentPage);
+            });
+            lastPage.appendChild(lastA);
+            paginationContainer.appendChild(lastPage);
+        }
+
+        // Nút "Sau"
         var nextBtn = document.createElement('li');
+        nextBtn.className = currentPage === totalPages ? 'page-item disabled' : 'page-item';
         var nextA = document.createElement('a');
+        nextA.className = 'page-link';
         nextA.href = '#';
-        nextA.innerHTML = '<span aria-hidden="true">Sau &raquo;</span>';
+        nextA.innerHTML = 'Sau &raquo;';
         nextA.addEventListener('click', function (event) {
             event.preventDefault();
             if (currentPage < totalPages) {
                 currentPage++;
-                paginate(postsData, currentPage, limit, containerId);
-                updatePagination(totalItems, limit, containerId, currentPage);
+                paginate(data, currentPage, limit, containerId);
+                updatePagination(data, totalItems, limit, containerId, currentPage);
             }
         });
         nextBtn.appendChild(nextA);
         paginationContainer.appendChild(nextBtn);
     }
 
+
+
     // Khởi tạo phân trang cho content1
     var currentPageContent1 = 1;
     paginate(postsData, currentPageContent1, 5, '#content1');
-    updatePagination(postsData.length, 5, '#content1', currentPageContent1);
+    updatePagination(postsData, postsData.length, 5, '#content1', currentPageContent1);
 
     // Khởi tạo phân trang cho content2
     var currentPageContent2 = 1;
     paginate(questionsData, currentPageContent2, 5, '#content2');
-    updatePagination(questionsData.length, 5, '#content2', currentPageContent2);
+    updatePagination(questionsData, questionsData.length, 5, '#content2', currentPageContent2);
 
     // Khởi tạo phân trang cho content3
     var currentPageContent3 = 1;
     paginate(documentsData, currentPageContent3, 5, '#content3');
-    updatePagination(documentsData.length, 5, '#content3', currentPageContent3);
+    updatePagination(documentsData, documentsData.length, 5, '#content3', currentPageContent3);
 
     // Khởi tạo phân trang cho content5
     if (Array.isArray(myPostsData) && myPostsData.length > 0) {
         var currentPageContent5 = 1;
         paginate(myPostsData, currentPageContent5, 5, '#content5');
-        updatePagination(myPostsData.length, 5, '#content5', currentPageContent5);
+        updatePagination(myPostsData, myPostsData.length, 5, '#content5', currentPageContent5);
     }
 </script>
 

@@ -77,17 +77,17 @@
 </style>
 <section class="main-content920 pd-t-90">
     <div class="container">
-        <h1 class="text-center">Điều Khoản Sử Dụng Dịch Vụ I-Channel</h1>
+        <h1 class="text-center">Điều Khoản Sử Dụng Dịch Vụ OpenTalks</h1>
 
         <h2>Điều 1: Giới thiệu</h2>
-        <p><strong>I-Channel</strong> là sản phẩm được cung cấp bởi chúng tôi. <strong>I-Channel</strong> là
+        <p><strong>OpenTalks</strong> là sản phẩm được cung cấp bởi chúng tôi. <strong>OpenTalks</strong> là
             platform nhằm thúc đẩy việc chia sẻ kỹ thuật, cũng như kết nối cộng đồng sinh viên, kỹ sư công nghệ
             thông tin, giúp mọi người nâng cao kiến thức, năng lực kỹ thuật của mình.</p>
-        <p>Dưới đây là phần <strong>Điều Khoản Sử Dụng</strong>. Khi sử dụng <strong>I-Channel</strong>, đồng
+        <p>Dưới đây là phần <strong>Điều Khoản Sử Dụng</strong>. Khi sử dụng <strong>OpenTalks</strong>, đồng
             nghĩa bạn đồng ý với những "Điều Khoản và Điều Kiện Sử Dụng Dịch Vụ" (từ dưới đây sẽ gọi tắt là
             “Điều Khoản Sử Dụng”) này.</p>
         <p>Những <strong>Điều Khoản Sử Dụng</strong> này là những điều kiện liên quan đến việc sử dụng
-            <strong>I-Channel</strong> (từ dưới đây sẽ gọi là “Dịch Vụ” này), sản phẩm được cung cấp bởi chúng
+            <strong>OpenTalks</strong> (từ dưới đây sẽ gọi là “Dịch Vụ” này), sản phẩm được cung cấp bởi chúng
             tôi. Nó sẽ xác định quan hệ giữa khách hàng sử dụng dịch vụ (từ dưới đây sẽ gọi là “Người Dùng”).
         </p>
         <p>Người dùng sử dụng dịch vụ sau khi đã đồng ý với những <strong>Điều Khoản Sử Dụng</strong> này.</p>
@@ -99,7 +99,7 @@
         <h2>Điều 2: Đăng ký sử dụng</h2>
         <p>Những người mong muốn sử dụng <strong>Dịch Vụ</strong> này (từ dưới đây sẽ gọi tắt là “Người mong
             muốn sử dụng dịch vụ”), trước khi đi vào sử dụng cần phải <strong>Đăng Ký Sử Dụng Dịch vụ</strong>.
-            Người mong muốn sử dụng dịch vụ cần phải tạo cho mình một <strong>I-Channel ID</strong> (từ dưới đây
+            Người mong muốn sử dụng dịch vụ cần phải tạo cho mình một <strong>OpenTalks ID</strong> (từ dưới đây
             sẽ gọi là “ID Người Dùng”) và một Mật Khẩu tương ứng.</p>
         <p>Người mong muốn sử dụng dịch vụ khi đăng ký sử dụng dịch vụ này cần phải cung cấp một số thông tin
             người dùng mà phía chúng tôi yêu cầu. Người mong muốn sử dụng dịch vụ cần phải đồng ý với những điều
@@ -226,7 +226,7 @@
             <li>Hành vi tuyên truyền, kích động bạo lực, dâm ô, đồi trụy, tội ác, tệ nạn xã hội, mê tín dị đoan,
                 phá hoại thuần phong, mỹ tục của dân tộc,... gây ác cảm cho người xem.</li>
             <li>Hành vi tiết lộ bí mật nhà nước, bí mật quân sự, an ninh, kinh tế, đối ngoại và những bí mật
-                khác do pháp luật quy định bằng bất cứ hình thức nào trên hệ thống Mạng xã hội I-Channel.</li>
+                khác do pháp luật quy định bằng bất cứ hình thức nào trên hệ thống Mạng xã hội OpenTalks.</li>
             <li>Hành vi gây ra sự phiền hà, khó chịu với người khác, hành vi phỉ báng người khác. Hành vi gây ra
                 tổn thất về tinh thần hay kinh tế đến người khác khi không có quyền thích đáng.</li>
             <li>Hành vi sử dụng tên của người khác, hay của , đoàn thể khác, sử dụng tên của , đoàn thể mà không
@@ -266,7 +266,7 @@
             <li>Bài viết chỉ có biểu tượng cảm xúc (emotion icon) hoặc số lượng ký tự emoticon nhiều hơn số ký
                 tự văn bản.</li>
             <li>Các bài viết cùng chủ đề/cùng nội dung với các bài viết khác của chính tác giả hoặc với các bài
-                viết đã đăng ở trạng thái công khai trên I-Channel (kể cả trong trường hợp dùng nhiều account để
+                viết đã đăng ở trạng thái công khai trên OpenTalks (kể cả trong trường hợp dùng nhiều account để
                 gửi và hình thức, tiêu đề có thay đổi, nhưng sau khi Ban Quản trị kiểm duyệt xác nhận vẫn mang
                 cùng một nội dung).</li>
             <li>Bài viết có nội dung không xác định, vô nghĩa hoặc không diễn tả được điều cần hướng tới.</li>
@@ -314,14 +314,14 @@
             <li>Sau khi có thông báo Spam, tài khoản sẽ nhận được yêu cầu chỉnh sửa bài viết để tiến hành xét
                 duyệt lại.</li>
             <li>Nếu sau khi cập nhật, bài viết đáp ứng đầy đủ yêu cầu và không vi phạm quy định của Dịch Vụ này,
-                bài viết sẽ được gỡ trạng thái Spam và đăng tải công khai trên I-Channel.</li>
+                bài viết sẽ được gỡ trạng thái Spam và đăng tải công khai trên OpenTalks.</li>
             <li>Nếu tài khoản từ chối chỉnh sửa bài viết hoặc sau khi chỉnh sửa vẫn không phù hợp với nội quy
                 của dịch vụ, sau 30 ngày kể từ lúc công khai bài viết lần đầu, bài viết sẽ bị gỡ bỏ trên
-                I-Channel. Tài khoản lúc này không thể chỉnh sửa bài viết nữa.</li>
+                OpenTalks. Tài khoản lúc này không thể chỉnh sửa bài viết nữa.</li>
             <li>Đối với những câu hỏi/bình luận/câu trả lời vi phạm quy định Spam, Ban Quản trị sẽ tiến hành xóa
                 mà không cần thông báo trước.</li>
             <li>Trong một số trường hợp, tài khoản vi phạm quy định Spam quá nhiều lần hoặc có hành vi chống
-                đối, không phù hợp với quy định của cộng đồng I-Channel sẽ bị khóa tài khoản tạm thời hoặc vĩnh
+                đối, không phù hợp với quy định của cộng đồng OpenTalks sẽ bị khóa tài khoản tạm thời hoặc vĩnh
                 viễn.</li>
         </ul>
 

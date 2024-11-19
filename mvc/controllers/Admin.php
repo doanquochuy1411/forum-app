@@ -87,6 +87,20 @@ class Admin extends Controller
         ]);
 
     }
+
+    function Documents()
+    {
+        $user = $this->UserModel->GetUserByID($this->userID); // get user details
+        $documents = $this->PostModel->GetAllPostWithType("document");
+
+        $this->view($this->layout, [
+            "Page" => 'document',
+            "title" => $this->title,
+            "user" => $user,
+            "documents" => $documents,
+        ]);
+    }
+
     function Categories()
     {
         $user = $this->UserModel->GetUserByID($this->userID); // get user details

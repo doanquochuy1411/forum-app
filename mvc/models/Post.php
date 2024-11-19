@@ -341,4 +341,34 @@ class Post extends DB
         }
         return false;
     }
+
+    public function generate_fake_likes()
+    {
+        // Hàm để tạo số lượng like ngẫu nhiên từ 20 đến 50
+        function generate_likes($post_id)
+        {
+            $likes = rand(10, 30);
+            $user_ids = array_rand(range(23, 77), $likes); // Giả sử có 100 user_id từ 1 đến 100
+            $likes_data = [];
+            foreach ($user_ids as $user_id) {
+                $likes_data[] = [$user_id, $post_id];
+            }
+            return $likes_data;
+        }
+
+        // Tạo dữ liệu cho các bài viết từ 167 đến 238
+        $post_ids = range(220, 238);
+        $all_likes = [];
+
+        foreach ($post_ids as $post_id) {
+            $all_likes = array_merge($all_likes, generate_likes($post_id));
+        }
+
+        // Thực hiện các câu lệnh SQL
+        foreach ($all_likes as $like) {
+            $sql = "INSERT INTO likes(user_id, post_id) VALUES (?, ?)";
+            $this->executeQuery($sql, $like);
+        }
+    }
+
 }

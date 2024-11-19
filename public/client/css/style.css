@@ -1073,7 +1073,7 @@ hr {
     border-radius: 50%;
     border: 1px solid #dedede;
 }
-
+/* 
 .imag-overlay39 {
     position: absolute;
     height: 50px;
@@ -1097,11 +1097,11 @@ hr {
 
 .imag-overlay39 a {
     color: #ffffff;
-}
+} */
 
-.left-user3898:hover .imag-overlay39 {
+/* .left-user3898:hover .imag-overlay39 {
     opacity: 1;
-}
+} */
 
 .left-user3898 {
     float: left;

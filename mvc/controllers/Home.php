@@ -37,6 +37,7 @@ class Home extends Controller
         $my_posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $this->userID); // Lấy bài viết của tôi
         $tags = $this->TagModel->GetPopularTags();
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
+        $_SESSION["SearchType"] = "post";
 
 
         $this->view($this->layout, [
@@ -220,6 +221,7 @@ class Home extends Controller
         $categories = $this->CategoryModel->GetAllCategory(); // header
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
         $tags = $this->TagModel->GetPopularTags();
+        $_SESSION["SearchType"] = $type;
 
         $sub_title = ""; // Tiêu đề cho đường dẫn
         switch ($type) {
@@ -254,6 +256,7 @@ class Home extends Controller
         if (isset($_REQUEST["btnSearch"]) && $_REQUEST["txtSearch"] != "") {
             $txtSearch = sanitizeInputContent($_REQUEST["txtSearch"]); // làm sạch chuỗi
             $searchType = sanitizeInputContent($_REQUEST["search-type"]); // làm sạch chuỗi
+            $_SESSION["SearchType"] = $searchType;
             switch ($searchType) {
                 case 'none':
                     $posts = $this->PostModel->GetPostBySearch($txtSearch, "post");
