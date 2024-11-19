@@ -23,7 +23,7 @@
                             }
                             ?>
                             <span class="badge229">
-                                <a href="#">Người dùng</a>
+                                <a href="#">Thành viên</a>
                             </span>
                         </h3>
                         <hr>

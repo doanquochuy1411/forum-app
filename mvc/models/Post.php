@@ -153,7 +153,7 @@ class Post extends DB
     public function GetPostByID($id)
     {
         $id = decryptData($id);
-        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
+        $sql = "SELECT p.* , u.user_name, u.image as avatar, pcc.comment_count, u.account_name, u.id as user_id, pcc.like_count FROM posts p left join user u on u.id = p.user_id left join post_comment_counts pcc on pcc.post_id = p.id Where p.deleted_at is null and p.id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
         $data = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($data as &$row) {
@@ -219,13 +219,20 @@ class Post extends DB
     public function DeletePost($id)
     {
         $id = decryptData($id);
-        $sql = "UPDATE posts set deleted_at = NOW() Where id = ?";
-        $result = $this->executeQuery($sql, [$id]);
+        $this->beginTransaction();
 
-        if ($result > 0) {
-            return 1;
-        } else {
-            return 0;
+        try {
+            $sql = "UPDATE posts set deleted_at = NOW() Where id = ?";
+            $this->executeQuery($sql, [$id]);
+
+            $sql2 = "DELETE FROM notifications WHERE post_id = ?";
+            $this->executeQuery($sql2, [$id]);
+
+            $this->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->rollback();
+            return false;
         }
     }
 
@@ -238,7 +245,7 @@ class Post extends DB
         return $data;
     }
 
-    public function GetPostAmountPerMonthByYear($year)
+    public function GetPostAmountPerMonthByYear($year, $type = "post")
     {
         $sql = "SELECT 
             MONTH(created_at) AS month, 
@@ -246,14 +253,16 @@ class Post extends DB
         FROM 
             posts
         WHERE 
-            YEAR(created_at) = ?
+            YEAR(created_at) = ? and type = ?
         GROUP BY 
             MONTH(created_at)
         ORDER BY 
             month ASC;
         ";
-        return $this->executeSelectQuery($sql, [$year]);
+        return $this->executeSelectQuery($sql, [$year, $type]);
     }
+
+
 
     public function CheckLikedPostByUser($user_id, $post_id)
     {
@@ -332,4 +341,34 @@ class Post extends DB
         }
         return false;
     }
+
+    public function generate_fake_likes()
+    {
+        // Hàm để tạo số lượng like ngẫu nhiên từ 20 đến 50
+        function generate_likes($post_id)
+        {
+            $likes = rand(10, 30);
+            $user_ids = array_rand(range(23, 77), $likes); // Giả sử có 100 user_id từ 1 đến 100
+            $likes_data = [];
+            foreach ($user_ids as $user_id) {
+                $likes_data[] = [$user_id, $post_id];
+            }
+            return $likes_data;
+        }
+
+        // Tạo dữ liệu cho các bài viết từ 167 đến 238
+        $post_ids = range(220, 238);
+        $all_likes = [];
+
+        foreach ($post_ids as $post_id) {
+            $all_likes = array_merge($all_likes, generate_likes($post_id));
+        }
+
+        // Thực hiện các câu lệnh SQL
+        foreach ($all_likes as $like) {
+            $sql = "INSERT INTO likes(user_id, post_id) VALUES (?, ?)";
+            $this->executeQuery($sql, $like);
+        }
+    }
+
 }

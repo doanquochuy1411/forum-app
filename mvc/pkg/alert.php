@@ -21,4 +21,10 @@ function response_warning($title, $message = "")
     $_SESSION['title_message'] = $title;
     $_SESSION['message'] = $message;
 }
+function response_info($title, $message = "")
+{
+    $_SESSION['action_status'] = 'info';
+    $_SESSION['title_message'] = $title;
+    $_SESSION['message'] = $message;
+}
 ?>

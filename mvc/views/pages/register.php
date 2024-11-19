@@ -12,8 +12,8 @@
                     value="<?php echo htmlspecialchars($data) ?> ">
                 <div class="form-group">
                     <label>Tên của bạn</label>
-                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Tên người dùng"
-                        autofocus>
+                    <input type="text" class="form-control" value="<?php echo $full_name ?? "" ?>" name="full_name"
+                        id="full_name" placeholder="Tên người dùng" autofocus>
                     <small id="full_name_err"></small>
                 </div>
                 <div class="form-group">
@@ -30,19 +30,20 @@
                 </div>
                 <div class="form-group">
                     <label>Tên tài khoản</label>
-                    <input type="text" class="form-control" name="account_name" id="account_name"
-                        placeholder="Tên tài khoản đăng nhập">
+                    <input type="text" class="form-control" value="<?php echo $account_name ?? "" ?>" name="account_name"
+                        id="account_name" placeholder="Tên tài khoản đăng nhập">
                     <small id="account_name_err"></small>
                 </div>
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" value="<?php echo $password ?? "" ?>" name="password"
+                        id="password" placeholder="Mật khẩu">
                     <small id="password_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Xác nhận mật khẩu của bạn</label>
-                    <input type="password" class="form-control" name="retype_password" id="retype_password"
-                        placeholder="Xác nhận mật khẩu">
+                    <label>Nhập lại mật khẩu của bạn</label>
+                    <input type="password" class="form-control" value="<?php echo $re_type_password ?? "" ?>"
+                        name="retype_password" id="retype_password" placeholder="Nhập lại mật khẩu">
                     <small id="retype_password_err"></small>
                 </div>
                 <div class="form-group text-center">

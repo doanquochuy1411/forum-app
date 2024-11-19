@@ -65,23 +65,21 @@ class Users extends Controller
                 $file_name = $uploadResult['file_name'];
             }
 
-            // echo $gender;
-
             $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name, $gender);
-            if ($result) {
-                $title = 'Cập nhật thông tin thành công';
-                if ($file_name != "") {
-                    $_SESSION['Avatar'] = $file_name;
-                }
-                response_success($title, "");
-            } else {
-                if ($file['size'] > 0) {
-                    deleteImage($file_name);
-                }
-                $title = 'Cập nhật thông tin thất bại';
-                $message = "Lỗi hệ thống!";
-                response_error($title, $message);
+            $title = 'Cập nhật thông tin thành công';
+            if ($file_name != "") {
+                $_SESSION['Avatar'] = $file_name;
             }
+            response_success($title, "");
+            // if ($result) {
+            // } else {
+            //     if ($file['size'] > 0) {
+            //         deleteImage($file_name);
+            //     }
+            //     $title = 'Cập nhật thông tin thất bại';
+            //     $message = "Lỗi hệ thống!";
+            //     response_error($title, $message);
+            // }
             echo "<script>history.back();</script>";
             exit();
         }
@@ -123,7 +121,7 @@ class Users extends Controller
 
             if ($new_password != $retype_password_of_change) {
                 $title = 'Cập nhật thất bại';
-                $message = 'Mật khẩu và Xác nhận mật khẩu không khớp!';
+                $message = 'Mật khẩu và Nhập lại mật khẩu không khớp!';
                 response_error($title, $message);
                 echo "<script>history.back();</script>";
                 exit();

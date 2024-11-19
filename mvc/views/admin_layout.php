@@ -162,6 +162,10 @@
                                     <span>Câu
                                         hỏi</span></a>
                             </li>
+                            <li class="<?php echo $Page == "document" ? "active" : ""; ?>">
+                                <a href="<?php echo BASE_URL ?>/admin/documents"><i class="fa fa-book"></i>
+                                    <span>Tài liệu</span></a>
+                            </li>
                             <li class="<?php echo $Page == "category_admin" ? "active" : ""; ?>">
                                 <a href="<?php echo BASE_URL ?>/admin/categories"><i class="fa fa-folder"></i>
                                     <span>Danh mục</span></a>
@@ -416,6 +420,7 @@
                 width: '500px', // Tăng chiều rộng của popup
                 confirmButtonText: "Xóa",
                 showCancelButton: true,
+                cancelButtonText: "Thoát",
             }).then((result) => {
                 if (result.isConfirmed) {
                     targetHref = targetHref + "/<?php echo $_SESSION['_token'] ?? '' ?>"
@@ -425,7 +430,7 @@
         }
     </script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-    <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script>
+    <!-- <script src="<?php echo BASE_URL; ?>/public/client/js/pusher.js"></script> -->
 </body>
 
 </html>

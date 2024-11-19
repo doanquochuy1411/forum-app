@@ -9,55 +9,114 @@ Pusher.logToConsole = true;
         updateNotifications();
     });
 
-    $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">3</span>');
-    function updateNotifications() {
-        console.log("Fetching notifications...");
-        $.ajax({
-            url: BASE_URL+'/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
-            type: 'GET',
-            success: function(response) {
-                // console.log("Response received:", response);
+    // function updateNotifications() {
+    //     console.log("Fetching notifications...");
+    //     $.ajax({
+    //         url: BASE_URL+'/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
+    //         type: 'GET',
+    //         success: function(response) {
+    //             // console.log("Response received:", response);
 
-                // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
-                var data = JSON.parse(response);
-                // console.log("Parsed data:", data);
-                if (data.code === 200) {
-                    // Update số lượng thông báo
-                    $('.badge').text(data.count);
+    //             // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+    //             var data = JSON.parse(response);
+    //             // console.log("Parsed data:", data);
+    //             if (data.code === 200) {
+    //                 // Update số lượng thông báo
+    //                 $('.badge').text(data.count);
 
-                    // Xóa các thông báo cũ trong dropdown
-                    $('#notification-dropdown').find('li:not(.dropdown-header, .divider)').remove();
+    //                 // Xóa các thông báo cũ trong dropdown
+    //                 $('#notification-dropdown').find('li:not(.dropdown-header, .divider)').remove();
 
-                    // Thêm các thông báo mới vào dropdown
-                    data.notifications.forEach(function(notification) {
-                        // console.log(notification)
-                        var image = BASE_URL+'/public/client/image/images.png';
-                        if (notification.comment_id != null) {
-                            // Gọi API để lấy thông tin người dùng từ comment_id
-                            getAuthOfComment(notification.comment_id, function(userDetail) {
-                            // console.log("user details: " + userDetail.user_details[0]);
-                            image =  BASE_URL+'/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
-                            // notification.message += userDetail.user_details[0].comment_user_name
-                            notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message) 
-                            // Thêm thông báo vào dropdown
-                            addNotificationToDropdown(notification, image);
-                        });
-                        } else {
-                            // Thêm thông báo vào dropdown
-                            addNotificationToDropdown(notification, image);
-                        }
-                    });
+    //                 // Thêm các thông báo mới vào dropdown
+    //                 data.notifications.forEach(function(notification) {
+    //                     // console.log(notification)
+    //                     var image = BASE_URL+'/public/client/image/images.png';
+    //                     if (notification.comment_id != null) {
+    //                         // Gọi API để lấy thông tin người dùng từ comment_id
+    //                         getAuthOfComment(notification.comment_id, function(userDetail) {
+    //                         // console.log("user details: " + userDetail.user_details[0]);
+    //                         image =  BASE_URL+'/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
+    //                         // notification.message += userDetail.user_details[0].comment_user_name
+    //                         notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message) 
+    //                         // Thêm thông báo vào dropdown
+    //                         addNotificationToDropdown(notification, image);
+    //                     });
+    //                     } else if (notification.report_id != null) {
+    //                         addNotificationToDropdown(notification, image);
+    //                     } else {
+    //                         getAuthOfPost(notification.post_id, function(postDetail) {
+    //                             image = BASE_URL+'/public/src/uploads/' + postDetail.post_details[0].avatar; // Sử dụng avatar của người dùng
+    //                             notification.message = postDetail.post_details[0].user_name.concat(" ", notification.message) 
+    //                             addNotificationToDropdown(notification, image);
+    //                         });
+    //                     }
+    //                 });
 
-                    if (data.count > 0) {
-                        $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">3</span>');
-                    } else {
-                        $('#alert-notification').find('.badge').remove();
-                    }
+    //                 if (data.count > 0) {
+    //                     $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">3</span>');
+    //                 } else {
+    //                     $('#alert-notification').find('.badge').remove();
+    //                 }
 
                     
+    //             } else {
+    //                 console.log("Lỗi rồi"); // Log trạng thái khi không có thông báo mới
+    //                 console.log(data)
+    //             }
+    //         },
+    //         error: function() {
+    //             console.log("Error fetching notifications.");
+    //         }
+    //     });
+    // }
+    function updateNotifications() {
+        $.ajax({
+            url: BASE_URL + '/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            type: 'GET',
+            success: function(response) {
+                // Chuyển đổi chuỗi JSON thành đối tượng 
+                var data = JSON.parse(response);
+                if (data.code === 200) {
+                    // Update số lượng thông báo
+                    // $('.pushertag').text(data.count);
+                    $('#alert-notification').append('<span class="badge badge-pill bg-danger float-right">'+data.count+'</span>');
+    
+                    // Xóa các thông báo cũ trong dropdown
+                    $('#notification-dropdown').find('li:not(.dropdown-header, .divider)').remove();
+    
+                    // Tạo một mảng các promises để xử lý các hàm bất đồng bộ
+                    const notificationPromises = data.notifications.map(notification => {
+                        return new Promise((resolve) => {
+                            var image = BASE_URL + '/public/client/image/images.png';
+                            if (notification.comment_id != null) {
+                                getAuthOfComment(notification.comment_id, function(userDetail) {
+                                    image = BASE_URL + '/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
+                                    notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message);
+                                    resolve({ notification, image });
+                                });
+                            } else if (notification.report_id != null) {
+                                resolve({ notification, image });
+                            } else {
+                                getAuthOfPost(notification.post_id, function(postDetail) {
+                                    image = BASE_URL + '/public/src/uploads/' + postDetail.post_details[0].avatar; // Sử dụng avatar của người dùng
+                                    notification.message = postDetail.post_details[0].user_name.concat(" ", notification.message);
+                                    resolve({ notification, image });
+                                });
+                            }
+                        });
+                    });
+    
+                    // Đợi tất cả các promises hoàn thành và hiển thị thông báo
+                    Promise.all(notificationPromises).then(results => {
+                        results.forEach(({ notification, image }) => {
+                            addNotificationToDropdown(notification, image);
+                        });
+                    }).catch(error => {
+                        console.error("Lỗi khi xử lý thông báo: ", error);
+                    });
                 } else {
                     console.log("Lỗi rồi"); // Log trạng thái khi không có thông báo mới
-                    console.log(data)
+                    console.log(data);
                 }
             },
             error: function() {
@@ -71,7 +130,7 @@ Pusher.logToConsole = true;
             `<li class="notification-message">
                                         <a href="${BASE_URL}/home/notifications/${notification.id}">
                                             <div class="media">
-                                                <span class="avatar">U</span>
+                                                <span class="avatar"><img src="${image}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;"></span>
                                                 <div class="media-body">
                                                     <p class="noti-details">${notification.message}</p>
                                                     <p class="noti-time"><span class="notification-time">${timeAgo(notification.created_at)}</span>
@@ -92,6 +151,23 @@ Pusher.logToConsole = true;
                 var userDetail = JSON.parse(response);
                 console.log(userDetail)
                 callback(userDetail);
+            },
+            error: function() {
+                console.log("Error fetching notifications.");
+                callback({ avatar: BASE_URL+'/public/client/image/images.png' });
+            }
+        });
+    }
+
+    function getAuthOfPost(post_id, callback) {
+        $.ajax({
+            url: BASE_URL+`/api/getAuthOfPost/${post_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            type: 'GET',
+            success: function(response) {
+                // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+                var postDetail = JSON.parse(response);
+                console.log(postDetail)
+                callback(postDetail);
             },
             error: function() {
                 console.log("Error fetching notifications.");

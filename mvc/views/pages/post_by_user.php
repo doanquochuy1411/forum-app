@@ -13,7 +13,7 @@
 
     #main {
         padding: 20px;
-        margin: 25px 0 0 0;
+        margin: 71px 0 0 0;
         background: #ffffff;
         box-shadow: 0px 0px 13px -3px;
     }
@@ -90,113 +90,21 @@
         }
     }
 </style>
-<!-- ======breadcrumb ======-->
+<!--    breadcumb of category -->
 <section class="header-descriptin329 pd-t-120">
     <div class="container">
-        <h3>Thông tin chi tiết</h3>
+        <h3> Tất cả</h3>
         <ol class="breadcrumb breadcrumb840 z-index-2">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
-            <li class="active">Thông tin Chi tiết</li>
+            <li class="active">Bài đăng của tôi</li>
         </ol>
     </div>
 </section>
+<!--    body content-->
 <section class="main-content920">
     <div class="container mg-top-70">
         <div class="row">
-            <!--    body content-->
             <div class="col-md-9">
-                <div class="about-user2039 mt-70">
-                    <div class="user-title3930">
-                        <h3><a href="#"><?php echo $user_details["user_name"] ?></a>
-                            <?php
-                            if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
-                                echo '<a href="#" class="edit-icon" data-toggle="modal" data-target="#edit-user-modal"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
-                            }
-                            ?>
-                            <!-- Nút theo dõi -->
-                            <button id="followButton" class="btn btn-sm btn-follow" <?php
-                            if (!isset($_SESSION["UserID"]) || decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
-                                echo "disabled";
-                            }
-                            ?>>
-                                <i class="fa fa-plus i-plus"></i>Theo dõi
-                            </button>
-
-                            <span class="badge229">
-                                <a href="#">Thành viên</a>
-                            </span>
-                        </h3>
-                        <hr>
-                    </div>
-                    <div class="user-image293"> <img
-                            src="<?php echo BASE_URL . '/public/src/uploads/' . $user_details['image'] ?>" alt="Image">
-                    </div>
-                    <div class="user-list10039">
-                        <div class="ul-list-user-left29">
-                            <ul>
-                                <li><i class="fa fa-plus" aria-hidden="true"></i> <strong>Ngày tham gia:</strong>
-                                    <?php echo formatVietnameseDate($user_details["created_at"]) ?></li>
-                                <?php
-                                if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
-                                    echo '<li><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> ' . $user_details["email"] . '
-                                </li>';
-                                } else {
-                                    echo '<li><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> ********
-                                </li>';
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                        <div class="ul-list-user-right29">
-                            <ul>
-                                <?php
-                                if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
-                                    echo '<li><i class="fa fa-phone" aria-hidden="true"></i> <strong>Số điện thoại:</strong>
-                                    ' . $user_details["phone_number"] . ' 
-                                </li>';
-                                } else {
-                                    echo '<li><i class="fa fa-phone" aria-hidden="true"></i> <strong>Số điện thoại:</strong>
-                                    **********
-                                </li>';
-                                }
-                                ?>
-                                <?php
-                                if ($user_details["gender"] == "Nam") {
-                                    echo '<li><i class="fa fa-mars" aria-hidden="true"></i> <strong>Giới tính:</strong>
-                                    Nam</li>';
-                                } else if ($user_details["gender"] == "Nữ") {
-                                    echo '<li><i class="fa fa-venus" aria-hidden="true"></i> <strong>Giới tính:</strong>
-                                    Nữ</li>';
-                                } else {
-                                    echo '<li><i class="fa fa-transgender-alt" aria-hidden="true"></i> <strong>Giới tính:</strong>
-                                    Không xác định</li>';
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-statas921">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="ul_list_ul_list-icon-ok281">
-                                <ul>
-                                    <li><a href="#">Câu hỏi ( <?php echo $user_details["total_questions"] ?> )</a></li>
-                                    <li><a href="#">Bài viết ( <?php echo $user_details["total_posts"] ?> )</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="ul_list_ul_list-icon-ok281">
-                                <ul>
-                                    <li><a href="#">Điểm tích lũy ( <?php echo $user_details["point"] ?> )</a></li>
-                                    <li><a href="#">Tài liệu ( <?php echo $user_details["total_document"] ?> )</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="main">
                     <input id="tab1" type="radio" name="tabs" checked>
                     <label for="tab1">Bài viết</label>
@@ -246,80 +154,14 @@
                     </section>
                 </div>
             </div>
-            <!-- Popup form -->
-            <!-- Bootstrap Modal -->
-            <?php
-            if (isset($_SESSION["UserID"]) && decryptData($user_details["id"]) == decryptData($_SESSION["UserID"])) {
-                echo '<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog"
-                aria-labelledby="edit-user-modal-label" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header justify-content-center">
-                            <h3 style="text-align: center" class="modal-title" id="edit-user-modal-label"><b>Cập Nhật
-                                    Thông
-                                    Tin<b></h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="edit-user-form" action="' . BASE_URL . '/users/UpdateInfo" method="post" enctype="multipart/form-data"
-                                onsubmit="return validateFormEditInfo()">
-                                <div class="form-group">
-                                    <label for="user_name">Tên người dùng:</label>
-                                    <input type="text" class="form-control" id="user_name" name="user_name"
-                                        value="' . $user_details["user_name"] . '">
-            <small id="user_name_err"></small>
-        </div>
-         <div class="form-group">
-                    <label>Giới tính </label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Nam" id="gender_male" checked>
-                        <label class="form-check-label" for="gender_male">Nam</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Nữ" id="gender_female">
-                        <label class="form-check-label" for="gender_female">Nữ</label>
-                    </div>
-                    <small id="gender_err" style="color: red;"></small>
-                </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email"
-                value="' . $user_details["email"] . '">
-            <small id="email_err"></small>
-        </div>
-        <div class="form-group">
-            <label for="phone_number">Số điện thoại:</label>
-            <input type="text" class="form-control" id="phone_number" name="phone_number"
-                value="' . $user_details["phone_number"] . '">
-            <small id="phone_number_err"></small>
-        </div>
-        <div class="form-group">
-            <label for="user_image">Ảnh đại diện:</label>
-            <input type="file" accept=".jpg, .jpeg, .png, .gif" class="form-control-file" id="user_image" name="user_image">
-        </div>
-        <input type="hidden" name="token" value="' . $_SESSION['_token'] . '" />
-        <button type="submit" name="btnUpdateInfo" class="btn btn-primary">Lưu thay đổi</button>
-        </form>
-    </div>
-    </div>
-    </div>
-    </div>';
-            }
-            ?>
+            <!-- end of col-md-9 -->
+            <!--strart col-md-3 (side bar)-->
 
-            <!--                end of col-md-9 -->
-            <!--           strart col-md-3 (side bar)-->
             <?php require_once 'sidebar.php' ?>
 
         </div>
     </div>
 </section>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- popup -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var editIcon = document.querySelector('.edit-icon');
@@ -346,14 +188,8 @@
     });
 </script>
 
-<script>
-    const currentUser = "<?php echo isset($_SESSION["UserID"]) ? decryptData($_SESSION["UserID"]) : "empty"; ?>";
-    const ownUser = "<?php echo isset($user_details["id"]) ? decryptData($user_details["id"]) : "user_details"; ?>";
-</script>
-
 <!-- Handel user's post -->
 <script>
-    // console.log("hihi")
     var myQuestionsData = <?php echo json_encode($my_questions); ?>;
     var myPostsData = <?php echo json_encode($my_posts); ?>;
     var myDocumentsData = <?php echo json_encode($my_trades); ?>;
@@ -405,20 +241,19 @@
                     post.views +
                     ' lượt xem</i>';
                 html += '</div>';
-                // Add action
-                if (currentUser === ownUser) {
-                    html += '<div class="post-actions action-icon">';
-                    html +=
-                        '<span class="action-dots" onclick="toggleActions(event)" id="action-dots"><i class="fa fa-ellipsis-h"></i></span>';
-                    html +=
-                        '<div class="action-menu" id="action-menu" style="display: none;">'; // Ẩn menu mặc định
-                    html += '<button onclick="editPost(\'' + post.id +
-                        '\')">Sửa</button>';
-                    html += '<button onclick="deletePost(\'' + post.id +
-                        '\')">Xóa</button>';
-                    html += '</div>';
-                    html += '</div>';
-                }
+
+                html += '<div class="post-actions action-icon">';
+                html +=
+                    '<span class="action-dots" onclick="toggleActions(event)" id="action-dots"><i class="fa fa-ellipsis-h"></i></span>';
+                html +=
+                    '<div class="action-menu" id="action-menu" style="display: none;">'; // Ẩn menu mặc định
+                html += '<button onclick="editPost(\'' + post.id +
+                    '\')">Sửa</button>';
+                html += '<button onclick="deletePost(\'' + post.id +
+                    '\')">Xóa</button>';
+                html += '</div>';
+                html += '</div>';
+
 
                 // End action
                 html += '</div>';
@@ -646,66 +481,5 @@
 
     function deletePost(postId) {
         confirmDelete(event, "<?php echo BASE_URL ?>/posts/delete/" + postId);
-    }
-</script>
-
-<!-- Handel Follower -->
-<script>
-    $(document).ready(function () {
-        var userId =
-            "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : "none"; ?>";
-        var authId =
-            "<?php echo isset($user_details["id"]) ? $user_details["id"] : "none"; ?>";
-
-        checkFollowStatus(authId, userId);
-
-        $('#followButton').on('click', function () {
-            const isFollowed = $(this).hasClass('followed');
-            const action = isFollowed ? 'unFollow' : 'follow';
-
-            $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ? 'Theo dõi' : 'Đang theo dõi'))
-                .toggleClass(
-                    'followed');
-
-            // Gửi yêu cầu Ajax đến API để xử lý follow/unfollow
-            $.ajax({
-                url: '<?php echo BASE_URL ?>/api/handelFollow',
-                type: 'POST',
-                data: {
-                    auth_id: authId,
-                    user_id: userId,
-                    action: action
-                },
-                success: function (data) {
-                    console.log("Theo dõi thành công");
-                },
-                error: function (xhr, status, error) {
-                    console.log("Error: " + error);
-                    // Nếu có lỗi, khôi phục trạng thái UI
-                    $(this).html('<i class="fa fa-plus i-plus"></i> ' + (isFollowed ?
-                        'Bỏ theo dõi' :
-                        'Theo dõi')).toggleClass('followed');
-                }
-            });
-        });
-    });
-
-    async function checkFollowStatus(authId, userId) {
-        try {
-            let response = await fetch('<?php echo BASE_URL ?>/api/CheckFollowUser/' + authId + '/' + userId);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            let data = await response.json();
-            console.log("Call api: ", data);
-
-            if (data.follow_status === 'followed') {
-                $('#followButton').html('<i class="fa fa-plus i-plus"></i> Đang theo dõi').addClass('followed');
-            } else {
-                $('#followButton').html('<i class="fa fa-plus i-plus"></i> Theo dõi').removeClass('followed');
-            }
-        } catch (error) {
-            console.log("Error: ", error);
-        }
     }
 </script>

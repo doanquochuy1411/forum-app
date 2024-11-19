@@ -20,7 +20,7 @@
                         </a>
                     </h4>
                     <hr>
-                    <form id="postForm"
+                    <form id="editForm"
                         action="<?php echo BASE_URL ?>/posts/HandleEdit/<?php echo $post_to_edit[0]["id"] ?>"
                         method="post" onsubmit="return validateFormCreatePost()">
                         <div class="username-part940">
@@ -40,18 +40,21 @@
                             <span class="form-description442">Danh mục* </span>
                             <select id="contentCategory" name="contentCategory" class="email30">
                                 <?php
-                                // print_r($categories);
                                 foreach ($categories as $category) {
-                                    $selected = $post_to_edit[0]["category_id"] == decryptData($category["id"]) ? 'selected' : '';
-                                    echo '<option value="' . $category['id'] . '" ' . $selected . '>' . $category['name'] . '</option>';
+                                    if ($post_to_edit[0]["category_id"] == decryptData($category["id"])) {
+                                        $categoryIDSelected = $category["id"];
+                                    }
+                                    echo '<option value="' . $category['id'] . '">' . $category['name'] . '</option>';
                                 }
                                 ?>
                             </select>
+                            <small id="contentCategory_err"></small>
                         </div>
                         <div class="question-title39">
                             <span class="form-description43305">Tiêu đề* </span>
                             <input type="text" id="title" name="title" value="<?php echo $post_to_edit[0]["title"] ?>"
                                 class="username029" placeholder="Nhập tiêu đề">
+                            <br>
                             <small id="title_err"></small>
                         </div>
 
@@ -142,24 +145,40 @@
 
 
         quill.root.innerHTML = `<?php echo isset($post_to_edit[0]["content"]) ? $post_to_edit[0]["content"] : "" ?>`;
-
-        var postFormElement = document.getElementById('postForm');
+        var postFormElement = document.getElementById('editForm');
         if (postFormElement) {
             postFormElement.addEventListener('submit', function (event) {
                 document.getElementById('editorContent').value = DOMPurify.sanitize(quill.root.innerHTML);
-
+                // console.log("second")
                 var editorContent = DOMPurify.sanitize(quill.root.innerHTML).trim();
-                if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
-                    event.preventDefault();
-                    document.getElementById('editorContent_err').textContent =
-                        'Nội dung phải có ít nhất 500 ký tự.';
-                    document.getElementById('editorContent_err').style.color = 'red'
+                const ctType = document.getElementById('contentType').value;
+                const ctCategory = document.getElementById('contentCategory').value;
+
+                if (ctType === 'post' && isCategoryPost(ctCategory)) {
+                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 500) {
+                        event.preventDefault();
+                        document.getElementById('editorContent_err').textContent =
+                            'Nội dung phải có ít nhất 500 ký tự.';
+                        document.getElementById('editorContent_err').style.color = 'red'
+                    } else {
+                        document.getElementById('editorContent_err').textContent = '';
+                    }
                 } else {
-                    document.getElementById('editorContent_err').textContent = '';
+                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 10) {
+                        event.preventDefault(); // Ngăn chặn việc gửi form
+                        document.getElementById('editorContent_err').textContent =
+                            'Nội dung phải có ít nhất 10 ký tự.';
+                        document.getElementById('editorContent_err').style.color = 'red'
+                    } else {
+                        document.getElementById('editorContent_err').textContent = '';
+                    }
                 }
             });
         }
 
+        function isCategoryPost(categoryId) {
+            return categories.some(category => category.id === categoryId && category.category_type === 'post');
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
             const tagsInput = document.getElementById('tagsInput');
@@ -256,8 +275,9 @@
                 option.value = category.id;
                 option.textContent = category.name;
 
-                // Chọn danh mục đầu tiên làm mặc định
-                if (index === 0) {
+                // Chọn danh mục làm mặc định
+                let categoryIDOfPost = "<?php echo $categoryIDSelected ?? "" ?>";
+                if (category.id === categoryIDOfPost) {
                     option.selected = true;
                 }
 

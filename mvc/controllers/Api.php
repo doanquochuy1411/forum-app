@@ -5,6 +5,7 @@ class Api extends Controller
     protected $PostModel;
     protected $ReportModel;
     protected $NotificationModel;
+    protected $FollowModel;
     protected $CommentModel;
 
     private $userID;
@@ -12,8 +13,12 @@ class Api extends Controller
     public function __construct()
     {
         if (!isset($_SESSION['UserID']) || !isset($_SESSION['_token'])) {
-            header("Location: " . BASE_URL);
-            exit();
+            echo json_encode([
+                'code' => 401,
+                'status' => "error",
+                'message' => "permission denied.",
+            ]);
+            exit;
         }
 
         $this->userID = $_SESSION["UserID"];
@@ -22,6 +27,7 @@ class Api extends Controller
         $this->ReportModel = $this->model("Report");
         $this->NotificationModel = $this->model("Notification");
         $this->CommentModel = $this->model("Comment");
+        $this->FollowModel = $this->model("Follow");
     }
     // Gửi báo cáo
     function Index()
@@ -226,6 +232,145 @@ class Api extends Controller
             'status' => "success",
             'top_posts_by_likes' => $topPosts,
         ]);
+    }
+
+    public function CheckFollowUser($authId, $userId)
+    {
+        if ($authId == "none" || $userId == "none") {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'follow_status' => "followed",
+                'message' => "Không tìm thấy dữ liệu người dùng.",
+            ]);
+            return;
+        }
+
+        $checkFollowed = $this->FollowModel->CheckFollowByUser($authId, $userId);
+        if ($checkFollowed) {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'follow_status' => "followed",
+                'message' => "Kiểm tra trạng thái theo dõi thành công",
+            ]);
+        } else {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'follow_status' => "unFollowed",
+                'message' => "Kiểm tra trạng thái theo dõi thành công",
+            ]);
+        }
+    }
+
+    public function HandelFollow()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authId = $_POST['auth_id'];
+            $userId = $_POST['user_id'];
+            $status = "";
+
+            $checkLiked = $this->FollowModel->CheckFollowByUser($authId, $userId);
+            if ($checkLiked) {
+                $this->FollowModel->CancelLikedPostByUser($authId, $userId);
+                $status = 'unFollow';
+            } else {
+                $this->FollowModel->CreateFollowPostByUser($authId, $userId);
+                $status = 'follow';
+            }
+        }
+
+        http_response_code(200);
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'follow_status' => $status,
+            'message' => "Dữ liệu đã được xử lý",
+        ]);
+    }
+
+    public function getAuthOfPost($post_id)
+    {
+        $postDetail = $this->PostModel->GetPostByID($post_id);
+        if (empty($postDetail)) {
+            http_response_code(400); // Đặt mã phản hồi là 400
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy bài viết cho thông báo này.",
+            ]);
+            return; // Dừng lại nếu dữ liệu trống
+        }
+
+        // Trả về JSON
+        http_response_code(200);
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'post_details' => $postDetail,
+        ]);
+    }
+
+    public function getQuestionAndDocumentToStatistics($year)
+    {
+        // Lấy danh sách thông báo từ database
+        $questions = $this->PostModel->GetPostAmountPerMonthByYear($year, "question");
+        $documents = $this->PostModel->GetPostAmountPerMonthByYear($year, "document");
+        $posts = $this->PostModel->GetPostAmountPerMonthByYear($year, "post");
+        $questionCounts = array_fill(0, 12, 0);
+        $documentCounts = array_fill(0, 12, 0);
+        $postCounts = array_fill(0, 12, 0);
+        $labels = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+
+        if (mysqli_num_rows($questions) > 0) {
+            while ($row = mysqli_fetch_assoc($questions)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $questionCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        if (mysqli_num_rows($documents) > 0) {
+            while ($row = mysqli_fetch_assoc($documents)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $documentCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        if (mysqli_num_rows($posts) > 0) {
+            while ($row = mysqli_fetch_assoc($posts)) {
+                $monthIndex = $row['month'] - 1; // Trừ 1 để chỉ số mảng bắt đầu từ 0
+                $postCounts[$monthIndex] = (int) $row['post_count'];
+            }
+        }
+
+        $data = [
+            'labels' => $labels,
+            'dataset1' => $questionCounts,
+            'dataset2' => $documentCounts,
+            'dataset3' => $postCounts,
+        ];
+
+        if (!empty($data['dataset1']) || !empty($data['dataset2']) || !empty($data['dataset3'])) {
+            http_response_code(200);
+            echo json_encode([
+                'code' => 200,
+                'status' => "success",
+                'data' => $data,
+                'message' => "Lấy dữ liệu thành công",
+            ]);
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu thống kê.",
+            ]);
+        }
+
     }
 }
 

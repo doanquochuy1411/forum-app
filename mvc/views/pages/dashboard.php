@@ -5,20 +5,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="admin_title">Tổng quan</h3>
-                <div class="row bg-white m-0 mb-4">
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                <div class="row bg-white m-0 mb-4 overview">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-2 pr-0 pd-l-0">
                         <div class="dash-widget">
                             <span class="dash-widget-bg1">
                                 <img src="<?php echo BASE_URL ?>/public/admin/assets/img/my-icons/icon-1.5.png"
                                     alt="Icon" width="25">
                             </span>
                             <div class="dash-widget-info float-left pl-2">
-                                <p>Tổng Nguời Dùng</p>
+                                <p>Tổng Thành Viên</p>
                                 <h4><?php echo count($all_users) ?></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-2 pr-0">
                         <div class="dash-widget">
                             <span class="dash-widget-bg2"><img
                                     src="<?php echo BASE_URL ?>/public/admin/assets/img/my-icons/icon-2.4.png"
@@ -29,18 +29,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-2 pr-0">
                         <div class="dash-widget">
                             <span class="dash-widget-bg3"><img
                                     src="<?php echo BASE_URL ?>/public/admin/assets/img/my-icons/icon-3.9.png"
                                     alt="Icon" width="25"></span>
                             <div class="dash-widget-info float-left pl-2">
-                                <p>Tổng câu hỏi</p>
+                                <p>Tổng Câu Hỏi</p>
                                 <h4><?php echo count($questions) ?></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-2 pr-0">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg3"><img
+                                    src="<?php echo BASE_URL ?>/public/admin/assets/img/my-icons/icon-5.png" alt="Icon"
+                                    width="25"></span>
+                            <div class="dash-widget-info float-left pl-2">
+                                <p>Tổng Tài Liệu</p>
+                                <h4><?php echo count($documents) ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-2 pr-0">
                         <div class="dash-widget">
                             <span class="dash-widget-bg4"><img
                                     src="<?php echo BASE_URL ?>/public/admin/assets/img/my-icons/icon-4.4.png"
@@ -81,7 +92,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 text-center">
-                            <h4 class="text-dark mb-4">Thống kê Số lượng Bài viết theo Tháng</h4>
+                            <h4 class="text-dark mb-4">Thống kê Số lượng Bài Đăng theo Tháng</h4>
                             <div class="card p-3">
                                 <canvas id="postsChart"></canvas>
                             </div>

@@ -37,6 +37,22 @@ class Notification extends DB
         }
     }
 
+    public function CreateNotificationForFollowers($post_id, $message, $follower_id)
+    {
+        $follower_id = decryptData($follower_id);
+        $sql = "INSERT INTO notifications (receiver_id, message, post_id)
+                VALUES (
+                    ?, ?, ? 
+                )";
+        $result = $this->executeQuery($sql, [$follower_id, $message, $post_id]);
+
+        if ($result > 0) {
+            return $this->con->insert_id;
+        } else {
+            return 0;
+        }
+    }
+
     public function CreateReportNotificationToAdmin($message, $report_id, $post_id)
     {
         $post_id = decryptData($post_id);
@@ -58,7 +74,7 @@ class Notification extends DB
     public function GetNotificationByID($id)
     {
         $id = decryptData($id);
-        $sql = "select * from notifications where id = ?";
+        $sql = "select n.*, p.title as post_title from notifications n left join posts p on p.id = n.post_id where n.id = ?";
         $result = $this->executeSelectQuery($sql, [$id]);
         // $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $data = $result->fetch_all(MYSQLI_ASSOC);

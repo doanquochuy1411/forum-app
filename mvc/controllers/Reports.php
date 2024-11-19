@@ -38,7 +38,7 @@ class Reports extends Controller
 
             $checkAuth = $this->PostModel->CheckAuthPostByUser($this->userID, $post_id);
             if ($checkAuth) {
-                response_warning("Nhắc nhở!", "Không thể báo xấu bài viết của chính bạn.");
+                response_warning("Nhắc nhở!", "Không thể báo cáo bài viết của chính bạn.");
                 echo "<script>history.back();</script>";
                 return;
             }
@@ -74,10 +74,10 @@ class Reports extends Controller
                         $this->sendNotification($admin['id'], "Một bài viết đã bị báo cáo với lý do: $finalReport", null, $post_id);
                     }
 
-                    $title = 'Báo xấu thành công';
+                    $title = 'báo cáo thành công';
                     response_success($title, "Chúng tôi sẽ tiến hành xử lý. Chân thành cảm ơn sự đóng góp của bạn!");
                 } else {
-                    $title = 'Báo xấu thất bại';
+                    $title = 'báo cáo thất bại';
                     response_error($title, "Rất tiếc. Hệ thống đang gặp sự cố!");
                 }
                 echo "<script>history.back();</script>";

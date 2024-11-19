@@ -181,11 +181,11 @@ function validateRetypePassword() {
     const retypePasswordError = document.getElementById('retype_password_err');
 
     if (retypePassword === "") {
-        retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
+        retypePasswordError.textContent = "Vui lòng Nhập lại mật khẩu";
         retypePasswordError.style.color = 'red'
         return false;
     } else if (password !== retypePassword) {
-        retypePasswordError.textContent = "Mật khẩu và xác nhận mật khẩu không khớp";
+        retypePasswordError.textContent = "Mật khẩu và Nhập lại mật khẩu không khớp";
         retypePasswordError.style.color = 'red'
         return false;
     } else {
@@ -202,11 +202,11 @@ function validateRetypePasswordOfChangePass() {
     const retypePasswordError = document.getElementById('retype_password_of_change_err');
 
     if (retypePassword === "") {
-        retypePasswordError.textContent = "Vui lòng xác nhận mật khẩu";
+        retypePasswordError.textContent = "Vui lòng Nhập lại mật khẩu";
         retypePasswordError.style.color = 'red'
         return false;
     } else if (password !== retypePassword) {
-        retypePasswordError.textContent = "Mật khẩu và xác nhận mật khẩu không khớp";
+        retypePasswordError.textContent = "Mật khẩu và Nhập lại mật khẩu không khớp";
         retypePasswordError.style.color = 'red'
         return false;
     } else {
@@ -231,6 +231,21 @@ function validateTitleOfPost() {
     } else {
         TitleError.textContent = "";
         TitleError.style.color = 'red'
+        return true;
+    }
+}
+
+function validateContentCategory() {
+    const contentCategory = document.querySelector('input[name="contentCategory"]').value.trim();
+    const contentCategoryError = document.getElementById('contentCategory_err');
+
+    if (contentCategory === "") {
+        contentCategoryError.textContent = "Vui lòng chọn danh mục";
+        contentCategoryError.style.color = 'red'
+        return false;
+    } else {
+        contentCategoryError.textContent = "";
+        // contentCategoryError.style.color = 'red'
         return true;
     }
 }
@@ -272,6 +287,24 @@ function validateCheckBox() {
     } else {
         checkboxErr.textContent = "";
         checkboxErr.style.color = ''
+        return true;
+    }
+}
+
+function validateCode() {
+    const eValue = document.querySelector('input[name="code"]').value.trim();
+    const eErr = document.getElementById('code_err');
+
+    if (eValue === "") {
+        eErr.textContent = "Vui lòng chọn nhập mã code";
+        eErr.style.color = 'red'
+        return false;
+    } else if (!validateNoSpecialChars(eValue)) {
+        eErr.textContent = "Mã code không hợp lệ!";
+        eErr.style.color = 'red'
+        return false;
+    } else {
+        eErr.textContent = "";
         return true;
     }
 }
@@ -337,7 +370,8 @@ function validateFormLogin() {
 
 function validateFormCreatePost() {
     const isValidTitle = validateTitleOfPost();
-    return isValidTitle;
+    const isValidContentCategory = validateContentCategory();
+    return isValidTitle && isValidContentCategory;
 }
 
 function validateFormSearch() {
@@ -466,10 +500,8 @@ function validateCategoryDescriptionUpdate() {
     }
 }
 
-// document.querySelector('input[name="email"]').addEventListener('input', validateEmail);
-// document.querySelector('input[name="full_name"]').addEventListener('input', validateFullName);
-// document.querySelector('input[name="user_name"]').addEventListener('input', validateUserName);
-// document.querySelector('input[name="account_name"]').addEventListener('input', validateAccountName);
-// document.querySelector('input[name="password"]').addEventListener('input', validatePassword);
-// document.querySelector('input[name="retype_password"]').addEventListener('input', validateRetypePassword);
 
+function validateFormVerifyCode() {
+    const isCode = validateCode();
+    return isCode
+}

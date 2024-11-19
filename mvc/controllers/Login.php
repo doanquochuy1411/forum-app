@@ -34,6 +34,7 @@ class Login extends Controller
             if (!$result['success']) {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Xác minh thất bại!";
+                $_SESSION['message'] = "Vui lòng xác thực mã capcha bên dưới!";
                 header("Location: " . BASE_URL . "/login");
                 exit();
             }

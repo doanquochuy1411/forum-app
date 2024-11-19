@@ -117,6 +117,10 @@ class Register extends Controller
                     "title" => $this->title,
                     "data" => $email,
                     "categories" => $categories,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
                 ]);
                 return;
             }
@@ -126,19 +130,33 @@ class Register extends Controller
                 $title = 'Đăng ký thất bại!';
                 $message = 'Tên tài khoản đã được sử dụng!';
                 response_error($title, $message);
-                echo "<script>history.back();</script>";
-                exit();
+                // echo "<script>history.back();</script>";
+                $this->view($this->layout, [
+                    "Page" => "register",
+                    "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
+                ]);
+                return;
             }
 
 
             if ($password != $retypePassword) {
                 // echo "<script>alert('Password and retype password do not matching');</script>";
                 $title = 'Đăng ký thất bại!';
-                $message = 'Mật khẩu và xác nhận mật khẩu không trùng khớp';
+                $message = 'Mật khẩu và Nhập lại mật khẩu không trùng khớp';
                 response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
                     "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
                 ]);
                 return;
             }
@@ -153,19 +171,22 @@ class Register extends Controller
                 $title = 'Đăng ký thành công!';
                 $message = '';
                 response_success($title, $message);
-                $this->view($this->layout, [
-                    "Page" => "login",
-                    "categories" => $categories,
-                ]);
-                $this->response($this->layout, "login", $this->title, [$email, $password]);
+                $_SESSION["account_name_info"] = $account_name;
+                $_SESSION["password_info"] = $password;
+                header("Location: " . BASE_URL . "/login");
+                return;
             } else {
-                // echo "<script>alert('Fail to register');</script>";
                 $title = 'Đăng ký thất bại!';
                 $message = 'Lỗi hệ thống!';
                 response_error($title, $message);
                 $this->view($this->layout, [
                     "Page" => "register",
                     "categories" => $categories,
+                    "data" => $email,
+                    "full_name" => $full_name,
+                    "account_name" => $account_name,
+                    "password" => $password,
+                    "re_type_password" => $retypePassword
                 ]);
                 return;
             }

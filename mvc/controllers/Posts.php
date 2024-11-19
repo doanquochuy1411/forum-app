@@ -17,8 +17,6 @@ class Posts extends Controller
     public function __construct()
     {
 
-        parent::__construct();
-
         if (!isset($_SESSION['UserID'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
@@ -130,7 +128,7 @@ class Posts extends Controller
         $relate_posts = $this->PostModel->GetRelatePosts($id, 10);
         $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10);
         $comments = $this->CommentModel->GetAllCommentOfPost($id);
-        $users = $this->UserModel->GetAllUserDescWithOrderBy('point');
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point');
         $categories = $this->CategoryModel->GetAllCategory();
         $tags = $this->TagModel->GetPopularTags();
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
@@ -235,12 +233,13 @@ class Posts extends Controller
         // Trả về true nếu xóa thành công và ngược lại
         $result = $this->PostModel->DeletePost($id);
         if (!$result) {
+
             $_SESSION['action_status'] = 'error';
-            $_SESSION['title_message'] = "Xóa bài viết thất bại";
+            $_SESSION['title_message'] = "Xóa thất bại";
             $_SESSION['message'] = "Truy vấn gặp sự cố!";
         } else {
             $_SESSION['action_status'] = 'success';
-            $_SESSION['title_message'] = "Xóa bài viết thành công";
+            $_SESSION['title_message'] = "Xóa thành công";
         }
         echo "<script>history.back();</script>";
         exit();
@@ -265,5 +264,29 @@ class Posts extends Controller
         } else {
             error_log("Notification failed: " . json_encode($data));
         }
+    }
+
+
+    // View post, document, question details
+    function User($id)
+    {
+        $my_posts = $this->PostModel->GetAllPostWithTypeAndUserID("post", $id);
+        $my_questions = $this->PostModel->GetAllPostWithTypeAndUserID("question", $id);
+        $my_trades = $this->PostModel->GetAllPostWithTypeAndUserID("document", $id);
+        $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
+        $categories = $this->CategoryModel->GetAllCategory(); // header
+        $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+        $tags = $this->TagModel->GetPopularTags(); // scroll
+
+        $this->view($this->layout, [
+            "categories" => $categories,
+            "Page" => "post_by_user",
+            "recent_posts" => $recent_posts,
+            "users" => $users,
+            "tags" => $tags,
+            "my_posts" => $my_posts,
+            "my_questions" => $my_questions,
+            "my_trades" => $my_trades
+        ]);
     }
 }

@@ -2271,8 +2271,8 @@ ul.chat-user-total li i.old-users {
   max-width: 60%;
 }
 .avatar {
-  background-color: #aaa;
-  border-radius: 50%;
+  /* background-color: #aaa; */
+  /* border-radius: 50%; */
   color: #fff;
   display: inline-block;
   font-weight: 500;
@@ -2284,7 +2284,7 @@ ul.chat-user-total li i.old-users {
   text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
-  width: 38px;
+  /* width: 38px; */
   position: relative;
   white-space: nowrap;
 }
@@ -3211,14 +3211,27 @@ ul.chat-user-total li i.old-users {
   color: #333;
 }
 .user-menu.nav>li>a .badge {
-  color: #f62d51;
+  /* color: #f62d51;
   font-size: 0px;
   font-weight: 700;
   position: absolute;
   right: 14px;
   top: 24px;
   width: 7px;
-  height: 7px;
+  height: 7px; */
+  color: #fff;
+    background-color: red;
+    font-size: 10px;
+    /* background-color: #000; */
+    /* font-weight: 700; */
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    width: 16px;
+    height: 15px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
 }
 .hasnotifications span {
   visibility: hidden;

@@ -92,68 +92,170 @@
 
     }
 
-    function setupPagination(users) {
+    // function setupPagination(users) {
+    //     const pagination = document.getElementById('pagination');
+    //     pagination.innerHTML = ''; // Xóa phân trang cũ
+    //     const pageCount = Math.ceil(users.length / usersPerPage);
+
+    //     // Nút "Trước"
+    //     if (current_page > 1) {
+    //         const prevButton = document.createElement('a');
+    //         prevButton.textContent = '« Trước';
+    //         prevButton.className = 'page-link';
+    //         prevButton.href = '#'; // Thêm href để biến nó thành liên kết
+    //         prevButton.onclick = function (event) {
+    //             event.preventDefault(); // Ngăn chặn hành vi mặc định
+    //             current_page--;
+    //             displayUsers(users);
+    //             setupPagination(users);
+    //         };
+    //         pagination.appendChild(prevButton);
+    //     } else {
+    //         const disabledPrevButton = document.createElement('span');
+    //         disabledPrevButton.textContent = '« Trước';
+    //         disabledPrevButton.className = 'disabled';
+    //         pagination.appendChild(disabledPrevButton);
+    //     }
+
+    //     // Nút trang
+    //     for (let i = 1; i <= pageCount; i++) {
+    //         const pageButton = document.createElement('a');
+    //         pageButton.textContent = i;
+    //         pageButton.className = 'page-link';
+    //         if (i === current_page) {
+    //             pageButton.classList.add('active'); // Nút hiện tại
+    //             pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
+    //         } else {
+    //             pageButton.onclick = function (event) {
+    //                 event.preventDefault(); // Ngăn chặn hành vi mặc định
+    //                 current_page = i;
+    //                 displayUsers(users);
+    //                 setupPagination(users);
+    //             };
+    //         }
+    //         pagination.appendChild(pageButton);
+    //     }
+
+    //     // Nút "Sau"
+    //     if (current_page < pageCount) {
+    //         const nextButton = document.createElement('a');
+    //         nextButton.textContent = 'Sau »';
+    //         nextButton.className = 'page-link';
+    //         nextButton.href = '#'; // Thêm href để biến nó thành liên kết
+    //         nextButton.onclick = function (event) {
+    //             event.preventDefault(); // Ngăn chặn hành vi mặc định
+    //             current_page++;
+    //             displayUsers(users);
+    //             setupPagination(users);
+    //         };
+    //         pagination.appendChild(nextButton);
+    //     } else {
+    //         const disabledNextButton = document.createElement('span');
+    //         disabledNextButton.textContent = 'Sau »';
+    //         disabledNextButton.className = 'disabled';
+    //         pagination.appendChild(disabledNextButton);
+    //     }
+    // }
+
+    function setupPagination(data) {
         const pagination = document.getElementById('pagination');
         pagination.innerHTML = ''; // Xóa phân trang cũ
-        const pageCount = Math.ceil(users.length / usersPerPage);
+
+        const pageCount = Math.ceil(data.length / usersPerPage);
+        const maxVisiblePages = 5; // Số lượng trang hiển thị tối đa
 
         // Nút "Trước"
         if (current_page > 1) {
             const prevButton = document.createElement('a');
-            prevButton.textContent = '« Trước';
+            prevButton.textContent = '«';
             prevButton.className = 'page-link';
-            prevButton.href = '#'; // Thêm href để biến nó thành liên kết
+            prevButton.href = '#';
             prevButton.onclick = function (event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                event.preventDefault();
                 current_page--;
-                displayUsers(users);
-                setupPagination(users);
+                displayUsers(data);
+                setupPagination(data);
             };
             pagination.appendChild(prevButton);
-        } else {
-            const disabledPrevButton = document.createElement('span');
-            disabledPrevButton.textContent = '« Trước';
-            disabledPrevButton.className = 'disabled';
-            pagination.appendChild(disabledPrevButton);
         }
 
-        // Nút trang
-        for (let i = 1; i <= pageCount; i++) {
+        // Xử lý hiển thị các nút trang
+        let startPage = Math.max(1, current_page - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(pageCount, startPage + maxVisiblePages - 1);
+
+        if (startPage > 1) {
+            const firstPage = document.createElement('a');
+            firstPage.textContent = '1';
+            firstPage.className = 'page-link';
+            firstPage.href = '#';
+            firstPage.onclick = function (event) {
+                event.preventDefault();
+                current_page = 1;
+                displayUsers(data);
+                setupPagination(data);
+            };
+            pagination.appendChild(firstPage);
+
+            if (startPage > 2) {
+                const dots = document.createElement('span');
+                dots.textContent = '...';
+                dots.className = 'dots';
+                pagination.appendChild(dots);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
             const pageButton = document.createElement('a');
             pageButton.textContent = i;
             pageButton.className = 'page-link';
             if (i === current_page) {
-                pageButton.classList.add('active'); // Nút hiện tại
-                pageButton.style.pointerEvents = 'none'; // Ngăn không cho nhấn vào nút đang chọn
+                pageButton.classList.add('active'); // Đánh dấu trang hiện tại
+                pageButton.style.pointerEvents = 'none';
             } else {
                 pageButton.onclick = function (event) {
-                    event.preventDefault(); // Ngăn chặn hành vi mặc định
+                    event.preventDefault();
                     current_page = i;
-                    displayUsers(users);
-                    setupPagination(users);
+                    displayUsers(data);
+                    setupPagination(data);
                 };
             }
             pagination.appendChild(pageButton);
         }
 
+        if (endPage < pageCount) {
+            if (endPage < pageCount - 1) {
+                const dots = document.createElement('span');
+                dots.textContent = '...';
+                dots.className = 'dots';
+                pagination.appendChild(dots);
+            }
+
+            const lastPage = document.createElement('a');
+            lastPage.textContent = pageCount;
+            lastPage.className = 'page-link';
+            lastPage.href = '#';
+            lastPage.onclick = function (event) {
+                event.preventDefault();
+                current_page = pageCount;
+                displayUsers(data);
+                setupPagination(data);
+            };
+            pagination.appendChild(lastPage);
+        }
+
         // Nút "Sau"
         if (current_page < pageCount) {
             const nextButton = document.createElement('a');
-            nextButton.textContent = 'Sau »';
+            nextButton.textContent = '»';
             nextButton.className = 'page-link';
-            nextButton.href = '#'; // Thêm href để biến nó thành liên kết
+            nextButton.href = '#';
             nextButton.onclick = function (event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định
+                event.preventDefault();
                 current_page++;
-                displayUsers(users);
-                setupPagination(users);
+                displayUsers(data);
+                setupPagination(data);
             };
             pagination.appendChild(nextButton);
-        } else {
-            const disabledNextButton = document.createElement('span');
-            disabledNextButton.textContent = 'Sau »';
-            disabledNextButton.className = 'disabled';
-            pagination.appendChild(disabledNextButton);
         }
     }
 
