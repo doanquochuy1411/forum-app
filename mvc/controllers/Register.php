@@ -161,8 +161,9 @@ class Register extends Controller
                 return;
             }
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $secret = GenerateSecret();
 
-            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $gender, $hashedPassword);
+            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $gender, $hashedPassword, $secret);
             if ($result) {
                 $userAccount = $this->UserModel->GetUserByEmail($email);
                 $this->UserModel->SetRole($userAccount["id"], "2");

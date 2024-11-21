@@ -159,7 +159,9 @@ class Admin extends Controller
             }
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $hashedPassword);
+            $secret = GenerateSecret();
+            $gender = 'Nam';
+            $result = $this->UserModel->CreateUser($account_name, $full_name, $email, $gender, $hashedPassword, $secret);
             if ($result) {
                 $userAccount = $this->UserModel->GetUserByEmail($email);
                 $this->UserModel->SetRole($userAccount["id"], "2");

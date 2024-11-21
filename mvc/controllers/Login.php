@@ -57,7 +57,7 @@ class Login extends Controller
                     "categories" => $categories,
                     "data" => [$user_name, $password]
                 ]);
-                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
+                // $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
 
@@ -80,18 +80,25 @@ class Login extends Controller
 
             if ($userAccount && password_verify($password, $userAccount['password'])) {
                 $this->UserModel->ResetLoginAttempts($user_name);
-                $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
-                $_SESSION['UserID'] = $userAccount["id"];
-                $_SESSION['UserName'] = $userAccount["user_name"]; // Hiển thị trên tên trên trang chủ
-                $_SESSION['AccountName'] = encryptData($userAccount["account_name"]); // Tên tài khoản của user
-                $_SESSION['RoleID'] = $userAccount["role_id"];
-                $_SESSION['Avatar'] = $userAccount["image"];
                 $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại. (none / success / error)
                 $_SESSION['title_message'] = ""; // Tiêu đề lỗi hoặc thành công
                 $_SESSION['message'] = ""; // Thông báo chi tiết lỗi hoặc thành công
                 if ($userAccount["role_id"] == 1) {
-                    header("Location: " . BASE_URL . "/admin");
+                    $link = GetQR($userAccount["google_auth_secret"]);
+                    $this->view($this->layout, [
+                        "Page" => "authentication_2fa",
+                        "title" => $this->title,
+                        "categories" => $categories,
+                        "account_name" => $userAccount["account_name"],
+                        "link" => $link,
+                    ]);
                 } else {
+                    $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
+                    $_SESSION['UserID'] = $userAccount["id"];
+                    $_SESSION['UserName'] = $userAccount["user_name"]; // Hiển thị trên tên trên trang chủ
+                    $_SESSION['AccountName'] = encryptData($userAccount["account_name"]); // Tên tài khoản của user
+                    $_SESSION['RoleID'] = $userAccount["role_id"];
+                    $_SESSION['Avatar'] = $userAccount["image"];
                     header("Location: " . BASE_URL);
                 }
                 exit();
@@ -101,19 +108,15 @@ class Login extends Controller
                     $_SESSION['action_status'] = 'error';
                     $_SESSION['title_message'] = "Sai mật khẩu";
                     $_SESSION['message'] = "Bạn còn " . 5 - $userAccount['login_attempts'] - 1 . " đăng nhập!";
-                    // echo "<script>alert('Sai mật khẩu lần " . $userAccount['login_attempts'] + 1 . " (Tối đa 5 lần)');</script>";
                     if ($userAccount['login_attempts'] >= 5) {
                         $this->UserModel->UpdateLocked($user_name);
                         $_SESSION['action_status'] = 'error';
                         $_SESSION['title_message'] = "Tài khoản đã bị khóa";
                         $_SESSION['message'] = "Bạn đã đăng nhập sai quá 5 lần, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu!";
-                        // echo "<script> alert('Bạn đã đăng nhập sai quá 5 lần, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
                     }
                 } else {
-                    // echo "<script>alert('Tài khoản không chính xác!');</script>";
                     $_SESSION['action_status'] = 'error';
                     $_SESSION['title_message'] = "Tên tài khoản không chính xác";
-                    // $_SESSION['message'] = "Bạn đã đăng nhập sai quá 5 lần, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu!";
                 }
                 $this->view($this->layout, [
                     "Page" => $this->page,
@@ -126,6 +129,44 @@ class Login extends Controller
             }
         }
     }
+
+    function Handel2FA()
+    {
+        if (isset($_POST["btn2FA"])) {
+            $passCode = htmlspecialchars($_POST["pass_code"]);
+            $account_name = htmlspecialchars($_POST["account_name"]);
+            $categories = $this->CategoryModel->GetAllCategory();
+
+            $userAccount = $this->UserModel->GetUserByAccountName(encryptData($account_name));
+            if (!VerifyPassCode($passCode, $userAccount["google_auth_secret"])) {
+                $title = "Xác minh thất bại!";
+                $message = "Mã xác minh không chính xác.";
+                response_error($title, $message);
+
+                $link = GetQR($userAccount["google_auth_secret"]);
+                $this->view($this->layout, [
+                    "Page" => "authentication_2fa",
+                    "title" => $this->title,
+                    "categories" => $categories,
+                    "account_name" => $userAccount["account_name"],
+                    "link" => $link,
+                ]);
+                exit();
+            } else {
+                $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
+                $_SESSION['UserID'] = $userAccount["id"];
+                $_SESSION['UserName'] = $userAccount["user_name"]; // Hiển thị trên tên trên trang chủ
+                $_SESSION['AccountName'] = encryptData($userAccount["account_name"]); // Tên tài khoản của user
+                $_SESSION['RoleID'] = $userAccount["role_id"];
+                $_SESSION['Avatar'] = $userAccount["image"];
+                header("Location: " . BASE_URL . "/admin");
+            }
+        } else {
+            header("Location: " . BASE_URL . "/errors/unauthorized");
+            exit();
+        }
+    }
+
     function verifyCapCha($response)
     {
         $url = 'https://www.google.com/recaptcha/api/siteverify';

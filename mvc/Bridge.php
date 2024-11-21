@@ -10,4 +10,5 @@ require_once "./mvc/pkg/format.php";
 require_once "./mvc/pkg/encryption.php";
 require_once "./mvc/pkg/upload.php";
 require_once "./mvc/pkg/alert.php";
+require_once "./mvc/pkg/2fa.php";
 ?>

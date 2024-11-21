@@ -9,6 +9,7 @@ return array(
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'Sonata\\GoogleAuthenticator\\' => array($vendorDir . '/sonata-project/google-authenticator/src'),
     'Pusher\\' => array($vendorDir . '/pusher/pusher-php-server/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
@@ -19,5 +20,6 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
+    'Google\\Authenticator\\' => array($vendorDir . '/sonata-project/google-authenticator/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
 );
