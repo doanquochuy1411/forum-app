@@ -27,6 +27,7 @@ class Login extends Controller
 
     function HandelLogin()
     {
+        $categories = $this->CategoryModel->GetAllCategory();
         if (isset($_POST["g-recaptcha-response"])) {
             $capcha = $_POST["g-recaptcha-response"];
             $result = $this->verifyCapCha($capcha);
@@ -50,6 +51,12 @@ class Login extends Controller
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng nhập thất bại";
                 $_SESSION['message'] = "Dữ liệu không hợp lệ!";
+                $this->view($this->layout, [
+                    "Page" => $this->page,
+                    "title" => $this->title,
+                    "categories" => $categories,
+                    "data" => [$user_name, $password]
+                ]);
                 $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
@@ -60,7 +67,13 @@ class Login extends Controller
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Tài khoản đã bị khoá";
                 $_SESSION['message'] = "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu!";
-                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
+                // $this->response($this->layout, "login", $this->title, [$user_name, $password]);
+                $this->view($this->layout, [
+                    "Page" => $this->page,
+                    "title" => $this->title,
+                    "categories" => $categories,
+                    "data" => [$user_name, $password]
+                ]);
                 return;
             }
             // echo "<script>alert('name: " . $userAccount . "')</script>";
@@ -102,7 +115,13 @@ class Login extends Controller
                     $_SESSION['title_message'] = "Tên tài khoản không chính xác";
                     // $_SESSION['message'] = "Bạn đã đăng nhập sai quá 5 lần, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu!";
                 }
-                $this->response($this->layout, "login", $this->title, [$user_name, $password]);
+                $this->view($this->layout, [
+                    "Page" => $this->page,
+                    "title" => $this->title,
+                    "categories" => $categories,
+                    "data" => [$user_name, $password]
+                ]);
+                // $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
         }
