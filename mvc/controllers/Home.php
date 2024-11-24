@@ -68,10 +68,10 @@ class Home extends Controller
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
 
-        // print_r($comments);
+        $title = convertTitle($posts[0]["type"]);
         $this->view($this->layout, [
             "Page" => "post_details",
-            "title" => $this->title,
+            "title" => $title,
             "posts" => $posts,
             "relate_posts" => $relate_posts,
             "recent_posts" => $recent_posts,
@@ -188,18 +188,18 @@ class Home extends Controller
         $tags = $this->TagModel->GetPopularTags();
         $category_details = $this->CategoryModel->GetCategoryByID($category_id); // Lấy thông tin chi tiết của danh mục
 
-        $sub_title = ""; // Tiêu đề cho đường dẫn
-        switch ($type) {
-            case "post":
-                $sub_title = "bài viết";
-                break;
-            case "question":
-                $sub_title = "câu hỏi";
-                break;
-            default:
-                $sub_title = "";
-                break;
-        }
+        $sub_title = convertTitle($type); // Tiêu đề cho đường dẫn
+        // switch ($type) {
+        //     case "post":
+        //         $sub_title = "bài viết";
+        //         break;
+        //     case "question":
+        //         $sub_title = "câu hỏi";
+        //         break;
+        //     default:
+        //         $sub_title = "";
+        //         break;
+        // }
         $this->view($this->layout, [
             "Page" => "category",
             "title" => $sub_title,
@@ -340,7 +340,8 @@ class Home extends Controller
     {
         $notification = $this->NotificationModel->GetNotificationByID($notification_id);
         $this->NotificationModel->UpdateIsRead($notification_id);
-        if ($notification[0]["report_id"] != null) {
+
+        if (decryptData($notification[0]["report_id"]) !== "") {
             $title = 'Bài đăng bị báo cáo: <em>\'' . $notification[0]["post_title"] . '\'</em>';
             $message = $notification[0]["message"];
             response_info($title, $message);

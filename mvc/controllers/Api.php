@@ -315,6 +315,29 @@ class Api extends Controller
         ]);
     }
 
+    public function getAuthOfReport($report_id)
+    {
+        // Lấy danh sách thông báo từ database
+        $reportDetails = $this->ReportModel->GetReportByID($report_id);
+        if (empty($reportDetails)) {
+            // Trả về lỗi 400 nếu không tìm thấy dữ liệu
+            http_response_code(400); // Đặt mã phản hồi là 400
+            echo json_encode([
+                'code' => 400,
+                'status' => "error",
+                'message' => "Không tìm thấy dữ liệu người dùng cho báo cáo này.",
+            ]);
+            return; // Dừng lại nếu dữ liệu trống
+        }
+
+        // Trả về JSON
+        echo json_encode([
+            'code' => 200,
+            'status' => "success",
+            'report_details' => $reportDetails,
+        ]);
+    }
+
     public function getQuestionAndDocumentToStatistics($year)
     {
         // Lấy danh sách thông báo từ database

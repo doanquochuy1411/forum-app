@@ -138,10 +138,12 @@
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 <section class="header-descriptin329 pd-t-120">
     <div class="container">
-        <h3>Chi tiết bài viết</h3>
+        <h3>Chi tiết <?php echo $title ?></h3>
         <ol class="breadcrumb breadcrumb840">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
-            <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
+            <li><a
+                    href="<?php echo BASE_URL . "/home/allPosts/" . $posts[0]["type"] ?>"><?php echo ucfirst($title) ?></a>
+            </li>
             <li class="active"><?php echo $posts[0]["title"] ?></li>
         </ol>
     </div>
@@ -388,6 +390,7 @@
                                                                 $reply['comment_user_name'] . '</a></h6>
                                         <span><i class="fa fa-clock-o" style="display: block;"> ' .
                                                                 timeAgo($reply['created_at']) . '</i></span>
+                                        <i class="fa fa-reply" style="display: block" onclick="toggleReply(\'replyList_' . $comment['id'] . '\')"></i>
                                     </div>
                                     <div class="comment-content" id="comment_index_' . $reply['id'] . '"> ' . $reply['content'] . '
                                     </div>
@@ -407,6 +410,7 @@
                                                                 timeAgo($reply['created_at']) . '</i></span>
                                         <a href="#"><i class="fa fa-trash" style="cursor: pointer; display: block;"
                                                 onclick="confirmDelete(event,\'' . BASE_URL . '/posts/deleteComment/' . encryptData($reply['id']) . '\')"></i></a>
+                                        <i class="fa fa-reply" style="display: block" onclick="toggleReply(\'replyList_' . $comment['id'] . '\')"></i>
                                     </div>
                                     <div class="comment-content" id="comment_index_' . $reply['id'] . '"> ' . $reply['content'] . '
                                     </div>

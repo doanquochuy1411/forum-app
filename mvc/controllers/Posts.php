@@ -134,9 +134,10 @@ class Posts extends Controller
         $tags_of_post = $this->TagModel->GetTagsOfPost($id); // Lấy tag của bài post
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10);
 
+        $title = convertTitle($posts[0]["type"]);
         $this->view($this->layout, [
             "Page" => "edit_post",
-            "title" => $this->title,
+            "title" => $title,
             "post_to_edit" => $posts, // Post details
             "relate_posts" => $relate_posts,
             "recent_posts" => $recent_posts,

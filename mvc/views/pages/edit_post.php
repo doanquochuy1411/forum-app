@@ -1,9 +1,11 @@
-<section class="header-descriptin329">
+<section class="header-descriptin329 pd-t-120">
     <div class="container">
-        <h3>Chi tiết bài viết</h3>
+        <h3>Chỉnh sửa <?php echo $title ?></h3>
         <ol class="breadcrumb breadcrumb840 z-index-2">
             <li><a href="<?php echo BASE_URL ?>">Trang chủ</a></li>
-            <li><a href="<?php echo BASE_URL ?>">Bài viết</a></li>
+            <li><a
+                    href="<?php echo BASE_URL . "/home/allPosts/" . $post_to_edit[0]["type"] ?>"><?php echo ucfirst($title) ?></a>
+            </li>
             <li class="active"><?php echo $post_to_edit[0]["title"] ?></li>
         </ol>
     </div>
@@ -16,7 +18,7 @@
                     <h4>
                         <a href="<?php echo BASE_URL ?>/home/posts/<?php echo $post_to_edit[0]["id"] ?>"
                             style="text-decoration: none">
-                            <b>Bài Viết: <?php echo $post_to_edit[0]["title"] ?></b>
+                            <b><?php echo ucfirst($title) ?>: <?php echo $post_to_edit[0]["title"] ?></b>
                         </a>
                     </h4>
                     <hr>

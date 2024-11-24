@@ -22,7 +22,7 @@ function validatePassword($password)
 
 function validateNoSpecialChars($input)
 {
-    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\=[\]]+$/u', $input);
+    return preg_match('/^[\p{L}\p{N}\s!@$%&?,\-()*:\=[\]]+$/u', $input);
 }
 function validateDescription($input)
 {
@@ -30,7 +30,7 @@ function validateDescription($input)
         return true;
     }
 
-    return preg_match('/^[\p{L}\p{N}\s!@$%&?*:\=[\]]+$/u', $input);
+    return preg_match('/^[\p{L}\p{N}\s!@$%&?,\-()*:\=[\]]+$/u', $input);
 }
 
 function validateGender($input)

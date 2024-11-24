@@ -4,9 +4,14 @@ function valEmail(email) {
 }
 
 function validateNoSpecialChars(string) {
-    var pattern = /^[\p{L}\p{N}\s!@$%&?*:\[\]]+$/u;
+    var pattern = /^[\p{L}\p{N}\s!@$%&?,\-()*:\[\]]+$/u;
     return pattern.test(string);
 }
+
+// function validateNoSpecialChars(string) {
+//     var pattern = /^[\p{L}\p{N}\s!@$%&?*:\[\],()\-\u]+$/u;
+//     return pattern.test(string);
+// }
 
 function valPassword(string) {
     var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

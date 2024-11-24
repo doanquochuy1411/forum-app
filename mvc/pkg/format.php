@@ -332,4 +332,18 @@ function create_slug($string)
     return trim($string, '-');
 }
 
+function convertTitle($type)
+{
+    switch ($type) {
+        case "post":
+            return "bài viết";
+        case "question":
+            return "câu hỏi";
+        case "document":
+            return "tài liệu";
+        default:
+            return "";
+    }
+}
+
 ?>

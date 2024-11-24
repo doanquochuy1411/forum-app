@@ -80,7 +80,12 @@ Pusher.logToConsole = true;
                                     resolve({ notification, image });
                                 });
                             } else if (notification.report_id != null) {
-                                resolve({ notification, image });
+                                getAuthOfReport(notification.report_id, function(reportDetail) {
+                                    console.log(reportDetail)
+                                    image = BASE_URL + '/public/src/uploads/' + reportDetail.report_details[0].avatar; // Sử dụng avatar của người dùng
+                                    notification.message = reportDetail.report_details[0].user_name.concat(" ", notification.message);
+                                    resolve({ notification, image });
+                                });
                             } else {
                                 getAuthOfPost(notification.post_id, function(postDetail) {
                                     image = BASE_URL + '/public/src/uploads/' + postDetail.post_details[0].avatar; // Sử dụng avatar của người dùng
@@ -154,6 +159,24 @@ Pusher.logToConsole = true;
                 var postDetail = JSON.parse(response);
                 console.log(postDetail)
                 callback(postDetail);
+            },
+            error: function() {
+                console.log("Error fetching notifications.");
+                callback({ avatar: BASE_URL+'/public/client/image/images.png' });
+            }
+        });
+    }
+
+    function getAuthOfReport(report_id, callback) {
+        $.ajax({
+            url: BASE_URL+`/api/getAuthOfReport/${report_id}`, // Đường dẫn tới hàm xử lý lấy thông báo trên server
+            type: 'GET',
+            success: function(response) {
+                console.log(response)
+                // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+                var reportDetail = JSON.parse(response);
+                // console.log(reportDetail)
+                callback(reportDetail);
             },
             error: function() {
                 console.log("Error fetching notifications.");

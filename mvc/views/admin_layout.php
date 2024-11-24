@@ -64,9 +64,8 @@
             <div class="header-menu">
                 <div class="header-left">
                     <a href="<?php echo BASE_URL ?>" class="logo">
-                        <img src="<?php echo BASE_URL ?>/public/admin/assets/img/logo-iuh.ico" width="35" height="35"
+                        <img src="<?php echo BASE_URL ?>/public/src/uploads/logo-iuh-white.png" width="120" height="60"
                             alt="">
-                        <span>Admin</span>
                     </a>
                 </div>
 
