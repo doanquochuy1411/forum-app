@@ -133,7 +133,7 @@
 
                             <div class="form-group">
                                 <label for="tags">Tags</label>
-                                <div id="tagsInputContainer" class="form-control">
+                                <div id="tagsInputContainer" class="form-control" style="display: inline-table">
                                     <input type="text" id="tagsInput" placeholder="Nhập các tags, Enter để thêm"
                                         style="border: none; outline: none; width: 100%;">
                                 </div>

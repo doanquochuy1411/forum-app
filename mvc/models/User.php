@@ -118,6 +118,20 @@ class User extends DB
         return null;
     }
 
+    public function CheckEmailByUserID($email, $user_id)
+    {
+        $id = decryptData($user_id);
+        $sql = "SELECT id FROM user WHERE email = ? and deleted_at IS NULL AND id != ?";
+        $result = $this->executeSelectQuery($sql, [$email, $id]);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        if (!empty($data)) {
+            return $data[0];
+        }
+
+        return null;
+    }
+
     public function CreateUser($account_name, $user_name, $email, $gender, $password, $secret)
     {
         if ($gender == "Nam") {

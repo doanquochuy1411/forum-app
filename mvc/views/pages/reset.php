@@ -11,15 +11,15 @@
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">
                 <div class="form-group">
-                    <label>Mật khẩu mới</label>
-                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu mới"
-                        onchange="validatePassword()">
+                    <label for="new_password">Mật khẩu mới</label>
+                    <input type="password" id="new_password" class="form-control" name="password"
+                        placeholder="Mật khẩu mới của bạn" onchange="validatePassword()">
                     <small id="password_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nhập lại mật khẩu của bạn</label>
-                    <input type="password" class="form-control" name="retype_password" placeholder="Nhập lại mật khẩu"
-                        onchange="validateRetypePassword()">
+                    <label for="retype_new_password">Nhập lại mật khẩu của bạn</label>
+                    <input type="password" class="form-control" id="retype_new_password" name="retype_password"
+                        placeholder="Nhập lại mật khẩu của bạn" onchange="validateRetypePassword()">
                     <small id="retype_password_err"></small>
                 </div>
                 <div class="form-group text-center">

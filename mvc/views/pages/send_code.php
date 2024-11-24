@@ -9,8 +9,9 @@
                             alt="Preadmin"></a>
                 </div>
                 <div class="form-group">
-                    <label>Nhập email của bạn</label>
-                    <input type="text" class="form-control" name="email" autofocus>
+                    <label for="email">Nhập email của bạn</label>
+                    <input type="text" id="email" class="form-control" name="email" placeholder="Nhập email của bạn"
+                        autofocus>
                     <small id="email_err"></small>
                 </div>
                 <div class="form-group">

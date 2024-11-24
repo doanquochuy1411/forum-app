@@ -9,52 +9,6 @@ Pusher.logToConsole = true;
         updateNotifications();
     });
 
-    // function updateNotifications() {
-    //     $.ajax({
-    //         url: BASE_URL+'/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
-    //         type: 'GET',
-    //         success: function(response) {
-    //             // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
-    //             var data = JSON.parse(response);
-    //             // console.log("data: ", data)
-    //             if (data.code === 200) {
-    //                 // Update số lượng thông báo
-    //                 $('.pushertag').text(data.count);
-
-    //                 // Xóa các thông báo cũ trong dropdown
-    //                 $('#notification-dropdown').find('li:not(.dropdown-header, .divider)').remove();
-
-    //                 // Thêm các thông báo mới vào dropdown
-    //                 console.log(data.notifications)
-    //                 data.notifications.forEach(function(notification) {
-    //                     console.log(">>>>>>>>first: " + notification.created_at)
-    //                     var image = BASE_URL+'/public/client/image/images.png';
-    //                     if (notification.comment_id != null) {
-    //                         getAuthOfComment(notification.comment_id, function(userDetail) {
-    //                         image = BASE_URL+'/public/src/uploads/' + userDetail.user_details[0].avatar; // Sử dụng avatar của người dùng
-    //                         notification.message = userDetail.user_details[0].comment_user_name.concat(" ", notification.message) 
-    //                         addNotificationToDropdown(notification, image);
-    //                     });
-    //                     } else if (notification.report_id != null) {
-    //                         addNotificationToDropdown(notification, image);
-    //                     } else {
-    //                         getAuthOfPost(notification.post_id, function(postDetail) {
-    //                             image = BASE_URL+'/public/src/uploads/' + postDetail.post_details[0].avatar; // Sử dụng avatar của người dùng
-    //                             notification.message = postDetail.post_details[0].user_name.concat(" ", notification.message) 
-    //                             addNotificationToDropdown(notification, image);
-    //                         });
-    //                     }
-    //                 });
-    //             } else {
-    //                 console.log("Lỗi rồi"); // Log trạng thái khi không có thông báo mới
-    //                 console.log(data)
-    //             }
-    //         },
-    //         error: function() {
-    //             console.log("Error fetching notifications.");
-    //         }
-    //     });
-    // }
     function updateNotifications() {
         $.ajax({
             url: BASE_URL + '/api/getNotifications', // Đường dẫn tới hàm xử lý lấy thông báo trên server
@@ -105,11 +59,13 @@ Pusher.logToConsole = true;
                         console.error("Lỗi khi xử lý thông báo: ", error);
                     });
                 } else {
+                    addNotExistNotificationToDropdown();
                     console.log("Lỗi rồi"); // Log trạng thái khi không có thông báo mới
                     console.log(data);
                 }
             },
             error: function() {
+                addNotExistNotificationToDropdown();
                 console.log("Error fetching notifications.");
             }
         });
@@ -117,10 +73,9 @@ Pusher.logToConsole = true;
     
 
     function addNotificationToDropdown(notification, image) {
-        console.log(">>>> ", notification.created_at);
         $('#notification-dropdown').append(
             `<li>
-                <a href=${BASE_URL}/home/notifications/${notification.id}">
+                <a href="${BASE_URL}/home/notifications/${notification.id}">
                     <div style="display: flex; align-items: center;">
                         <img src="${image}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                         <div class="notification-message" style="max-width: 200px;">
@@ -128,6 +83,16 @@ Pusher.logToConsole = true;
                         </div>
                         <span style="font-size: 0.8em; color: grey; margin-left: 10px;">${timeAgo(notification.created_at)}</span>
                     </div>
+                </a>
+            </li>`
+        );
+    }
+
+    function addNotExistNotificationToDropdown() {
+        $('#notification-dropdown').append(
+            `<li>
+                <a href="#">
+                    Không có thông báo
                 </a>
             </li>`
         );

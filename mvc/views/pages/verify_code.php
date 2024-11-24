@@ -25,8 +25,9 @@ $remainingTime = $expiryTime - time();
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">
                 <div class="form-group">
-                    <label>Nhập mã xác minh</label>
-                    <input type="text" class="form-control" name="code" autofocus>
+                    <label for="code">Nhập mã xác minh</label>
+                    <input type="text" class="form-control" id="code" name="code" autofocus
+                        placeholder="Nhập mã xác minh của bạn">
                     <small id="code_err"></small>
                 </div>
                 <div class="form-group text-center">

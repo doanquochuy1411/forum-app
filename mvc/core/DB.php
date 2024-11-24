@@ -63,10 +63,6 @@ class DB
             $stmt->bind_param($types, ...$params);
         }
 
-        // $success = $stmt->execute();
-        // if (!$success) {
-        //     die('Execute failed: ' . htmlspecialchars($stmt->error));
-        // }
         if (!$stmt->execute()) {
             // Try to re-prepare the statement
             $stmt = $this->con->prepare($sql);
@@ -126,6 +122,7 @@ class DB
         return $result;
 
     }
+
 }
 
 ?>

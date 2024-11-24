@@ -217,7 +217,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="add-user-form" action="<?php echo BASE_URL ?>/admin/addUser" method="post"
-                                onsubmit="return validateFormAddUser()()">
+                                onsubmit="return validateFormAddUser()">
                                 <div class="form-group">
                                     <label for="email">Email*</label>
                                     <input type="email" class="form-control" id="email" name="email">

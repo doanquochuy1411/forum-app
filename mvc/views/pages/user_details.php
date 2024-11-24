@@ -268,7 +268,7 @@
                                 <div class="form-group">
                                     <label for="user_name">Tên người dùng:</label>
                                     <input type="text" class="form-control" id="user_name" name="user_name"
-                                        value="' . $user_details["user_name"] . '">
+                                        value="' . $user_details["user_name"] . '" placeholder="Nhập họ tên của bạn">
             <small id="user_name_err"></small>
         </div>
          <div class="form-group">
@@ -286,12 +286,12 @@
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email"
-                value="' . $user_details["email"] . '">
+                value="' . $user_details["email"] . '" placeholder="Nhập email của bạn">
             <small id="email_err"></small>
         </div>
         <div class="form-group">
             <label for="phone_number">Số điện thoại:</label>
-            <input type="text" class="form-control" id="phone_number" name="phone_number"
+            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Nhập số điện thoại của bạn"
                 value="' . $user_details["phone_number"] . '">
             <small id="phone_number_err"></small>
         </div>

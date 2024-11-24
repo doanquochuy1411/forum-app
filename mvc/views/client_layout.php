@@ -190,7 +190,6 @@
                                     <h5 style="font-size: large; margin-bottom: 0">Thông báo</h5>
                                 </li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Xem tất cả thông báo</a></li>
                             </ul>';
                             }
                             ?>
@@ -239,17 +238,17 @@
                                         onsubmit="return validateFormChangePassword()">
                                         <div class="form-group">
                                             <label for="current_password">Mật khẩu hiện tại:</label>
-                                            <input type="password" class="form-control" id="current_password" name="current_password">
+                                            <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Nhập mật khẩu hiện tại của bạn">
                                             <small id="current_password_err"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="new_password">Mật khẩu mới:</label>
-                                            <input type="password" class="form-control" id="new_password" name="new_password">
+                                            <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Nhập mật khẩu hiện mới của bạn">
                                             <small id="new_password_err"></small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="retype_password">Nhập lại mật khẩu:</label>
-                                            <input type="password" class="form-control" id="retype_password_of_change" name="retype_password_of_change">
+                                            <label for="retype_password_of_change">Nhập lại mật khẩu:</label>
+                                            <input type="password" class="form-control" id="retype_password_of_change" name="retype_password_of_change" placeholder="Nhập lại mật khẩu mới của bạn">
                                             <small id="retype_password_of_change_err"></small>
                                         </div>
                                         <input type="hidden" name="token" value="' . $_SESSION['_token'] . '" />

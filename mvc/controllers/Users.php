@@ -65,21 +65,21 @@ class Users extends Controller
                 $file_name = $uploadResult['file_name'];
             }
 
+            $userAccount = $this->UserModel->CheckEmailByUserID($email, $_SESSION['UserID']);
+            if ($userAccount) {
+                $title = 'Cập nhật thông tin thất bại!';
+                $message = 'Email đã được sử dụng!';
+                response_error($title, $message);
+                echo "<script>history.back();</script>";
+                exit();
+            }
+
             $result = $this->UserModel->UpdateUser($this->userID, $user_name, $email, $phone_number, $file_name, $gender);
             $title = 'Cập nhật thông tin thành công';
             if ($file_name != "") {
                 $_SESSION['Avatar'] = $file_name;
             }
             response_success($title, "");
-            // if ($result) {
-            // } else {
-            //     if ($file['size'] > 0) {
-            //         deleteImage($file_name);
-            //     }
-            //     $title = 'Cập nhật thông tin thất bại';
-            //     $message = "Lỗi hệ thống!";
-            //     response_error($title, $message);
-            // }
             echo "<script>history.back();</script>";
             exit();
         }

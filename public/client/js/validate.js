@@ -8,11 +8,6 @@ function validateNoSpecialChars(string) {
     return pattern.test(string);
 }
 
-// function validateNoSpecialChars(string) {
-//     var pattern = /^[\p{L}\p{N}\s!@$%&?*:\[\],()\-\u]+$/u;
-//     return pattern.test(string);
-// }
-
 function valPassword(string) {
     var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return pattern.test(string);
@@ -240,20 +235,20 @@ function validateTitleOfPost() {
     }
 }
 
-function validateContentCategory() {
-    const contentCategory = document.querySelector('input[name="contentCategory"]').value.trim();
-    const contentCategoryError = document.getElementById('contentCategory_err');
+// function validateContentCategory() {
+//     const contentCategory = document.querySelector('input[name="contentCategory"]').value.trim();
+//     const contentCategoryError = document.getElementById('contentCategory_err');
 
-    if (contentCategory === "") {
-        contentCategoryError.textContent = "Vui lòng chọn danh mục";
-        contentCategoryError.style.color = 'red'
-        return false;
-    } else {
-        contentCategoryError.textContent = "";
-        // contentCategoryError.style.color = 'red'
-        return true;
-    }
-}
+//     if (contentCategory === "") {
+//         contentCategoryError.textContent = "Vui lòng chọn danh mục";
+//         contentCategoryError.style.color = 'red'
+//         return false;
+//     } else {
+//         contentCategoryError.textContent = "";
+//         // contentCategoryError.style.color = 'red'
+//         return true;
+//     }
+// }
 
 function validateAgreeTerms() {
     const termsCheckbox = document.getElementById('agree_terms');
@@ -343,6 +338,24 @@ function validateTxtSearch() {
         return false;
     } else {
         return true;
+    }
+}
+
+
+function validateContentCategory() {
+    const contentCategory = document.getElementById("contentCategory");
+    const selectedValue = contentCategory.value;
+    const contentCategoryErr = document.getElementById('contentCategory_err');
+
+    if (!selectedValue) {
+        contentCategory.focus();
+        contentCategoryErr.textContent = "Vui lòng chọn danh mục!";
+        contentCategoryErr.style.color = 'red'
+        return false;
+    } else {
+        contentCategoryErr.textContent = "";
+        contentCategoryErr.style.color = ''
+        return true
     }
 }
 

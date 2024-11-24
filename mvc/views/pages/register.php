@@ -11,9 +11,9 @@
                 <input hidden type="text" name="email" placeholder="Email"
                     value="<?php echo htmlspecialchars($data) ?> ">
                 <div class="form-group">
-                    <label>Tên của bạn</label>
+                    <label for="full_name">Tên của bạn</label>
                     <input type="text" class="form-control" value="<?php echo $full_name ?? "" ?>" name="full_name"
-                        id="full_name" placeholder="Tên người dùng" autofocus>
+                        id="full_name" placeholder="Nhập họ tên của bạn" autofocus>
                     <small id="full_name_err"></small>
                 </div>
                 <div class="form-group">
@@ -29,21 +29,21 @@
                     <small id="gender_err" style="color: red;"></small>
                 </div>
                 <div class="form-group">
-                    <label>Tên tài khoản</label>
-                    <input type="text" class="form-control" value="<?php echo $account_name ?? "" ?>" name="account_name"
-                        id="account_name" placeholder="Tên tài khoản đăng nhập">
+                    <label for="account_name">Tên tài khoản</label>
+                    <input type="text" class="form-control" value="<?php echo $account_name ?? "" ?>"
+                        name="account_name" id="account_name" placeholder="Nhập tên tài khoản của bạn">
                     <small id="account_name_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Mật khẩu</label>
+                    <label for="password">Mật khẩu</label>
                     <input type="password" class="form-control" value="<?php echo $password ?? "" ?>" name="password"
-                        id="password" placeholder="Mật khẩu">
+                        id="password" placeholder="Nhập mật khẩu của bạn">
                     <small id="password_err"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nhập lại mật khẩu của bạn</label>
+                    <label for="retype_password">Nhập lại mật khẩu của bạn</label>
                     <input type="password" class="form-control" value="<?php echo $re_type_password ?? "" ?>"
-                        name="retype_password" id="retype_password" placeholder="Nhập lại mật khẩu">
+                        name="retype_password" id="retype_password" placeholder="Nhập lại mật khẩu của bạn">
                     <small id="retype_password_err"></small>
                 </div>
                 <div class="form-group text-center">
