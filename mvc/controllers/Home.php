@@ -86,7 +86,6 @@ class Home extends Controller
     // Create
     function CreatePost()
     {
-        // Chưa login sẽ về trang đăng nhập
         if ($_REQUEST["token"] == "" || $_REQUEST["token"] != $_SESSION['_token']) {
             header("Location: " . BASE_URL . "/login");
             exit();
@@ -252,10 +251,9 @@ class Home extends Controller
     // Trang xử lý sau khi tìm kiếm dựa trên tag, nội dung và tiêu đề
     function Search()
     {
-
         if (isset($_REQUEST["btnSearch"]) && $_REQUEST["txtSearch"] != "") {
-            $txtSearch = sanitizeInputContent($_REQUEST["txtSearch"]); // làm sạch chuỗi
-            $searchType = sanitizeInputContent($_REQUEST["search-type"]); // làm sạch chuỗi
+            $txtSearch = sanitizeInputContent($_REQUEST["txtSearch"]);
+            $searchType = sanitizeInputContent($_REQUEST["search-type"]);
             $_SESSION["SearchType"] = $searchType;
             switch ($searchType) {
                 case 'none':
@@ -283,13 +281,13 @@ class Home extends Controller
             }
 
 
-            if (count($posts) > 0) { // success
-                $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
-                $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
-                $categories = $this->CategoryModel->GetAllCategory(); // header
-                $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
-                $tags = $this->TagModel->GetPopularTags();
+            $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer
+            $users = $this->UserModel->GetAllUserDescWithOrderBy('uas.point'); // scroll 
+            $categories = $this->CategoryModel->GetAllCategory(); // header
+            $recent_posts = $this->PostModel->GetPostWithTypeAndLimit("post", 10); // scroll
+            $tags = $this->TagModel->GetPopularTags();
 
+            if (count($posts) > 0) { // success
                 $this->view($this->layout, [
                     "Page" => "search",
                     "label" => $label,
@@ -304,7 +302,17 @@ class Home extends Controller
             } else {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Không tìm thấy bài viết phù hợp!";
-                header("Location: " . BASE_URL . "/home/allPosts/post");
+                $this->view($this->layout, [
+                    "Page" => "search",
+                    "label" => $label,
+                    "search" => $txtSearch, // từ khóa cần tìm kiếm
+                    "posts" => $posts,
+                    "questions" => $questions,
+                    "users" => $users,
+                    "categories" => $categories,
+                    "tags" => $tags,
+                    "recent_posts" => $recent_posts,
+                ]);
                 exit();
             }
 
@@ -316,6 +324,7 @@ class Home extends Controller
 
     function tags($tag_name)
     {
+        $tag_name = htmlspecialchars($tag_name);
         $tag = str_replace('-', ' ', $tag_name);
         $posts = $this->PostModel->GetPostByTag($tag); // body
         $questions = $this->PostModel->GetPostWithTypeAndLimit("question", 10); // footer

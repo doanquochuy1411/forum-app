@@ -62,19 +62,19 @@ class Reports extends Controller
                 $report_id = $this->ReportModel->CreateReport($post_id, $finalReport, $this->userID);
                 if ($report_id != 0) {
                     // Thông báo cho tác giả
-                    $this->NotificationModel->CreateNotification($post_id, "Bài viết của bạn đã bị báo cáo với lý do: $finalReport", $report_id);
+                    $this->NotificationModel->CreateNotification($post_id, "Bài đăng của bạn đã bị báo cáo với lý do: $finalReport", $report_id);
                     // Gửi thông báo real-time qua Pusher cho tác giả
-                    $this->sendNotification($this->userID, "Bài viết của bạn đã bị báo cáo với lý do: $finalReport", null, $post_id);
+                    $this->sendNotification($this->userID, "Bài đăng của bạn đã bị báo cáo với lý do: $finalReport", null, $post_id);
 
                     // Lấy danh sách tất cả các admin
                     $admins = $this->UserModel->GetAllAdmin();
                     // Gửi thông báo cho tất cả các admin
-                    $this->NotificationModel->CreateReportNotificationToAdmin("Một bài viết đã bị báo cáo với lý do: $finalReport", $report_id, $post_id);
+                    $this->NotificationModel->CreateReportNotificationToAdmin("Một bài đăng đã bị báo cáo với lý do: $finalReport", $report_id, $post_id);
                     foreach ($admins as $admin) {
-                        $this->sendNotification($admin['id'], "Một bài viết đã bị báo cáo với lý do: $finalReport", null, $post_id);
+                        $this->sendNotification($admin['id'], "Một bài đăng đã bị báo cáo với lý do: $finalReport", null, $post_id);
                     }
 
-                    $title = 'báo cáo thành công';
+                    $title = 'Báo cáo thành công';
                     response_success($title, "Chúng tôi sẽ tiến hành xử lý. Chân thành cảm ơn sự đóng góp của bạn!");
                 } else {
                     $title = 'báo cáo thất bại';

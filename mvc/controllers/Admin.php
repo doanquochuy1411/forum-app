@@ -259,14 +259,8 @@ class Admin extends Controller
             }
 
             $result = $this->CategoryModel->UpdateCategory($category_id, $category_name, $category_description);
-            if (!$result) {
-                $title = 'Cập nhật thất bại';
-                $mes = "Lỗi hệ thống!";
-                response_error($title, $mes);
-            } else {
-                $title = 'Cập nhật thành công';
-                response_success($title);
-            }
+            $title = 'Cập nhật thành công';
+            response_success($title);
             echo "<script>history.back();</script>";
             exit();
         } else {

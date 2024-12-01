@@ -9,6 +9,10 @@ class Login extends Controller
 
     public function __construct()
     {
+        if (isset($_SESSION['UserID'])) {
+            header("Location: " . BASE_URL);
+            exit();
+        }
         $this->UserModel = $this->model("User");
         $this->CategoryModel = $this->model("Category");
     }
@@ -63,11 +67,9 @@ class Login extends Controller
 
             $userAccount = $this->UserModel->GetUserByAccountName(encryptData($user_name));
             if ($userAccount && $userAccount['locked'] == 1) {
-                // echo "<script> alert('Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu')</script>";
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Tài khoản đã bị khoá";
                 $_SESSION['message'] = "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên hoặc sử dụng quên mật khẩu!";
-                // $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 $this->view($this->layout, [
                     "Page" => $this->page,
                     "title" => $this->title,
@@ -76,15 +78,14 @@ class Login extends Controller
                 ]);
                 return;
             }
-            // echo "<script>alert('name: " . $userAccount . "')</script>";
 
             if ($userAccount && password_verify($password, $userAccount['password'])) {
                 $this->UserModel->ResetLoginAttempts($user_name);
-                $_SESSION['action_status'] = "none"; // Để nhận biết request thành công hay thất bại. (none / success / error)
-                $_SESSION['title_message'] = ""; // Tiêu đề lỗi hoặc thành công
-                $_SESSION['message'] = ""; // Thông báo chi tiết lỗi hoặc thành công
+                $_SESSION['action_status'] = "none"; // (none / success / error)
+                $_SESSION['title_message'] = "";
+                $_SESSION['message'] = "";
                 if ($userAccount["role_id"] == 1) {
-                    $link = GetQR($userAccount["google_auth_secret"]);
+                    $link = GetQR($userAccount["google_auth_secret"], $user_name);
                     $this->view($this->layout, [
                         "Page" => "authentication_2fa",
                         "title" => $this->title,
@@ -95,8 +96,8 @@ class Login extends Controller
                 } else {
                     $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
                     $_SESSION['UserID'] = $userAccount["id"];
-                    $_SESSION['UserName'] = $userAccount["user_name"]; // Hiển thị trên tên trên trang chủ
-                    $_SESSION['AccountName'] = encryptData($userAccount["account_name"]); // Tên tài khoản của user
+                    $_SESSION['UserName'] = $userAccount["user_name"];
+                    $_SESSION['AccountName'] = encryptData($userAccount["account_name"]);
                     $_SESSION['RoleID'] = $userAccount["role_id"];
                     $_SESSION['Avatar'] = $userAccount["image"];
                     header("Location: " . BASE_URL);
@@ -124,7 +125,6 @@ class Login extends Controller
                     "categories" => $categories,
                     "data" => [$user_name, $password]
                 ]);
-                // $this->response($this->layout, "login", $this->title, [$user_name, $password]);
                 return;
             }
         }
@@ -143,7 +143,7 @@ class Login extends Controller
                 $message = "Mã xác minh không chính xác.";
                 response_error($title, $message);
 
-                $link = GetQR($userAccount["google_auth_secret"]);
+                $link = GetQR($userAccount["google_auth_secret"], $account_name);
                 $this->view($this->layout, [
                     "Page" => "authentication_2fa",
                     "title" => $this->title,

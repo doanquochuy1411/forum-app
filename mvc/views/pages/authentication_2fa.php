@@ -92,12 +92,9 @@
                 <input type="hidden" name="account_name" value="<?php echo $account_name ?? ""; ?>" />
 
                 <div class="form-group mg-b-5">
-                    <!-- <label>Nhập mã xác thực: </label> -->
-                    <!-- <input type="text" autofocus name="pass_code" required class="form-control"
-                        placeholder="Nhập mã xác thực" value=""> -->
                     <div class="input-group">
                         <span class="input-group-text">
-                            <i class="fa fa-lock"></i> <!-- Biểu tượng ổ khóa -->
+                            <i class="fa fa-lock"></i>
                         </span>
                         <input type="text" id="pass_code" name="pass_code" required class="form-control"
                             placeholder="Nhập mã xác thực" value="">

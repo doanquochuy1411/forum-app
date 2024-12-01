@@ -105,6 +105,7 @@
 <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.9/purify.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.2/purify.min.js" integrity="sha512-aMwmSY1jtPTUuu81C/rDUHoj2IyPpqqSX6N+efBFVFIe5nV4ZsKebsEWDUxsVdDMy3XVhY4TsZ3WHgXmhSufjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script>
     if (document.querySelector('#editor')) {
         var quill = new Quill('#editor', {

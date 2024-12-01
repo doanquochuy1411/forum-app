@@ -24,6 +24,7 @@ function validateNoSpecialChars($input)
 {
     return preg_match('/^[\p{L}\p{N}\s!@$%&?,\-()*:\=[\]]+$/u', $input);
 }
+
 function validateDescription($input)
 {
     if ($input === '') {
@@ -48,10 +49,9 @@ function validateAddress($address)
 }
 function sanitizeInputContent($input)
 {
-    // Thay thế các ký tự đặc biệt có thể gây ra SQL Injection
+    $input = htmlspecialchars($input);
     $sanitized = preg_replace('/[\'"\\\%;\(\)~`\^<>\[\]\{\}\&\|\*]/', '', $input);
 
-    // Trả về chuỗi đã được làm sạch
     return $sanitized;
 }
 
@@ -61,17 +61,11 @@ function validateImage($file, $tempDir = '/tmp')
     $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif'];
     $maxSize = 5 * 1024 * 1024; // 5 MB
     $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-    // $tempFile = $tempDir . '/' . uniqid('image_', true) . '.' . $fileExtension;
 
-    // Kiểm tra extension của file
-
-    // Để lấy thông tin về hình ảnh, bao gồm kích thước (chiều rộng và chiều cao), loại ảnh (JPEG, PNG, GIF, v.v.), Loại MiMe của ảnh
     if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
         return "Phần mở rộng file không hợp lệ. Chỉ chấp nhận JPEG, JPG, PNG, và GIF.";
     }
 
-
-    // Kiểm tra loại file và xác nhận file là ảnh thực sự
     $imageInfo = getimagesize($file['tmp_name']);
     if ($imageInfo === false) {
         return "File không phải là hình ảnh hợp lệ.";
@@ -82,12 +76,10 @@ function validateImage($file, $tempDir = '/tmp')
         return "Loại file không hợp lệ. Chỉ chấp nhận JPEG, JPG, PNG, và GIF.";
     }
 
-    // Kiểm tra kích thước file
     if ($file['size'] > $maxSize) {
         return "Kích thước file quá lớn. Kích thước tối đa là " . ($maxSize / 1024 / 1024) . " MB.";
     }
 
-    // Kiểm tra xem file tạm thời có tồn tại không
     if (!file_exists($tempDir)) {
         if (!mkdir($tempDir, 0755, true)) {
             return "Không thể tạo thư mục tạm thời: $tempDir.";
@@ -115,10 +107,9 @@ function validateImage($file, $tempDir = '/tmp')
     // // Xóa file tạm thời
     // unlink($tempFile);
 
-    // Nếu không có lỗi, trả về null
     return null;
 }
-// Tạm thời chưa sử dụng được
+
 function scanFileWithVirusTotal($filePath)
 {
     $url = 'https://www.hybrid-analysis.com/api/scan/file';
@@ -140,7 +131,6 @@ function scanFileWithVirusTotal($filePath)
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    // print_r($response);
 
     if ($httpCode != 200) {
         return ['error' => ['message' => 'Không thể kết nối với Hybrid Analysis API. Mã trạng thái HTTP: ' . $httpCode]];
@@ -148,7 +138,6 @@ function scanFileWithVirusTotal($filePath)
 
     $responseData = json_decode($response, true);
 
-    // Kiểm tra kết quả phân tích từ Hybrid Analysis
     if (isset($responseData['scan_results']) && $responseData['scan_results']['malicious'] > 0) {
         return ['error' => ['message' => 'Tệp hình ảnh có thể chứa mã độc.']];
     }
@@ -156,8 +145,6 @@ function scanFileWithVirusTotal($filePath)
     return $responseData;
 }
 
-
-// Validate các giá trị được gửi qua form
 function validateForm($fieldsToValidate)
 {
     $errors = [];
@@ -216,14 +203,13 @@ function sanitizeInputQuill($input)
         'source'
     ];
 
-    // Kiểm tra xem nội dung có chứa thẻ không được phép
     foreach ($disallowed_tags as $tag) {
         if (stripos($input, '<' . $tag) !== false) {
-            return false; // Nếu tìm thấy thẻ không được phép, trả về false
+            return false;
         }
     }
 
-    return true; // Nếu không tìm thấy thẻ không được phép, trả về true
+    return true;
 }
 
 ?>

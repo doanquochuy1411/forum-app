@@ -59,12 +59,11 @@ class DB
         }
 
         if (!empty($params)) {
-            $types = str_repeat('s', count($params)); // Assuming all params are strings
+            $types = str_repeat('s', count($params));
             $stmt->bind_param($types, ...$params);
         }
 
         if (!$stmt->execute()) {
-            // Try to re-prepare the statement
             $stmt = $this->con->prepare($sql);
             if ($stmt === false) {
                 throw new Exception("Re-prepare failed: " . $this->con->error);
@@ -80,7 +79,6 @@ class DB
             }
         }
 
-        // $result = $stmt->get_result();
         $result = $stmt->affected_rows > 0;
         $stmt->close();
         return $result;

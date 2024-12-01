@@ -533,7 +533,7 @@
 
                                 <!-- Hidden field to store post or question ID -->
                                 <input type="hidden" name="token" value="<?php echo $_SESSION['_token'] ?? "" ?>" />
-                                <button type="submit" name="btnReport" class="btn btn-danger">báo cáo</button>
+                                <button type="submit" name="btnReport" class="btn btn-danger">Báo cáo</button>
                             </form>
                         </div>
                     </div>

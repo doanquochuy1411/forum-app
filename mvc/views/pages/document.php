@@ -3,7 +3,7 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h3 class="text-primary font-weight-bold position-relative">Câu Hỏi</h3>
+                <h3 class="text-primary font-weight-bold position-relative">Tài liệu</h3>
                 <div class="title-underline"></div>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">

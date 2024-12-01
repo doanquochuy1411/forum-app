@@ -28,6 +28,7 @@
             <div class="col-md-9">
                 <section id="main-content" class="category2781">
                     <?php
+                    $title = $title ?? "";
                     if (count($posts) > 0) {
                         echo '<div class="container-content">
 

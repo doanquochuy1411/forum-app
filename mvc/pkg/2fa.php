@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . '/../../vendor/autoload.php';
 
-function GetQR($secret)
+function GetQR($secret, $accountName = "MyAccount")
 {
-    $link = \Sonata\GoogleAuthenticator\GoogleQrUrl::generate('durgesh', $secret, 'opentalks');
+    $link = \Sonata\GoogleAuthenticator\GoogleQrUrl::generate($accountName, $secret, 'opentalks');
     return $link;
 }
 

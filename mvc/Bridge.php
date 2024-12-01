@@ -1,4 +1,5 @@
 <?php
+require_once "./session.php";
 require_once "./pusher.php";
 require_once "./mvc/core/App.php";
 require_once "./mvc/core/Controller.php";
