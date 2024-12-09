@@ -57,16 +57,18 @@ function sanitizeInputContent($input)
 
 function validateImage($file, $tempDir = '/tmp')
 {
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg']; // Type file thật sự
     $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif'];
-    $maxSize = 5 * 1024 * 1024; // 5 MB
+    $maxSize = 2 * 1024 * 1024;
     $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-
+    // Kiểm tra phần mở rộng
     if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
         return "Phần mở rộng file không hợp lệ. Chỉ chấp nhận JPEG, JPG, PNG, và GIF.";
     }
 
-    $imageInfo = getimagesize($file['tmp_name']);
+    // getimagesize: 1 phần thư viện GD của PHP hỗ trợ xử lý hình ảnh
+    // Kiểm tra nội dung thực tế của file
+    $imageInfo = getimagesize($file['tmp_name']); // trả về false nếu không phải là file ảnh thật sự do không có chiều rộng và chiều cao,...
     if ($imageInfo === false) {
         return "File không phải là hình ảnh hợp lệ.";
     }
@@ -85,27 +87,6 @@ function validateImage($file, $tempDir = '/tmp')
             return "Không thể tạo thư mục tạm thời: $tempDir.";
         }
     }
-
-    // Tạo file tạm thời để xử lý
-    // $tempFile = $tempDir . '/' . uniqid('image_', true) . '.' . $fileExtension;
-    // if (!move_uploaded_file($file['tmp_name'], $tempFile)) {
-    //     return "Không thể di chuyển file tạm thời.";
-    // }
-
-    // // Kiểm tra mã độc bằng Hybrid Analysis API
-    // $scanResult = scanFileWithVirusTotal($tempFile);
-    // if (isset($scanResult['error'])) {
-    //     return "Quét virus không thành công. Lỗi: " . $scanResult['error']['message'];
-    // }
-
-    // // Kiểm tra kết quả quét virus
-    // if (isset($scanResult['scan_results']) && $scanResult['scan_results']['malicious'] > 0) {
-    //     unlink($tempFile); // Xóa file tạm thời
-    //     return "Tệp hình ảnh có thể chứa mã độc.";
-    // }
-
-    // // Xóa file tạm thời
-    // unlink($tempFile);
 
     return null;
 }

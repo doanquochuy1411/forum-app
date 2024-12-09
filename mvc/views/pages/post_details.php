@@ -248,6 +248,41 @@
                         </i>
                     </div>
                 </div>
+                <!-- Ads -->
+                <div class="share-tags-page-content12092" style="display: flex;     gap: 18px;">
+                    <div class="">
+                        <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                            <img style="width: 100%;" src="<?php echo BASE_URL ?>/public/src/uploads/banner-details.jpg"
+                                alt="">
+                        </a>
+                    </div>
+                    <div class="">
+                        <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                            <img style="width: 100%;" src="<?php echo BASE_URL ?>/public/src/uploads/banner-details.jpg"
+                                alt="">
+                        </a>
+                    </div>
+                    <div class="">
+                        <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                            <img style="width: 100%;" src="<?php echo BASE_URL ?>/public/src/uploads/banner-details.jpg"
+                                alt="">
+                        </a>
+                    </div>
+
+                    <!-- <div class="">
+                        <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                            <img style="width: 100%;" src="<?php echo BASE_URL ?>/public/src/uploads/banner-details.jpg"
+                                alt="">
+                        </a>
+                    </div>
+
+                    <div class="">
+                        <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                            <img style="width: 100%;" src="<?php echo BASE_URL ?>/public/src/uploads/banner-details.jpg"
+                                alt="">
+                        </a>
+                    </div> -->
+                </div>
                 <div class="comment-list12993">
                     <div class="container">
                         <div class="row">

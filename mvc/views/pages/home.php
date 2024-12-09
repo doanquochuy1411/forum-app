@@ -528,7 +528,7 @@
                         document.getElementById('editorContent_err').textContent = '';
                     }
                 } else {
-                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 10) {
+                    if (editorContent === '' || editorContent === '<p><br></p>' || editorContent.length < 17) {
                         event.preventDefault(); // Ngăn chặn việc gửi form
                         document.getElementById('editorContent_err').textContent =
                             'Nội dung phải có ít nhất 10 ký tự.';

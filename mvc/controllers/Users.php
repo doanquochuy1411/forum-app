@@ -79,6 +79,9 @@ class Users extends Controller
             if ($file_name != "") {
                 $_SESSION['Avatar'] = $file_name;
             }
+            if ($result) {
+                $_SESSION['UserName'] = $user_name;
+            }
             response_success($title, "");
             echo "<script>history.back();</script>";
             exit();

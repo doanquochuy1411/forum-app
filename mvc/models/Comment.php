@@ -76,11 +76,11 @@ class Comment extends DB
         $this->beginTransaction();
 
         try {
-            $sql = "DELETE FROM comments WHERE id = ?";
-            $this->executeQuery($sql, [$id]);
-
             $sql2 = "DELETE FROM notifications WHERE comment_id = ?";
             $this->executeQuery($sql2, [$id]);
+
+            $sql = "DELETE FROM comments WHERE id = ?";
+            $this->executeQuery($sql, [$id]);
 
             $this->commit();
             return true;

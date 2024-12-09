@@ -13,11 +13,6 @@ function uploadImage($file, $destinationDir = './public/src/uploads')
         }
     }
 
-
-    // $currentDir = dirname(__FILE__);
-    // echo "Thư mục chứa file hiện tại là: " . $currentDir;
-    // echo "<br>";
-    // Lấy thời gian hiện tại
     $timestamp = time();
 
     // Tạo tên file duy nhất để tránh ghi đè

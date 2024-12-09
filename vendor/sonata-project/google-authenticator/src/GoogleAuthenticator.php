@@ -88,7 +88,7 @@ final class GoogleAuthenticator implements GoogleAuthenticatorInterface
 
         $result = 0;
         for ($i = -$discrepancy; $i < $periods + $discrepancy; ++$i) {
-            $dateTime = new \DateTimeImmutable('@'.($this->instanceTime->getTimestamp() - ($i * $this->periodSize)));
+            $dateTime = new \DateTimeImmutable('@' . ($this->instanceTime->getTimestamp() - ($i * $this->periodSize)));
             $result = hash_equals($this->getCode($secret, $dateTime), $code) ? $dateTime->getTimestamp() : $result;
         }
 
@@ -111,7 +111,7 @@ final class GoogleAuthenticator implements GoogleAuthenticatorInterface
             $timeForCode = floor($time->getTimestamp() / $this->periodSize);
         } else {
             @trigger_error(
-                'Passing anything other than null or a DateTimeInterface to $time is deprecated as of 2.0 '.
+                'Passing anything other than null or a DateTimeInterface to $time is deprecated as of 2.0 ' .
                 'and will not be possible as of 3.0.',
                 \E_USER_DEPRECATED
             );
@@ -144,7 +144,7 @@ final class GoogleAuthenticator implements GoogleAuthenticatorInterface
     public function getUrl($user, $hostname, $secret): string
     {
         @trigger_error(sprintf(
-            'Using %s() is deprecated as of 2.1 and will be removed in 3.0. '.
+            'Using %s() is deprecated as of 2.1 and will be removed in 3.0. ' .
             'Use Sonata\GoogleAuthenticator\GoogleQrUrl::generate() instead.',
             __METHOD__
         ), \E_USER_DEPRECATED);
@@ -156,12 +156,13 @@ final class GoogleAuthenticator implements GoogleAuthenticatorInterface
         $url = GoogleQrUrl::generate($accountName, $secret);
 
         if ($issuer) {
-            $url .= '%26issuer%3D'.$issuer;
+            $url .= '%26issuer%3D' . $issuer;
         }
 
         return $url;
     }
 
+    // Tạo một chuỗi bí mật (secret) mã hóa theo chuẩn Base32.
     public function generateSecret(): string
     {
         return (new FixedBitNotation(5, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', true, true))

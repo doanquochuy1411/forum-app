@@ -19,6 +19,11 @@
                 ?>
             </ul>
         </div>
+        <div class="categori-part329">
+            <a href="https://hourspaltrypointed.com/kpkghvh8?key=c7ad9d80ccad695c4cb2f1ac7783b7ad">
+                <img style="width: 100%" src="<?php echo BASE_URL ?>/public/src/uploads/anhdemo.jpg" alt="">
+            </a>
+        </div>
         <div class="recent-post3290">
             <h4>Bài viết gần đây</h4>
             <?php

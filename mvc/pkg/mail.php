@@ -34,8 +34,6 @@ function sendCode($email)
     $mail->Body = "Chào bạn,\n\nMã xác nhận của bạn là:\n\n$otp\n\nMã này có hiệu lực trong vòng 90 giây. Vui lòng sử dụng mã này để xác nhận địa chỉ email của bạn.\n\nCảm ơn bạn!\n\nNếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.";
     try {
         $mail->send();
-        // $_SESSION["verify-code"] = $otp;
-        // $_SESSION["otp-timestamp"] = time();
         $_SESSION['otp_map'][$email] = [
             'otp_code' => $otp,
             'otp_expiry' => $expiryTime
@@ -48,8 +46,6 @@ function sendCode($email)
 
 function verifyCode($email, $inputOtp)
 {
-    // $otp = $_SESSION["verify-code"];
-    // return $otp == $code;
     if (!isset($_SESSION['otp_map'][$email])) {
         $title = 'Xác thực thất bại';
         $message = 'OTP không tồn tại hoặc đã hết hạn.';

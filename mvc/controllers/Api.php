@@ -90,7 +90,7 @@ class Api extends Controller
 
     public function getPostToStatistics($year)
     {
-        // Lấy danh sách thông báo từ database
+        $year = htmlspecialchars($year);
         $result = $this->PostModel->GetPostAmountPerMonthByYear($year);
         if (mysqli_num_rows($result) > 0) {
             $posts = array_fill(0, 12, 0);
@@ -117,7 +117,7 @@ class Api extends Controller
 
     public function getUserToStatistics($year)
     {
-        // Lấy danh sách thông báo từ database
+        $year = htmlspecialchars($year);
         $result = $this->UserModel->GetUserAmountPerMonthByYear($year);
         if (mysqli_num_rows($result) > 0) {
             $userData = array_fill(0, 12, 0);
@@ -145,8 +145,8 @@ class Api extends Controller
     public function HandelLikePost()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $postId = $_POST['post_id'];
-            $userId = $_POST['user_id'];
+            $postId = htmlspecialchars($_POST['post_id']);
+            $userId = htmlspecialchars($_POST['user_id']);
             $status = "";
 
             $checkLiked = $this->PostModel->CheckLikedPostByUser($userId, $postId);
@@ -194,6 +194,7 @@ class Api extends Controller
 
     public function GetTopPostsByViews($limit)
     {
+        $limit = htmlspecialchars($limit);
         $topPosts = $this->PostModel->GetTopPostsByViews($limit);
         if (empty($topPosts)) {
             http_response_code(400);
@@ -215,6 +216,7 @@ class Api extends Controller
 
     public function GetTopPostsByLikes($limit)
     {
+        $limit = htmlspecialchars($limit);
         $topPosts = $this->PostModel->GetTopPostsByLikes($limit);
         if (empty($topPosts)) {
             http_response_code(400);
@@ -270,8 +272,8 @@ class Api extends Controller
     public function HandelFollow()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $authId = $_POST['auth_id'];
-            $userId = $_POST['user_id'];
+            $authId = htmlspecialchars($_POST['auth_id']);
+            $userId = htmlspecialchars($_POST['user_id']);
             $status = "";
 
             $checkLiked = $this->FollowModel->CheckFollowByUser($authId, $userId);
@@ -340,7 +342,7 @@ class Api extends Controller
 
     public function getQuestionAndDocumentToStatistics($year)
     {
-        // Lấy danh sách thông báo từ database
+        $year = htmlspecialchars($year);
         $questions = $this->PostModel->GetPostAmountPerMonthByYear($year, "question");
         $documents = $this->PostModel->GetPostAmountPerMonthByYear($year, "document");
         $posts = $this->PostModel->GetPostAmountPerMonthByYear($year, "post");

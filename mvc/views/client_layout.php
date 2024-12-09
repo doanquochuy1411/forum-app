@@ -552,9 +552,14 @@
         });
 
         $(document).ready(function () {
+            var userIdToCheck =
+                "<?php echo isset($_SESSION['UserID']) ? $_SESSION['UserID'] : ""; ?>";
             // Khi người dùng nhấn vào nút "Báo cáo"
             $('#openReportModal').on('click', function () {
                 // Hiển thị modal popup
+                if (userIdToCheck === "") {
+                    window.location.href = "<?php echo BASE_URL ?>/login";
+                }
                 $('#report').modal('show');
             });
         });

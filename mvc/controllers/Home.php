@@ -116,10 +116,11 @@ class Home extends Controller
                     foreach ($tags as $tag) {
                         $tag_id = $this->TagModel->GetTagByName($tag); // Use CheckTagByName to get ID or false
                         if ($tag_id === false) {
+
                             $tag_id = $this->TagModel->CreateTag($tag); // // Pass $tag to CreateTag to insert new tag
                         }
 
-                        $result = $this->TagModel->AddTag($post_id, $tag_id);
+                        $result = $this->TagModel->AddTag(encryptData($post_id), $tag_id);
                         if ($result === false) {
                             $allTagsInserted = false; // Set flag to false if insertion fails
                         }
@@ -147,6 +148,8 @@ class Home extends Controller
                     $_SESSION['title_message'] = "Đăng bài thành công";
                     $_SESSION['message'] = "Đăng bài thành công nhưng một số tags không được chèn!";
                 }
+                header("Location: " . BASE_URL . "/home/posts/" . encryptData($post_id));
+                exit();
             } else {
                 $_SESSION['action_status'] = 'error';
                 $_SESSION['title_message'] = "Đăng bài thất bại";

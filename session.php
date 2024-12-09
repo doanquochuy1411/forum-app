@@ -8,7 +8,9 @@ $dotenv->load();
 
 $life_time = $_ENV['SESSION_LIFE_TIME'] ?? 10800; // Mặc định là 3 tiếng
 $time_out = $_ENV['SESSION_TIMEOUT'] ?? 1800; // Mặc định là 30 phút
-
+$rate_limit = $_ENV['RATE_LIMIT'] ?? 100; // Mặc định là 100 request
+$window = $_ENV['WINDOW'] ?? 60; // Mặc định là 60 giây
+$BASE = "http://localhost/forum-app";
 
 function getClientIP()
 {
@@ -30,17 +32,19 @@ function setSessionIP()
 
 function verifySessionIP()
 {
+    global $BASE;
     if (isset($_SESSION['client_ip']) && $_SESSION['client_ip'] !== getClientIP()) {
         session_unset();
         session_destroy();
         setcookie(session_name(), '', time() - 42000, '/');
-        setSessionMessage('warning', "Phiên làm việc không hợp lệ: IP đã thay đổi.");
+        header("Location: " . $BASE . "/errors/unauthorized");
         exit();
     }
 }
 
 function setSessionTimeout($lifetime = 86400)
 {
+    global $BASE;
     if (!isset($_SESSION['session_start_time'])) {
         $_SESSION['session_start_time'] = time();
     }
@@ -49,7 +53,7 @@ function setSessionTimeout($lifetime = 86400)
         session_unset();
         session_destroy();
         setcookie(session_name(), '', time() - 42000, '/');
-        setSessionMessage('info', "Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại!");
+        header("Location: " . $BASE . "/login");
         exit();
     }
 }
@@ -63,11 +67,12 @@ function setSessionUserAgent()
 
 function verifySessionUserAgent()
 {
+    global $BASE;
     if (isset($_SESSION['user_agent']) && $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
         session_unset();
         session_destroy();
         setcookie(session_name(), '', time() - 42000, '/');
-        setSessionMessage('error', "Phiên làm việc của bạn đang bị rò rỉ. Vui lòng đăng nhập lại!");
+        header("Location: " . $BASE . "/login");
         exit();
     }
 }
@@ -79,6 +84,7 @@ function verifySessionUserAgent()
  */
 function manageSession($maxLifetime = 86400, $idleTimeout = 1800)
 {
+    global $BASE;
     $currentTime = time();
 
     if (!isset($_SESSION['session_start_time'])) {
@@ -94,8 +100,7 @@ function manageSession($maxLifetime = 86400, $idleTimeout = 1800)
         session_unset();  // Xóa tất cả các biến session
         session_destroy(); // Hủy session
         setcookie(session_name(), '', time() - 42000, '/');
-        // die("Phiên làm việc đã hết hạn (quá 24 giờ).");
-        setSessionMessage('info', "Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại!");
+        header("Location: " . $BASE . "/login");
         exit();
     }
 
@@ -104,7 +109,7 @@ function manageSession($maxLifetime = 86400, $idleTimeout = 1800)
         session_unset();  // Xóa tất cả các biến session
         session_destroy(); // Hủy session
         setcookie(session_name(), '', time() - 42000, '/');
-        setSessionMessage('info', "Phiên làm việc đã hết hạn do không hoạt động. Vui lòng đăng nhập lại!");
+        header("Location: " . $BASE . "/login");
         exit();
     }
 
@@ -114,16 +119,60 @@ function manageSession($maxLifetime = 86400, $idleTimeout = 1800)
 
 function setSessionMessage($status, $message)
 {
-    if (!isset($_SESSION['action_status'])) {
-        $_SESSION['action_status'] = $status;
-        $_SESSION['title_message'] = $message;
+    $_SESSION['action_status'] = $status;
+    $_SESSION['title_message'] = $message;
+}
+
+function rateLimit($limit = 100, $window = 60)
+{
+    global $BASE;
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+    $key = md5($ip . $userAgent);
+
+    if (!isset($_SESSION['rate_limit'][$key])) {
+        $_SESSION['rate_limit'][$key] = [
+            'count' => 1,
+            'start_time' => time(),
+        ];
+    } else {
+        $elapsedTime = time() - $_SESSION['rate_limit'][$key]['start_time'];
+
+        if ($elapsedTime < $window) {
+            if ($_SESSION['rate_limit'][$key]['count'] >= $limit) {
+                $timeToReset = $window - $elapsedTime;
+
+                header("X-RateLimit-Limit: $limit");
+                header("X-RateLimit-Remaining: 0");
+                header("X-RateLimit-Reset: $timeToReset");
+                session_unset();
+                session_destroy();
+                header("Location: " . $BASE . "/errors");
+                exit;
+            } else {
+                $_SESSION['rate_limit'][$key]['count']++;
+            }
+        } else {
+            $_SESSION['rate_limit'][$key] = [
+                'count' => 1,
+                'start_time' => time(),
+            ];
+        }
     }
+
+    $remaining = $limit - $_SESSION['rate_limit'][$key]['count'];
+    $timeToReset = $window - (time() - $_SESSION['rate_limit'][$key]['start_time']);
+
+    header("X-RateLimit-Limit: $limit");
+    header("X-RateLimit-Remaining: $remaining");
+    header("X-RateLimit-Reset: $timeToReset");
 }
 
 
 
+
 session_set_cookie_params([
-    'lifetime' => 0, // Session sẽ bị xóa khi trình duyệt đóng
+    'lifetime' => 0,
     'path' => '/',
     'domain' => $_SERVER['SERVER_NAME'],
     'secure' => true,      // Chỉ gửi cookie qua HTTPS
@@ -140,4 +189,5 @@ setSessionUserAgent();
 verifySessionUserAgent();
 setSessionTimeout($life_time);
 manageSession($life_time, $time_out);
+rateLimit($rate_limit, $window);
 ?>

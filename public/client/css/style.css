@@ -1835,17 +1835,17 @@ h5:hover {
 .related3948-question-part a {
     text-decoration: none;
     color: #222629;
-    font-family: fontawesome;
+    /* font-family: fontawesome; */
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .related3948-question-part a:hover {
     text-decoration: none;
     color: #fd6372;
-    font-family: fontawesome;
+    /* font-family: fontawesome; */
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 
